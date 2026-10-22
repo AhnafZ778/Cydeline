@@ -1,0 +1,6 @@
+interface:
+  display_name: "Agent Instructions (Sentinel Loop Harness)"
+  short_description: "Master Plan/Implement/Evaluate lifecycle & instant segment takeover system"
+  default_prompt: "Use $agent-instructions to resume, execute, or take over a Sentinel Loop segment."
+policy:
+  allow_implicit_invocation: true

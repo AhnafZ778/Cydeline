@@ -1,0 +1,16 @@
+---
+description: Sentinel Loop Harness Operating System — enforces real-time context-resume, Plan/Implement/Evaluate lifecycle, and zero-context-loss takeover across Ahnaf, Tanvir, and Saad segments
+alwaysApply: true
+---
+
+sentinel-loop-harness:
+
+- At session entry or segment switch, always run `python3 scripts/harness_sync.py takeover --task <task>` (`ahnaf-lead-ux`, `tanvir-red-agent`, `saad-range-control`, or `master-integration`) and read `context/INDEX.md` plus the segment's `context/<PERSON>_CONTEXT.md` and `context/contracts/<task>.contract.md`.
+- Follow the `Agent_Instructions/SKILL.md` (`Plan -> Implement -> Evaluate`) blueprints:
+  - Phase 1 (`Plan`): `Agent_Instructions/references/PLAN_PHASE.md`
+  - Phase 2 (`Implement`): `Agent_Instructions/references/IMPLEMENT_PHASE.md`
+  - Phase 3 (`Evaluate`): `Agent_Instructions/references/EVALUATE_PHASE.md`
+  - Emergency Takeover: `Agent_Instructions/references/TAKEOVER_PROTOCOL.md`
+- Whenever you complete an increment, change architecture, or hit a blocker on any segment, update the real-time context before ending your turn:
+  `python3 scripts/harness_sync.py update --task <task> --phase <PLAN|IMPLEMENT|EVALUATE> --complete "..." --next-step "..."`
+- After updating context or code, run `harness check run /home/ahnaf-zakaria/Downloads/Cydeline` so the verification receipt stays bound to the current source snapshot.

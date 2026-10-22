@@ -1,0 +1,48 @@
+{
+  "task": "saad-range-control",
+  "phase": "PLAN",
+  "goal": "Deliver canonical contracts (contracts/, scenarios/), the isolated Northstar Analytics target range (apps/target-api/, infra/range/), and the trusted control plane with SSE, verification, 100-pt scoring, and replay (apps/control-api/).",
+  "acceptance": [
+    "SL-001: Canonical enums, schemas, and scenario v1 fixtures published in contracts/ and scenarios/stolen-session/v1/",
+    "FR-A01-A06: apps/target-api/ enforces real session/account state for sess_A and doc_finance_07, passes Eli benign probe, emits audit logs, and passes 10 consecutive clean resets",
+    "FR-C01-C06: apps/control-api/ persists 9 SQLite WAL tables, streams SSE with Last-Event-ID backfill, validates declarations, and serializes idempotent defender commands",
+    "FR-C07-C09: Deterministic 100-point rubric + outcome gates and side-effect-free read-only /replay"
+  ],
+  "architecture": [
+    "Saad.md",
+    "04_OWNER_A_CYBER_RANGE.md",
+    "06_OWNER_C_CONTROL_SCORING.md",
+    "context/contracts/saad-range-control.contract.md",
+    "contracts/",
+    "scenarios/stolen-session/v1/",
+    "apps/target-api/",
+    "apps/control-api/"
+  ],
+  "decisions": [
+    "Consolidate Workstream A (target-api) and Workstream C (control-api + contracts) under Saad for unified FastAPI + SQLite backend execution",
+    "Implement TargetAdapter protocol supporting both direct in-process testing and isolated container HTTP transport",
+    "Use SQLite WAL mode with per-run lock serialization so containment commits before the next attacker request is dispatched (T-07)"
+  ],
+  "completed": [
+    "Defined Saad's role, deliverables, and parallel workflow in Saad.md",
+    "Authored complete backend task contract in context/contracts/saad-range-control.contract.md"
+  ],
+  "remaining": [
+    "Increment S1 (SL-001): Create contracts/ (canonical enums, schemas, mock fixtures) and scenarios/stolen-session/v1/",
+    "Increment S2 (SL-002, SL-006): Build apps/target-api/ and tests/target/ (including 10x clean reset test)",
+    "Increment S3 (SL-004, SL-008): Build apps/control-api/ (SQLite store, SSE stream, declaration, idempotent actions, dual verification) and tests/control/",
+    "Increment S4 (SL-010, SL-012): Implement 100-point rubric, outcome gates, read-only /replay, and tests/isolation/"
+  ],
+  "blockers": [],
+  "uncertainties": [
+    "Confirm whether demo host uses rootless Docker compose internal network or dedicated disposable VM for infra/range/"
+  ],
+  "next_step": "Start Increment S1 (SL-001): Create contracts/ and scenarios/stolen-session/v1/ with canonical enums, Pydantic models, and static mock fixtures.",
+  "evidence": [
+    "Saad.md",
+    "04_OWNER_A_CYBER_RANGE.md",
+    "06_OWNER_C_CONTROL_SCORING.md",
+    "context/contracts/saad-range-control.contract.md",
+    "context/evaluations/saad-range-control.eval.md"
+  ]
+}

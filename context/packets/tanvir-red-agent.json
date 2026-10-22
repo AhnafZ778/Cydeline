@@ -1,0 +1,46 @@
+{
+  "task": "tanvir-red-agent",
+  "phase": "PLAN",
+  "goal": "Deliver the bounded local AI adversary service (services/red-agent/), two-stage safety validator, and empirical benchmark suite (tests/agent/, docs/model-card/).",
+  "acceptance": [
+    "FR-B01/B02: Single local quantized model (Qwen3-1.7B Q4 via Ollama) operating sequentially as scout, access_operator, and adaptation_planner",
+    "FR-B03/B04: Two-stage validator enforces strict JSON schema and allowlisted actions/handles (0 out-of-policy actions accepted)",
+    "FR-B05: Post-revocation observation causes adaptation_planner to change action or select stop in >=8/10 paired trials",
+    "FR-B06: Timeouts and invalid outputs recover cleanly via explicitly tagged deterministic fallback (fallback_used: true)"
+  ],
+  "architecture": [
+    "Tanvir.md",
+    "03_LOCAL_RED_AGENT_RUNTIME_PROMPT.md",
+    "05_OWNER_B_LOCAL_AI_RED_TEAM.md",
+    "context/contracts/tanvir-red-agent.contract.md",
+    "services/red-agent/",
+    "tests/agent/",
+    "docs/model-card/"
+  ],
+  "decisions": [
+    "Use one shared Ollama model instance prompted sequentially across 3 logical roles rather than parallel multi-model swarm",
+    "Enforce a strict two-stage validator (Pydantic/JSON schema + run-policy allowlist) independent of LLM prompt adherence",
+    "Tag any timeout or invalid-output recovery with fallback_used=true so demo provenance is 100% transparent"
+  ],
+  "completed": [
+    "Defined Tanvir's role, deliverables, and parallel workflow in Tanvir.md",
+    "Frozen starter runtime prompt in 03_LOCAL_RED_AGENT_RUNTIME_PROMPT.md and contract in context/contracts/tanvir-red-agent.contract.md"
+  ],
+  "remaining": [
+    "Increment B1: Implement services/red-agent/ (observation builder, 2-stage validator, timeout fallback) and unit tests in tests/agent/",
+    "Increment B2: Connect Ollama client (Qwen3-1.7B Q4) and measure cold/warm decision latency on demo hardware",
+    "Increment B3: Execute 30-trial schema benchmark + 10-pair adaptation benchmark and document results in docs/model-card/"
+  ],
+  "blockers": [],
+  "uncertainties": [
+    "Cold/warm latency of Qwen3-1.7B Q4 on local hardware to be measured during Increment B2"
+  ],
+  "next_step": "Start Increment B1: Implement services/red-agent/ (schemas, observation builder, two-stage validator, and tagged fallback) + unit tests in tests/agent/.",
+  "evidence": [
+    "Tanvir.md",
+    "03_LOCAL_RED_AGENT_RUNTIME_PROMPT.md",
+    "05_OWNER_B_LOCAL_AI_RED_TEAM.md",
+    "context/contracts/tanvir-red-agent.contract.md",
+    "context/evaluations/tanvir-red-agent.eval.md"
+  ]
+}

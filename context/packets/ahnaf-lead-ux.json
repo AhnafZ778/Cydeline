@@ -1,0 +1,46 @@
+{
+  "task": "ahnaf-lead-ux",
+  "phase": "PLAN",
+  "goal": "Oversee cross-team integration and deliver the 7-state React/TypeScript Defender Command Center (apps/web/), Playwright E2E suite (tests/e2e/), and 3-minute competition demo (docs/demo/).",
+  "acceptance": [
+    "FR-D01/D02: Lobby briefing + live SSE event table with filters (user, session, source, type, outcome, time) preserving monotonic sequence and Evidence Basket selections",
+    "FR-D03/D04: Event Detail Drawer + Incident Declaration submitting visible event_ids and suspected_session (sess_A)",
+    "FR-D05: Containment Console distinguishing revoke_session, temporarily_disable_account, require_reauthentication, and restore_account with blast-radius warnings and idempotency keys",
+    "FR-D06: Recovery Verification view requiring both verify_suspicious_session_denied and verify_benign_workflow to pass",
+    "FR-D07/D08: 100-point Debrief + Read-Only Replay with fallback provenance badges, keyboard accessibility, and Playwright E2E pass"
+  ],
+  "architecture": [
+    "Ahnaf.md",
+    "07_OWNER_D_DEFENDER_UX_QA_DEMO.md",
+    "context/contracts/ahnaf-lead-ux.contract.md",
+    "apps/web/",
+    "tests/e2e/",
+    "docs/demo/"
+  ],
+  "decisions": [
+    "Use Product/operational + Technical/industrial UI grammar with tabular-nums monospace identifiers and non-color-only status badges",
+    "Build all 7 SOC states against static JSON fixtures first (Increment A1-A2) so UI work never blocks on Saad's backend",
+    "Use a single-page state workspace so SSE connection and Evidence Basket persist across investigation, containment, and verification"
+  ],
+  "completed": [
+    "Defined Ahnaf's role, deliverables, and parallel workflow in Ahnaf.md",
+    "Authored complete task & visual contract in context/contracts/ahnaf-lead-ux.contract.md"
+  ],
+  "remaining": [
+    "Increment A1: Scaffold apps/web/ (React + TS + Vite) with static mock fixtures and build Lobby, Event Feed, Detail Drawer, and Evidence Basket",
+    "Increment A2: Build Incident Declaration, Containment Console (with idempotency + warnings), and Dual Recovery Verification UI",
+    "Increment A3: Build 100-Pt Debrief & Read-Only Replay views and connect live API + SSE to Saad's apps/control-api/",
+    "Increment A4: Add Playwright E2E test in tests/e2e/ and record 3-minute demo in docs/demo/"
+  ],
+  "blockers": [],
+  "uncertainties": [
+    "Awaiting Saad's live apps/control-api/ for Increment A3 live wiring (unblocked for Increments A1-A2 via static fixtures)"
+  ],
+  "next_step": "Start Increment A1: Scaffold apps/web/ (React + TypeScript + Vite), add mock fixtures matching contracts/, and implement Lobby + Filterable SOC Event Feed + Evidence Basket.",
+  "evidence": [
+    "Ahnaf.md",
+    "07_OWNER_D_DEFENDER_UX_QA_DEMO.md",
+    "context/contracts/ahnaf-lead-ux.contract.md",
+    "context/evaluations/ahnaf-lead-ux.eval.md"
+  ]
+}
