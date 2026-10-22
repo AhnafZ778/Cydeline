@@ -1,0 +1,104 @@
+{
+  "$defs": {
+    "AccessOutcome": {
+      "description": "Measured target result vocabulary, shared with the red-agent.",
+      "enum": [
+        "allowed",
+        "denied",
+        "listed",
+        "probed",
+        "none",
+        "error",
+        "unknown"
+      ],
+      "title": "AccessOutcome",
+      "type": "string"
+    },
+    "AttackerAction": {
+      "description": "Closed attacker action enum. The model can request nothing else.",
+      "enum": [
+        "inspect_session_status",
+        "list_accessible_documents",
+        "request_document",
+        "test_existing_session",
+        "wait",
+        "stop"
+      ],
+      "title": "AttackerAction",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Measured HTTP result of an allowlisted attacker action.",
+  "properties": {
+    "action": {
+      "$ref": "#/$defs/AttackerAction"
+    },
+    "http_status": {
+      "maximum": 599,
+      "minimum": 100,
+      "title": "Http Status",
+      "type": "integer"
+    },
+    "outcome": {
+      "$ref": "#/$defs/AccessOutcome"
+    },
+    "request_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+      "title": "Request Id",
+      "type": "string"
+    },
+    "result": {
+      "additionalProperties": true,
+      "title": "Result",
+      "type": "object"
+    },
+    "run_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+      "title": "Run Id",
+      "type": "string"
+    },
+    "session_handle": {
+      "anyOf": [
+        {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,31}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Session Handle"
+    },
+    "target_audit_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+      "title": "Target Audit Id",
+      "type": "string"
+    },
+    "target_id": {
+      "anyOf": [
+        {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,31}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Target Id"
+    }
+  },
+  "required": [
+    "request_id",
+    "run_id",
+    "action",
+    "http_status",
+    "outcome",
+    "result",
+    "target_audit_id"
+  ],
+  "title": "AttackerActionResult",
+  "type": "object"
+}

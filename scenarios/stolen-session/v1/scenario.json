@@ -1,0 +1,245 @@
+{
+  "schema_version": "1.0.0",
+  "scenario_id": "stolen-session",
+  "version": "v1",
+  "title": "The Stolen Session",
+  "description": "A pre-seeded compromised session for a fictional Northstar Analytics employee is used against a protected finance document while an unaffected coworker continues legitimate work.",
+  "fictional": true,
+  "organization": {
+    "name": "Northstar Analytics",
+    "domain": "northstar.test",
+    "note": "Reserved fictional identity. All users, documents and contents are synthetic."
+  },
+  "defaults": {
+    "mode": "practice",
+    "seed": 20261022,
+    "max_attacker_steps": 6,
+    "turn_timeout_seconds": 20,
+    "virtual_clock": "scenario",
+    "exclude_model_inference_from_timing": true
+  },
+  "users": [
+    {
+      "user_id": "maya",
+      "email": "maya@northstar.test",
+      "display_name": "Maya Chen",
+      "role": "finance_analyst",
+      "account_status": "active",
+      "legitimate_document_ids": [
+        "doc_finance_07",
+        "doc_ops_02"
+      ]
+    },
+    {
+      "user_id": "eli",
+      "email": "eli@northstar.test",
+      "display_name": "Eli Rao",
+      "role": "operations_analyst",
+      "account_status": "active",
+      "legitimate_document_ids": [
+        "doc_ops_02",
+        "doc_handbook_01"
+      ]
+    }
+  ],
+  "sessions": [
+    {
+      "session_handle": "sess_A",
+      "user_id": "maya",
+      "status": "active",
+      "scopes": [
+        "session.status",
+        "documents.list",
+        "documents.read"
+      ],
+      "issued_at_utc": "2026-10-22T06:55:00Z",
+      "expires_at_utc": "2026-10-22T08:00:00Z"
+    },
+    {
+      "session_handle": "sess_eli",
+      "user_id": "eli",
+      "status": "active",
+      "scopes": [
+        "session.status",
+        "documents.list",
+        "documents.read"
+      ],
+      "issued_at_utc": "2026-10-22T06:57:00Z",
+      "expires_at_utc": "2026-10-22T08:00:00Z"
+    }
+  ],
+  "documents": [
+    {
+      "document_id": "doc_finance_07",
+      "title": "Q4 Finance Reconciliation (Synthetic)",
+      "classification": "confidential",
+      "allowed_roles": [
+        "finance_analyst"
+      ],
+      "protected": true,
+      "synthetic_contents": "Synthetic reconciliation figures for training only. No real customer, employee or financial data."
+    },
+    {
+      "document_id": "doc_ops_02",
+      "title": "Operations Runbook (Synthetic)",
+      "classification": "internal",
+      "allowed_roles": [
+        "finance_analyst",
+        "operations_analyst"
+      ],
+      "protected": false,
+      "synthetic_contents": "Synthetic operations checklist used by Eli's benign workflow."
+    },
+    {
+      "document_id": "doc_handbook_01",
+      "title": "Northstar Employee Handbook (Synthetic)",
+      "classification": "internal",
+      "allowed_roles": [
+        "finance_analyst",
+        "operations_analyst"
+      ],
+      "protected": false,
+      "synthetic_contents": "Synthetic handbook excerpt for training only."
+    }
+  ],
+  "access_policy": {
+    "require_active_session": true,
+    "require_active_account": true,
+    "deny_after_session_revocation": true,
+    "deny_after_account_disable": true,
+    "reauth_invalidates_existing_sessions": true
+  },
+  "attacker_budget": {
+    "max_steps": 6,
+    "role_sequence": [
+      "scout",
+      "access_operator",
+      "adaptation_planner"
+    ],
+    "allowlisted_actions": [
+      "inspect_session_status",
+      "list_accessible_documents",
+      "request_document",
+      "test_existing_session",
+      "wait",
+      "stop"
+    ],
+    "objective": {
+      "action": "request_document",
+      "session_handle": "sess_A",
+      "target_id": "doc_finance_07"
+    }
+  },
+  "defender_actions": [
+    {
+      "action": "revoke_session",
+      "target_handle": "sess_A",
+      "effect": "session_status=revoked",
+      "proportionate": true
+    },
+    {
+      "action": "require_reauthentication",
+      "target_handle": "maya",
+      "effect": "all_maya_sessions_invalidated",
+      "proportionate": true
+    },
+    {
+      "action": "temporarily_disable_account",
+      "target_handle": "maya",
+      "effect": "account_status=disabled",
+      "proportionate": false
+    },
+    {
+      "action": "restore_account",
+      "target_handle": "maya",
+      "effect": "account_status=active",
+      "proportionate": true
+    }
+  ],
+  "benign_workflows": [
+    {
+      "workflow_id": "eli_daily_ops",
+      "user_id": "eli",
+      "session_handle": "sess_eli",
+      "action": "request_document",
+      "target_id": "doc_ops_02",
+      "must_pass": true
+    }
+  ],
+  "background_events": [
+    {
+      "offset_seconds": 0,
+      "event_type": "session.status",
+      "source": "target-access",
+      "actor_id": "eli",
+      "session_handle": "sess_eli",
+      "outcome": "allowed",
+      "description": "Routine sign-in check."
+    },
+    {
+      "offset_seconds": 5,
+      "event_type": "document.list",
+      "source": "target-access",
+      "actor_id": "eli",
+      "session_handle": "sess_eli",
+      "outcome": "listed",
+      "description": "Routine document listing."
+    },
+    {
+      "offset_seconds": 9,
+      "event_type": "document.access",
+      "source": "target-access",
+      "actor_id": "eli",
+      "session_handle": "sess_eli",
+      "resource_id": "doc_ops_02",
+      "outcome": "allowed",
+      "description": "Eli opens the operations runbook."
+    },
+    {
+      "offset_seconds": 12,
+      "event_type": "session.status",
+      "source": "target-access",
+      "actor_id": "unknown",
+      "session_handle": "sess_unknown",
+      "outcome": "denied",
+      "description": "Unrelated failed sign-in."
+    }
+  ],
+  "pacing": {
+    "minimum_signals_before_first_protected_read": 2,
+    "minimum_virtual_seconds_before_first_protected_read": 20,
+    "disclose_simulated_pacing": true
+  },
+  "verification": {
+    "required_checks": [
+      "verify_suspicious_session_denied",
+      "verify_benign_workflow"
+    ],
+    "both_required_for_recovery": true
+  },
+  "hidden_ground_truth": {
+    "visibility": "server_only",
+    "do_not_serve_to_browser_or_model": true,
+    "compromised_session": "sess_A",
+    "compromised_user": "maya",
+    "protected_resource": "doc_finance_07",
+    "benign_user": "eli",
+    "benign_session": "sess_eli",
+    "benign_resource": "doc_ops_02",
+    "correct_scoped_containment": {
+      "action": "revoke_session",
+      "target_handle": "sess_A"
+    },
+    "acceptable_alternative_containment": {
+      "action": "require_reauthentication",
+      "target_handle": "maya"
+    },
+    "disruptive_containment": {
+      "action": "temporarily_disable_account",
+      "target_handle": "maya"
+    },
+    "attacker_objective": "Verified read of doc_finance_07 through sess_A before effective containment.",
+    "first_suspicious_actor": "maya",
+    "first_suspicious_session": "sess_A"
+  }
+}

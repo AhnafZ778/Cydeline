@@ -11,8 +11,8 @@ This directory (`context/`) is synchronized with the local `harness` engine (`.h
 |---|---|---|---|---|---|
 | `master-integration` | Ahnaf (Lead Overseer) + Tanvir + Saad | **`PLAN`** | `context/MASTER_INTEGRATION_CONTEXT.md` | NONE | Execute Stage 1 (SL-001): Scaffold contracts/ and scenarios/stolen-session/v1/ with canonical enums, Pydantic schemas, and static mock fixtures to pass Gate G0. |
 | `ahnaf-lead-ux` | Ahnaf (Team Lead, Overseer & Defender Command Center UX) | **`PLAN`** | `context/AHNAF_CONTEXT.md` | NONE | Start Increment A1: Scaffold apps/web/ (React + TypeScript + Vite), add mock fixtures matching contracts/, and implement Lobby + Filterable SOC Event Feed + Evidence Basket. |
-| `tanvir-red-agent` | Tanvir (Local AI Red-Team Engine Owner) | **`PLAN`** | `context/TANVIR_CONTEXT.md` | NONE | Start Increment B1: Implement services/red-agent/ (schemas, observation builder, two-stage validator, and tagged fallback) + unit tests in tests/agent/. |
-| `saad-range-control` | Saad (Virtual Company Cyber Range & Trusted Control Plane Owner) | **`PLAN`** | `context/SAAD_CONTEXT.md` | NONE | Start Increment S1 (SL-001): Create contracts/ and scenarios/stolen-session/v1/ with canonical enums, Pydantic models, and static mock fixtures. |
+| `tanvir-red-agent` | Tanvir (Local AI Red-Team Engine Owner) | **`EVALUATE`** | `context/TANVIR_CONTEXT.md` | 1 BLOCKER(S) | Run a fresh independent harness-evaluate review of B1-B3 plus the contracts adapter against FR-B01..B06, T-01/T-03, H1 and AT-05, then update the stale verdict in context/evaluations/tanvir-red-agent.eval.md. Live control-plane wiring remains the only implementation gap and waits on Saad's S3 apps/control-api. |
+| `saad-range-control` | Saad (Virtual Company Cyber Range & Trusted Control Plane Owner) | **`IMPLEMENT`** | `context/SAAD_CONTEXT.md` | NONE | Start Increment S2 (SL-002, SL-006): build apps/target-api/ (Northstar FastAPI + SQLite, sess_A/doc_finance_07 enforcement, defender actuation, Eli benign probe, target audit log, deterministic 10x reset) + tests/target/ and infra/range/Dockerfile.target. |
 
 ---
 

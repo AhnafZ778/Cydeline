@@ -1,0 +1,99 @@
+{
+  "$defs": {
+    "DefenderAction": {
+      "description": "Closed defender action enum accepted from the learner browser.",
+      "enum": [
+        "revoke_session",
+        "temporarily_disable_account",
+        "require_reauthentication",
+        "restore_account"
+      ],
+      "title": "DefenderAction",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Measured result of a containment request, including idempotent replays.",
+  "properties": {
+    "action": {
+      "$ref": "#/$defs/DefenderAction"
+    },
+    "action_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+      "title": "Action Id",
+      "type": "string"
+    },
+    "applied": {
+      "title": "Applied",
+      "type": "boolean"
+    },
+    "applied_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Applied At"
+    },
+    "duplicate": {
+      "default": false,
+      "title": "Duplicate",
+      "type": "boolean"
+    },
+    "idempotency_key": {
+      "pattern": "^[A-Za-z0-9_.:-]{8,128}$",
+      "title": "Idempotency Key",
+      "type": "string"
+    },
+    "measured_result": {
+      "additionalProperties": true,
+      "title": "Measured Result",
+      "type": "object"
+    },
+    "requested_at": {
+      "format": "date-time",
+      "title": "Requested At",
+      "type": "string"
+    },
+    "run_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+      "title": "Run Id",
+      "type": "string"
+    },
+    "target_audit_id": {
+      "anyOf": [
+        {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Target Audit Id"
+    },
+    "target_handle": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,31}$",
+      "title": "Target Handle",
+      "type": "string"
+    }
+  },
+  "required": [
+    "action_id",
+    "run_id",
+    "action",
+    "target_handle",
+    "idempotency_key",
+    "requested_at",
+    "applied",
+    "measured_result"
+  ],
+  "title": "DefenderActionResponse",
+  "type": "object"
+}

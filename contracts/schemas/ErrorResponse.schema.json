@@ -1,0 +1,30 @@
+{
+  "additionalProperties": false,
+  "description": "Canonical structured error envelope (PRD 8.4).",
+  "properties": {
+    "code": {
+      "maxLength": 64,
+      "minLength": 1,
+      "title": "Code",
+      "type": "string"
+    },
+    "correlation_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+      "title": "Correlation Id",
+      "type": "string"
+    },
+    "message": {
+      "maxLength": 1000,
+      "minLength": 1,
+      "title": "Message",
+      "type": "string"
+    }
+  },
+  "required": [
+    "code",
+    "message",
+    "correlation_id"
+  ],
+  "title": "ErrorResponse",
+  "type": "object"
+}

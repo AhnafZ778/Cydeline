@@ -1,0 +1,30 @@
+{
+  "run_id": "run_0001",
+  "checks": [
+    {
+      "verification": "verify_suspicious_session_denied",
+      "passed": true,
+      "measured_result": {
+        "session_handle": "sess_A",
+        "http_status": 403,
+        "outcome": "denied"
+      },
+      "target_audit_id": "aud_0008",
+      "checked_at": "2026-10-22T07:00:50Z"
+    },
+    {
+      "verification": "verify_benign_workflow",
+      "passed": true,
+      "measured_result": {
+        "user_id": "eli",
+        "target_id": "doc_ops_02",
+        "http_status": 200,
+        "outcome": "allowed"
+      },
+      "target_audit_id": "aud_0009",
+      "checked_at": "2026-10-22T07:00:50Z"
+    }
+  ],
+  "all_passed": true,
+  "verified_at": "2026-10-22T07:00:50Z"
+}

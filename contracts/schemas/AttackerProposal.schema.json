@@ -1,0 +1,76 @@
+{
+  "$defs": {
+    "AttackerAction": {
+      "description": "Closed attacker action enum. The model can request nothing else.",
+      "enum": [
+        "inspect_session_status",
+        "list_accessible_documents",
+        "request_document",
+        "test_existing_session",
+        "wait",
+        "stop"
+      ],
+      "title": "AttackerAction",
+      "type": "string"
+    },
+    "Role": {
+      "description": "Sequential logical roles played by the single local model.",
+      "enum": [
+        "scout",
+        "access_operator",
+        "adaptation_planner"
+      ],
+      "title": "Role",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Five-field proposal envelope from the red-agent (PRD 8.3).",
+  "properties": {
+    "action": {
+      "$ref": "#/$defs/AttackerAction"
+    },
+    "reason": {
+      "maxLength": 280,
+      "minLength": 1,
+      "title": "Reason",
+      "type": "string"
+    },
+    "role": {
+      "$ref": "#/$defs/Role"
+    },
+    "session_handle": {
+      "anyOf": [
+        {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,31}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Session Handle"
+    },
+    "target_id": {
+      "anyOf": [
+        {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,31}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Target Id"
+    }
+  },
+  "required": [
+    "role",
+    "action",
+    "reason"
+  ],
+  "title": "AttackerProposal",
+  "type": "object"
+}

@@ -1,0 +1,47 @@
+{
+  "$defs": {
+    "HealthStatus": {
+      "description": "Health vocabulary for ``GET /api/health``.",
+      "enum": [
+        "ok",
+        "degraded",
+        "unavailable"
+      ],
+      "title": "HealthStatus",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "``GET /api/health`` response; never includes credentials or answer keys.",
+  "properties": {
+    "checked_at": {
+      "format": "date-time",
+      "title": "Checked At",
+      "type": "string"
+    },
+    "services": {
+      "additionalProperties": {
+        "$ref": "#/$defs/HealthStatus"
+      },
+      "title": "Services",
+      "type": "object"
+    },
+    "status": {
+      "$ref": "#/$defs/HealthStatus"
+    },
+    "version": {
+      "maxLength": 32,
+      "minLength": 1,
+      "title": "Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "status",
+    "version",
+    "services",
+    "checked_at"
+  ],
+  "title": "HealthResponse",
+  "type": "object"
+}

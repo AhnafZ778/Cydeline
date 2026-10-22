@@ -1,0 +1,13 @@
+{
+  "run_id": "run_0001",
+  "scenario_id": "stolen-session",
+  "scenario_version": "v1",
+  "mode": "practice",
+  "state": "running",
+  "outcome": null,
+  "seed": 20261022,
+  "fixture_hash": "2fe32b27e7e5d5fb4d780041336e1d9f66b4cac83db5bb87c60c3de779387f2b",
+  "created_at": "2026-10-22T06:59:55Z",
+  "started_at": "2026-10-22T07:00:00Z",
+  "ended_at": null
+}

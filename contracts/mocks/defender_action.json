@@ -1,0 +1,17 @@
+{
+  "action_id": "act_0001",
+  "run_id": "run_0001",
+  "action": "revoke_session",
+  "target_handle": "sess_A",
+  "idempotency_key": "ikey-revoke-sess-a-001",
+  "requested_at": "2026-10-22T07:00:40Z",
+  "applied_at": "2026-10-22T07:00:41Z",
+  "applied": true,
+  "measured_result": {
+    "session_status": "revoked",
+    "post_action_denied": true,
+    "http_status": 403
+  },
+  "target_audit_id": "aud_0007",
+  "duplicate": false
+}

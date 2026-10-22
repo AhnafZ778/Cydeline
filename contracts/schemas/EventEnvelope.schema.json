@@ -1,0 +1,166 @@
+{
+  "$defs": {
+    "AccessOutcome": {
+      "description": "Measured target result vocabulary, shared with the red-agent.",
+      "enum": [
+        "allowed",
+        "denied",
+        "listed",
+        "probed",
+        "none",
+        "error",
+        "unknown"
+      ],
+      "title": "AccessOutcome",
+      "type": "string"
+    },
+    "EventSource": {
+      "description": "Origin of a canonical event in the control-plane store.",
+      "enum": [
+        "target-access",
+        "control-plane",
+        "model",
+        "defender",
+        "system"
+      ],
+      "title": "EventSource",
+      "type": "string"
+    },
+    "EventType": {
+      "description": "Canonical event type names rendered in the learner-visible feed.",
+      "enum": [
+        "run.created",
+        "run.started",
+        "run.completed",
+        "run.reset",
+        "session.status",
+        "session.revoked",
+        "session.reauth_required",
+        "document.list",
+        "document.access",
+        "account.disabled",
+        "account.restored",
+        "benign.workflow",
+        "agent.decision",
+        "declaration.submitted",
+        "verification.check",
+        "score.computed"
+      ],
+      "title": "EventType",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Canonical learner-visible event stored and streamed by the control plane.",
+  "properties": {
+    "actor_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,31}$",
+      "title": "Actor Id",
+      "type": "string"
+    },
+    "correlation_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+      "title": "Correlation Id",
+      "type": "string"
+    },
+    "event_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+      "title": "Event Id",
+      "type": "string"
+    },
+    "event_type": {
+      "$ref": "#/$defs/EventType"
+    },
+    "learner_visible": {
+      "default": true,
+      "title": "Learner Visible",
+      "type": "boolean"
+    },
+    "outcome": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/AccessOutcome"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "resource_id": {
+      "anyOf": [
+        {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,31}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Resource Id"
+    },
+    "run_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+      "title": "Run Id",
+      "type": "string"
+    },
+    "sequence": {
+      "minimum": 1,
+      "title": "Sequence",
+      "type": "integer"
+    },
+    "session_handle": {
+      "anyOf": [
+        {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,31}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Session Handle"
+    },
+    "source": {
+      "$ref": "#/$defs/EventSource"
+    },
+    "target_audit_id": {
+      "anyOf": [
+        {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Target Audit Id"
+    },
+    "timestamp_utc": {
+      "format": "date-time",
+      "title": "Timestamp Utc",
+      "type": "string"
+    },
+    "visible_at_utc": {
+      "format": "date-time",
+      "title": "Visible At Utc",
+      "type": "string"
+    }
+  },
+  "required": [
+    "event_id",
+    "run_id",
+    "sequence",
+    "timestamp_utc",
+    "visible_at_utc",
+    "source",
+    "event_type",
+    "actor_id",
+    "correlation_id"
+  ],
+  "title": "EventEnvelope",
+  "type": "object"
+}

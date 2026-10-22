@@ -1,0 +1,14 @@
+{
+  "declaration_id": "decl_0001",
+  "run_id": "run_0001",
+  "accepted": true,
+  "suspected_actor": "maya",
+  "suspected_session": "sess_A",
+  "rationale": "sess_A is active for maya and listed a confidential finance document that the account does not normally open.",
+  "event_ids": [
+    "evt_0005",
+    "evt_0006"
+  ],
+  "rejected_event_ids": [],
+  "created_at": "2026-10-22T07:00:30Z"
+}

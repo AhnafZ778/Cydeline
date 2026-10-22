@@ -1,0 +1,774 @@
+{
+  "$defs": {
+    "AccessOutcome": {
+      "description": "Measured target result vocabulary, shared with the red-agent.",
+      "enum": [
+        "allowed",
+        "denied",
+        "listed",
+        "probed",
+        "none",
+        "error",
+        "unknown"
+      ],
+      "title": "AccessOutcome",
+      "type": "string"
+    },
+    "AgentDecisionRecord": {
+      "additionalProperties": false,
+      "description": "One validated or rejected red-agent turn, with provenance.",
+      "properties": {
+        "accepted_action": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/AttackerAction"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "created_at": {
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        },
+        "decision_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+          "title": "Decision Id",
+          "type": "string"
+        },
+        "fallback_used": {
+          "default": false,
+          "title": "Fallback Used",
+          "type": "boolean"
+        },
+        "latency_ms": {
+          "minimum": 0,
+          "title": "Latency Ms",
+          "type": "integer"
+        },
+        "model_id": {
+          "maxLength": 128,
+          "minLength": 1,
+          "title": "Model Id",
+          "type": "string"
+        },
+        "observation_hash": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Observation Hash",
+          "type": "string"
+        },
+        "prompt_hash": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Prompt Hash",
+          "type": "string"
+        },
+        "proposed_json": {
+          "anyOf": [
+            {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Proposed Json"
+        },
+        "rejection_reason": {
+          "anyOf": [
+            {
+              "maxLength": 1000,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Rejection Reason"
+        },
+        "role": {
+          "$ref": "#/$defs/Role"
+        },
+        "run_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+          "title": "Run Id",
+          "type": "string"
+        },
+        "step": {
+          "minimum": 0,
+          "title": "Step",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "decision_id",
+        "run_id",
+        "step",
+        "role",
+        "model_id",
+        "prompt_hash",
+        "observation_hash",
+        "latency_ms",
+        "created_at"
+      ],
+      "title": "AgentDecisionRecord",
+      "type": "object"
+    },
+    "AttackerAction": {
+      "description": "Closed attacker action enum. The model can request nothing else.",
+      "enum": [
+        "inspect_session_status",
+        "list_accessible_documents",
+        "request_document",
+        "test_existing_session",
+        "wait",
+        "stop"
+      ],
+      "title": "AttackerAction",
+      "type": "string"
+    },
+    "DebriefResponse": {
+      "additionalProperties": false,
+      "description": "Deterministic scorecard. Outcome gates are already applied by the server.",
+      "properties": {
+        "benign_workflow_passed": {
+          "title": "Benign Workflow Passed",
+          "type": "boolean"
+        },
+        "breakdown": {
+          "items": {
+            "$ref": "#/$defs/ScoreComponent"
+          },
+          "maxItems": 6,
+          "minItems": 6,
+          "title": "Breakdown",
+          "type": "array"
+        },
+        "computed_at": {
+          "format": "date-time",
+          "title": "Computed At",
+          "type": "string"
+        },
+        "effective_containment": {
+          "title": "Effective Containment",
+          "type": "boolean"
+        },
+        "evidence_event_ids": {
+          "items": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+            "type": "string"
+          },
+          "title": "Evidence Event Ids",
+          "type": "array"
+        },
+        "fallback_used": {
+          "title": "Fallback Used",
+          "type": "boolean"
+        },
+        "first_suspicious_event_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "First Suspicious Event Id"
+        },
+        "first_visible_at_utc": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "First Visible At Utc"
+        },
+        "notes": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Notes",
+          "type": "array"
+        },
+        "outcome": {
+          "$ref": "#/$defs/Outcome"
+        },
+        "outcome_gate": {
+          "anyOf": [
+            {
+              "maxLength": 64,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Outcome Gate"
+        },
+        "rubric_version": {
+          "maxLength": 32,
+          "minLength": 1,
+          "title": "Rubric Version",
+          "type": "string"
+        },
+        "run_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+          "title": "Run Id",
+          "type": "string"
+        },
+        "score_total": {
+          "maximum": 100,
+          "minimum": 0,
+          "title": "Score Total",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "run_id",
+        "rubric_version",
+        "outcome",
+        "score_total",
+        "breakdown",
+        "effective_containment",
+        "benign_workflow_passed",
+        "fallback_used",
+        "computed_at"
+      ],
+      "title": "DebriefResponse",
+      "type": "object"
+    },
+    "DeclarationResponse": {
+      "additionalProperties": false,
+      "description": "Server verdict for a declaration, including any rejected evidence IDs.",
+      "properties": {
+        "accepted": {
+          "title": "Accepted",
+          "type": "boolean"
+        },
+        "created_at": {
+          "format": "date-time",
+          "title": "Created At",
+          "type": "string"
+        },
+        "declaration_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+          "title": "Declaration Id",
+          "type": "string"
+        },
+        "event_ids": {
+          "items": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+            "type": "string"
+          },
+          "title": "Event Ids",
+          "type": "array"
+        },
+        "rationale": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "title": "Rationale",
+          "type": "string"
+        },
+        "rejected_event_ids": {
+          "items": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+            "type": "string"
+          },
+          "title": "Rejected Event Ids",
+          "type": "array"
+        },
+        "run_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+          "title": "Run Id",
+          "type": "string"
+        },
+        "suspected_actor": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,31}$",
+          "title": "Suspected Actor",
+          "type": "string"
+        },
+        "suspected_session": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,31}$",
+          "title": "Suspected Session",
+          "type": "string"
+        }
+      },
+      "required": [
+        "declaration_id",
+        "run_id",
+        "accepted",
+        "suspected_actor",
+        "suspected_session",
+        "rationale",
+        "created_at"
+      ],
+      "title": "DeclarationResponse",
+      "type": "object"
+    },
+    "DefenderAction": {
+      "description": "Closed defender action enum accepted from the learner browser.",
+      "enum": [
+        "revoke_session",
+        "temporarily_disable_account",
+        "require_reauthentication",
+        "restore_account"
+      ],
+      "title": "DefenderAction",
+      "type": "string"
+    },
+    "DefenderActionResponse": {
+      "additionalProperties": false,
+      "description": "Measured result of a containment request, including idempotent replays.",
+      "properties": {
+        "action": {
+          "$ref": "#/$defs/DefenderAction"
+        },
+        "action_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+          "title": "Action Id",
+          "type": "string"
+        },
+        "applied": {
+          "title": "Applied",
+          "type": "boolean"
+        },
+        "applied_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Applied At"
+        },
+        "duplicate": {
+          "default": false,
+          "title": "Duplicate",
+          "type": "boolean"
+        },
+        "idempotency_key": {
+          "pattern": "^[A-Za-z0-9_.:-]{8,128}$",
+          "title": "Idempotency Key",
+          "type": "string"
+        },
+        "measured_result": {
+          "additionalProperties": true,
+          "title": "Measured Result",
+          "type": "object"
+        },
+        "requested_at": {
+          "format": "date-time",
+          "title": "Requested At",
+          "type": "string"
+        },
+        "run_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+          "title": "Run Id",
+          "type": "string"
+        },
+        "target_audit_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Target Audit Id"
+        },
+        "target_handle": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,31}$",
+          "title": "Target Handle",
+          "type": "string"
+        }
+      },
+      "required": [
+        "action_id",
+        "run_id",
+        "action",
+        "target_handle",
+        "idempotency_key",
+        "requested_at",
+        "applied",
+        "measured_result"
+      ],
+      "title": "DefenderActionResponse",
+      "type": "object"
+    },
+    "EventEnvelope": {
+      "additionalProperties": false,
+      "description": "Canonical learner-visible event stored and streamed by the control plane.",
+      "properties": {
+        "actor_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,31}$",
+          "title": "Actor Id",
+          "type": "string"
+        },
+        "correlation_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+          "title": "Correlation Id",
+          "type": "string"
+        },
+        "event_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+          "title": "Event Id",
+          "type": "string"
+        },
+        "event_type": {
+          "$ref": "#/$defs/EventType"
+        },
+        "learner_visible": {
+          "default": true,
+          "title": "Learner Visible",
+          "type": "boolean"
+        },
+        "outcome": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/AccessOutcome"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "resource_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,31}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Resource Id"
+        },
+        "run_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+          "title": "Run Id",
+          "type": "string"
+        },
+        "sequence": {
+          "minimum": 1,
+          "title": "Sequence",
+          "type": "integer"
+        },
+        "session_handle": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,31}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Session Handle"
+        },
+        "source": {
+          "$ref": "#/$defs/EventSource"
+        },
+        "target_audit_id": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Target Audit Id"
+        },
+        "timestamp_utc": {
+          "format": "date-time",
+          "title": "Timestamp Utc",
+          "type": "string"
+        },
+        "visible_at_utc": {
+          "format": "date-time",
+          "title": "Visible At Utc",
+          "type": "string"
+        }
+      },
+      "required": [
+        "event_id",
+        "run_id",
+        "sequence",
+        "timestamp_utc",
+        "visible_at_utc",
+        "source",
+        "event_type",
+        "actor_id",
+        "correlation_id"
+      ],
+      "title": "EventEnvelope",
+      "type": "object"
+    },
+    "EventSource": {
+      "description": "Origin of a canonical event in the control-plane store.",
+      "enum": [
+        "target-access",
+        "control-plane",
+        "model",
+        "defender",
+        "system"
+      ],
+      "title": "EventSource",
+      "type": "string"
+    },
+    "EventType": {
+      "description": "Canonical event type names rendered in the learner-visible feed.",
+      "enum": [
+        "run.created",
+        "run.started",
+        "run.completed",
+        "run.reset",
+        "session.status",
+        "session.revoked",
+        "session.reauth_required",
+        "document.list",
+        "document.access",
+        "account.disabled",
+        "account.restored",
+        "benign.workflow",
+        "agent.decision",
+        "declaration.submitted",
+        "verification.check",
+        "score.computed"
+      ],
+      "title": "EventType",
+      "type": "string"
+    },
+    "Outcome": {
+      "description": "Terminal verdict. Outcome gates override the raw score.",
+      "enum": [
+        "defended_and_recovered",
+        "contained_but_disrupted",
+        "attacker_objective_reached",
+        "timed_out_unresolved",
+        "aborted",
+        "technical_failure"
+      ],
+      "title": "Outcome",
+      "type": "string"
+    },
+    "Role": {
+      "description": "Sequential logical roles played by the single local model.",
+      "enum": [
+        "scout",
+        "access_operator",
+        "adaptation_planner"
+      ],
+      "title": "Role",
+      "type": "string"
+    },
+    "ScoreComponent": {
+      "additionalProperties": false,
+      "description": "One rubric dimension with citable evidence.",
+      "properties": {
+        "awarded": {
+          "minimum": 0,
+          "title": "Awarded",
+          "type": "integer"
+        },
+        "dimension": {
+          "$ref": "#/$defs/ScoreDimension"
+        },
+        "evidence_ids": {
+          "items": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+            "type": "string"
+          },
+          "title": "Evidence Ids",
+          "type": "array"
+        },
+        "explanation": {
+          "maxLength": 500,
+          "minLength": 1,
+          "title": "Explanation",
+          "type": "string"
+        },
+        "max_points": {
+          "exclusiveMinimum": 0,
+          "title": "Max Points",
+          "type": "integer"
+        },
+        "rule_id": {
+          "maxLength": 64,
+          "minLength": 1,
+          "title": "Rule Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "dimension",
+        "awarded",
+        "max_points",
+        "rule_id",
+        "explanation"
+      ],
+      "title": "ScoreComponent",
+      "type": "object"
+    },
+    "ScoreDimension": {
+      "description": "The six reviewed 100-point rubric dimensions.",
+      "enum": [
+        "recognition",
+        "containment",
+        "verification",
+        "continuity",
+        "proportionality",
+        "timeliness"
+      ],
+      "title": "ScoreDimension",
+      "type": "string"
+    },
+    "Verification": {
+      "description": "The two mandatory, independently measured recovery probes.",
+      "enum": [
+        "verify_suspicious_session_denied",
+        "verify_benign_workflow"
+      ],
+      "title": "Verification",
+      "type": "string"
+    },
+    "VerificationCheck": {
+      "additionalProperties": false,
+      "description": "One independently measured recovery probe.",
+      "properties": {
+        "checked_at": {
+          "format": "date-time",
+          "title": "Checked At",
+          "type": "string"
+        },
+        "measured_result": {
+          "additionalProperties": true,
+          "title": "Measured Result",
+          "type": "object"
+        },
+        "passed": {
+          "title": "Passed",
+          "type": "boolean"
+        },
+        "target_audit_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+          "title": "Target Audit Id",
+          "type": "string"
+        },
+        "verification": {
+          "$ref": "#/$defs/Verification"
+        }
+      },
+      "required": [
+        "verification",
+        "passed",
+        "measured_result",
+        "target_audit_id",
+        "checked_at"
+      ],
+      "title": "VerificationCheck",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Immutable recorded trace. Serving it must not call the target or model.",
+  "properties": {
+    "agent_decisions": {
+      "items": {
+        "$ref": "#/$defs/AgentDecisionRecord"
+      },
+      "title": "Agent Decisions",
+      "type": "array"
+    },
+    "debrief": {
+      "$ref": "#/$defs/DebriefResponse"
+    },
+    "declarations": {
+      "items": {
+        "$ref": "#/$defs/DeclarationResponse"
+      },
+      "title": "Declarations",
+      "type": "array"
+    },
+    "defender_actions": {
+      "items": {
+        "$ref": "#/$defs/DefenderActionResponse"
+      },
+      "title": "Defender Actions",
+      "type": "array"
+    },
+    "events": {
+      "items": {
+        "$ref": "#/$defs/EventEnvelope"
+      },
+      "title": "Events",
+      "type": "array"
+    },
+    "outcome": {
+      "$ref": "#/$defs/Outcome"
+    },
+    "replayed_at": {
+      "format": "date-time",
+      "title": "Replayed At",
+      "type": "string"
+    },
+    "run_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+      "title": "Run Id",
+      "type": "string"
+    },
+    "trace_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Trace Hash",
+      "type": "string"
+    },
+    "verification_checks": {
+      "items": {
+        "$ref": "#/$defs/VerificationCheck"
+      },
+      "title": "Verification Checks",
+      "type": "array"
+    }
+  },
+  "required": [
+    "run_id",
+    "outcome",
+    "events",
+    "agent_decisions",
+    "defender_actions",
+    "declarations",
+    "verification_checks",
+    "debrief",
+    "trace_hash",
+    "replayed_at"
+  ],
+  "title": "ReplayResponse",
+  "type": "object"
+}

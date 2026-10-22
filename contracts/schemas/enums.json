@@ -1,0 +1,106 @@
+{
+  "canonical": {
+    "AttackerAction": [
+      "inspect_session_status",
+      "list_accessible_documents",
+      "request_document",
+      "test_existing_session",
+      "wait",
+      "stop"
+    ],
+    "DefenderAction": [
+      "revoke_session",
+      "temporarily_disable_account",
+      "require_reauthentication",
+      "restore_account"
+    ],
+    "Mode": [
+      "practice",
+      "assessment"
+    ],
+    "Outcome": [
+      "defended_and_recovered",
+      "contained_but_disrupted",
+      "attacker_objective_reached",
+      "timed_out_unresolved",
+      "aborted",
+      "technical_failure"
+    ],
+    "RunState": [
+      "created",
+      "running",
+      "contained",
+      "verification_pending",
+      "completed",
+      "timed_out",
+      "aborted",
+      "technical_failure"
+    ],
+    "Verification": [
+      "verify_suspicious_session_denied",
+      "verify_benign_workflow"
+    ]
+  },
+  "contract_schema_version": "1.0.0",
+  "supporting": {
+    "AccessOutcome": [
+      "allowed",
+      "denied",
+      "listed",
+      "probed",
+      "none",
+      "error",
+      "unknown"
+    ],
+    "EventSource": [
+      "target-access",
+      "control-plane",
+      "model",
+      "defender",
+      "system"
+    ],
+    "EventType": [
+      "run.created",
+      "run.started",
+      "run.completed",
+      "run.reset",
+      "session.status",
+      "session.revoked",
+      "session.reauth_required",
+      "document.list",
+      "document.access",
+      "account.disabled",
+      "account.restored",
+      "benign.workflow",
+      "agent.decision",
+      "declaration.submitted",
+      "verification.check",
+      "score.computed"
+    ],
+    "HealthStatus": [
+      "ok",
+      "degraded",
+      "unavailable"
+    ],
+    "Role": [
+      "scout",
+      "access_operator",
+      "adaptation_planner"
+    ],
+    "ScoreDimension": [
+      "recognition",
+      "containment",
+      "verification",
+      "continuity",
+      "proportionality",
+      "timeliness"
+    ],
+    "SessionStatus": [
+      "active",
+      "unknown",
+      "revoked",
+      "disabled",
+      "expired"
+    ]
+  }
+}

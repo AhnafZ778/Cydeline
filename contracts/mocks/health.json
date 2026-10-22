@@ -1,0 +1,10 @@
+{
+  "status": "ok",
+  "version": "1.0.0",
+  "services": {
+    "control-api": "ok",
+    "target-api": "ok",
+    "red-agent": "ok"
+  },
+  "checked_at": "2026-10-22T07:00:00Z"
+}

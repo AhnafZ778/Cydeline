@@ -1,0 +1,40 @@
+{
+  "additionalProperties": false,
+  "description": "Learner incident declaration; evidence must be visible in the same run.",
+  "properties": {
+    "event_ids": {
+      "items": {
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+        "type": "string"
+      },
+      "maxItems": 50,
+      "minItems": 1,
+      "title": "Event Ids",
+      "type": "array"
+    },
+    "rationale": {
+      "maxLength": 2000,
+      "minLength": 1,
+      "title": "Rationale",
+      "type": "string"
+    },
+    "suspected_actor": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,31}$",
+      "title": "Suspected Actor",
+      "type": "string"
+    },
+    "suspected_session": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,31}$",
+      "title": "Suspected Session",
+      "type": "string"
+    }
+  },
+  "required": [
+    "suspected_actor",
+    "suspected_session",
+    "rationale",
+    "event_ids"
+  ],
+  "title": "DeclarationRequest",
+  "type": "object"
+}

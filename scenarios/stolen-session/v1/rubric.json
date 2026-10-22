@@ -1,0 +1,268 @@
+{
+  "schema_version": "1.0.0",
+  "rubric_id": "stolen-session-v1",
+  "scenario_id": "stolen-session",
+  "scenario_version": "v1",
+  "version": "1.0.0",
+  "total_points": 100,
+  "clock": {
+    "type": "virtual_scenario",
+    "exclude_model_inference": true,
+    "source": "first_learner_visible_suspicious_event.visible_at_utc",
+    "destination": "first_effective_containment.applied_at"
+  },
+  "dimensions": [
+    {
+      "dimension": "recognition",
+      "max_points": 20,
+      "evidence": "Declaration plus linked learner-visible events.",
+      "aggregation": "sum_clamped_to_max",
+      "rules": [
+        {
+          "rule_id": "recognition.session",
+          "points": 8,
+          "when": {
+            "declaration.suspected_session": "sess_A"
+          }
+        },
+        {
+          "rule_id": "recognition.actor",
+          "points": 6,
+          "when": {
+            "declaration.suspected_actor": "maya"
+          }
+        },
+        {
+          "rule_id": "recognition.evidence",
+          "points_per_event": 2,
+          "max_events": 3,
+          "when": {
+            "event.actor_or_session_in": [
+              "maya",
+              "sess_A"
+            ],
+            "event.learner_visible": true,
+            "event.visible_before": "declaration.created_at"
+          }
+        }
+      ]
+    },
+    {
+      "dimension": "containment",
+      "max_points": 25,
+      "evidence": "Measured post-action denial of the compromised session.",
+      "selection": "first_matching_band",
+      "bands": [
+        {
+          "rule_id": "containment.effective_scoped",
+          "points": 25,
+          "when": {
+            "measured_denial": true,
+            "action_in": [
+              "revoke_session:sess_A",
+              "require_reauthentication:maya"
+            ]
+          }
+        },
+        {
+          "rule_id": "containment.effective_broad",
+          "points": 15,
+          "when": {
+            "measured_denial": true,
+            "action_in": [
+              "temporarily_disable_account:maya"
+            ]
+          }
+        },
+        {
+          "rule_id": "containment.ineffective",
+          "points": 0,
+          "when": {
+            "measured_denial": false
+          }
+        }
+      ]
+    },
+    {
+      "dimension": "verification",
+      "max_points": 20,
+      "evidence": "Two fresh target probes with audit correlation.",
+      "aggregation": "sum_clamped_to_max",
+      "rules": [
+        {
+          "rule_id": "verification.suspicious_denied",
+          "points": 10,
+          "when": {
+            "check": "verify_suspicious_session_denied",
+            "passed": true
+          }
+        },
+        {
+          "rule_id": "verification.benign_workflow",
+          "points": 10,
+          "when": {
+            "check": "verify_benign_workflow",
+            "passed": true
+          }
+        }
+      ]
+    },
+    {
+      "dimension": "continuity",
+      "max_points": 15,
+      "evidence": "Eli's required benign document workflow.",
+      "selection": "first_matching_band",
+      "bands": [
+        {
+          "rule_id": "continuity.preserved",
+          "points": 15,
+          "when": {
+            "benign_workflow_final_passed": true
+          }
+        },
+        {
+          "rule_id": "continuity.disrupted",
+          "points": 0,
+          "when": {
+            "benign_workflow_final_passed": false
+          }
+        }
+      ]
+    },
+    {
+      "dimension": "proportionality",
+      "max_points": 10,
+      "evidence": "Defender action sequence and restoration.",
+      "selection": "first_matching_band",
+      "bands": [
+        {
+          "rule_id": "proportionality.scoped_only",
+          "points": 10,
+          "when": {
+            "broad_actions_applied": 0
+          }
+        },
+        {
+          "rule_id": "proportionality.restored_broad",
+          "points": 5,
+          "when": {
+            "broad_actions_applied": 1,
+            "account_restored_before_verification": true
+          }
+        },
+        {
+          "rule_id": "proportionality.unnecessary_disruption",
+          "points": 0,
+          "when": {
+            "broad_actions_applied_gte": 1,
+            "account_restored_before_verification": false
+          }
+        }
+      ]
+    },
+    {
+      "dimension": "timeliness",
+      "max_points": 10,
+      "evidence": "Virtual scenario time from first visible signal to effective containment.",
+      "selection": "first_matching_band",
+      "bands": [
+        {
+          "rule_id": "timeliness.le_30s",
+          "points": 10,
+          "max_elapsed_virtual_seconds": 30
+        },
+        {
+          "rule_id": "timeliness.le_60s",
+          "points": 7,
+          "max_elapsed_virtual_seconds": 60
+        },
+        {
+          "rule_id": "timeliness.le_120s",
+          "points": 4,
+          "max_elapsed_virtual_seconds": 120
+        },
+        {
+          "rule_id": "timeliness.le_180s",
+          "points": 2,
+          "max_elapsed_virtual_seconds": 180
+        },
+        {
+          "rule_id": "timeliness.unresolved",
+          "points": 0,
+          "when": {
+            "effective_containment": false
+          }
+        }
+      ]
+    }
+  ],
+  "outcome_gates": [
+    {
+      "gate_id": "GATE_TECHNICAL_FAILURE",
+      "priority": 10,
+      "outcome": "technical_failure",
+      "when": {
+        "technical_failure": true
+      }
+    },
+    {
+      "gate_id": "GATE_ABORTED",
+      "priority": 20,
+      "outcome": "aborted",
+      "when": {
+        "operator_aborted": true
+      }
+    },
+    {
+      "gate_id": "GATE_ATTACKER_OBJECTIVE",
+      "priority": 30,
+      "outcome": "attacker_objective_reached",
+      "when": {
+        "verified_target_read": {
+          "session_handle": "sess_A",
+          "resource_id": "doc_finance_07",
+          "outcome": "allowed",
+          "any_time": true
+        }
+      }
+    },
+    {
+      "gate_id": "GATE_CONTAINED_DISRUPTED",
+      "priority": 40,
+      "outcome": "contained_but_disrupted",
+      "when": {
+        "measured_containment": true,
+        "benign_workflow_final_passed": false
+      }
+    },
+    {
+      "gate_id": "GATE_DEFENDED_RECOVERED",
+      "priority": 50,
+      "outcome": "defended_and_recovered",
+      "when": {
+        "verify_suspicious_session_denied": true,
+        "verify_benign_workflow": true,
+        "attacker_objective_reached": false
+      }
+    },
+    {
+      "gate_id": "GATE_TIMED_OUT",
+      "priority": 60,
+      "outcome": "timed_out_unresolved",
+      "when": {
+        "resolution_verified": false
+      }
+    }
+  ],
+  "rounding": {
+    "mode": "integer",
+    "clamp": [
+      0,
+      100
+    ]
+  },
+  "provenance": {
+    "every_award_requires": "rule_id plus cited event, defender-action or verification IDs",
+    "notes": "Outcome gates are evaluated in ascending priority order; the first matching gate wins over cosmetic points."
+  }
+}

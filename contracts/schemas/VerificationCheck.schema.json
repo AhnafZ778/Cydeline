@@ -1,0 +1,48 @@
+{
+  "$defs": {
+    "Verification": {
+      "description": "The two mandatory, independently measured recovery probes.",
+      "enum": [
+        "verify_suspicious_session_denied",
+        "verify_benign_workflow"
+      ],
+      "title": "Verification",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "One independently measured recovery probe.",
+  "properties": {
+    "checked_at": {
+      "format": "date-time",
+      "title": "Checked At",
+      "type": "string"
+    },
+    "measured_result": {
+      "additionalProperties": true,
+      "title": "Measured Result",
+      "type": "object"
+    },
+    "passed": {
+      "title": "Passed",
+      "type": "boolean"
+    },
+    "target_audit_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+      "title": "Target Audit Id",
+      "type": "string"
+    },
+    "verification": {
+      "$ref": "#/$defs/Verification"
+    }
+  },
+  "required": [
+    "verification",
+    "passed",
+    "measured_result",
+    "target_audit_id",
+    "checked_at"
+  ],
+  "title": "VerificationCheck",
+  "type": "object"
+}

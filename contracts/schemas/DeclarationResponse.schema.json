@@ -1,0 +1,68 @@
+{
+  "additionalProperties": false,
+  "description": "Server verdict for a declaration, including any rejected evidence IDs.",
+  "properties": {
+    "accepted": {
+      "title": "Accepted",
+      "type": "boolean"
+    },
+    "created_at": {
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+    },
+    "declaration_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+      "title": "Declaration Id",
+      "type": "string"
+    },
+    "event_ids": {
+      "items": {
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+        "type": "string"
+      },
+      "title": "Event Ids",
+      "type": "array"
+    },
+    "rationale": {
+      "maxLength": 2000,
+      "minLength": 1,
+      "title": "Rationale",
+      "type": "string"
+    },
+    "rejected_event_ids": {
+      "items": {
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+        "type": "string"
+      },
+      "title": "Rejected Event Ids",
+      "type": "array"
+    },
+    "run_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+      "title": "Run Id",
+      "type": "string"
+    },
+    "suspected_actor": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,31}$",
+      "title": "Suspected Actor",
+      "type": "string"
+    },
+    "suspected_session": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,31}$",
+      "title": "Suspected Session",
+      "type": "string"
+    }
+  },
+  "required": [
+    "declaration_id",
+    "run_id",
+    "accepted",
+    "suspected_actor",
+    "suspected_session",
+    "rationale",
+    "created_at"
+  ],
+  "title": "DeclarationResponse",
+  "type": "object"
+}

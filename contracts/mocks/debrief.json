@@ -1,0 +1,86 @@
+{
+  "run_id": "run_0001",
+  "rubric_version": "1.0.0",
+  "outcome": "defended_and_recovered",
+  "score_total": 98,
+  "breakdown": [
+    {
+      "dimension": "recognition",
+      "awarded": 18,
+      "max_points": 20,
+      "rule_id": "recognition.combined",
+      "explanation": "Correct actor and session, with two valid learner-visible evidence events.",
+      "evidence_ids": [
+        "evt_0005",
+        "evt_0006"
+      ]
+    },
+    {
+      "dimension": "containment",
+      "awarded": 25,
+      "max_points": 25,
+      "rule_id": "containment.effective_scoped",
+      "explanation": "revoke_session on sess_A produced a measured target denial.",
+      "evidence_ids": [
+        "act_0001",
+        "aud_0007"
+      ]
+    },
+    {
+      "dimension": "verification",
+      "awarded": 20,
+      "max_points": 20,
+      "rule_id": "verification.both_checks",
+      "explanation": "Both mandatory probes ran and passed with target audit correlation.",
+      "evidence_ids": [
+        "aud_0008",
+        "aud_0009"
+      ]
+    },
+    {
+      "dimension": "continuity",
+      "awarded": 15,
+      "max_points": 15,
+      "rule_id": "continuity.preserved",
+      "explanation": "Eli's required doc_ops_02 workflow passed after containment.",
+      "evidence_ids": [
+        "aud_0009"
+      ]
+    },
+    {
+      "dimension": "proportionality",
+      "awarded": 10,
+      "max_points": 10,
+      "rule_id": "proportionality.scoped_only",
+      "explanation": "No broad account disablement was applied.",
+      "evidence_ids": [
+        "act_0001"
+      ]
+    },
+    {
+      "dimension": "timeliness",
+      "awarded": 10,
+      "max_points": 10,
+      "rule_id": "timeliness.le_30s",
+      "explanation": "Effective containment landed 21 virtual scenario seconds after the first visible signal.",
+      "evidence_ids": [
+        "evt_0005",
+        "act_0001"
+      ]
+    }
+  ],
+  "outcome_gate": "GATE_DEFENDED_RECOVERED",
+  "first_suspicious_event_id": "evt_0005",
+  "first_visible_at_utc": "2026-10-22T07:00:20Z",
+  "effective_containment": true,
+  "benign_workflow_passed": true,
+  "fallback_used": false,
+  "evidence_event_ids": [
+    "evt_0005",
+    "evt_0006"
+  ],
+  "computed_at": "2026-10-22T07:00:52Z",
+  "notes": [
+    "Score derives only from recorded target outcomes and verification probes."
+  ]
+}

@@ -1,0 +1,5 @@
+{
+  "code": "EVIDENCE_NOT_VISIBLE",
+  "message": "Event evt_9999 does not belong to run_0001 or was not visible to the learner.",
+  "correlation_id": "req_0007"
+}

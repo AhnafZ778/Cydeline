@@ -1,0 +1,34 @@
+{
+  "additionalProperties": false,
+  "description": "Result of ``create_fresh_target``.",
+  "properties": {
+    "created_at": {
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+    },
+    "fixture_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Fixture Hash",
+      "type": "string"
+    },
+    "run_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+      "title": "Run Id",
+      "type": "string"
+    },
+    "target_instance_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+      "title": "Target Instance Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "target_instance_id",
+    "run_id",
+    "fixture_hash",
+    "created_at"
+  ],
+  "title": "TargetProvisionResult",
+  "type": "object"
+}

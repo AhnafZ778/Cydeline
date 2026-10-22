@@ -1,0 +1,69 @@
+{
+  "$defs": {
+    "DefenderAction": {
+      "description": "Closed defender action enum accepted from the learner browser.",
+      "enum": [
+        "revoke_session",
+        "temporarily_disable_account",
+        "require_reauthentication",
+        "restore_account"
+      ],
+      "title": "DefenderAction",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Measured state transition produced by a defender action.",
+  "properties": {
+    "action": {
+      "$ref": "#/$defs/DefenderAction"
+    },
+    "applied": {
+      "title": "Applied",
+      "type": "boolean"
+    },
+    "applied_at": {
+      "format": "date-time",
+      "title": "Applied At",
+      "type": "string"
+    },
+    "run_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+      "title": "Run Id",
+      "type": "string"
+    },
+    "state_transition": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "State Transition",
+      "type": "object"
+    },
+    "target_audit_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+      "title": "Target Audit Id",
+      "type": "string"
+    },
+    "target_handle": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,31}$",
+      "title": "Target Handle",
+      "type": "string"
+    },
+    "verified_result": {
+      "additionalProperties": true,
+      "title": "Verified Result",
+      "type": "object"
+    }
+  },
+  "required": [
+    "run_id",
+    "action",
+    "target_handle",
+    "applied",
+    "verified_result",
+    "target_audit_id",
+    "applied_at"
+  ],
+  "title": "DefenderActionResult",
+  "type": "object"
+}

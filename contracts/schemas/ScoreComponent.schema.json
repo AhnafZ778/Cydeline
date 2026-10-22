@@ -1,0 +1,63 @@
+{
+  "$defs": {
+    "ScoreDimension": {
+      "description": "The six reviewed 100-point rubric dimensions.",
+      "enum": [
+        "recognition",
+        "containment",
+        "verification",
+        "continuity",
+        "proportionality",
+        "timeliness"
+      ],
+      "title": "ScoreDimension",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "One rubric dimension with citable evidence.",
+  "properties": {
+    "awarded": {
+      "minimum": 0,
+      "title": "Awarded",
+      "type": "integer"
+    },
+    "dimension": {
+      "$ref": "#/$defs/ScoreDimension"
+    },
+    "evidence_ids": {
+      "items": {
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+        "type": "string"
+      },
+      "title": "Evidence Ids",
+      "type": "array"
+    },
+    "explanation": {
+      "maxLength": 500,
+      "minLength": 1,
+      "title": "Explanation",
+      "type": "string"
+    },
+    "max_points": {
+      "exclusiveMinimum": 0,
+      "title": "Max Points",
+      "type": "integer"
+    },
+    "rule_id": {
+      "maxLength": 64,
+      "minLength": 1,
+      "title": "Rule Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "dimension",
+    "awarded",
+    "max_points",
+    "rule_id",
+    "explanation"
+  ],
+  "title": "ScoreComponent",
+  "type": "object"
+}

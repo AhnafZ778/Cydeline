@@ -1,6 +1,6 @@
 {
   "task": "tanvir-red-agent",
-  "phase": "PLAN",
+  "phase": "EVALUATE",
   "goal": "Deliver the bounded local AI adversary service (services/red-agent/), two-stage safety validator, and empirical benchmark suite (tests/agent/, docs/model-card/).",
   "acceptance": [
     "FR-B01/B02: Single local quantized model (Qwen3-1.7B Q4 via Ollama) operating sequentially as scout, access_operator, and adaptation_planner",
@@ -20,27 +20,50 @@
   "decisions": [
     "Use one shared Ollama model instance prompted sequentially across 3 logical roles rather than parallel multi-model swarm",
     "Enforce a strict two-stage validator (Pydantic/JSON schema + run-policy allowlist) independent of LLM prompt adherence",
-    "Tag any timeout or invalid-output recovery with fallback_used=true so demo provenance is 100% transparent"
+    "Tag any timeout or invalid-output recovery with fallback_used=true so demo provenance is 100% transparent",
+    "Contracts boundary is a separate adapter module: core red-agent modules stay standard-library-only so offline tests and benchmarks run without Pydantic; contracts_adapter is the single import seam for apps/control-api"
   ],
   "completed": [
     "Defined Tanvir's role, deliverables, and parallel workflow in Tanvir.md",
-    "Frozen starter runtime prompt in 03_LOCAL_RED_AGENT_RUNTIME_PROMPT.md and contract in context/contracts/tanvir-red-agent.contract.md"
+    "Frozen starter runtime prompt in 03_LOCAL_RED_AGENT_RUNTIME_PROMPT.md and contract in context/contracts/tanvir-red-agent.contract.md",
+    "Increment B1 (SL-003) complete: services/red-agent/ schemas.py, observation.py, validator.py, fallback.py implement the strict 5-field proposal schema, sanitized 10-field observation builder, 2-stage validator (JSON schema + role/action/handle allowlist) and bounded timeout with fallback_used tagging; 99 unit tests in tests/agent/ pass with 0 accepted violations across a 29-case adversarial corpus",
+    "Increment B2 code complete and offline-verified: services/red-agent/prompts.py (shared safety policy + scout/access_operator/adaptation_planner instructions + additionalProperties=false structured-output schema), ollama_client.py (/api/tags + /api/chat over urllib with injectable transport, layered socket-vs-service timeout), service.py (choose_action(run_id, role, observation) with run/role scoping checks, model_id/prompt_hash/observation_hash/model_latency_ms provenance, async wrapper). tests/agent/ now 134 tests pass; real daemon health() reachable in 10.4 ms and correctly reports model_present=false",
+    "B2 live half closed on real hardware: pulled qwen3:1.7b (Q4_K_M, 1.4GB). Default Qwen3 thinking spent the entire 180-token budget on reasoning and returned empty content (done_reason=length, eval_count=180). Fixed ollama_client.py to send think=false by default (OLLAMA_THINK opt-in) and to record done_reason + thinking_chars provenance; 10/10 live decisions accepted, 0 fallbacks, cold 9.44s after an explicit unload, warm median 4.60s / p95 5.51s.",
+    "Increment B3 complete: services/red-agent/benchmark.py (30-trial schema corpus, 10 paired pre/post-containment trials, zero-out-of-policy gate, median/p95 latency, JSON + Markdown evidence), docs/model-card/MODEL_CARD.md, docs/model-card/BENCHMARK.json, tests/agent/test_benchmark.py. Live run PASS: 29/30 schema-valid (>=28), 9/10 adapted (>=8), 0 accepted out-of-policy; 153 unit tests pass. The single schema failure was adaptation_planner proposing request_document, correctly rejected by the role ceiling and replaced by a tagged wait fallback; one pair repeated a status probe and is reported as not adapted.",
+    "Added root .gitignore (contract request fulfilled, authorized by the human): ignores __pycache__/*.pyc, .commandcode/, Python and JS build/cache artifacts, Playwright reports, SQLite WAL files and .env. Verified with git check-ignore; git status now shows only real deliverables.",
+    "Reconciled Saad's Increment S1 (contracts/ + scenarios/ now on disk; no API changes to red-agent). Added services/red-agent/contracts_adapter.py: the only module importing contracts/, with assert_vocabulary_parity() (AttackerAction, Role, SessionStatus, AccessOutcome, opaque-handle grammar, required-handles map), to_attacker_proposal()/from_attacker_proposal() round-trip, and to_agent_decision_record() covering accepted, policy-rejected and timed-out turns with required provenance and 1000-char rejection cap. Core modules remain stdlib-only; without Pydantic every adapter call raises ContractUnavailable. Added tests/agent/test_contracts_adapter.py (11 tests). Verified: 164 tests OK bare (9 adapter/parity tests skipped), 164 OK with isolated pydantic 2.14.1; compileall clean."
   ],
   "remaining": [
-    "Increment B1: Implement services/red-agent/ (observation builder, 2-stage validator, timeout fallback) and unit tests in tests/agent/",
-    "Increment B2: Connect Ollama client (Qwen3-1.7B Q4) and measure cold/warm decision latency on demo hardware",
-    "Increment B3: Execute 30-trial schema benchmark + 10-pair adaptation benchmark and document results in docs/model-card/"
+    "Run a fresh independent harness-evaluate review and record the verdict in context/evaluations/tanvir-red-agent.eval.md",
+    "Wire choose_action()/validate_action() into Saad's apps/control-api/ turn scheduler once Increment S3 exists (contracts/ S1 landed and contracts_adapter.py is ready)"
   ],
-  "blockers": [],
+  "blockers": [
+    "scripts/harness_sync.py hard-codes HARNESS_BIN=/home/ahnaf-zakaria/.local/bin/harness, which does not exist on this host: takeover aborts before printing its report, and update writes context/*.md + context/packets/*.json and then raises at the native checkpoint step. Contract request to Ahnaf: resolve HARNESS_BIN from env/PATH or skip the native checkpoint when absent."
+  ],
   "uncertainties": [
-    "Cold/warm latency of Qwen3-1.7B Q4 on local hardware to be measured during Increment B2"
+    "B2 code path is exercised only against a fake transport in CI; no real inference has run yet because qwen3:1.7b is not pulled (only a 34.7B IQ2_M model is present).",
+    "Cold/warm latency of Qwen3-1.7B Q4 on local hardware is still unmeasured; no latency number may be published until B2-live/B3 completes.",
+    "contracts/ (Saad's Increment S1) does not exist yet, so services/red-agent/ keeps stdlib-only local dataclasses; adapter wiring is deferred to B3."
   ],
-  "next_step": "Start Increment B1: Implement services/red-agent/ (schemas, observation builder, two-stage validator, and tagged fallback) + unit tests in tests/agent/.",
+  "next_step": "Run a fresh independent harness-evaluate review of B1-B3 plus the contracts adapter against FR-B01..B06, T-01/T-03, H1 and AT-05, then update the stale verdict in context/evaluations/tanvir-red-agent.eval.md. Live control-plane wiring remains the only implementation gap and waits on Saad's S3 apps/control-api.",
   "evidence": [
     "Tanvir.md",
     "03_LOCAL_RED_AGENT_RUNTIME_PROMPT.md",
     "05_OWNER_B_LOCAL_AI_RED_TEAM.md",
     "context/contracts/tanvir-red-agent.contract.md",
-    "context/evaluations/tanvir-red-agent.eval.md"
+    "context/evaluations/tanvir-red-agent.eval.md",
+    "services/red-agent/README.md",
+    "tests/agent/",
+    "services/red-agent/prompts.py",
+    "services/red-agent/ollama_client.py",
+    "services/red-agent/service.py",
+    "tests/agent/test_service_and_prompts.py",
+    "docs/model-card/MODEL_CARD.md",
+    "docs/model-card/BENCHMARK.json",
+    "services/red-agent/benchmark.py",
+    "tests/agent/test_benchmark.py",
+    ".gitignore",
+    "services/red-agent/contracts_adapter.py",
+    "tests/agent/test_contracts_adapter.py"
   ]
 }

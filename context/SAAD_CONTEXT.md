@@ -5,7 +5,7 @@
 |---|---|
 | **Segment / Task ID** | `saad-range-control` |
 | **Assigned Owner** | Saad (Virtual Company Cyber Range & Trusted Control Plane Owner) |
-| **Active Lifecycle Phase** | **`PLAN`** (`PLAN` → `IMPLEMENT` → `EVALUATE`) |
+| **Active Lifecycle Phase** | **`IMPLEMENT`** (`PLAN` → `IMPLEMENT` → `EVALUATE`) |
 | **Primary Handover Spec** | `Saad.md` |
 | **Task Contract (`harness-plan`)** | `context/contracts/saad-range-control.contract.md` |
 | **Evaluation Record (`harness-evaluate`)** | `context/evaluations/saad-range-control.eval.md` |
@@ -35,7 +35,7 @@ harness check run /home/ahnaf-zakaria/Downloads/Cydeline
 
 - **Goal:** Deliver canonical contracts (contracts/, scenarios/), the isolated Northstar Analytics target range (apps/target-api/, infra/range/), and the trusted control plane with SSE, verification, 100-pt scoring, and replay (apps/control-api/).
 - **IMMEDIATE NEXT STEP (`next_step`):**
-  > **Start Increment S1 (SL-001): Create contracts/ and scenarios/stolen-session/v1/ with canonical enums, Pydantic models, and static mock fixtures.**
+  > **Start Increment S2 (SL-002, SL-006): build apps/target-api/ (Northstar FastAPI + SQLite, sess_A/doc_finance_07 enforcement, defender actuation, Eli benign probe, target audit log, deterministic 10x reset) + tests/target/ and infra/range/Dockerfile.target.**
 
 ---
 
@@ -44,9 +44,10 @@ harness check run /home/ahnaf-zakaria/Downloads/Cydeline
 ### Completed Work (`completed`)
 - [x] Defined Saad's role, deliverables, and parallel workflow in Saad.md
 - [x] Authored complete backend task contract in context/contracts/saad-range-control.contract.md
+- [x] Increment S1 (SL-001): Create contracts/ (canonical enums, schemas, mock fixtures) and scenarios/stolen-session/v1/
+- [x] S1 verified: 35 contract tests pass (python -m unittest discover -s tests/control); 25 JSON schemas + enums.json exported; scenario/rubric invariants and red-agent vocabulary parity validated.
 
 ### Remaining Work (`remaining`)
-- [ ] Increment S1 (SL-001): Create contracts/ (canonical enums, schemas, mock fixtures) and scenarios/stolen-session/v1/
 - [ ] Increment S2 (SL-002, SL-006): Build apps/target-api/ and tests/target/ (including 10x clean reset test)
 - [ ] Increment S3 (SL-004, SL-008): Build apps/control-api/ (SQLite store, SSE stream, declaration, idempotent actions, dual verification) and tests/control/
 - [ ] Increment S4 (SL-010, SL-012): Implement 100-point rubric, outcome gates, read-only /replay, and tests/isolation/

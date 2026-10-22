@@ -1,0 +1,130 @@
+{
+  "$defs": {
+    "AttackerAction": {
+      "description": "Closed attacker action enum. The model can request nothing else.",
+      "enum": [
+        "inspect_session_status",
+        "list_accessible_documents",
+        "request_document",
+        "test_existing_session",
+        "wait",
+        "stop"
+      ],
+      "title": "AttackerAction",
+      "type": "string"
+    },
+    "Role": {
+      "description": "Sequential logical roles played by the single local model.",
+      "enum": [
+        "scout",
+        "access_operator",
+        "adaptation_planner"
+      ],
+      "title": "Role",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "One validated or rejected red-agent turn, with provenance.",
+  "properties": {
+    "accepted_action": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/AttackerAction"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "created_at": {
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+    },
+    "decision_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+      "title": "Decision Id",
+      "type": "string"
+    },
+    "fallback_used": {
+      "default": false,
+      "title": "Fallback Used",
+      "type": "boolean"
+    },
+    "latency_ms": {
+      "minimum": 0,
+      "title": "Latency Ms",
+      "type": "integer"
+    },
+    "model_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Model Id",
+      "type": "string"
+    },
+    "observation_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Observation Hash",
+      "type": "string"
+    },
+    "prompt_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Prompt Hash",
+      "type": "string"
+    },
+    "proposed_json": {
+      "anyOf": [
+        {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Proposed Json"
+    },
+    "rejection_reason": {
+      "anyOf": [
+        {
+          "maxLength": 1000,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Rejection Reason"
+    },
+    "role": {
+      "$ref": "#/$defs/Role"
+    },
+    "run_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+      "title": "Run Id",
+      "type": "string"
+    },
+    "step": {
+      "minimum": 0,
+      "title": "Step",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "decision_id",
+    "run_id",
+    "step",
+    "role",
+    "model_id",
+    "prompt_hash",
+    "observation_hash",
+    "latency_ms",
+    "created_at"
+  ],
+  "title": "AgentDecisionRecord",
+  "type": "object"
+}

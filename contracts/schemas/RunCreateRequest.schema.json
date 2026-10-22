@@ -1,0 +1,29 @@
+{
+  "$defs": {
+    "Mode": {
+      "description": "Assessment mode. Hints are unavailable in ``assessment``.",
+      "enum": [
+        "practice",
+        "assessment"
+      ],
+      "title": "Mode",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "``POST /api/runs`` body.",
+  "properties": {
+    "mode": {
+      "$ref": "#/$defs/Mode",
+      "default": "practice"
+    },
+    "scenario_version": {
+      "default": "v1",
+      "pattern": "^v[0-9]+$",
+      "title": "Scenario Version",
+      "type": "string"
+    }
+  },
+  "title": "RunCreateRequest",
+  "type": "object"
+}

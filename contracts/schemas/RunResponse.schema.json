@@ -1,0 +1,132 @@
+{
+  "$defs": {
+    "Mode": {
+      "description": "Assessment mode. Hints are unavailable in ``assessment``.",
+      "enum": [
+        "practice",
+        "assessment"
+      ],
+      "title": "Mode",
+      "type": "string"
+    },
+    "Outcome": {
+      "description": "Terminal verdict. Outcome gates override the raw score.",
+      "enum": [
+        "defended_and_recovered",
+        "contained_but_disrupted",
+        "attacker_objective_reached",
+        "timed_out_unresolved",
+        "aborted",
+        "technical_failure"
+      ],
+      "title": "Outcome",
+      "type": "string"
+    },
+    "RunState": {
+      "description": "Lifecycle state of a single exercise run.",
+      "enum": [
+        "created",
+        "running",
+        "contained",
+        "verification_pending",
+        "completed",
+        "timed_out",
+        "aborted",
+        "technical_failure"
+      ],
+      "title": "RunState",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Canonical run summary returned by create/start/reset.",
+  "properties": {
+    "created_at": {
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+    },
+    "ended_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Ended At"
+    },
+    "fixture_hash": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Fixture Hash",
+      "type": "string"
+    },
+    "mode": {
+      "$ref": "#/$defs/Mode"
+    },
+    "outcome": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Outcome"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "run_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+      "title": "Run Id",
+      "type": "string"
+    },
+    "scenario_id": {
+      "maxLength": 64,
+      "minLength": 1,
+      "title": "Scenario Id",
+      "type": "string"
+    },
+    "scenario_version": {
+      "maxLength": 32,
+      "minLength": 1,
+      "title": "Scenario Version",
+      "type": "string"
+    },
+    "seed": {
+      "minimum": 0,
+      "title": "Seed",
+      "type": "integer"
+    },
+    "started_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Started At"
+    },
+    "state": {
+      "$ref": "#/$defs/RunState"
+    }
+  },
+  "required": [
+    "run_id",
+    "scenario_id",
+    "scenario_version",
+    "mode",
+    "state",
+    "seed",
+    "fixture_hash",
+    "created_at"
+  ],
+  "title": "RunResponse",
+  "type": "object"
+}

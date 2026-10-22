@@ -1,0 +1,7 @@
+{
+  "role": "access_operator",
+  "action": "request_document",
+  "target_id": "doc_finance_07",
+  "session_handle": "sess_A",
+  "reason": "The document was listed as available to this session."
+}

@@ -1,0 +1,34 @@
+{
+  "additionalProperties": false,
+  "description": "Proof that a target instance and all its handles were destroyed.",
+  "properties": {
+    "destroyed": {
+      "title": "Destroyed",
+      "type": "boolean"
+    },
+    "destroyed_at": {
+      "format": "date-time",
+      "title": "Destroyed At",
+      "type": "string"
+    },
+    "proof": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Proof",
+      "type": "string"
+    },
+    "run_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+      "title": "Run Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "run_id",
+    "destroyed",
+    "proof",
+    "destroyed_at"
+  ],
+  "title": "TeardownProof",
+  "type": "object"
+}

@@ -1,0 +1,273 @@
+{
+  "run_id": "run_0001",
+  "outcome": "defended_and_recovered",
+  "events": [
+    {
+      "event_id": "evt_0001",
+      "run_id": "run_0001",
+      "sequence": 1,
+      "timestamp_utc": "2026-10-22T06:59:58Z",
+      "visible_at_utc": "2026-10-22T07:00:00Z",
+      "source": "target-access",
+      "event_type": "session.status",
+      "actor_id": "eli",
+      "session_handle": "sess_eli",
+      "resource_id": null,
+      "outcome": "allowed",
+      "correlation_id": "req_0001",
+      "target_audit_id": "aud_0001",
+      "learner_visible": true
+    },
+    {
+      "event_id": "evt_0002",
+      "run_id": "run_0001",
+      "sequence": 2,
+      "timestamp_utc": "2026-10-22T07:00:05Z",
+      "visible_at_utc": "2026-10-22T07:00:05Z",
+      "source": "target-access",
+      "event_type": "document.list",
+      "actor_id": "eli",
+      "session_handle": "sess_eli",
+      "resource_id": null,
+      "outcome": "listed",
+      "correlation_id": "req_0002",
+      "target_audit_id": "aud_0002",
+      "learner_visible": true
+    },
+    {
+      "event_id": "evt_0003",
+      "run_id": "run_0001",
+      "sequence": 3,
+      "timestamp_utc": "2026-10-22T07:00:09Z",
+      "visible_at_utc": "2026-10-22T07:00:09Z",
+      "source": "target-access",
+      "event_type": "document.access",
+      "actor_id": "eli",
+      "session_handle": "sess_eli",
+      "resource_id": "doc_ops_02",
+      "outcome": "allowed",
+      "correlation_id": "req_0003",
+      "target_audit_id": "aud_0003",
+      "learner_visible": true
+    },
+    {
+      "event_id": "evt_0004",
+      "run_id": "run_0001",
+      "sequence": 4,
+      "timestamp_utc": "2026-10-22T07:00:12Z",
+      "visible_at_utc": "2026-10-22T07:00:12Z",
+      "source": "target-access",
+      "event_type": "session.status",
+      "actor_id": "unknown",
+      "session_handle": "sess_unknown",
+      "resource_id": null,
+      "outcome": "denied",
+      "correlation_id": "req_0004",
+      "target_audit_id": "aud_0004",
+      "learner_visible": true
+    },
+    {
+      "event_id": "evt_0005",
+      "run_id": "run_0001",
+      "sequence": 5,
+      "timestamp_utc": "2026-10-22T07:00:20Z",
+      "visible_at_utc": "2026-10-22T07:00:20Z",
+      "source": "target-access",
+      "event_type": "session.status",
+      "actor_id": "maya",
+      "session_handle": "sess_A",
+      "resource_id": null,
+      "outcome": "allowed",
+      "correlation_id": "req_0005",
+      "target_audit_id": "aud_0005",
+      "learner_visible": true
+    },
+    {
+      "event_id": "evt_0006",
+      "run_id": "run_0001",
+      "sequence": 6,
+      "timestamp_utc": "2026-10-22T07:00:22Z",
+      "visible_at_utc": "2026-10-22T07:00:22Z",
+      "source": "target-access",
+      "event_type": "document.list",
+      "actor_id": "maya",
+      "session_handle": "sess_A",
+      "resource_id": null,
+      "outcome": "listed",
+      "correlation_id": "req_0006",
+      "target_audit_id": "aud_0006",
+      "learner_visible": true
+    }
+  ],
+  "agent_decisions": [
+    {
+      "decision_id": "dec_0001",
+      "run_id": "run_0001",
+      "step": 2,
+      "role": "access_operator",
+      "model_id": "qwen3:1.7b-q4_k_m",
+      "prompt_hash": "d279ca8bca92a0fde819c98562cec6ad02fea138e0091b86131a31b5bc1a7c1d",
+      "observation_hash": "2cedf3706bb93212f9c29375cff40c1fdfe83a3abbf39e9083edbd3e42a64abf",
+      "proposed_json": {
+        "role": "access_operator",
+        "action": "request_document",
+        "target_id": "doc_finance_07",
+        "session_handle": "sess_A",
+        "reason": "The document was listed as available to this session."
+      },
+      "accepted_action": "request_document",
+      "rejection_reason": null,
+      "latency_ms": 640,
+      "fallback_used": false,
+      "created_at": "2026-10-22T07:00:24Z"
+    }
+  ],
+  "defender_actions": [
+    {
+      "action_id": "act_0001",
+      "run_id": "run_0001",
+      "action": "revoke_session",
+      "target_handle": "sess_A",
+      "idempotency_key": "ikey-revoke-sess-a-001",
+      "requested_at": "2026-10-22T07:00:40Z",
+      "applied_at": "2026-10-22T07:00:41Z",
+      "applied": true,
+      "measured_result": {
+        "session_status": "revoked",
+        "post_action_denied": true,
+        "http_status": 403
+      },
+      "target_audit_id": "aud_0007",
+      "duplicate": false
+    }
+  ],
+  "declarations": [
+    {
+      "declaration_id": "decl_0001",
+      "run_id": "run_0001",
+      "accepted": true,
+      "suspected_actor": "maya",
+      "suspected_session": "sess_A",
+      "rationale": "sess_A is active for maya and listed a confidential finance document that the account does not normally open.",
+      "event_ids": [
+        "evt_0005",
+        "evt_0006"
+      ],
+      "rejected_event_ids": [],
+      "created_at": "2026-10-22T07:00:30Z"
+    }
+  ],
+  "verification_checks": [
+    {
+      "verification": "verify_suspicious_session_denied",
+      "passed": true,
+      "measured_result": {
+        "session_handle": "sess_A",
+        "http_status": 403,
+        "outcome": "denied"
+      },
+      "target_audit_id": "aud_0008",
+      "checked_at": "2026-10-22T07:00:50Z"
+    },
+    {
+      "verification": "verify_benign_workflow",
+      "passed": true,
+      "measured_result": {
+        "user_id": "eli",
+        "target_id": "doc_ops_02",
+        "http_status": 200,
+        "outcome": "allowed"
+      },
+      "target_audit_id": "aud_0009",
+      "checked_at": "2026-10-22T07:00:50Z"
+    }
+  ],
+  "debrief": {
+    "run_id": "run_0001",
+    "rubric_version": "1.0.0",
+    "outcome": "defended_and_recovered",
+    "score_total": 98,
+    "breakdown": [
+      {
+        "dimension": "recognition",
+        "awarded": 18,
+        "max_points": 20,
+        "rule_id": "recognition.combined",
+        "explanation": "Correct actor and session, with two valid learner-visible evidence events.",
+        "evidence_ids": [
+          "evt_0005",
+          "evt_0006"
+        ]
+      },
+      {
+        "dimension": "containment",
+        "awarded": 25,
+        "max_points": 25,
+        "rule_id": "containment.effective_scoped",
+        "explanation": "revoke_session on sess_A produced a measured target denial.",
+        "evidence_ids": [
+          "act_0001",
+          "aud_0007"
+        ]
+      },
+      {
+        "dimension": "verification",
+        "awarded": 20,
+        "max_points": 20,
+        "rule_id": "verification.both_checks",
+        "explanation": "Both mandatory probes ran and passed with target audit correlation.",
+        "evidence_ids": [
+          "aud_0008",
+          "aud_0009"
+        ]
+      },
+      {
+        "dimension": "continuity",
+        "awarded": 15,
+        "max_points": 15,
+        "rule_id": "continuity.preserved",
+        "explanation": "Eli's required doc_ops_02 workflow passed after containment.",
+        "evidence_ids": [
+          "aud_0009"
+        ]
+      },
+      {
+        "dimension": "proportionality",
+        "awarded": 10,
+        "max_points": 10,
+        "rule_id": "proportionality.scoped_only",
+        "explanation": "No broad account disablement was applied.",
+        "evidence_ids": [
+          "act_0001"
+        ]
+      },
+      {
+        "dimension": "timeliness",
+        "awarded": 10,
+        "max_points": 10,
+        "rule_id": "timeliness.le_30s",
+        "explanation": "Effective containment landed 21 virtual scenario seconds after the first visible signal.",
+        "evidence_ids": [
+          "evt_0005",
+          "act_0001"
+        ]
+      }
+    ],
+    "outcome_gate": "GATE_DEFENDED_RECOVERED",
+    "first_suspicious_event_id": "evt_0005",
+    "first_visible_at_utc": "2026-10-22T07:00:20Z",
+    "effective_containment": true,
+    "benign_workflow_passed": true,
+    "fallback_used": false,
+    "evidence_event_ids": [
+      "evt_0005",
+      "evt_0006"
+    ],
+    "computed_at": "2026-10-22T07:00:52Z",
+    "notes": [
+      "Score derives only from recorded target outcomes and verification probes."
+    ]
+  },
+  "trace_hash": "4e1340851e79472e8e6e040f17c2ba0df59bc5725f9f1548dccd404a348f248a",
+  "replayed_at": "2026-10-22T07:00:55Z"
+}

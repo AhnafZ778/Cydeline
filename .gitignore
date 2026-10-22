@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Tooling caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Local assistant state
+.commandcode/
+
+# Node / web (apps/web, Increment A1)
+node_modules/
+dist/
+build/
+*.tsbuildinfo
+
+# Playwright artifacts (Increment A4)
+test-results/
+playwright-report/
+blob-report/
+
+# Runtime data (SQLite WAL) and local secrets
+*.db
+*.db-wal
+*.db-shm
+.env
+.env.local
+
+# OS/editor
+.DS_Store
