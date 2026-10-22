@@ -1,0 +1,99 @@
+/* ==========================================================================
+   Sentinel Loop — Mission Workbench design tokens (V2 "Ember")
+   Warm white canvas, deep warm ink, orange urgency accent, glowing workflow canvas.
+   Orange = YOU (actions, focus, your marks). Indigo = the AI opponent only.
+   Teal = allowed, red = refused (always paired with hatch/label). Gold = disruption.
+   Color encodes OBSERVABLE FACTS (outcome). Never color alone: pair with label/icon/hatch.
+   ========================================================================== */
+:root {
+  /* Ink (text) — all >= 4.5:1 on white */
+  --ink: #1c1410;
+  --ink-2: #4a3b31;
+  --ink-3: #6b5b4e;
+
+  /* Surfaces */
+  --page: #fff6ec;
+  --canvas: #fffefc;
+  --well: #fff0e0;
+  --tint: #fff9f3;
+  --wash: #ffe6d0;
+  --line: #f0e1d1;
+  --line-strong: #e0c9b0;
+
+  /* Semantic roles: base (graphics), ink (text on soft), soft (fills) */
+  --brand: #c2410c;
+  --brand-bright: #f97316;
+  --brand-ink: #9a3412;
+  --brand-soft: #fff0e3;
+  --brand-glow: rgba(249, 115, 22, 0.28);
+
+  --teal: #0f766e;
+  --teal-bright: #14b8a6;
+  --teal-ink: #0b5f59;
+  --teal-soft: #e5f6f3;
+  --teal-glow: rgba(20, 184, 166, 0.24);
+
+  --coral: #dc2626;
+  --coral-ink: #b91c1c;
+  --coral-soft: #feeded;
+  --coral-glow: rgba(220, 38, 38, 0.2);
+
+  --amber: #a16207;
+  --amber-bright: #eab308;
+  --amber-ink: #854d0e;
+  --amber-soft: #fef9c3;
+  --amber-glow: rgba(234, 179, 8, 0.26);
+
+  --indigo: #4f46e5;
+  --indigo-ink: #4338ca;
+  --indigo-soft: #eeedfd;
+  --indigo-glow: rgba(79, 70, 229, 0.22);
+
+
+  /* Categorical (by-session chart) — warm neutrals, distinct by lightness */
+  --cat-1: #c2410c;
+  --cat-2: #78716c;
+  --cat-3: #a8a29e;
+  --cat-4: #d6d3d1;
+
+  /* Type */
+  --font-display: "Space Grotesk Variable", "Space Grotesk", "Inter Variable", system-ui, sans-serif;
+  --font-ui: "Inter Variable", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono Variable", "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  --fs-12: 0.75rem;
+  --fs-13: 0.8125rem;
+  --fs-14: 0.875rem;
+  --fs-16: 1rem;
+  --fs-20: 1.25rem;
+  --fs-28: 1.75rem;
+  --fs-40: 2.5rem;
+
+  /* Spacing (4px base, 8px rhythm) */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 20px;
+  --s-6: 24px;
+  --s-8: 32px;
+  --s-10: 40px;
+
+  /* Radii */
+  --r-card: 12px;
+  --r-ctl: 8px;
+  --r-pill: 999px;
+
+  /* Elevation — two levels only */
+  --elev-1: 0 1px 2px rgba(60, 30, 10, 0.06), 0 1px 1px rgba(60, 30, 10, 0.04);
+  --elev-2: 0 12px 32px rgba(60, 30, 10, 0.14), 0 2px 6px rgba(60, 30, 10, 0.07);
+
+  /* Layout */
+  --topbar-h: 56px;
+  --guide-w: 340px;
+  --drawer-w: 440px;
+  --gutter: 24px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}

@@ -32,6 +32,17 @@
 ## Assumptions/unknowns
 - **Unknowns to measure in Stage 0:** Exact CPU/RAM/GPU/VRAM on the demo laptop and measured cold/warm latency of `Qwen3-1.7B Q4` via Ollama; official competition track ID and submission portal deadline confirmation.
 
+## Open cross-team contract change requests (filed by `ahnaf-lead-ux`, 2026-10-22)
+Status: **PROPOSED — needs Saad sign-off before `contracts/` freeze (G0).** Ahnaf's frontend already ships a simulation that implements all four items, so the UI is unblocked either way.
+
+1. **`EventEnvelope.network` (optional block).** Realistic access-log rendering needs: `src_ip`, `user_agent`, `http_method`, `path`, `status_code`, `latency_ms`, optional `bytes`. Saad's target audit already records most of this (FR-A03). If absent, the UI hides the columns and derives method/path/status from `event_type` + `outcome`. Never include raw tokens.
+2. **Scenario fixture signal (`scenarios/stolen-session/v1/`).** Mid-session, `sess_A` requests begin arriving from a second source IP and user agent (RFC 5737 documentation ranges, for example `203.0.113.57` / `curl/8.5.0`) while benign sessions stay stable. This is the teachable, unlabeled evidence for session hijack. Keep benign:suspicious traffic roughly 6:1 with at least one benign 4xx so not every 4xx looks malicious. The control plane must not label the attacker's IP or session anywhere learner-visible.
+3. **`summary` / `risk_label` are optional, debrief-only annotations.** They must not be rendered in the live learner stream (PRD UX principle: show facts before interpretation; attacker and benign activity distinguishable only through evidence).
+4. **Red-agent internal events** (for example `agent.stop`, per-role decisions) are `learner_visible: false` and only appear in replay/debrief.
+5. **Adversary Lens telemetry (practice mode only; added 2026-10-22 on user instruction).** In `mode: practice`, `RunStatusSnapshot.last_ai_decision` (already canonical) is returned live after every AI step so the UI can show what the AI is doing in real time; in `mode: assessment` it stays `null` until the run is `completed`. No scoring change. Optional follow-ups: `ai_phase: thinking | acting | idle`, and an `agent_step` link on adversary events so log lines can be tagged exactly. Until accepted, the UI derives AI log tags from the decision's `session_handle` plus the source IP first seen after the first decision.
+
+**Canonical enums are unchanged** (`RunState`, `Outcome`, `Mode`, `AttackerAction`, `DefenderAction`, `Verification`).
+
 ## Next increment
 - Execute **Stage 0 & Stage 1 (`SL-001`)**: Finalize `contracts/` enums and JSON schemas, publish static mock fixtures for all 3 segments, and verify `harness check run` passes.
 

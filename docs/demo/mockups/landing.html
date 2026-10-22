@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>U0 mockup — Mission landing</title>
+<link rel="stylesheet" href="../../../apps/web/node_modules/@fontsource-variable/space-grotesk/index.css" />
+<link rel="stylesheet" href="../../../apps/web/node_modules/@fontsource-variable/inter/index.css" />
+<link rel="stylesheet" href="../../../apps/web/node_modules/@fontsource-variable/jetbrains-mono/index.css" />
+<link rel="stylesheet" href="../../../apps/web/src/styles/tokens.css" />
+<link rel="stylesheet" href="../../../apps/web/src/styles/base.css" />
+<link rel="stylesheet" href="../../../apps/web/src/styles/shell.css" />
+<link rel="stylesheet" href="../../../apps/web/src/styles/workbench.css" />
+<link rel="stylesheet" href="../../../apps/web/src/styles/pages.css" />
+<script src="mock.js"></script>
+</head>
+<body>
+<div class="app" id="app"></div>
+<script>
+document.getElementById("app").innerHTML = `
+<header class="topbar">
+  <div class="brand"><span class="brand__mark">${icon("shield")}</span>Sentinel Loop</div>
+  <div class="topbar__right"><span class="chip chip--amber">Simulation · fictional company</span></div>
+</header>
+<div class="landing"><div class="landing__inner">
+  <div>
+    <span class="chip chip--cyan">Mission 01 · Beginner · about 10 min</span>
+    <h1>The Stolen Session</h1>
+    <p class="landing__lede">An AI adversary is working against Northstar Analytics right now. Read the logs, find the one session that doesn't belong, and shut it down without breaking anyone else's day.</p>
+    <dl class="ticket landing__ticket">
+      <div class="ticket__row"><dt>Ticket</dt><dd class="mono">SOC-0142</dd></div>
+      <div class="ticket__row"><dt>Reported</dt><dd>Finance noticed unusual access to a restricted document</dd></div>
+      <div class="ticket__row"><dt>Protect</dt><dd class="mono">doc_finance_07</dd></div>
+      <div class="ticket__row"><dt>Keep working</dt><dd class="mono">eli@northstar.test</dd></div>
+    </dl>
+    <ul class="learn-list">
+      <li><span class="icon-wrap">${icon("list")}</span>Read an access log and spot what is out of pattern</li>
+      <li><span class="icon-wrap">${icon("eye")}</span>Connect requests by session, source address and request ID</li>
+      <li><span class="icon-wrap">${icon("scale")}</span>Contain with the smallest action that works, then prove it worked</li>
+    </ul>
+    <div class="landing__cta">
+      <button class="btn btn--primary btn--lg">Start shift ${icon("arrow")}</button>
+      <div class="loop-strip">Observe<i>›</i>Investigate<i>›</i>Declare<i>›</i>Contain<i>›</i>Verify</div>
+    </div>
+  </div>
+  <div class="landing__aside">
+    <section class="card preview">
+      <div class="preview__map">${mapSvg({ suspect: false, packet: true })}</div>
+      <div class="preview__foot">Your live system map. Everything here is built from real log events as they happen.</div>
+    </section>
+    <section class="card opponent-card">
+      <span class="opponent-card__avatar">${icon("bot")}</span>
+      <div><strong>AI adversary · ready</strong><span>qwen3:1.7b · Q4_K_M · runs locally, decides each move live</span></div>
+    </section>
+    <div class="facts-row"><span class="chip chip--teal"><span class="dot"></span>Practice mode · pause anytime</span><span class="chip">Sandboxed · no real systems</span></div>
+  </div>
+</div></div>`;
+</script>
+</body>
+</html>

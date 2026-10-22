@@ -17,6 +17,7 @@
 - **`Ahnaf.md`** — Project Lead, Product Overseer, Defender Command Center UX (`apps/web/`), E2E QA (`tests/e2e/`), and the 3-Minute Competition Demo (`docs/demo/`).
 - **`Tanvir.md`** — Local AI Red-Team Engine (`services/red-agent/`, `tests/agent/`, `docs/model-card/`).
 - **`Saad.md`** — Virtual Company Cyber Range (`apps/target-api/`, `infra/range/`) + Trusted Control Plane, Referee & 100-Point Scoring (`apps/control-api/`, `contracts/`, `scenarios/`).
+- **`Takeover.md`** — Copy-paste AI prompts for Ahnaf, Tanvir, and Saad + Emergency Mid-Flight Segment Takeover Protocol.
 
 ## Recommended first actions
 

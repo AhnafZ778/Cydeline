@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>U0 mockup — Debrief</title>
+<link rel="stylesheet" href="../../../apps/web/node_modules/@fontsource-variable/space-grotesk/index.css" />
+<link rel="stylesheet" href="../../../apps/web/node_modules/@fontsource-variable/inter/index.css" />
+<link rel="stylesheet" href="../../../apps/web/node_modules/@fontsource-variable/jetbrains-mono/index.css" />
+<link rel="stylesheet" href="../../../apps/web/src/styles/tokens.css" />
+<link rel="stylesheet" href="../../../apps/web/src/styles/base.css" />
+<link rel="stylesheet" href="../../../apps/web/src/styles/shell.css" />
+<link rel="stylesheet" href="../../../apps/web/src/styles/workbench.css" />
+<link rel="stylesheet" href="../../../apps/web/src/styles/pages.css" />
+<script src="mock.js"></script>
+</head>
+<body>
+<div class="app" id="app"></div>
+<script>
+function gauge(score) {
+  const r = 120, cx = 150, cy = 140, len = Math.PI * r, off = len * (1 - score / 100);
+  return `<svg viewBox="0 0 300 160" role="img" aria-label="Score ${score} of 100"><defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#0e7490"/><stop offset="1" stop-color="#14b8a6"/></linearGradient></defs>
+  <path d="M30 140 A120 120 0 0 1 270 140" fill="none" stroke="#e8eef6" stroke-width="18" stroke-linecap="round"/>
+  <path d="M30 140 A120 120 0 0 1 270 140" fill="none" stroke="url(#g)" stroke-width="18" stroke-linecap="round" stroke-dasharray="${len}" stroke-dashoffset="${off}"/></svg>
+  <div class="gauge__value">${score}<small>out of 100</small></div>`;
+}
+const rub = [
+  ["Recognition & evidence", 18, 20, "Named sess_A and cited the first request from a new source address.", ["req_0115", "req_0118"]],
+  ["Effective containment", 25, 25, "Revoking sess_A turned every later request from it into a 403.", ["act_01"]],
+  ["Recovery verification", 20, 20, "Both probes ran and passed.", ["aud_ver_201", "aud_ver_202"]],
+  ["Business continuity", 15, 15, "Eli and Priya kept working throughout.", ["req_0124"]],
+  ["Proportionality", 10, 10, "One session ended; no account was frozen.", ["act_01"]],
+  ["Timeliness", 8, 10, "Contained 31 s after the first visible signal.", ["req_0115"]],
+];
+const rubHtml = rub.map(([l, a, m, why, c]) => `<li class="rubric__row"><div class="rubric__top"><span>${l}</span><span class="rubric__pts">${a} / ${m}</span></div>
+  <div class="bar"><i class="${a / m < 0.7 ? "is-low" : ""}" style="width:${(a / m) * 100}%"></i></div>
+  <div class="rubric__why">${why}</div><div class="cites">${c.map((x) => `<button class="cite">${x}</button>`).join("")}</div></li>`).join("");
+
+const tl = [
+  ["07:04:12", "First request from 203.0.113.57 on sess_A", "The log that gave it away", ""],
+  ["07:04:41", "You pinned req_0115 and req_0118", "Evidence selected", "is-you"],
+  ["07:04:58", "You declared sess_A", "Accepted: evidence supports it", "is-you"],
+  ["07:05:03", "You ended sess_A", "revoke_session · confirmed by the server", "is-you is-ok"],
+  ["07:05:09", "sess_A request returned 403", "AI adversary stopped probing", "is-ok"],
+  ["07:05:14", "Both verification probes passed", "Attacker denied, Eli working", "is-ok"],
+].map(([t, h, s, c]) => `<li class="${c}"><time>${t}</time><div><strong>${h}</strong><span>${s}</span></div></li>`).join("");
+
+const showed = [
+  ["07:04:12.118 INFO GET /api/v1/session 200 sess_A maya 203.0.113.57 req_0115", "Same session, different source address than every earlier request."],
+  ["07:04:21.640 INFO GET /api/v1/vault/docs 200 sess_A maya 203.0.113.57 req_0118", "A restricted route this session had never touched before."],
+].map(([l, n]) => `<div class="showed__item"><span class="showed__line">${l}</span><div class="showed__note">${icon("bulb")}${n}</div></div>`).join("");
+
+const stages = [["Probe the session", [1,0,0,0,0,0,0,0,0,0]], ["Map the vault", [0,0,1,0,0,0,0,0,0,0]], ["Test access", [0,0,0,0,1,0,0,0,0,0]], ["Read the document", [0,0,0,0,0,0,0,0,0,0]], ["Retry after block", [0,0,0,0,0,0,2,0,0,0]]]
+  .map(([n, d]) => `<div class="dotmatrix__row"><span>${n}</span><div class="dots">${d.map((v) => `<i class="${v === 1 ? "on" : v === 2 ? "on-deny" : ""}"></i>`).join("")}</div></div>`).join("");
+
+document.getElementById("app").innerHTML = `
+${topbar(4, true)}
+<div class="debrief"><div class="debrief__inner">
+  <div class="debrief__bar"><div><span class="eyebrow">Debrief · SOC-0142</span></div><div style="display:flex;gap:8px"><button class="btn">Replay run</button><button class="btn btn--primary">Try again</button></div></div>
+  <section class="card hero">
+    <div class="gauge">${gauge(96)}</div>
+    <div><span class="chip chip--teal">${icon("check")} Defended and recovered</span>
+      <h1>You stopped it before the vault was read.</h1>
+      <p>Compromised session sess_A was denied (403), Eli's workflow was verified, and doc_finance_07 was never breached.</p></div>
+  </section>
+  <div class="debrief__cols">
+    <section class="card pad"><div class="card__title" style="margin-bottom:16px">How you scored</div><ul class="rubric">${rubHtml}</ul></section>
+    <section class="card pad"><div class="card__title" style="margin-bottom:16px">What you did</div><ol class="timeline">${tl}</ol></section>
+  </div>
+  <div class="debrief__cols">
+    <section class="card pad"><div class="card__title" style="margin-bottom:4px">What the logs showed</div><p class="muted" style="margin-bottom:12px;font-size:var(--fs-13)">Two lines were enough. Look for these next time.</p><div class="showed">${showed}</div></section>
+    <section class="card pad"><div class="card__title" style="margin-bottom:4px">The adversary's playbook</div><p class="muted" style="margin-bottom:12px;font-size:var(--fs-13)">Revealed now that the run is over. Each dot is one AI move.</p><div class="dotmatrix">${stages}</div>
+      <dl class="provenance" style="margin-top:16px"><div><dt>Model decisions</dt><dd>6</dd></div><div><dt>Fallback used</dt><dd>0</dd></div><div><dt>Median latency</dt><dd>410 ms</dd></div></dl></section>
+  </div>
+</div></div>`;
+</script>
+</body>
+</html>

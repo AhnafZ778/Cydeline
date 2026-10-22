@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>U0 mockup — Investigate</title>
+<link rel="stylesheet" href="../../../apps/web/node_modules/@fontsource-variable/space-grotesk/index.css" />
+<link rel="stylesheet" href="../../../apps/web/node_modules/@fontsource-variable/inter/index.css" />
+<link rel="stylesheet" href="../../../apps/web/node_modules/@fontsource-variable/jetbrains-mono/index.css" />
+<link rel="stylesheet" href="../../../apps/web/src/styles/tokens.css" />
+<link rel="stylesheet" href="../../../apps/web/src/styles/base.css" />
+<link rel="stylesheet" href="../../../apps/web/src/styles/shell.css" />
+<link rel="stylesheet" href="../../../apps/web/src/styles/workbench.css" />
+<link rel="stylesheet" href="../../../apps/web/src/styles/overlays.css" />
+<script src="mock.js"></script>
+</head>
+<body>
+<div class="app" id="app"></div>
+<script>
+const q = new URLSearchParams(location.search);
+const drawer = q.get("drawer"); // inspector | respond
+const phase = drawer === "respond" ? 3 : 1;
+const rows = D.rows.map((r) => logRow(r)).join("");
+const ok = [3,4,3,5,4,3,4,5,3,4,4,3,5,4,3,4,5,4,3,4,5,4,3,4];
+const den = [0,0,0,0,0,1,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0];
+
+const inspector = `
+<aside class="drawer" aria-label="Event inspector">
+  <div class="drawer__head"><div><span class="eyebrow">Inspector</span><h2 class="mono" style="font-family:var(--font-mono);font-size:var(--fs-16)">HEAD /api/v1/vault/docs/doc_finance_07</h2><p>07:04:33.205 · req_0121 · evt_0042</p></div><button class="btn btn--ghost btn--icon" aria-label="Close">${icon("x")}</button></div>
+  <div class="drawer__body">
+    <section><div class="eyebrow section-label">Fields</div>
+      <dl class="fields"><dt>status</dt><dd>200</dd><dt>session</dt><dd>sess_A</dd><dt>user</dt><dd>maya@northstar.test</dd><dt>source ip</dt><dd>203.0.113.57</dd><dt>user agent</dt><dd>curl/8.5.0</dd><dt>latency</dt><dd>12ms</dd><dt>resource</dt><dd>doc_finance_07</dd></dl></section>
+    <section><div class="eyebrow section-label">Same session · sess_A</div>
+      <div class="related">
+        <button><span>07:04:12.118</span><span>200</span><span>203.0.113.57 · /api/v1/session</span></button>
+        <button><span>07:04:14.902</span><span>304</span><span>198.51.100.23 · /docs/q3_forecast.csv</span></button>
+        <button><span>07:04:21.640</span><span>200</span><span>203.0.113.57 · /vault/docs</span></button>
+        <button class="is-current"><span>07:04:33.205</span><span>200</span><span>203.0.113.57 · /vault/docs/doc_finance_07</span></button>
+      </div></section>
+    <section><div class="eyebrow section-label">Raw</div>
+      <pre class="json">{
+  "event_id": "evt_0042",
+  "source": "target-access",
+  "session_handle": "sess_A",
+  "resource_id": "doc_finance_07",
+  "outcome": "allowed",
+  "correlation_id": "req_0121"
+}</pre></section>
+  </div>
+  <div class="drawer__foot"><span class="muted" style="font-size:var(--fs-12)">Press <span class="kbd">p</span> to pin</span><button class="btn btn--primary">${icon("pin")}Pin as evidence</button></div>
+</aside>`;
+
+const respond = `
+<aside class="drawer" aria-label="Respond">
+  <div class="drawer__head"><div><span class="eyebrow">Step 4 · Contain</span><h2>Choose a response</h2><p>Each option changes who can still use the system.</p></div><button class="btn btn--ghost btn--icon" aria-label="Close">${icon("x")}</button></div>
+  <div class="drawer__body"><fieldset>
+    <label class="action-card"><div class="action-card__head"><input type="radio" name="a" checked /><div class="action-card__title"><strong>End one session</strong><code>revoke_session</code></div></div>
+      <dl class="facts"><dt>Scope</dt><dd>Only <span class="mono">sess_A</span>. Other sessions are untouched.</dd><dt>Stops</dt><dd>Every request carrying that session token.</dd><dt>Side effects</dt><dd>Maya must sign in again.</dd></dl></label>
+    <label class="action-card"><div class="action-card__head"><input type="radio" name="a" /><div class="action-card__title"><strong>Force re-authentication</strong><code>require_reauthentication</code></div></div>
+      <dl class="facts"><dt>Scope</dt><dd>All of Maya's active sessions.</dd><dt>Stops</dt><dd>Existing tokens until a new sign-in.</dd><dt>Side effects</dt><dd>Maya is interrupted on every device.</dd></dl></label>
+    <label class="action-card"><div class="action-card__head"><input type="radio" name="a" /><div class="action-card__title"><strong>Disable the account</strong><code>temporarily_disable_account</code></div></div>
+      <dl class="facts"><dt>Scope</dt><dd>Maya's whole account.</dd><dt>Stops</dt><dd>All access, including sign-in.</dd><dt>Side effects</dt><dd>Maya cannot work until it is restored.</dd></dl></label>
+  </fieldset></div>
+  <div class="drawer__foot"><span class="muted" style="font-size:var(--fs-12)">Preview on map: affected nodes glow amber</span><button class="btn btn--primary">Apply response</button></div>
+</aside>`;
+
+document.getElementById("app").innerHTML = `
+${topbar(phase)}
+<div class="main">
+  <aside class="guide">
+    <button class="btn btn--ghost btn--icon guide__collapse" aria-label="Collapse guide">${icon("panel")}</button>
+    <section class="objective">
+      <div class="eyebrow">${icon("flag")} Current objective</div>
+      <h2>Find the session that behaves differently</h2>
+      <p class="objective__why">Real incidents hide inside normal traffic. Your job is to separate one odd session from everyone else.</p>
+      <div class="objective__think">${icon("bulb")}<span>Group the logs by session. Which one does something the others don't?</span></div>
+    </section>
+    <div class="tabs" role="tablist"><button role="tab" aria-selected="false">Brief</button><button role="tab" aria-selected="true">Objectives</button><button role="tab" aria-selected="false">Concepts</button></div>
+    <ul class="checklist">
+      <li class="check is-done"><span class="check__box">${icon("check")}</span>Read the live logs</li>
+      <li class="check is-current"><span class="check__box"></span>Pin 2 or more log lines as evidence</li>
+      <li class="check"><span class="check__box"></span>Declare the incident</li>
+      <li class="check"><span class="check__box"></span>Contain it with the smallest action that works</li>
+      <li class="check"><span class="check__box"></span>Verify the attacker is out and Eli can still work</li>
+    </ul>
+  </aside>
+  <main class="workbench">
+    <div class="wb-head">
+      <div><h1>Live operations</h1><p>Northstar's API is handling traffic right now. Something in it is not normal.</p></div>
+      <div class="wb-head__cta"><button class="btn btn--primary btn--lg">Declare incident ${icon("arrow")}</button><span class="wb-head__reason">2 lines pinned</span></div>
+    </div>
+    <div class="wb-grid">
+      <div class="kpis">
+        ${kpi("Requests / min", "38", [5,6,5,7,6,5,6,8,7,9,8,10], "+4", "delta--up")}
+        ${kpi("Denied (4xx)", "2", [0,0,1,0,0,0,1,0,0,0,0,1], "last 5 min", "", "kpi__ticks--coral")}
+        ${kpi("Active sessions", "3", [3,3,3,3,3,3,3,3,3,3,3,3], "steady", "", "kpi__ticks--muted")}
+        ${kpi("Vault requests", "2", [0,0,0,0,0,0,0,0,0,0,1,1], "+2", "delta--warn", "kpi__ticks--teal")}
+      </div>
+      <div class="viz-row">
+        <section class="card viz" data-tour="map">
+          <div class="card__head"><div><div class="card__title">System map</div><div class="card__sub">Who is talking to what, built from the logs</div></div>
+            <div class="legend"><span class="legend__item"><span class="swatch swatch--ok"></span>allowed</span><span class="legend__item"><span class="swatch swatch--denied"></span>denied</span><span class="legend__item"><span class="swatch swatch--suspect"></span>your suspect</span></div></div>
+          <div class="viz__body"><div class="map">${mapSvg({ suspect: true, affected: drawer === "respond" ? ["sess_A"] : [] })}</div></div>
+        </section>
+        <section class="card viz">
+          <div class="card__head"><div><div class="card__title">Activity</div><div class="card__sub">Requests per 15 s</div></div>
+            <div class="seg"><button aria-pressed="true">By outcome</button><button aria-pressed="false">By session</button></div></div>
+          <div class="viz__body"><div class="chart">${chartSvg({ ok, denied: den })}</div></div>
+        </section>
+      </div>
+      <section class="card console">
+        <div class="console__head">
+          <div class="console__title"><span class="card__title">Logs</span></div>
+          <div class="query">${icon("search")}<span class="chip chip--cyan chip--removable">session:sess_A<button aria-label="Remove">${icon("x")}</button></span><input placeholder="session:sess_A status:4xx user:maya path:/vault*" aria-label="Filter logs" /></div>
+          <div class="seg" role="group" aria-label="Pivots"><button aria-pressed="true">All</button><button aria-pressed="false">Denied</button><button aria-pressed="false">Restricted</button><button aria-pressed="false">By session</button></div>
+          <button class="live-toggle"><span class="dot"></span>Live</button>
+        </div>
+        <div class="tray"><strong>Evidence</strong><span class="chip">req_0115</span><span class="chip">req_0118</span><span style="margin-left:auto">Pinned lines stay here when filters change</span></div>
+        <div class="logs"><div class="loglist" role="grid">${LOGHEAD}${rows}</div></div>
+      </section>
+    </div>
+  </main>
+</div>
+${drawer === "inspector" ? inspector : drawer === "respond" ? respond : ""}`;
+</script>
+</body>
+</html>

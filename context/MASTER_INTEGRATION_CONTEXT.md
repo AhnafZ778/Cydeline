@@ -45,6 +45,7 @@ harness check run /home/ahnaf-zakaria/Downloads/Cydeline
 - [x] Reorganized foundation and workstream markdowns into sequential order 00 to 07
 - [x] Created Ahnaf.md, Tanvir.md, and Saad.md parallel segment handover specifications
 - [x] Enrolled repository in harness (project_id: 31fd9903-57c9-4f5f-9344-96cef387c8f6) and created Plan/Implement/Evaluate contracts
+- [x] Created Takeover.md with developer AI prompts for Ahnaf, Tanvir, and Saad plus Emergency Mid-Flight Takeover Protocol
 
 ### Remaining Work (`remaining`)
 - [ ] Execute Stage 1 (SL-001): Create monorepo directory skeleton, contracts/ schemas, and scenarios/stolen-session/v1/
@@ -112,6 +113,7 @@ harness check run /home/ahnaf-zakaria/Downloads/Cydeline
 - 02_MASTER_BUILD_PROMPT.md
 - context/contracts/master-integration.contract.md
 - context/evaluations/master-integration.eval.md
+- Takeover.md
 
 
 ---

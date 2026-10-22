@@ -797,6 +797,7 @@ def cmd_verify() -> int:
         "Ahnaf.md",
         "Tanvir.md",
         "Saad.md",
+        "Takeover.md",
         "AGENTS.md",
         "context/INDEX.md",
         "Agent_Instructions/SKILL.md",

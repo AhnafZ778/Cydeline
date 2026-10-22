@@ -42,6 +42,12 @@
 ## Assumptions/unknowns
 - Container isolation (`compose.yaml` with `internal: true` network for `target-api`, dropped capabilities, `no-new-privileges`, memory/CPU limits) will be used on the demo host; if a dedicated disposable VM is available, `infra/range/` will support it.
 
+## Inbound change requests from `ahnaf-lead-ux` (PROPOSED — review before `contracts/` freeze)
+See `context/contracts/master-integration.contract.md` section "Open cross-team contract change requests". Summary for this segment:
+- Add optional `EventEnvelope.network { src_ip, user_agent, http_method, path, status_code, latency_ms, bytes? }` populated from target-local audit/HTTP results (no raw tokens).
+- Scenario v1 fixture: `sess_A` source IP + user agent change mid-session; benign sessions (Eli, Priya) stable; benign:suspicious about 6:1 with at least one benign 4xx.
+- Treat `summary` and `risk_label` as optional debrief-only annotations; mark red-agent internal events `learner_visible: false`.
+
 ## Next increment
 - **Increment S1 (PLAN -> IMPLEMENT):** Create `contracts/` (canonical enums, Pydantic models, JSON schema exporter, and static mock fixtures for Ahnaf and Tanvir) and `scenarios/stolen-session/v1/` (`scenario.json` + `rubric.json`).
 
