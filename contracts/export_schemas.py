@@ -12,9 +12,13 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+import sys
 from typing import Any
 
-from .adapter import (
+if __package__ in (None, ""):
+    sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
+from contracts.adapter import (
     AttackerActionResult,
     AttackerHandles,
     DefenderActionResult,
@@ -23,7 +27,7 @@ from .adapter import (
     TargetProvisionResult,
     TeardownProof,
 )
-from .enums import (
+from contracts.enums import (
     CANONICAL_ENUMS,
     AccessOutcome,
     EventSource,
@@ -34,7 +38,7 @@ from .enums import (
     SessionStatus,
     enum_values,
 )
-from .models import CONTRACT_MODELS, CONTRACT_SCHEMA_VERSION
+from contracts.models import CONTRACT_MODELS, CONTRACT_SCHEMA_VERSION
 
 SCHEMA_DIR = Path(__file__).resolve().parent / "schemas"
 

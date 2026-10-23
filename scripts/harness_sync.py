@@ -13,13 +13,27 @@ from __future__ import annotations
 import argparse
 from datetime import datetime, timezone
 import json
+import os
 from pathlib import Path
+import shutil
 import subprocess
 import sys
 from typing import Any
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
-HARNESS_BIN = Path("/home/ahnaf-zakaria/.local/bin/harness")
+
+
+def resolve_harness_bin() -> Path:
+    override = os.environ.get("HARNESS_BIN")
+    if override:
+        return Path(override).expanduser()
+    found = shutil.which("harness")
+    if found:
+        return Path(found)
+    return Path.home() / ".local" / "bin" / "harness"
+
+
+HARNESS_BIN = resolve_harness_bin()
 
 TASKS: dict[str, dict[str, Any]] = {
     "master-integration": {
@@ -325,7 +339,12 @@ TASKS: dict[str, dict[str, Any]] = {
 
 def run_harness(*args: str) -> dict[str, Any]:
     cmd = [str(HARNESS_BIN), *args]
-    proc = subprocess.run(cmd, cwd=REPO_ROOT, capture_output=True, text=True)
+    try:
+        proc = subprocess.run(cmd, cwd=REPO_ROOT, capture_output=True, text=True)
+    except FileNotFoundError as exc:
+        raise RuntimeError(
+            f"harness CLI not found at {HARNESS_BIN}. Install it or set HARNESS_BIN to its path."
+        ) from exc
     if proc.returncode != 0:
         raise RuntimeError(f"Command {' '.join(cmd)} failed: {proc.stderr.strip() or proc.stdout.strip()}")
     return json.loads(proc.stdout)
@@ -422,10 +441,10 @@ If the current owner is blocked, offline, or switching AI sessions, run these **
 python3 scripts/harness_sync.py takeover --task {task}
 
 # 2. Native harness resume for this task packet
-harness context resume /home/ahnaf-zakaria/Downloads/Cydeline --task {task}
+harness context resume . --task {task}
 
 # 3. Run project-native verification checks
-harness check run /home/ahnaf-zakaria/Downloads/Cydeline
+harness check run .
 ```
 
 ---

@@ -45,9 +45,15 @@ function load(): SocState {
   if (typeof localStorage === "undefined") return fresh();
   try {
     const raw = localStorage.getItem(KEY);
-    if (!raw) return fresh();
+    if (!raw) {
+      localStorage.setItem(RETURNED_KEY, "1");
+      return fresh();
+    }
     const parsed = JSON.parse(raw) as SocState;
-    if (!parsed || parsed.version !== 1) return fresh();
+    if (!parsed || parsed.version !== 1) {
+      localStorage.setItem(RETURNED_KEY, "1");
+      return fresh();
+    }
     let next = reconcile(parsed, catalog());
     if (localStorage.getItem(RETURNED_KEY) !== "1") {
       next = returnInvestigation(next, catalog());
