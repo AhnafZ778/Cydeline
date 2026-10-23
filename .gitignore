@@ -26,6 +26,17 @@ test-results/
 playwright-report/
 blob-report/
 
+# Demo recordings and video media
+*.mp4
+*.webm
+*.mov
+*.avi
+*.mkv
+docs/demo/recordings/
+docs/demo/*.mp4
+docs/demo/*.webm
+docs/demo/*.gif
+
 # Runtime data (SQLite WAL) and local secrets
 *.db
 *.db-wal
