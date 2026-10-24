@@ -2,6 +2,20 @@
 
 **Prepared 22 October 2026** | Four-owner engineering baseline | Competition MVP
 
+## Current continuation — 24 October 2026
+
+The live two-scenario product and beginner learning features are implemented. The foundation checklist below is historical; do not restart Stage 0. Read the [current beginner handoff](docs/product/BEGINNER_LEARNING_HANDOFF.md), [accepted delivery plan](docs/product/BEGINNER_LEARNING_PLAN.md) and [live owner index](context/INDEX.md) for verified results, active checks and remaining measured AI gates. The user chose to leave the pilot kit ready for future sessions; no participant results exist.
+
+At every session entry, run:
+
+```
+python3 scripts/harness_sync.py status
+python3 scripts/harness_sync.py takeover --task master-integration
+harness context resume /home/ahnaf-zakaria/Downloads/Cydeline --task master-integration
+```
+
+Inspect actual source and preserve the existing working changes. Follow `AGENTS.md`; checkpoint milestones through `scripts/harness_sync.py update`. Current accepted contract amendments supersede conflicting foundation scope and next actions below.
+
 ## What is included (ordered for sequential reading)
 
 1. **`01_PRODUCT_REQUIREMENTS_DOCUMENT.md`** — authoritative PRD with goals, user stories, P0/P1 scope, scenario, 4-owner assignments, architecture, contracts, data schema, scoring, safety, tests, milestones, release criteria and open decisions. **Read this first.**
@@ -19,7 +33,7 @@
 - **`Saad.md`** — Virtual Company Cyber Range (`apps/target-api/`, `infra/range/`) + Trusted Control Plane, Referee & 100-Point Scoring (`apps/control-api/`, `contracts/`, `scenarios/`).
 - **`Takeover.md`** — Copy-paste AI prompts for Ahnaf, Tanvir, and Saad + Emergency Mid-Flight Segment Takeover Protocol.
 
-## Recommended first actions
+## Original foundation checklist (historical)
 
 1. Share the PRD with all four owners and review the **Open decisions** section together.
 2. Verify the official competition challenge and submission rules; the PRD deliberately does not invent a challenge ID.
@@ -30,13 +44,13 @@
 7. Build the first proof: **local model proposal → validated target request → target audit event**.
 8. Then prove **session revocation → denied follow-up → unaffected legitimate access succeeds**.
 
-## Non-negotiable scope
+## Original foundation scope (see accepted amendments for current scope)
 
 One local quantized model, three sequential logical roles, one fictional target, one human defender, one reviewed scenario. Real within-sandbox HTTP and authorization changes; no unrestricted offensive tooling or external targets. The trusted control plane is never an attack target.
 
 ## Grounded status
 
-These are **design documents**, not evidence of an implemented or validated system. Benchmark targets, user outcomes and dates are proposed. All safety, reliability, model-quality and competition-fit claims require real checks.
+The original foundation documents are design input. Current implementation and evidence live in the handoff and context files linked above. Benchmarks, safety, model quality, user outcomes and competition fit require the relevant recorded checks; participant learning results remain unobserved.
 
 ## Existing companion documents
 

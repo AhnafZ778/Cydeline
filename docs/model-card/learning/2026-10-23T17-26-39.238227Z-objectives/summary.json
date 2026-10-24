@@ -1,0 +1,108 @@
+{
+  "started_at": "2026-10-23T17:26:39.238366Z",
+  "model": {
+    "reachable": true,
+    "base_url": "http://127.0.0.1:11434",
+    "configured_model": "qwen3:1.7b",
+    "model_present": true,
+    "models": [
+      {
+        "name": "qwen3:1.7b",
+        "digest": "8f68893c685c3ddff2aa3fffce2aa60a30bb2da65ca488b61fff134a4d1730e7",
+        "parameter_size": "2.0B",
+        "quantization_level": "Q4_K_M"
+      },
+      {
+        "name": "qwen2.5:1.5b",
+        "digest": "65ec06548149b04c096a120e4a6da9d4017ea809c91734ea5631e89f96ddc57b",
+        "parameter_size": "1.5B",
+        "quantization_level": "Q4_K_M"
+      },
+      {
+        "name": "qwen2:0.5b",
+        "digest": "6f48b936a09f7743c7dd30e72fdb14cba296bc5861902e4d0c387e8fb5050b39",
+        "parameter_size": "494.03M",
+        "quantization_level": "Q4_0"
+      },
+      {
+        "name": "mistral:latest",
+        "digest": "6577803aa9a036369e481d648a2baebb381ebc6e897f2bb9a766a2aa7bfbc1cf",
+        "parameter_size": "7.2B",
+        "quantization_level": "Q4_K_M"
+      }
+    ]
+  },
+  "config": {
+    "model": "qwen3:1.7b",
+    "base_url": "http://127.0.0.1:11434",
+    "timeout_ms": 30000,
+    "temperature": 0.7,
+    "num_predict": 130,
+    "seed": 42,
+    "think": false
+  },
+  "selector_config": {
+    "model": "qwen3:1.7b",
+    "base_url": "http://127.0.0.1:11434",
+    "timeout_ms": 15000,
+    "temperature": 0.7,
+    "num_predict": 60,
+    "seed": 42,
+    "think": false
+  },
+  "trials": [
+    {
+      "id": "northstar-breach-service-dependent-1",
+      "passed": false,
+      "manifest_hash": "e08d4950ad4d1df544e8e739e5c59a01b09f010e13f967b91cade6c57c9d8d76",
+      "seed": 20261023,
+      "objective_resource": "doc_payroll_03",
+      "protected_reads": [],
+      "error": "No model objective read within the accepted scenario budget",
+      "pacing_passed": false,
+      "objective_from_accepted_model": false,
+      "target_actions_correlated": true,
+      "trace_hash": "c14238f5d3581b487559d67df506b63c1819d6c23dfbe58fe383674fd125df16",
+      "outcome": "technical_failure",
+      "decisions": 12,
+      "rejected": 0,
+      "fallback_execution": 0
+    },
+    {
+      "id": "northstar-breach-service-dependent-2",
+      "passed": false,
+      "manifest_hash": "e08d4950ad4d1df544e8e739e5c59a01b09f010e13f967b91cade6c57c9d8d76",
+      "seed": 20261024,
+      "objective_resource": "doc_payroll_03",
+      "protected_reads": [],
+      "error": "No model objective read within the accepted scenario budget",
+      "pacing_passed": false,
+      "objective_from_accepted_model": false,
+      "target_actions_correlated": true,
+      "trace_hash": "391cc71f7e1fe018489dd200dd0fa1cdb66d3f4fdd45f01af5142e285f736c97",
+      "outcome": "technical_failure",
+      "decisions": 12,
+      "rejected": 0,
+      "fallback_execution": 0
+    }
+  ],
+  "filters": {
+    "scenario": "northstar-breach",
+    "variant": "service-dependent"
+  },
+  "source_sha256": {
+    "services/range_runtime/agent.py": "968ab9e2d9efe40b23710111b3f39022a853bb6fc7e6cf6c15c9a8648b5a32e7",
+    "services/range_runtime/engine.py": "66217cbfc5d3c498dc584a6ba2acb41cacd2bef22dee931d143dd3ea5584d24d",
+    "services/range_runtime/target.py": "a70ff59c613532d6c29b678b28c06926d18a3f85cdd1355bc3d8545f71c82a40",
+    "services/range_runtime/variants.py": "e3851815d9507a64dd63720daec7fe6991251b728639ccfe49ceb1aa9b0b182a"
+  },
+  "hardware": {
+    "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39",
+    "cpu": "12th Gen Intel(R) Core(TM) i5-1235U",
+    "logical_cpus": 12,
+    "memory": "MemTotal:       15995468 kB"
+  },
+  "scope": "Uncontained model-selected objective reads via actual target HTTP ASGI transport. Virtual time advances to authorized turns. Container/browser proof and early-containment intervention traces are separate.",
+  "finished_at": "2026-10-23T17:28:21.855761Z",
+  "passed": false
+}

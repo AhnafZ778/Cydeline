@@ -1,0 +1,59 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "assistance": {
+      "default": "coached",
+      "enum": [
+        "coached",
+        "independent",
+        "blind"
+      ],
+      "title": "Assistance",
+      "type": "string"
+    },
+    "cohort_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+      "title": "Cohort Id",
+      "type": "string"
+    },
+    "mode": {
+      "default": "practice",
+      "enum": [
+        "practice",
+        "assessment"
+      ],
+      "title": "Mode",
+      "type": "string"
+    },
+    "scenario_id": {
+      "enum": [
+        "stolen-session",
+        "northstar-breach"
+      ],
+      "title": "Scenario Id",
+      "type": "string"
+    },
+    "scenario_version": {
+      "enum": [
+        "v1",
+        "v2"
+      ],
+      "title": "Scenario Version",
+      "type": "string"
+    },
+    "title": {
+      "maxLength": 120,
+      "minLength": 1,
+      "title": "Title",
+      "type": "string"
+    }
+  },
+  "required": [
+    "title",
+    "cohort_id",
+    "scenario_id",
+    "scenario_version"
+  ],
+  "title": "AssignmentRequest",
+  "type": "object"
+}

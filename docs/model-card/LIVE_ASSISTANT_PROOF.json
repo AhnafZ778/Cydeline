@@ -1,0 +1,90 @@
+{
+  "proof": "live-evidence-assistant",
+  "started_at": "2026-10-22T22:15:30.723946Z",
+  "finished_at": "2026-10-22T22:18:04.395977Z",
+  "model": "qwen3:1.7b",
+  "model_digest": "8f68893c685c3ddff2aa3fffce2aa60a30bb2da65ca488b61fff134a4d1730e7",
+  "turns": [
+    {
+      "question": "Which observed events best support a stolen-session hypothesis, and what would disprove it?",
+      "events_supplied": 6,
+      "status": 200,
+      "model_id": "qwen3:1.7b",
+      "latency_ms": 31638,
+      "claims": 3,
+      "citations_valid": true
+    },
+    {
+      "question": "What changed between the earliest and latest events, and what should I verify before declaring?",
+      "events_supplied": 7,
+      "status": 200,
+      "model_id": "qwen3:1.7b",
+      "latency_ms": 39960,
+      "claims": 3,
+      "citations_valid": true
+    },
+    {
+      "question": "Summarize what the target actually recorded for the protected resource and what remains unknown.",
+      "events_supplied": 8,
+      "status": 200,
+      "model_id": "qwen3:1.7b",
+      "latency_ms": 41260,
+      "claims": 3,
+      "citations_valid": true
+    }
+  ],
+  "validated_turns": "3/3",
+  "passed": true,
+  "checks": [
+    {
+      "check": "range produced released target evidence from a real model-driven run",
+      "passed": true,
+      "detail": "11"
+    },
+    {
+      "check": "the real model drove the range; every fallback is an explained policy rejection",
+      "passed": true,
+      "detail": "[[\"scout\", false, null], [\"access_operator\", true, \"stage2:action_not_in_permitted_actions: action 'request_document' is not in this turn's permitted actions ['inspect_session_status', 'list_accessible_documents', 'stop', 'test_existing_session', 'wait']\"], [\"access_operator\", true, \"stage2:action_n"
+    },
+    {
+      "check": "assistant produced validated, citation-bound analysis (3/3)",
+      "passed": true,
+      "detail": "[{\"question\": \"Which observed events best support a stolen-session hypothesis, and what would disprove it?\", \"events_supplied\": 6, \"status\": 200, \"model_id\": \"qwen3:1.7b\", \"latency_ms\": 31638, \"claims\": 3, \"citations_valid\": true}, {\"question\": \"What changed between the earliest and latest events, and what should I verify before declaring?\", \"events_supplied\": 7, \"status\": 200, \"model_id\": \"qwen3:1.7b\", \"latency_ms\": 39960, \"claims\": 3, \"citations_valid\": true}, {\"question\": \"Summarize what the target actually recorded for the protected resource and what remains unknown.\", \"events_supplied\": 8, \"status\": 200, \"model_id\": \"qwen3:1.7b\", \"latency_ms\": 41260, \"claims\": 3, \"citations_valid\": true}]"
+    },
+    {
+      "check": "learner can review the analysis",
+      "passed": true,
+      "detail": "200"
+    },
+    {
+      "check": "history keeps the reviewed turn",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "assistant use is recorded against independence",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "unreleased or invented evidence is refused before the model is called",
+      "passed": true,
+      "detail": "422"
+    },
+    {
+      "check": "an injection attempt still yields only citation-bound analysis",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "assistant calls never changed run state or applied a defense",
+      "passed": true,
+      "detail": "[]"
+    },
+    {
+      "check": "assistant is unavailable in assessment mode",
+      "passed": true,
+      "detail": "403"
+    }
+  ]
+}

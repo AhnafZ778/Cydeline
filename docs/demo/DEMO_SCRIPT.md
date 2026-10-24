@@ -1,50 +1,26 @@
-# Sentinel Loop: 3-minute demo script
+# Sentinel Loop live beginner demo
 
-Owner: Ahnaf (`ahnaf-lead-ux`). Mode: **practice**, simulation client (`VITE_API_MODE` unset). Browser: 1440 x 900, first-run tour enabled.
+Owner: Ahnaf. Target length: three minutes after rehearsal; no completed recording is claimed. Use the genuine local range and The Stolen Session, coached practice, Variation 1. The old simulation script is preserved in LEGACY_SIMULATION_DEMO_2026-10-22.md for history.
 
-`docs/demo/mockups/` holds the superseded white-blue direction from U0. It is kept for history only. The shipped design is the Ember theme (warm white and orange). Do not show the mockups.
+## Preparation
 
-## One-line pitch
+Use the supported CPU review configuration: `RED_AGENT_TIMEOUT_MS=30000 .venv/bin/python scripts/run_local.py --port 28000 --web-port 5188 --runtime /tmp/cydeline-learning-finish`. Do not launch a second copy if the dedicated range is already running. Open http://127.0.0.1:5188. Instructor access, if needed for cleaning a previous test run, stays local; never display the code or range secret in a recording.
 
-"You are the security analyst. An AI is attacking a company's API right now. Watch what it does, find the hijacked session, shut it down without breaking the people who are working, and prove it."
+Confirm model readiness, use a fresh practice run and rehearse the actual workflow. Model latency varies. Keep 1440×900, 100% zoom and visible keyboard focus. Pause for investigation as needed. An AI outage is shown honestly; use Retry AI or stop the recording. Never substitute a fixture or advance an attack from a developer tool.
 
-## Before you press record
+## Suggested sequence
 
-- `cd apps/web && npm run dev`, open the printed URL on a clean browser profile so the tour appears.
-- Optional: open the dev drawer with `Ctrl+K` and keep "Advance scenario one tick" in mind. Do not use it on camera unless the pace drags. The simulation advances on its own every 4 seconds.
-- Zoom to 100%. Close other tabs.
+| Time | Interaction | Narration |
+|---|---|---|
+|0:00–0:25|Show the two scenario cards, choose The Stolen Session, read the company brief and click Begin investigation.|“You investigate a fictional company while a local model makes bounded requests against its functioning target. The brief explains normal work, your authority and the evidence limits.”|
+|0:25–0:55|Wait for real target activity, pause, take alert ownership and create a case.|“The audit is the evidence. An alert is a signal, and I still need to test an explanation.”|
+|0:55–1:20|Compare access in Logs, pin evidence, return to the worksheet and record an observation and an alternative.|“I separate what I observed from who I think used the session. My worksheet saves, including across refresh or reconnection.”|
+|1:20–1:45|Optionally ask Guide in Evidence Assistant; show the exact citations and review controls.|“The coach selects an authored lesson and pairs it with exact saved evidence. It cannot choose a response or rewrite my score. I can dispute an answer.”|
+|1:45–2:25|Use the case playbook to record evidence, scope, declare the observed access, revoke the session and run checks.|“A response changes target access. I verify suspicious denial and legitimate work independently.”|
+|2:25–3:00|Submit a report, finish, show persisted debrief, replay and evidence-package download.|“The server records consequences and the report. Replay shows what actually happened. Another variation changes the access decision; independent practice tests what I can do without help.”|
 
-## Timeline
+## Claims and limits
 
-| Time | On screen | Say | Proves |
-|---|---|---|---|
-| 0:00 | Landing page. Cursor on **Start shift**. | "This is a training range for blue teamers. The attacker is a real AI adversary, not a slideshow. The company is fictional: Northstar Analytics." | What it is, who it is for |
-| 0:15 | Click **Start shift**. Tour card 1 ("Your current objective"). Press Next once. | "The app always tells me what to do now and why. First I just need to learn what normal looks like." | Guided, not daunting |
-| 0:25 | Tour step 2 on the training overlay. Point at the Activity chart, then the Logs. Press Esc to skip the rest. | "This is the shift an analyst actually sits in. Activity shows what is happening. The logs are the record. Coach is optional, and I can hide any of these." | Specialist layout, panel toggles |
-| 0:40 | Strip says **Thinking**, then **Acting now**. | "This overlay narrates what the AI is doing as it does it, and why attackers do that. A real shift does not have this. Blind, or hiding Coach, is the closer simulation." | Real-time AI highlighting, as a layer you can remove |
-| 1:00 | In the activity chart, point at a hatched (refused) bar, then open a log line. | "Refused requests show up here first. I confirm them in the logs. I do not get a diagram of the system while the attack is still going." | Visualization a SOC would recognize |
-| 1:20 | In the log console, press `j` to move, `Enter` to inspect a line from `203.0.113.57`, press `p` to pin. Pin a second line. | "The logs are real records. I compare sessions, notice one switched address and tool, and pin what supports my theory." | Professional logs, evidence |
-| 1:45 | Click **Declare incident**. Pick `sess_A`, type one sentence, submit. | "I name the session and explain why. The server checks that my evidence is genuine. I cannot invent log lines." | Evidence validated server-side |
-| 2:05 | Respond drawer. Show the blast-radius cards. Choose **End one session**, then **Apply**. The orange "Your response" node appears under the gateway. | "I pick the smallest action that works. Disabling the whole account would also stop a legitimate employee, and I would lose points for that." | Proportional response |
-| 2:25 | Verify. Both probes run: intruder denied, Eli still works. | "Proof, not a claim. The attacker is refused and the legitimate user is untouched." | Containment changes real state, continuity |
-| 2:40 | Debrief. Point at **How the attack moved**. Scrub back to the moment of containment, then forward. Click the session circle. | "This diagram is the after-action view. Teal was allowed, red was refused, indigo was the AI. Here is the track my response cut, and here is the route it tried next." | The visualization X-factor, only once the shift is over |
-| 2:55 | Back to the strip, toggle **Blind**. | "For a harder run, switch the lens to Blind. No narration, no AI labels. Assessment runs force Blind automatically, and the lens never changes the score." | Fairness, replayability |
+The local attacker uses schema and policy validation and actual target requests. Invalid or unavailable model output pauses the pending turn without substitute execution. The coach is constrained authored retrieval with local model selection; its engineering cases do not prove learner usefulness. A simulator score does not certify readiness. The eight-beginner/two-expert pilot and delayed follow-up remain unperformed.
 
-## Honest answers to likely questions
-
-- **"Is that a real AI?"** In this build the adversary is a scripted simulation and the UI labels it "Scripted simulation". The same screen binds to Tanvir's local model through the control API. A fallback is always disclosed, never presented as live autonomy.
-- **"Does the coaching give away the answer?"** In Coached mode the AI's session is named once it acts, which makes the investigation easier. That is intentional for learning. Blind mode and any scored or assessment run remove it, and the score does not depend on the lens.
-- **"Can the browser cheat?"** No. The browser only sends declarations and response requests. The server owns scoring, state transitions and the attacker's outcome.
-
-## Fallback plan if something misbehaves on stage
-
-1. Refresh. The simulation restarts cleanly from the landing page.
-2. If the AI looks stuck, `Ctrl+K`, then "Advance scenario one tick" a few times.
-3. If the dock covers the logs, press `Esc`.
-
-## Acceptance for the recording
-
-- Uncut, 3:00 plus or minus 10 seconds, 1080p or better.
-- No console errors, no developer drawer visible, no mockups shown.
-- The training overlay visibly changes state at least twice (thinking, acting, stopped).
-- The debrief attack map is on screen, including the refused path and the response node.
+Use docs/product/BEGINNER_LEARNING_HANDOFF.md for current measured results and failed-run history. Browser traces and screenshots establish the exercised local workflow, not a completed public release or educational efficacy.

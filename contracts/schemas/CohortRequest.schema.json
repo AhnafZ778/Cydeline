@@ -1,0 +1,27 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "member_ids": {
+      "items": {
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+        "type": "string"
+      },
+      "maxItems": 100,
+      "minItems": 1,
+      "title": "Member Ids",
+      "type": "array"
+    },
+    "name": {
+      "maxLength": 80,
+      "minLength": 1,
+      "title": "Name",
+      "type": "string"
+    }
+  },
+  "required": [
+    "name",
+    "member_ids"
+  ],
+  "title": "CohortRequest",
+  "type": "object"
+}

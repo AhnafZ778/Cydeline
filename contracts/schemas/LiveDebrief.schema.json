@@ -1,0 +1,229 @@
+{
+  "$defs": {
+    "Outcome": {
+      "description": "Terminal verdict. Outcome gates override the raw score.",
+      "enum": [
+        "defended_and_recovered",
+        "contained_but_disrupted",
+        "attacker_objective_reached",
+        "timed_out_unresolved",
+        "aborted",
+        "technical_failure"
+      ],
+      "title": "Outcome",
+      "type": "string"
+    },
+    "ScoreComponent": {
+      "additionalProperties": false,
+      "description": "One rubric dimension with citable evidence.",
+      "properties": {
+        "awarded": {
+          "minimum": 0,
+          "title": "Awarded",
+          "type": "integer"
+        },
+        "dimension": {
+          "$ref": "#/$defs/ScoreDimension"
+        },
+        "evidence_ids": {
+          "items": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+            "type": "string"
+          },
+          "title": "Evidence Ids",
+          "type": "array"
+        },
+        "explanation": {
+          "maxLength": 500,
+          "minLength": 1,
+          "title": "Explanation",
+          "type": "string"
+        },
+        "max_points": {
+          "exclusiveMinimum": 0,
+          "title": "Max Points",
+          "type": "integer"
+        },
+        "rule_id": {
+          "maxLength": 64,
+          "minLength": 1,
+          "title": "Rule Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "dimension",
+        "awarded",
+        "max_points",
+        "rule_id",
+        "explanation"
+      ],
+      "title": "ScoreComponent",
+      "type": "object"
+    },
+    "ScoreDimension": {
+      "description": "The six reviewed 100-point rubric dimensions.",
+      "enum": [
+        "recognition",
+        "containment",
+        "verification",
+        "continuity",
+        "proportionality",
+        "timeliness"
+      ],
+      "title": "ScoreDimension",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "benign_workflow_passed": {
+      "title": "Benign Workflow Passed",
+      "type": "boolean"
+    },
+    "breakdown": {
+      "items": {
+        "$ref": "#/$defs/ScoreComponent"
+      },
+      "maxItems": 6,
+      "minItems": 6,
+      "title": "Breakdown",
+      "type": "array"
+    },
+    "computed_at": {
+      "format": "date-time",
+      "title": "Computed At",
+      "type": "string"
+    },
+    "containment_target_sec": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Containment Target Sec"
+    },
+    "containment_time_delta_sec": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Containment Time Delta Sec"
+    },
+    "disrupted_seconds": {
+      "title": "Disrupted Seconds",
+      "type": "number"
+    },
+    "effective_containment": {
+      "title": "Effective Containment",
+      "type": "boolean"
+    },
+    "evidence_event_ids": {
+      "items": {
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+        "type": "string"
+      },
+      "title": "Evidence Event Ids",
+      "type": "array"
+    },
+    "fallback_used": {
+      "title": "Fallback Used",
+      "type": "boolean"
+    },
+    "first_suspicious_event_id": {
+      "anyOf": [
+        {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "First Suspicious Event Id"
+    },
+    "first_visible_at_utc": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "First Visible At Utc"
+    },
+    "model_provenance": {
+      "additionalProperties": true,
+      "title": "Model Provenance",
+      "type": "object"
+    },
+    "notes": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Notes",
+      "type": "array"
+    },
+    "outcome": {
+      "$ref": "#/$defs/Outcome"
+    },
+    "outcome_gate": {
+      "anyOf": [
+        {
+          "maxLength": 64,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Outcome Gate"
+    },
+    "rubric_version": {
+      "maxLength": 32,
+      "minLength": 1,
+      "title": "Rubric Version",
+      "type": "string"
+    },
+    "run_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+      "title": "Run Id",
+      "type": "string"
+    },
+    "score_total": {
+      "maximum": 100,
+      "minimum": 0,
+      "title": "Score Total",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "run_id",
+    "rubric_version",
+    "outcome",
+    "score_total",
+    "breakdown",
+    "effective_containment",
+    "benign_workflow_passed",
+    "fallback_used",
+    "computed_at",
+    "model_provenance",
+    "containment_time_delta_sec",
+    "disrupted_seconds"
+  ],
+  "title": "LiveDebrief",
+  "type": "object"
+}

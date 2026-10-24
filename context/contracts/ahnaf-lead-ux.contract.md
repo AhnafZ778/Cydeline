@@ -72,7 +72,8 @@
 - Hallway usability test is informal (3 non-security people); no educational-efficacy claims.
 
 ## Next increment
-- Mission Workbench increments U0-U6 per the plan of record plus V2 (Ember theme, workflow canvas, Adversary Lens); then Increment A4 live wiring when `apps/control-api/` exists.
+- Retain the passed genuine browser workflows and raw canonical replay evidence. Manual zoom, reduced-motion and assistive-technology evaluation remain unverified; pilot kit is ready for future sessions.
+- Current scope and evidence: `docs/product/BEGINNER_LEARNING_HANDOFF.md`; preserve prior failed gates.
 
 ## Verification commands, interaction checks and required independent review
 - `harness check run /home/ahnaf-zakaria/Downloads/Cydeline`
@@ -88,3 +89,33 @@
 - `docs/demo/mockups/` (U0 hi-fi mockups and renders)
 
 - **2026-10-22 (V2 build):** Node details use an inline dock instead of a drawer. Node stage names (Adversary, Source IP, Session, Authorize, Route, Outcome, Your action) match the canvas column headers. Landing shows a cropped, non-interactive workflow preview. AI log attribution is a client heuristic (session handle from decisions + source IP the session did not first appear with) until contract request 5 lands.
+
+
+## Authorized live product implementation amendment
+Ahnaf authorized the full phased roadmap in docs/product/IMPLEMENTATION_ROADMAP.md. This amendment supersedes conflicting earlier UI-only/P0 scope limits for the new versioned live product. Keep existing v1 fixtures and canonical enums compatible. The unified SOC console is the live shell; mission evidence/response/verification/debrief are reused inside it. The target and server own all results. Composite business verification includes Eli and a fresh legitimate Maya workflow, so disabling Maya produces real disruption and restoration never resurrects compromised access. All terminal states permit debrief. Optional network telemetry, clock and exact decision/action/audit links are accepted. Practice may expose the Adversary Lens; assessment data is redacted server-side. Build and evaluate bounded vertical increments; mark unverified external services honestly.
+
+
+## 2026-10-23: Restore the accepted SOC console
+User explicitly supersedes the unified-live-shell amendment: every pre-existing practice tab must retain the exact d93b640 presentation and workflow. Restore the original landing and console entry; keep new live mission, progress, learner, instructor, assets, business, assistant and workstation views as additive navigation. Do not discard the uncommitted backend. Sandbox is the authorized exception: retain its panel/card grammar but replace the scripted shell with a real Windows VM gateway. New live views remain available under explicit #/live routes. Preserve the original mission inspector separately from live inspector additions.
+
+
+## 2026-10-23: Consistent SOC navigation
+Use the original TopNav and SideNav components for both practice and live pages. The same seven SOC tool links, four added training links, labels, icons, dimensions, collapse behavior and active-route treatment must remain available on Mission Library, My progress, My training, Instructor and run-specific pages. Live run links are additive; live status/pause/end controls belong in a separate content toolbar and must preserve assessment restrictions. Keep original tab content and backend authorization unchanged. Verify cross-route identity, icon fidelity, active markers, collapse persistence and mobile navigation.
+
+
+## Approved consolidation — 2026-10-23 (supersedes conflicting earlier fixture/workbench decisions)
+
+Implement one AI-powered SOC using the accepted original console layouts. Root has exactly The Stolen Session (stolen-session/v1) and The Reporting Blind Spot (northstar-breach/v2), compact coached-practice/assessment launch settings, and explicit resume under the one-active-company rule. Original Monitoring becomes Live Monitoring; original Logs and Cases use the same run-scoped snapshot/SSE provider. Preserve original icons, channels, tables, modals, playbook, notes, artifacts, tool arrangements, and training navigation; old run URLs remain valid, old practice links resolve into selected run or landing. No public scripted simulator, sample evidence, invented telemetry, browser grades, or answer keys.
+
+Backend adds authenticated alert ownership/closure comments, idempotent one-case-per-run creation, revision-checked case/playbook/artifact updates with released-evidence validation and old notes/handoffs retained. Declaration, defense, recovery and scoring stay authoritative. Alert closure never ends the attacker. Scenario playbooks gate completion on server records; final feedback/replay is terminal only. Windows/Elastic live in Sandbox; Windows installation and new attack families remain out of scope.
+
+Require actual model readiness on create/start. Invalid/timeout model output records a failed decision and system-pauses clock without fallback execution or step consumption. Authenticated AI retry retries the pending turn; defender-induced stale proposals are discarded without outage. Assessment disallows manual pauses, permits only system AI pauses. Preserve canonical enums, policy/schema checks, target audit correlation, response idempotency and authorization.
+
+Acceptance: both scenario workflows, real model-to-target correlated actions and containment/legitimate continuity; case retries/revisions/old data; refresh, tabs, SSE reconnect, isolation and drafts; AI launch/outage/retry/assessment; 320/390/768/1440 keyboard/accessibility; native tests/build/Harness run/evaluate and handoff.
+
+
+## Authorized beginner learning loop — 2026-10-23
+
+Implement the attached beginner SOC plan in M0–M4: harden terminal immutability, persisted report identity, response/verification/playbook invalidation and draft isolation; add public company briefings, paused coached starts, three authored micro-exercises, revision-checked autosaved six-part worksheets, evidence-grounded Explain/Nudge/Guide coaching with exact citations and disputes, three meaningful target configurations per scenario, trace-linked causal debrief/export and another-variation launch. Keep the two scenario cards, original console layouts, canonical enums, real local attacker, server scoring and assessment restrictions. No new runtime orchestration framework. Assistance never deducts practice points. Variant manifests pin configuration, seed and hashes; exact replay consumes the recorded trace. Older records load with optional fields absent.
+
+Acceptance: native tests/build/browser checks/Harness; 60 adversarial coaching cases; 12 genuine model journeys (2 scenarios × 3 variants × 2 repeats), audit correlations and paired interventions; coaching p95 ≤15s measured on declared hardware. Record failed/unavailable gates honestly. M4 prepares a counterbalanced eight-beginner/two-expert pilot and 0–2 six-skill rubric; no participant findings or educational-efficacy claims without observed sessions. Product records: docs/product/BEGINNER_LEARNING_RESEARCH.md, BEGINNER_LEARNING_PLAN.md, OPEN_SOURCE_ADOPTION.md.

@@ -1,0 +1,87 @@
+{
+  "started_at": "2026-10-23T18:07:15.362148Z",
+  "scope": "Actual constrained selector protocol diagnostic; examples are authored prompts, no target execution.",
+  "config": {
+    "model": "qwen3:1.7b",
+    "base_url": "http://127.0.0.1:11434",
+    "timeout_ms": 30000,
+    "temperature": 0.1,
+    "num_predict": 60,
+    "seed": 42,
+    "think": false
+  },
+  "cases": [
+    {
+      "states": [
+        "unknown",
+        "denied"
+      ],
+      "expected": "context_1",
+      "passed": true,
+      "raw": "{\"selected_access\": \"context_1\"}",
+      "latency_ms": 16592
+    },
+    {
+      "states": [
+        "denied",
+        "unknown"
+      ],
+      "expected": "context_2",
+      "passed": false,
+      "raw": "{\"selected_access\": \"context_1\"}",
+      "latency_ms": 9830
+    },
+    {
+      "states": [
+        "active",
+        "denied"
+      ],
+      "expected": "context_1",
+      "passed": true,
+      "raw": "{\"selected_access\": \"context_1\"}",
+      "latency_ms": 10180
+    },
+    {
+      "states": [
+        "denied",
+        "active"
+      ],
+      "expected": "context_2",
+      "passed": true,
+      "raw": "{\"selected_access\": \"context_2\"}",
+      "latency_ms": 10182
+    },
+    {
+      "states": [
+        "active",
+        "unknown"
+      ],
+      "expected": "context_1",
+      "passed": true,
+      "raw": "{\"selected_access\": \"context_1\"}",
+      "latency_ms": 8854
+    },
+    {
+      "states": [
+        "unknown",
+        "active"
+      ],
+      "expected": "context_2",
+      "passed": true,
+      "raw": "{\"selected_access\": \"context_2\"}",
+      "latency_ms": 14782
+    },
+    {
+      "states": [
+        "revoked",
+        "disabled"
+      ],
+      "expected": null,
+      "passed": true,
+      "raw": "{\"selected_access\": null}",
+      "latency_ms": 10127
+    }
+  ],
+  "finished_at": "2026-10-23T18:08:35.922347Z",
+  "passed": false
+}

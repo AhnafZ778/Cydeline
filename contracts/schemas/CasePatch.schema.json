@@ -1,0 +1,136 @@
+{
+  "$defs": {
+    "CaseArtifact": {
+      "additionalProperties": false,
+      "properties": {
+        "event_ids": {
+          "items": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+            "type": "string"
+          },
+          "maxItems": 100,
+          "minItems": 1,
+          "title": "Event Ids",
+          "type": "array"
+        },
+        "type": {
+          "enum": [
+            "IP Address",
+            "URL",
+            "Domain",
+            "Access Handle",
+            "Other"
+          ],
+          "title": "Type",
+          "type": "string"
+        },
+        "value": {
+          "maxLength": 1000,
+          "minLength": 1,
+          "title": "Value",
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "value",
+        "event_ids"
+      ],
+      "title": "CaseArtifact",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "artifacts": {
+      "anyOf": [
+        {
+          "items": {
+            "$ref": "#/$defs/CaseArtifact"
+          },
+          "maxItems": 100,
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Artifacts"
+    },
+    "complete_step": {
+      "anyOf": [
+        {
+          "enum": [
+            "evidence",
+            "scope",
+            "declaration",
+            "containment",
+            "recovery",
+            "reporting"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Complete Step"
+    },
+    "note": {
+      "anyOf": [
+        {
+          "maxLength": 20000,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Note"
+    },
+    "report": {
+      "anyOf": [
+        {
+          "maxLength": 8000,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Report"
+    },
+    "revision": {
+      "minimum": 0,
+      "title": "Revision",
+      "type": "integer"
+    },
+    "scope": {
+      "anyOf": [
+        {
+          "maxLength": 4000,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Scope"
+    },
+    "start_playbook": {
+      "default": false,
+      "title": "Start Playbook",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "revision"
+  ],
+  "title": "CasePatch",
+  "type": "object"
+}

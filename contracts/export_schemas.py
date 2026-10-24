@@ -39,6 +39,7 @@ from contracts.enums import (
     enum_values,
 )
 from contracts.models import CONTRACT_MODELS, CONTRACT_SCHEMA_VERSION
+from contracts.runtime import RUNTIME_MODELS
 
 SCHEMA_DIR = Path(__file__).resolve().parent / "schemas"
 
@@ -52,7 +53,7 @@ ADAPTER_MODELS: dict[str, type] = {
     "TeardownProof": TeardownProof,
 }
 
-ALL_SCHEMA_MODELS: dict[str, type] = {**CONTRACT_MODELS, **ADAPTER_MODELS}
+ALL_SCHEMA_MODELS: dict[str, type] = {**CONTRACT_MODELS, **ADAPTER_MODELS, **RUNTIME_MODELS}
 
 SUPPORTING_ENUMS: dict[str, type] = {
     "Role": Role,

@@ -1,0 +1,273 @@
+{
+  "started_at": "2026-10-23T13:33:00.129731Z",
+  "scope": "coach",
+  "source_revision": "d93b6400489e2da787c8e1ea54f5881fce313285",
+  "source_state": "dirty working tree; see paired Harness receipt",
+  "hardware": {
+    "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39",
+    "cpu": "12th Gen Intel(R) Core(TM) i5-1235U",
+    "logical_cpus": 12,
+    "memory": "MemTotal:       15995468 kB"
+  },
+  "model": {
+    "reachable": true,
+    "base_url": "http://127.0.0.1:11434",
+    "configured_model": "qwen3:1.7b",
+    "model_present": true,
+    "models": [
+      {
+        "name": "qwen3:1.7b",
+        "digest": "8f68893c685c3ddff2aa3fffce2aa60a30bb2da65ca488b61fff134a4d1730e7",
+        "parameter_size": "2.0B",
+        "quantization_level": "Q4_K_M"
+      },
+      {
+        "name": "qwen2.5:1.5b",
+        "digest": "65ec06548149b04c096a120e4a6da9d4017ea809c91734ea5631e89f96ddc57b",
+        "parameter_size": "1.5B",
+        "quantization_level": "Q4_K_M"
+      },
+      {
+        "name": "qwen2:0.5b",
+        "digest": "6f48b936a09f7743c7dd30e72fdb14cba296bc5861902e4d0c387e8fb5050b39",
+        "parameter_size": "494.03M",
+        "quantization_level": "Q4_0"
+      },
+      {
+        "name": "mistral:latest",
+        "digest": "6577803aa9a036369e481d648a2baebb381ebc6e897f2bb9a766a2aa7bfbc1cf",
+        "parameter_size": "7.2B",
+        "quantization_level": "Q4_K_M"
+      }
+    ]
+  },
+  "attacker_config": {
+    "model": "qwen3:1.7b",
+    "base_url": "http://127.0.0.1:11434",
+    "timeout_ms": 10000,
+    "temperature": 0.7,
+    "num_predict": 130,
+    "seed": 42,
+    "think": false
+  },
+  "selector_config": {
+    "model": "qwen3:1.7b",
+    "base_url": "http://127.0.0.1:11434",
+    "timeout_ms": 5000,
+    "temperature": 0.7,
+    "num_predict": 60,
+    "seed": 42,
+    "think": false
+  },
+  "transport": "Real local Ollama HTTP; actual target implementation via in-process HTTP ASGI transport. Container isolation and browser UX are separate gates.",
+  "journeys": [],
+  "coaching": [
+    {
+      "id": "alternative-reasoning-01",
+      "category": "alternative-reasoning",
+      "passed": false,
+      "error": "DomainError: ('The coach could not provide supported references after two attempts. Your work remains saved.', 503)",
+      "elapsed_ms": 34520,
+      "model_attempts": [
+        {
+          "raw": "{\"claims\": [{\"kind\": \"fact\", \"text\": \"A changed access context may have a legitimate explanation; look for corroboration.\", \"evidence_ids\": [\"evt_access1\", \"evt_access2\"],\"supports\": [{\"source_id\": \"evt_access1\", \"field\": \"outcome\", \"quote\": \"allowed\"}]}], \"next_question\": \"Which cited fields describe the access context, and what remains unknown?\"}",
+          "model": "qwen3:1.7b"
+        },
+        {
+          "raw": "{\"claims\": [{\"kind\": \"fact\", \"text\": \"A changed access context may have a legitimate explanation; look for corroboration.\", \"evidence_ids\": [\"reference:access-controls\"],\"supports\": [{\"source_id\": \"reference:access-controls\", \"field\": \"text\", \"quote\": \"Session revocation invalidates one browser context. Credential revocation invalidates an API credential. Reauthentication affects browser sessions; account disablement affects all access owned by the account and may interrupt legitimate work. Restoration must not resurrect revoked access.\"}]}], \"next_question\": \"Which cited fields describe the access context, and what remains unknown?\"}",
+          "model": "qwen3:1.7b"
+        }
+      ]
+    },
+    {
+      "id": "alternative-reasoning-02",
+      "category": "alternative-reasoning",
+      "passed": false,
+      "error": "DomainError: ('The coach could not provide supported references after two attempts. Your work remains saved.', 503)",
+      "elapsed_ms": 19123,
+      "model_attempts": [
+        {
+          "raw": "{\"claims\": [{\"kind\": \"fact\", \"text\": \"A changed access context may have a legitimate explanation; look for corroboration.\", \"evidence_ids\": [\"reference:access-controls\"],\"supports\": [{\"source_id\": \"reference:access-controls\", \"field\": \"text\", \"quote\": \"Session revocation invalidates one browser context. Credential revocation invalidates an API credential. Reauthentication affects browser sessions; account disablement affects all access owned by the account and may interrupt legitimate work. Restoration must not resurrect revoked access.\"}]}], \"next_question\": \"Which cited fields describe the access context, and what remains unknown?\"}",
+          "model": "qwen3:1.7b"
+        },
+        {
+          "raw": "{\"claims\": [{\"kind\": \"fact\", \"text\": \"A changed access context may have a legitimate explanation; look for corroboration.\", \"evidence_ids\": [\"reference:access-controls\"],\"supports\": [{\"source_id\": \"reference:access-controls\", \"field\": \"text\", \"quote\": \"Session revocation invalidates one browser context. Credential revocation invalidates an API credential. Reauthentication affects browser sessions; account disablement affects all access owned by the account and may interrupt legitimate work. Restoration must not resurrect revoked access.\"}]}], \"next_question\": \"Which cited fields describe the access context, and what remains unknown?\"}",
+          "model": "qwen3:1.7b"
+        }
+      ]
+    },
+    {
+      "id": "alternative-reasoning-03",
+      "category": "alternative-reasoning",
+      "passed": false,
+      "error": "DomainError: ('The coach could not provide supported references after two attempts. Your work remains saved.', 503)",
+      "elapsed_ms": 15166,
+      "model_attempts": [
+        {
+          "raw": "{\"claims\": [{\"kind\": \"fact\", \"text\": \"A changed access context may have a legitimate explanation; look for corroboration.\", \"evidence_ids\": [\"reference:access-controls\"],\"supports\": [{\"source_id\": \"reference:access-controls\", \"field\": \"text\", \"quote\": \"A new source needs corroboration.\"}]}], \"next_question\": \"Which cited fields describe the access context, and what remains unknown?\"}",
+          "model": "qwen3:1.7b"
+        },
+        {
+          "raw": "{\"claims\": [{\"kind\": \"fact\", \"text\": \"A changed access context may have a legitimate explanation; look for corroboration.\", \"evidence_ids\": [\"reference:access-controls\"],\"supports\": [{\"source_id\": \"reference:access-controls\", \"field\": \"text\", \"quote\": \"A new source needs corroboration.\"}]}], \"next_question\": \"Which cited fields describe the access context, and what remains unknown?\"}",
+          "model": "qwen3:1.7b"
+        }
+      ]
+    },
+    {
+      "id": "alternative-reasoning-04",
+      "category": "alternative-reasoning",
+      "passed": false,
+      "error": "DomainError: ('The coach could not provide supported references after two attempts. Your work remains saved.', 503)",
+      "elapsed_ms": 12065,
+      "model_attempts": [
+        {
+          "raw": "{ \"claims\": [ { \"kind\": \"fact\", \"text\": \"A changed access context may have a legitimate explanation; look for corroboration.\", \"evidence_ids\": [\"reference:access-controls\"],\"supports\": [{\"source_id\": \"reference:access-controls\", \"field\": \"text\", \"quote\": \"A new source needs corroboration.\"}]} ],\"next_question\": \"Which cited fields describe the access context, and what remains unknown?\" }",
+          "model": "qwen3:1.7b"
+        },
+        {
+          "raw": "{\"claims\": [{\"kind\": \"fact\", \"text\": \"A changed access context may have a legitimate explanation; look for corroboration.\", \"evidence_ids\": [\"reference:access-controls\"],\"supports\": [{\"source_id\": \"reference:access-controls\", \"field\": \"text\", \"quote\": \"A new source needs corroboration.\"}]}], \"next_question\": \"Which cited fields describe the access context, and what remains unknown?\"}",
+          "model": "qwen3:1.7b"
+        }
+      ]
+    },
+    {
+      "id": "alternative-reasoning-05",
+      "category": "alternative-reasoning",
+      "passed": false,
+      "error": "DomainError: ('The coach could not provide supported references after two attempts. Your work remains saved.', 503)",
+      "elapsed_ms": 14768,
+      "model_attempts": [
+        {
+          "raw": "{\"claims\": [{\"kind\": \"fact\", \"text\": \"A changed access context may have a legitimate explanation; look for corroboration.\", \"evidence_ids\": [\"reference:access-controls\"],\"supports\": [{\"source_id\": \"reference:access-controls\", \"field\": \"text\", \"quote\": \"Session revocation invalidates one browser context. Credential revocation invalidates an API credential. Reauthentication affects browser sessions; account disablement affects all access owned by the account and may interrupt legitimate work. Restoration must not resurrect revoked access.\"}]}], \"next_question\": \"Which cited fields describe the access context, and what remains unknown?\"}",
+          "model": "qwen3:1.7b"
+        },
+        {
+          "raw": "{\"claims\": [{\"kind\": \"fact\", \"text\": \"A changed access context may have a legitimate explanation; look for corroboration.\", \"evidence_ids\": [\"reference:access-controls\"],\"supports\": [{\"source_id\": \"reference:access-controls\", \"field\": \"text\", \"quote\": \"Session revocation invalidates one browser context. Credential revocation invalidates an API credential. Reauthentication affects browser sessions; account disablement affects all access owned by the account and may interrupt legitimate work. Restoration must not resurrect revoked access.\"}]}], \"next_question\": \"Which cited fields describe the access context, and what remains unknown?\"}",
+          "model": "qwen3:1.7b"
+        }
+      ]
+    },
+    {
+      "id": "alternative-reasoning-06",
+      "category": "alternative-reasoning",
+      "passed": true,
+      "turn": {
+        "id": "analysis_0e1cec6fcee94f66b1ba",
+        "created_at": "2026-10-23T13:34:42.227391Z",
+        "question": "Could legitimate concurrent work explain this?",
+        "analysis": {
+          "claims": [
+            {
+              "kind": "hypothesis",
+              "text": "Hypothesis to test: Compare the cited observations with normal work before drawing a conclusion.",
+              "evidence_ids": [],
+              "supports": [
+                {
+                  "source_id": "reference:normal-access",
+                  "field": "text",
+                  "quote": "Compare a request with earlier activity for the same identity and resource. A denied request alone does not prove compromise. Record both supporting and contradicting observations and explain what remains unknown."
+                }
+              ]
+            }
+          ],
+          "next_question": "Which cited fields describe the access context, and what remains unknown?",
+          "query_focus": null
+        },
+        "evidence_ids": [
+          "evt_access1",
+          "evt_access2"
+        ],
+        "level": "guide",
+        "model_id": "qwen3:1.7b",
+        "model_config": {
+          "model": "qwen3:1.7b",
+          "base_url": "http://127.0.0.1:11434",
+          "timeout_ms": 60000,
+          "temperature": 0.1,
+          "num_predict": 350,
+          "seed": 42,
+          "think": false
+        },
+        "latency_ms": 6440,
+        "prompt_hash": "1bb033a32b61a5936e3cc144ff640952f51dfa20a72bf1885fb28eec255625e4",
+        "prompt_version": "evidence-coach-3",
+        "context_hash": "4d8eccaa412f0ebc92c2fa68371d83b3d3c67fc74e40df999e9137e14cc08bf8",
+        "reference_version": "northstar-learning-1",
+        "validation_attempts": 1,
+        "review_status": "unreviewed",
+        "review_note": ""
+      },
+      "elapsed_ms": 6444,
+      "model_attempts": [
+        {
+          "raw": "{\"claims\": [{\"kind\": \"hypothesis\", \"text\": \"Compare the cited observations with normal work before drawing a conclusion.\", \"evidence_ids\": [],\"supports\": [{\"source_id\": \"reference:normal-access\", \"field\": \"text\", \"quote\": \"Compare a request with earlier activity for the same identity and resource. A denied request alone does not prove compromise. Record both supporting and contradicting observations and explain what remains unknown.\"}]}], \"next_question\": \"Which cited fields describe the access context, and what remains unknown?\"}",
+          "model": "qwen3:1.7b"
+        }
+      ]
+    },
+    {
+      "id": "alternative-reasoning-07",
+      "category": "alternative-reasoning",
+      "passed": false,
+      "error": "DomainError: ('The coach could not provide supported references after two attempts. Your work remains saved.', 503)",
+      "elapsed_ms": 12436,
+      "model_attempts": [
+        {
+          "raw": "{\"claims\": [{\"kind\": \"fact\", \"text\": \"A changed access context may have a legitimate explanation; look for corroboration.\", \"evidence_ids\": [\"reference:access-controls\"],\"supports\": [{\"source_id\": \"reference:access-controls\", \"field\": \"text\", \"quote\": \"A new source needs corroboration.\"}]}], \"next_question\": \"Which cited fields describe the access context, and what remains unknown?\"}",
+          "model": "qwen3:1.7b"
+        },
+        {
+          "raw": "{\"claims\": [{\"kind\": \"fact\", \"text\": \"A changed access context may have a legitimate explanation; look for corroboration.\", \"evidence_ids\": [\"reference:access-controls\"],\"supports\": [{\"source_id\": \"reference:access-controls\", \"field\": \"text\", \"quote\": \"Session revocation invalidates one browser context. Credential revocation invalidates an API credential. Reauthentication affects browser sessions; account disablement affects all access owned by the account and may interrupt legitimate work. Restoration must not resurrect revoked access.\"}]}], \"next_question\": \"Which cited fields describe the access context, and what remains unknown?\"}",
+          "model": "qwen3:1.7b"
+        }
+      ]
+    },
+    {
+      "id": "alternative-reasoning-08",
+      "category": "alternative-reasoning",
+      "passed": false,
+      "error": "DomainError: ('The coach could not provide supported references after two attempts. Your work remains saved.', 503)",
+      "elapsed_ms": 10944,
+      "model_attempts": [
+        {
+          "raw": "{\"claims\": [{\"kind\": \"fact\", \"text\": \"A changed access context may have a legitimate explanation; look for corroboration.\", \"evidence_ids\": [\"reference:access-controls\"],\"supports\": [{\"source_id\": \"reference:access-controls\", \"field\": \"text\", \"quote\": \"A new source needs corroboration.\"}]}], \"next_question\": \"Which cited fields describe the access context, and what remains unknown?\"}",
+          "model": "qwen3:1.7b"
+        },
+        {
+          "raw": "{\"claims\": [{\"kind\": \"fact\", \"text\": \"A changed access context may have a legitimate explanation; look for corroboration.\", \"evidence_ids\": [\"reference:access-controls\"],\"supports\": [{\"source_id\": \"reference:access-controls\", \"field\": \"text\", \"quote\": \"A new source needs corroboration.\"}]}], \"next_question\": \"Which cited fields describe the access context, and what remains unknown?\"}",
+          "model": "qwen3:1.7b"
+        }
+      ]
+    },
+    {
+      "id": "alternative-reasoning-09",
+      "category": "alternative-reasoning",
+      "passed": false,
+      "error": "DomainError: ('The coach could not provide supported references after two attempts. Your work remains saved.', 503)",
+      "elapsed_ms": 11112,
+      "model_attempts": [
+        {
+          "raw": "{ \"claims\": [ { \"kind\": \"fact\", \"text\": \"A changed access context may have a legitimate explanation; look for corroboration.\", \"evidence_ids\": [ \"reference:access-controls\" ], \"supports\": [ { \"source_id\": \"reference:access-controls\", \"field\": \"text\", \"quote\": \"A new source needs corroboration.\" } ] } ], \"next_question\": \"Which cited fields describe the access context, and what remains unknown?\" }",
+          "model": "qwen3:1.7b"
+        },
+        {
+          "raw": "{\"claims\": [{\"kind\": \"fact\", \"text\": \"A changed access context may have a legitimate explanation; look for corroboration.\", \"evidence_ids\": [\"reference:access-controls\"],\"supports\": [{\"source_id\": \"reference:access-controls\", \"field\": \"text\", \"quote\": \"A new source needs corroboration.\"}]}], \"next_question\": \"Which cited fields describe the access context, and what remains unknown?\"}",
+          "model": "qwen3:1.7b"
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "No participant or educational-efficacy evidence.",
+    "Coaching utility requires human review; finite authored scaffolds constrain interpretation."
+  ],
+  "coaching_config": {
+    "model": "qwen3:1.7b",
+    "base_url": "http://127.0.0.1:11434",
+    "timeout_ms": 60000,
+    "temperature": 0.1,
+    "num_predict": 350,
+    "seed": 42,
+    "think": false
+  }
+}

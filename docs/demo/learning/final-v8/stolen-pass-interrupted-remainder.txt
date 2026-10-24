@@ -1,0 +1,10 @@
+
+> sentinel-loop-e2e@0.1.0 test
+> playwright test live.spec.ts --output=/tmp/sentinel-live-v8-final-v2-results
+
+
+Running 3 tests using 1 worker
+
+(node:610206) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 live.spec.ts:29:98 › The Stolen Session real model, worksheet, case response and immutable export (2.0m)

@@ -32,7 +32,8 @@
 - Local machine has Ollama installed or will install Ollama during Increment B1; cold/warm inference latency of `Qwen3-1.7B Q4` will be measured and recorded in `docs/model-card/BENCHMARK.md`.
 
 ## Next increment
-- **Increment B1 (PLAN -> IMPLEMENT):** Scaffold `services/red-agent/` (`schemas.py`, `observation.py`, `validator.py`, `ollama_client.py`, `fallback.py`) and `tests/agent/test_validator_and_roles.py` so the entire validator, observation builder, and fallback loop pass unit tests immediately (even before Ollama is warm), then run the live Ollama benchmark.
+- Resolve AI-LEARN-01 and qualify AI-LEARN-02 under representative browser load. Preserve the measured60/60 coach,12/12 early containment and10/12 objective boundaries; no blind retuning.
+- Current scope and evidence: `docs/product/BEGINNER_LEARNING_HANDOFF.md`; preserve prior failed gates.
 
 ## Verification commands, interaction checks and required independent review
 - `harness check run /home/ahnaf-zakaria/Downloads/Cydeline`
@@ -45,3 +46,23 @@
 - `03_LOCAL_RED_AGENT_RUNTIME_PROMPT.md`
 - `05_OWNER_B_LOCAL_AI_RED_TEAM.md`
 - `context/TANVIR_CONTEXT.md`
+
+
+## Approved consolidation — 2026-10-23 (supersedes conflicting earlier fixture/workbench decisions)
+
+Implement one AI-powered SOC using the accepted original console layouts. Root has exactly The Stolen Session (stolen-session/v1) and The Reporting Blind Spot (northstar-breach/v2), compact coached-practice/assessment launch settings, and explicit resume under the one-active-company rule. Original Monitoring becomes Live Monitoring; original Logs and Cases use the same run-scoped snapshot/SSE provider. Preserve original icons, channels, tables, modals, playbook, notes, artifacts, tool arrangements, and training navigation; old run URLs remain valid, old practice links resolve into selected run or landing. No public scripted simulator, sample evidence, invented telemetry, browser grades, or answer keys.
+
+Backend adds authenticated alert ownership/closure comments, idempotent one-case-per-run creation, revision-checked case/playbook/artifact updates with released-evidence validation and old notes/handoffs retained. Declaration, defense, recovery and scoring stay authoritative. Alert closure never ends the attacker. Scenario playbooks gate completion on server records; final feedback/replay is terminal only. Windows/Elastic live in Sandbox; Windows installation and new attack families remain out of scope.
+
+Require actual model readiness on create/start. Invalid/timeout model output records a failed decision and system-pauses clock without fallback execution or step consumption. Authenticated AI retry retries the pending turn; defender-induced stale proposals are discarded without outage. Assessment disallows manual pauses, permits only system AI pauses. Preserve canonical enums, policy/schema checks, target audit correlation, response idempotency and authorization.
+
+Acceptance: both scenario workflows, real model-to-target correlated actions and containment/legitimate continuity; case retries/revisions/old data; refresh, tabs, SSE reconnect, isolation and drafts; AI launch/outage/retry/assessment; 320/390/768/1440 keyboard/accessibility; native tests/build/Harness run/evaluate and handoff.
+
+The live bridge uses the same per-turn constrained output schema for v1 and v2; v2 alone has the model-selected access-context stage. RedAgentService and frozen validator enums remain unchanged. Invalid outputs are preserved as rejected traces and the live engine pauses; no fallback target action executes.
+
+
+## Authorized beginner learning loop — 2026-10-23
+
+Implement the attached beginner SOC plan in M0–M4: harden terminal immutability, persisted report identity, response/verification/playbook invalidation and draft isolation; add public company briefings, paused coached starts, three authored micro-exercises, revision-checked autosaved six-part worksheets, evidence-grounded Explain/Nudge/Guide coaching with exact citations and disputes, three meaningful target configurations per scenario, trace-linked causal debrief/export and another-variation launch. Keep the two scenario cards, original console layouts, canonical enums, real local attacker, server scoring and assessment restrictions. No new runtime orchestration framework. Assistance never deducts practice points. Variant manifests pin configuration, seed and hashes; exact replay consumes the recorded trace. Older records load with optional fields absent.
+
+Acceptance: native tests/build/browser checks/Harness; 60 adversarial coaching cases; 12 genuine model journeys (2 scenarios × 3 variants × 2 repeats), audit correlations and paired interventions; coaching p95 ≤15s measured on declared hardware. Record failed/unavailable gates honestly. M4 prepares a counterbalanced eight-beginner/two-expert pilot and 0–2 six-skill rubric; no participant findings or educational-efficacy claims without observed sessions. Product records: docs/product/BEGINNER_LEARNING_RESEARCH.md, BEGINNER_LEARNING_PLAN.md, OPEN_SOURCE_ADOPTION.md.

@@ -1,0 +1,19 @@
+FROM node:24-slim AS web
+WORKDIR /build/apps/web
+COPY apps/web/package*.json ./
+RUN npm ci
+COPY apps/web/ ./
+COPY contracts /build/contracts
+RUN npm run build
+FROM python:3.12-slim
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt && mkdir /data && chown 65532:65532 /data
+COPY contracts contracts
+COPY services services
+COPY apps/control-api apps/control-api
+COPY scenarios scenarios
+COPY --from=web /build/apps/web/dist apps/web/dist
+ENV PYTHONPATH=/app RUNTIME_DIR=/data
+USER 65532:65532
+CMD ["python","-m","uvicorn","apps.control-api.main:app","--host","0.0.0.0","--port","8000"]

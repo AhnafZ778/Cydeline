@@ -1,0 +1,22 @@
+{
+  "scope": "Current live suite: Stolen Session passed before intentional interruption; unchanged-suite Reporting and assessment checks passed on resumed run. Earlier startup-wait failure retained. All three current journeys individually passed; this is not one uninterrupted 3/3 batch.",
+  "files": {
+    "backend-verification.txt": "c916b4da8a60dbd77595c1b5ddab214ce4e44ad9b6777633e6cb6f84df1d0b81",
+    "frontend-verification.txt": "f34977ccab817bd440f47991ca27a084f209807d982f9147c3cf27bafe93195c",
+    "production-build.txt": "65a21c3ba9e9ccf461359b379d978a94e0be7aecf7277eb0bb83f0c65975ad0c",
+    "reporting-assessment-pass.txt": "1001b200c5e4d293c4ce50e6ec09fd08fe3c4d1dedaa0fbb08d85d49c3dca93f",
+    "startup-wait-failure.txt": "17e6ce822ecc6104329661672cd8df2ac2de742f42cf1e5959ceea6e9bea4684",
+    "stolen-pass-interrupted-remainder.txt": "4bbd82e41bbd2e58862ca249508acc5b0629a4e323e554a6088894eb2ec2dee2",
+    "v1-debrief.png": "25d42df82746992c8af6786747d5a36da53a9e163206556de1da2fe78eb413ac",
+    "v1-replay-browser-json.json": "29645537b5f05a5f4f68d58331bfcafc7ed4e9a99e80511334f4d753ade9edda",
+    "v1-replay.json": "06848b91088568dfc4496c660a108806cfa8badff8da0ca7201deec606f465c5",
+    "v2-debrief.png": "7cd104b0ea4d775fb788cdc18be35f132b4213f45de38aef04686a22e330f713",
+    "v2-replay-browser-json.json": "a8c1da248498ddd8cc72089b8d134e21ac19883adcb18f49ebb53f655e14fc84",
+    "v2-replay.json": "c8b0e70c4447744d8566b8a9a0ca21ff87f6b087fd836a2d1ce355d0a8a5cfc4"
+  },
+  "executed_test_sha256": "fb9b287526baf94c9227f4467ad3ee8e19209492f2f5f0093401ad21d0553782",
+  "current_test_sha256": "23ccdd3dbf8769c63a3ebd6a0f5edefd3a33276b203944cb94c6087ca077ed9f",
+  "changes_since_execution": "Only replay artifact persistence changed: save original response text, parse a copy for the same assertions. No workflow or acceptance assertion changed.",
+  "raw_replay_provenance": "Read-only authenticated refetch of the same terminal run IDs; unchanged server trace_hash, independently recomputed canonical Python digest. Original JavaScript serialization retained as *-replay-browser-json.json.",
+  "live_coach_latency_ms": 51989
+}

@@ -1,0 +1,112 @@
+{
+  "started_at": "2026-10-23T18:38:06.678353Z",
+  "model": {
+    "reachable": true,
+    "base_url": "http://127.0.0.1:11434",
+    "configured_model": "qwen3:1.7b",
+    "model_present": true,
+    "models": [
+      {
+        "name": "qwen3:1.7b",
+        "digest": "8f68893c685c3ddff2aa3fffce2aa60a30bb2da65ca488b61fff134a4d1730e7",
+        "parameter_size": "2.0B",
+        "quantization_level": "Q4_K_M"
+      },
+      {
+        "name": "qwen2.5:1.5b",
+        "digest": "65ec06548149b04c096a120e4a6da9d4017ea809c91734ea5631e89f96ddc57b",
+        "parameter_size": "1.5B",
+        "quantization_level": "Q4_K_M"
+      },
+      {
+        "name": "qwen2:0.5b",
+        "digest": "6f48b936a09f7743c7dd30e72fdb14cba296bc5861902e4d0c387e8fb5050b39",
+        "parameter_size": "494.03M",
+        "quantization_level": "Q4_0"
+      },
+      {
+        "name": "mistral:latest",
+        "digest": "6577803aa9a036369e481d648a2baebb381ebc6e897f2bb9a766a2aa7bfbc1cf",
+        "parameter_size": "7.2B",
+        "quantization_level": "Q4_K_M"
+      }
+    ]
+  },
+  "input": {
+    "messages": [
+      {
+        "role": "system",
+        "content": "Select one context for the next bounded investigation. The states describe observed permission for the objective document. active means permission was observed; unknown means permission has not been tested and should be explored. Prefer an active context; otherwise choose an unknown context. denied, revoked, disabled and expired are blocked. Select null only when every context is blocked: unknown is not blocked. Return selected_access JSON."
+      },
+      {
+        "role": "user",
+        "content": "{\"contexts\": {\"context_1\": \"unknown\", \"context_2\": \"unknown\"}}"
+      }
+    ],
+    "schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "selected_access"
+      ],
+      "properties": {
+        "selected_access": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "context_1",
+            "context_2",
+            null
+          ]
+        }
+      }
+    }
+  },
+  "criteria": "A usable alias must be selected and final JSON must complete within the existing wall budget. This is one context, not semantic reliability or a target journey.",
+  "source_sha256": {
+    "services/range_runtime/agent.py": "66f87a97a96e6108ead1ed16bf2e332b03d5c8461d625889e73c2c1569f024a2",
+    "services/red-agent/ollama_client.py": "36e28ef666dcde9a8825e862bcfe2ac2287b827d35729385dcc7094cbf9725ef",
+    "scripts/diagnose_selector_completion.py": "29b8dd46998509123463c58c5a7f4d27d8fbd4941819b9d4047f91a10be88bb4"
+  },
+  "hardware": {
+    "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39",
+    "logical_cpus": 12
+  },
+  "conditions": [
+    {
+      "config": {
+        "model": "qwen3:1.7b",
+        "base_url": "http://127.0.0.1:11434",
+        "timeout_ms": 30000,
+        "temperature": 0.1,
+        "num_predict": 500,
+        "seed": 42,
+        "think": true
+      },
+      "passed": false,
+      "error": "OllamaUnavailable: Ollama request failed: timed out",
+      "elapsed_ms": 32032
+    },
+    {
+      "config": {
+        "model": "qwen3:1.7b",
+        "base_url": "http://127.0.0.1:11434",
+        "timeout_ms": 30000,
+        "temperature": 0.1,
+        "num_predict": 80,
+        "seed": 42,
+        "think": false
+      },
+      "passed": true,
+      "done_reason": "stop",
+      "eval_count": 13,
+      "thinking_chars": 0,
+      "content_chars": 36,
+      "selected_access": "context_1",
+      "elapsed_ms": 2472
+    }
+  ],
+  "finished_at": "2026-10-23T18:38:41.220884Z"
+}

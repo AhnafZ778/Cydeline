@@ -50,3 +50,6 @@ docs/demo/*.gif
 # local scratch used while developing the web app
 apps/web/.shots.mjs
 apps/web/.dbg*.mjs
+
+# Live local range data and operator credentials
+.runtime/

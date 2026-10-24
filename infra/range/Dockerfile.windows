@@ -1,0 +1,5 @@
+FROM debian:bookworm-slim
+RUN apt-get update && apt-get install -y --no-install-recommends qemu-system-x86 qemu-utils genisoimage python3 tini && rm -rf /var/lib/apt/lists/*
+COPY infra/range/start-windows.sh /usr/local/bin/start-windows
+RUN chmod 755 /usr/local/bin/start-windows
+ENTRYPOINT ["/usr/bin/tini", "--", "/usr/local/bin/start-windows"]

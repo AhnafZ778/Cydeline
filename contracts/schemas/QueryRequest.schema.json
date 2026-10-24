@@ -1,0 +1,13 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "query": {
+      "default": "",
+      "maxLength": 1000,
+      "title": "Query",
+      "type": "string"
+    }
+  },
+  "title": "QueryRequest",
+  "type": "object"
+}

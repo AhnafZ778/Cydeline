@@ -1,0 +1,3 @@
+# Live target integration evidence
+
+Observed during implementation on this checkout: qwen3:1.7b warm decision inspect_session_status(sess_A), no fallback, 4992 ms. Decision decision_6b13779b15a6471b99f4 produced event evt_79d2cdd7ac0646da9983, target audit audit_249f0281315f475bbbc8, request req_4d05a87cafbf4ab7930c, outcome allowed. The first cold call hit the 10-second budget and was honestly tagged fallback. This single trial is not the 30-trial/10-pair benchmark. Reproduce with python -m scripts.prove_live_model after installing requirements and making the configured Ollama model available.

@@ -1,0 +1,33 @@
+{
+  "schema_version": "learning-1",
+  "id": "baseline",
+  "version": "1",
+  "label": "Variation 1",
+  "scenario_id": "northstar-breach",
+  "scenario_version": "v2",
+  "browser_handle": "sess_A",
+  "browser_owner": "maya",
+  "objective_resource": "doc_finance_07",
+  "browser_objective_access": true,
+  "reporting_objective_access": true,
+  "reporting_owner": "reporting",
+  "concurrent_sessions": 1,
+  "workflows": [
+    {
+      "owner": "maya",
+      "resource": "doc_ops_02",
+      "kind": "browser_session"
+    },
+    {
+      "owner": "eli",
+      "resource": "doc_ops_02",
+      "kind": "browser_session"
+    },
+    {
+      "owner": "reporting",
+      "resource": "doc_ops_02",
+      "kind": "api_credential"
+    }
+  ],
+  "background_denial": false
+}

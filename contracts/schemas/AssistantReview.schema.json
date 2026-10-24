@@ -1,0 +1,26 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "note": {
+      "maxLength": 2000,
+      "minLength": 1,
+      "title": "Note",
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "corroborated",
+        "disputed",
+        "needs_more_evidence"
+      ],
+      "title": "Status",
+      "type": "string"
+    }
+  },
+  "required": [
+    "status",
+    "note"
+  ],
+  "title": "AssistantReview",
+  "type": "object"
+}

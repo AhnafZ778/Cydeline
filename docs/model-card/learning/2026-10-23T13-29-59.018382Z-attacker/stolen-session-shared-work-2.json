@@ -1,0 +1,1154 @@
+{
+  "run_id": "run_3a94f08d4e4c4d31ba6c",
+  "scenario_id": "stolen-session",
+  "outcome": "defended_and_recovered",
+  "read_only": true,
+  "events": [
+    {
+      "event_id": "evt_90cd81ef9358420c909c",
+      "run_id": "run_3a94f08d4e4c4d31ba6c",
+      "timestamp_utc": "2026-10-23T13:30:28.609335Z",
+      "visible_at_utc": "2026-10-23T13:30:28.609358Z",
+      "virtual_clock_sec": 0.0,
+      "source": "control-plane",
+      "event_type": "run.created",
+      "actor_id": "system",
+      "session_handle": null,
+      "resource_id": null,
+      "outcome": null,
+      "correlation_id": "corr_32de20e0a67745669d0f",
+      "learner_visible": true,
+      "sequence": 1
+    },
+    {
+      "event_id": "evt_39e2404e9f244463814d",
+      "run_id": "run_3a94f08d4e4c4d31ba6c",
+      "timestamp_utc": "2026-10-23T13:30:28.645748Z",
+      "visible_at_utc": "2026-10-23T13:30:28.645765Z",
+      "virtual_clock_sec": 0.0,
+      "source": "target-access",
+      "event_type": "document.access",
+      "actor_id": "eli",
+      "session_handle": "sess_B",
+      "resource_id": "doc_ops_02",
+      "outcome": "allowed",
+      "correlation_id": "req_81911c20fbb548069636",
+      "learner_visible": true,
+      "target_audit_id": "audit_f8528ce6c1674463b04b",
+      "network": {
+        "src_ip": "192.0.2.22",
+        "user_agent": "Northstar-employee-browser/1",
+        "http_method": "GET",
+        "path": "/documents/doc_ops_02",
+        "status_code": 200,
+        "latency_ms": 1
+      },
+      "decision_id": null,
+      "sequence": 2
+    },
+    {
+      "event_id": "evt_295daeeb26bd46958386",
+      "run_id": "run_3a94f08d4e4c4d31ba6c",
+      "timestamp_utc": "2026-10-23T13:30:28.647263Z",
+      "visible_at_utc": "2026-10-23T13:30:28.647275Z",
+      "virtual_clock_sec": 0.0,
+      "source": "target-access",
+      "event_type": "document.access",
+      "actor_id": "maya",
+      "session_handle": "work_maya",
+      "resource_id": "doc_ops_02",
+      "outcome": "allowed",
+      "correlation_id": "req_4648f649c41c40029ef3",
+      "learner_visible": true,
+      "target_audit_id": "audit_13fa475d984f41d3b589",
+      "network": {
+        "src_ip": "192.0.2.21",
+        "user_agent": "Northstar-employee-browser/1",
+        "http_method": "GET",
+        "path": "/documents/doc_ops_02",
+        "status_code": 200,
+        "latency_ms": 1
+      },
+      "decision_id": null,
+      "sequence": 3
+    },
+    {
+      "event_id": "evt_c166e313f66d4d49acee",
+      "run_id": "run_3a94f08d4e4c4d31ba6c",
+      "timestamp_utc": "2026-10-23T13:30:28.650153Z",
+      "visible_at_utc": "2026-10-23T13:30:28.650165Z",
+      "virtual_clock_sec": 0.0,
+      "source": "target-access",
+      "event_type": "document.access",
+      "actor_id": "eli",
+      "session_handle": "work_eli",
+      "resource_id": "doc_finance_07",
+      "outcome": "allowed",
+      "correlation_id": "req_dba5b54fb6214776846f",
+      "learner_visible": true,
+      "target_audit_id": "audit_6fe4042cd7144ad383da",
+      "network": {
+        "src_ip": "192.0.2.22",
+        "user_agent": "Northstar-employee-browser/1",
+        "http_method": "GET",
+        "path": "/documents/doc_finance_07",
+        "status_code": 200,
+        "latency_ms": 1
+      },
+      "decision_id": null,
+      "sequence": 4
+    },
+    {
+      "event_id": "evt_1eb3fbeb640c46d092f0",
+      "run_id": "run_3a94f08d4e4c4d31ba6c",
+      "timestamp_utc": "2026-10-23T13:30:28.651388Z",
+      "visible_at_utc": "2026-10-23T13:30:28.651400Z",
+      "virtual_clock_sec": 0.0,
+      "source": "target-access",
+      "event_type": "document.access",
+      "actor_id": "eli",
+      "session_handle": "sess_concurrent_0",
+      "resource_id": "doc_ops_02",
+      "outcome": "allowed",
+      "correlation_id": "req_8b96f67521044a8f9973",
+      "learner_visible": true,
+      "target_audit_id": "audit_7dca05b478b646c6a32a",
+      "network": {
+        "src_ip": "192.0.2.22",
+        "user_agent": "Northstar-employee-browser/1",
+        "http_method": "GET",
+        "path": "/documents/doc_ops_02",
+        "status_code": 200,
+        "latency_ms": 1
+      },
+      "decision_id": null,
+      "sequence": 5
+    },
+    {
+      "event_id": "evt_8366931b40bd452f8f25",
+      "run_id": "run_3a94f08d4e4c4d31ba6c",
+      "timestamp_utc": "2026-10-23T13:30:28.652763Z",
+      "visible_at_utc": "2026-10-23T13:30:28.652775Z",
+      "virtual_clock_sec": 0.0,
+      "source": "target-access",
+      "event_type": "document.access",
+      "actor_id": "eli",
+      "session_handle": "sess_concurrent_0",
+      "resource_id": "doc_handbook_01",
+      "outcome": "denied",
+      "correlation_id": "req_69e271e5a7104a5882b4",
+      "learner_visible": true,
+      "target_audit_id": "audit_8b67d552ef9f4c66b885",
+      "network": {
+        "src_ip": "192.0.2.22",
+        "user_agent": "Northstar-employee-browser/1",
+        "http_method": "GET",
+        "path": "/documents/doc_handbook_01",
+        "status_code": 403,
+        "latency_ms": 1
+      },
+      "decision_id": null,
+      "sequence": 6
+    },
+    {
+      "event_id": "evt_0e98da20c4474fc9a981",
+      "run_id": "run_3a94f08d4e4c4d31ba6c",
+      "timestamp_utc": "2026-10-23T13:30:28.656800Z",
+      "visible_at_utc": "2026-10-23T13:30:28.656811Z",
+      "virtual_clock_sec": 0.0,
+      "source": "control-plane",
+      "event_type": "run.started",
+      "actor_id": "system",
+      "session_handle": null,
+      "resource_id": null,
+      "outcome": null,
+      "correlation_id": "corr_4d41baf81fae4318ad88",
+      "learner_visible": true,
+      "sequence": 7
+    },
+    {
+      "event_id": "evt_76750a7607064330b1d2",
+      "run_id": "run_3a94f08d4e4c4d31ba6c",
+      "timestamp_utc": "2026-10-23T13:30:28.659427Z",
+      "visible_at_utc": "2026-10-23T13:30:28.659438Z",
+      "virtual_clock_sec": 0.0,
+      "source": "control-plane",
+      "event_type": "investigation.begun",
+      "actor_id": "system",
+      "session_handle": null,
+      "resource_id": null,
+      "outcome": null,
+      "correlation_id": "corr_ad0fbbfccd554117969e",
+      "learner_visible": true,
+      "sequence": 8
+    },
+    {
+      "event_id": "evt_4c4f3d95f6014ab39873",
+      "run_id": "run_3a94f08d4e4c4d31ba6c",
+      "timestamp_utc": "2026-10-23T13:30:28.680830Z",
+      "visible_at_utc": "2026-10-23T13:30:28.680848Z",
+      "virtual_clock_sec": 8.0,
+      "source": "target-access",
+      "event_type": "document.access",
+      "actor_id": "maya",
+      "session_handle": "work_maya",
+      "resource_id": "doc_ops_02",
+      "outcome": "allowed",
+      "correlation_id": "req_fcf7ef49bd144d088fe7",
+      "learner_visible": true,
+      "target_audit_id": "audit_3fb20b029b7a40aeb922",
+      "network": {
+        "src_ip": "192.0.2.21",
+        "user_agent": "Northstar-employee-browser/1",
+        "http_method": "GET",
+        "path": "/documents/doc_ops_02",
+        "status_code": 200,
+        "latency_ms": 1
+      },
+      "decision_id": null,
+      "sequence": 9
+    },
+    {
+      "event_id": "evt_66ba60c2805b4d9b9b20",
+      "run_id": "run_3a94f08d4e4c4d31ba6c",
+      "timestamp_utc": "2026-10-23T13:30:28.682765Z",
+      "visible_at_utc": "2026-10-23T13:30:28.682785Z",
+      "virtual_clock_sec": 8.0,
+      "source": "target-access",
+      "event_type": "document.access",
+      "actor_id": "eli",
+      "session_handle": "work_eli",
+      "resource_id": "doc_finance_07",
+      "outcome": "allowed",
+      "correlation_id": "req_7c2cbc01c56a42b7b6c0",
+      "learner_visible": true,
+      "target_audit_id": "audit_bf93acc1f7be40268acf",
+      "network": {
+        "src_ip": "192.0.2.22",
+        "user_agent": "Northstar-employee-browser/1",
+        "http_method": "GET",
+        "path": "/documents/doc_finance_07",
+        "status_code": 200,
+        "latency_ms": 1
+      },
+      "decision_id": null,
+      "sequence": 10
+    },
+    {
+      "event_id": "evt_26b43da394024cf7838c",
+      "run_id": "run_3a94f08d4e4c4d31ba6c",
+      "timestamp_utc": "2026-10-23T13:30:28.684755Z",
+      "visible_at_utc": "2026-10-23T13:30:28.684776Z",
+      "virtual_clock_sec": 8.0,
+      "source": "target-access",
+      "event_type": "document.access",
+      "actor_id": "eli",
+      "session_handle": "sess_concurrent_1",
+      "resource_id": "doc_ops_02",
+      "outcome": "allowed",
+      "correlation_id": "req_b1873a8b88b74685bfca",
+      "learner_visible": true,
+      "target_audit_id": "audit_31c2e956ee4f41a980b2",
+      "network": {
+        "src_ip": "192.0.2.22",
+        "user_agent": "Northstar-employee-browser/1",
+        "http_method": "GET",
+        "path": "/documents/doc_ops_02",
+        "status_code": 200,
+        "latency_ms": 1
+      },
+      "decision_id": null,
+      "sequence": 11
+    },
+    {
+      "event_id": "evt_b289b636261e4f77abbc",
+      "run_id": "run_3a94f08d4e4c4d31ba6c",
+      "timestamp_utc": "2026-10-23T13:30:38.288318Z",
+      "visible_at_utc": "2026-10-23T13:30:38.288341Z",
+      "virtual_clock_sec": 8.0,
+      "source": "red-agent",
+      "event_type": "agent.decision",
+      "actor_id": "model",
+      "session_handle": null,
+      "resource_id": null,
+      "outcome": null,
+      "correlation_id": "corr_ee639547cb7f4671abee",
+      "learner_visible": false,
+      "decision_id": "decision_5bf2dd25392e481fa553",
+      "sequence": 12,
+      "agent_meta": {
+        "step": 0,
+        "role": "scout",
+        "model_id": "qwen3:1.7b",
+        "quantization": "configured",
+        "latency_ms": 9585,
+        "fallback_used": false,
+        "proposal": {
+          "role": "scout",
+          "action": "inspect_session_status",
+          "target_id": null,
+          "session_handle": "sess_B",
+          "reason": "Check session status to determine if access is usable"
+        },
+        "accepted": true,
+        "rejection_reason": null
+      }
+    },
+    {
+      "event_id": "evt_5de704a65b93475fbce3",
+      "run_id": "run_3a94f08d4e4c4d31ba6c",
+      "timestamp_utc": "2026-10-23T13:30:38.304102Z",
+      "visible_at_utc": "2026-10-23T13:30:38.304124Z",
+      "virtual_clock_sec": 8.0,
+      "source": "target-access",
+      "event_type": "session.status",
+      "actor_id": "eli",
+      "session_handle": "sess_B",
+      "resource_id": null,
+      "outcome": "allowed",
+      "correlation_id": "req_e7629af193144e37b254",
+      "learner_visible": true,
+      "target_audit_id": "audit_41313e65a6ab47eea9f3",
+      "network": {
+        "src_ip": "203.0.113.57",
+        "user_agent": "Northstar-training-client/1",
+        "http_method": "GET",
+        "path": "/session/status",
+        "status_code": 200,
+        "latency_ms": 1
+      },
+      "decision_id": "decision_5bf2dd25392e481fa553",
+      "sequence": 13,
+      "agent_meta": {
+        "step": 0,
+        "role": "scout",
+        "model_id": "qwen3:1.7b",
+        "quantization": "configured",
+        "latency_ms": 9585,
+        "fallback_used": false,
+        "proposal": {
+          "role": "scout",
+          "action": "inspect_session_status",
+          "target_id": null,
+          "session_handle": "sess_B",
+          "reason": "Check session status to determine if access is usable"
+        },
+        "accepted": true,
+        "rejection_reason": null
+      }
+    },
+    {
+      "event_id": "evt_88e7c2190b534bcb825f",
+      "run_id": "run_3a94f08d4e4c4d31ba6c",
+      "timestamp_utc": "2026-10-23T13:30:38.311693Z",
+      "visible_at_utc": "2026-10-23T13:30:38.311705Z",
+      "virtual_clock_sec": 8.0,
+      "source": "control-defender",
+      "event_type": "declaration.submitted",
+      "actor_id": "analyst",
+      "session_handle": null,
+      "resource_id": "decl_4378ef28f63340858a4c",
+      "outcome": "applied",
+      "correlation_id": "corr_7796dbe863554cff9eab",
+      "learner_visible": true,
+      "sequence": 14
+    },
+    {
+      "event_id": "evt_80a96b86ca6c45559fb5",
+      "run_id": "run_3a94f08d4e4c4d31ba6c",
+      "timestamp_utc": "2026-10-23T13:30:38.334482Z",
+      "visible_at_utc": "2026-10-23T13:30:38.334501Z",
+      "virtual_clock_sec": 8.0,
+      "source": "target-access",
+      "event_type": "session.revoked",
+      "actor_id": "eli",
+      "session_handle": "sess_B",
+      "resource_id": "revoke_session",
+      "outcome": "none",
+      "correlation_id": "req_f4fb1cdb881f487b9663",
+      "learner_visible": true,
+      "target_audit_id": "audit_8a36b7a666ef4bd8b90c",
+      "network": null,
+      "decision_id": null,
+      "sequence": 15
+    },
+    {
+      "event_id": "evt_1785b1a6438e4ba59cb9",
+      "run_id": "run_3a94f08d4e4c4d31ba6c",
+      "timestamp_utc": "2026-10-23T13:30:38.358880Z",
+      "visible_at_utc": "2026-10-23T13:30:38.358900Z",
+      "virtual_clock_sec": 8.0,
+      "source": "target-access",
+      "event_type": "document.access",
+      "actor_id": "eli",
+      "session_handle": "sess_B",
+      "resource_id": "doc_finance_07",
+      "outcome": "denied",
+      "correlation_id": "req_8e9480d2accd4e519be6",
+      "learner_visible": true,
+      "target_audit_id": "audit_a535ed8b31384f7c9690",
+      "network": {
+        "src_ip": "192.0.2.22",
+        "user_agent": "Northstar-employee-browser/1",
+        "http_method": "GET",
+        "path": "/documents/doc_finance_07",
+        "status_code": 401,
+        "latency_ms": 1
+      },
+      "decision_id": null,
+      "sequence": 16
+    },
+    {
+      "event_id": "evt_d85d61aa7a2149c89c6c",
+      "run_id": "run_3a94f08d4e4c4d31ba6c",
+      "timestamp_utc": "2026-10-23T13:30:38.362054Z",
+      "visible_at_utc": "2026-10-23T13:30:38.362074Z",
+      "virtual_clock_sec": 8.0,
+      "source": "target-access",
+      "event_type": "document.access",
+      "actor_id": "maya",
+      "session_handle": "work_maya",
+      "resource_id": "doc_ops_02",
+      "outcome": "allowed",
+      "correlation_id": "req_7bd4e75e87c3460fa0e9",
+      "learner_visible": true,
+      "target_audit_id": "audit_7586d52515254845b8e5",
+      "network": {
+        "src_ip": "192.0.2.21",
+        "user_agent": "Northstar-employee-browser/1",
+        "http_method": "GET",
+        "path": "/documents/doc_ops_02",
+        "status_code": 200,
+        "latency_ms": 1
+      },
+      "decision_id": null,
+      "sequence": 17
+    },
+    {
+      "event_id": "evt_00e0b270ba37473aafbb",
+      "run_id": "run_3a94f08d4e4c4d31ba6c",
+      "timestamp_utc": "2026-10-23T13:30:38.363610Z",
+      "visible_at_utc": "2026-10-23T13:30:38.363622Z",
+      "virtual_clock_sec": 8.0,
+      "source": "target-access",
+      "event_type": "document.access",
+      "actor_id": "eli",
+      "session_handle": "work_eli",
+      "resource_id": "doc_finance_07",
+      "outcome": "allowed",
+      "correlation_id": "req_8f3b17f8c72f42a792a8",
+      "learner_visible": true,
+      "target_audit_id": "audit_d5c6a8c8c0fc4b67a3f2",
+      "network": {
+        "src_ip": "192.0.2.22",
+        "user_agent": "Northstar-employee-browser/1",
+        "http_method": "GET",
+        "path": "/documents/doc_finance_07",
+        "status_code": 200,
+        "latency_ms": 1
+      },
+      "decision_id": null,
+      "sequence": 18
+    },
+    {
+      "event_id": "evt_5d67a3e12d474d018c04",
+      "run_id": "run_3a94f08d4e4c4d31ba6c",
+      "timestamp_utc": "2026-10-23T13:30:38.365051Z",
+      "visible_at_utc": "2026-10-23T13:30:38.365063Z",
+      "virtual_clock_sec": 8.0,
+      "source": "target-access",
+      "event_type": "document.access",
+      "actor_id": "eli",
+      "session_handle": "sess_concurrent_0",
+      "resource_id": "doc_ops_02",
+      "outcome": "allowed",
+      "correlation_id": "req_1d4840b3d00844ef9ce8",
+      "learner_visible": true,
+      "target_audit_id": "audit_c7eec75324dd42d0849c",
+      "network": {
+        "src_ip": "192.0.2.22",
+        "user_agent": "Northstar-employee-browser/1",
+        "http_method": "GET",
+        "path": "/documents/doc_ops_02",
+        "status_code": 200,
+        "latency_ms": 1
+      },
+      "decision_id": null,
+      "sequence": 19
+    },
+    {
+      "event_id": "evt_713639d2f995434e8997",
+      "run_id": "run_3a94f08d4e4c4d31ba6c",
+      "timestamp_utc": "2026-10-23T13:30:38.366506Z",
+      "visible_at_utc": "2026-10-23T13:30:38.366516Z",
+      "virtual_clock_sec": 8.0,
+      "source": "target-access",
+      "event_type": "document.access",
+      "actor_id": "eli",
+      "session_handle": "sess_concurrent_0",
+      "resource_id": "doc_handbook_01",
+      "outcome": "denied",
+      "correlation_id": "req_4f51ec9fdf6246e9b01f",
+      "learner_visible": true,
+      "target_audit_id": "audit_03707cc7359c4eb18403",
+      "network": {
+        "src_ip": "192.0.2.22",
+        "user_agent": "Northstar-employee-browser/1",
+        "http_method": "GET",
+        "path": "/documents/doc_handbook_01",
+        "status_code": 403,
+        "latency_ms": 1
+      },
+      "decision_id": null,
+      "sequence": 20
+    },
+    {
+      "event_id": "evt_8f3121dee28b43f7a692",
+      "run_id": "run_3a94f08d4e4c4d31ba6c",
+      "timestamp_utc": "2026-10-23T13:30:38.390632Z",
+      "visible_at_utc": "2026-10-23T13:30:38.390650Z",
+      "virtual_clock_sec": 14.0,
+      "source": "target-access",
+      "event_type": "document.access",
+      "actor_id": "maya",
+      "session_handle": "work_maya",
+      "resource_id": "doc_ops_02",
+      "outcome": "allowed",
+      "correlation_id": "req_6b4c69b8fcc74885a053",
+      "learner_visible": true,
+      "target_audit_id": "audit_6dc4f7ec1768411997d9",
+      "network": {
+        "src_ip": "192.0.2.21",
+        "user_agent": "Northstar-employee-browser/1",
+        "http_method": "GET",
+        "path": "/documents/doc_ops_02",
+        "status_code": 200,
+        "latency_ms": 1
+      },
+      "decision_id": null,
+      "sequence": 21
+    },
+    {
+      "event_id": "evt_27f7ec79bef94efda667",
+      "run_id": "run_3a94f08d4e4c4d31ba6c",
+      "timestamp_utc": "2026-10-23T13:30:38.392427Z",
+      "visible_at_utc": "2026-10-23T13:30:38.392441Z",
+      "virtual_clock_sec": 14.0,
+      "source": "target-access",
+      "event_type": "document.access",
+      "actor_id": "eli",
+      "session_handle": "work_eli",
+      "resource_id": "doc_finance_07",
+      "outcome": "allowed",
+      "correlation_id": "req_43de57386daf40dfa218",
+      "learner_visible": true,
+      "target_audit_id": "audit_f08349b67c634c25a155",
+      "network": {
+        "src_ip": "192.0.2.22",
+        "user_agent": "Northstar-employee-browser/1",
+        "http_method": "GET",
+        "path": "/documents/doc_finance_07",
+        "status_code": 200,
+        "latency_ms": 1
+      },
+      "decision_id": null,
+      "sequence": 22
+    },
+    {
+      "event_id": "evt_fa7ded628ea94bffa0af",
+      "run_id": "run_3a94f08d4e4c4d31ba6c",
+      "timestamp_utc": "2026-10-23T13:30:38.394101Z",
+      "visible_at_utc": "2026-10-23T13:30:38.394110Z",
+      "virtual_clock_sec": 14.0,
+      "source": "target-access",
+      "event_type": "document.access",
+      "actor_id": "eli",
+      "session_handle": "sess_concurrent_1",
+      "resource_id": "doc_ops_02",
+      "outcome": "allowed",
+      "correlation_id": "req_bf2b110ac10c4c67b012",
+      "learner_visible": true,
+      "target_audit_id": "audit_78fc03e87d594187af17",
+      "network": {
+        "src_ip": "192.0.2.22",
+        "user_agent": "Northstar-employee-browser/1",
+        "http_method": "GET",
+        "path": "/documents/doc_ops_02",
+        "status_code": 200,
+        "latency_ms": 1
+      },
+      "decision_id": null,
+      "sequence": 23
+    },
+    {
+      "event_id": "evt_edc8d6b2d3cd431e8fab",
+      "run_id": "run_3a94f08d4e4c4d31ba6c",
+      "timestamp_utc": "2026-10-23T13:30:42.091022Z",
+      "visible_at_utc": "2026-10-23T13:30:42.091043Z",
+      "virtual_clock_sec": 14.0,
+      "source": "red-agent",
+      "event_type": "agent.decision",
+      "actor_id": "model",
+      "session_handle": null,
+      "resource_id": null,
+      "outcome": null,
+      "correlation_id": "corr_40906e49512f4d36bce4",
+      "learner_visible": false,
+      "decision_id": "decision_975195e5fe014f9f9cf4",
+      "sequence": 24,
+      "agent_meta": {
+        "step": 1,
+        "role": "adaptation_planner",
+        "model_id": "qwen3:1.7b",
+        "quantization": "configured",
+        "latency_ms": 3684,
+        "fallback_used": false,
+        "proposal": {
+          "role": "adaptation_planner",
+          "action": "stop",
+          "target_id": null,
+          "session_handle": null,
+          "reason": "session status revoked"
+        },
+        "accepted": true,
+        "rejection_reason": null
+      }
+    },
+    {
+      "event_id": "evt_88398501104c4f23ab47",
+      "run_id": "run_3a94f08d4e4c4d31ba6c",
+      "timestamp_utc": "2026-10-23T13:30:42.130552Z",
+      "visible_at_utc": "2026-10-23T13:30:42.130573Z",
+      "virtual_clock_sec": 14.0,
+      "source": "target-access",
+      "event_type": "document.access",
+      "actor_id": "eli",
+      "session_handle": "sess_B",
+      "resource_id": "doc_finance_07",
+      "outcome": "denied",
+      "correlation_id": "req_c812e3a7efa94f609cea",
+      "learner_visible": true,
+      "target_audit_id": "audit_8faa4a37d83344d78894",
+      "network": {
+        "src_ip": "192.0.2.22",
+        "user_agent": "Northstar-employee-browser/1",
+        "http_method": "GET",
+        "path": "/documents/doc_finance_07",
+        "status_code": 401,
+        "latency_ms": 1
+      },
+      "decision_id": null,
+      "sequence": 25
+    },
+    {
+      "event_id": "evt_2a6cc629aff04f8ea6d6",
+      "run_id": "run_3a94f08d4e4c4d31ba6c",
+      "timestamp_utc": "2026-10-23T13:30:42.134091Z",
+      "visible_at_utc": "2026-10-23T13:30:42.134113Z",
+      "virtual_clock_sec": 14.0,
+      "source": "target-access",
+      "event_type": "document.access",
+      "actor_id": "maya",
+      "session_handle": "work_maya",
+      "resource_id": "doc_ops_02",
+      "outcome": "allowed",
+      "correlation_id": "req_65f51c535d804ec895e1",
+      "learner_visible": true,
+      "target_audit_id": "audit_1ab5d3e3256c42038032",
+      "network": {
+        "src_ip": "192.0.2.21",
+        "user_agent": "Northstar-employee-browser/1",
+        "http_method": "GET",
+        "path": "/documents/doc_ops_02",
+        "status_code": 200,
+        "latency_ms": 1
+      },
+      "decision_id": null,
+      "sequence": 26
+    },
+    {
+      "event_id": "evt_3c6213f016c14e7b931e",
+      "run_id": "run_3a94f08d4e4c4d31ba6c",
+      "timestamp_utc": "2026-10-23T13:30:42.136201Z",
+      "visible_at_utc": "2026-10-23T13:30:42.136218Z",
+      "virtual_clock_sec": 14.0,
+      "source": "target-access",
+      "event_type": "document.access",
+      "actor_id": "eli",
+      "session_handle": "work_eli",
+      "resource_id": "doc_finance_07",
+      "outcome": "allowed",
+      "correlation_id": "req_b5693359ca114c49944e",
+      "learner_visible": true,
+      "target_audit_id": "audit_fce8af635f0a489abd19",
+      "network": {
+        "src_ip": "192.0.2.22",
+        "user_agent": "Northstar-employee-browser/1",
+        "http_method": "GET",
+        "path": "/documents/doc_finance_07",
+        "status_code": 200,
+        "latency_ms": 1
+      },
+      "decision_id": null,
+      "sequence": 27
+    },
+    {
+      "event_id": "evt_aff47e8c7ccb412a9c82",
+      "run_id": "run_3a94f08d4e4c4d31ba6c",
+      "timestamp_utc": "2026-10-23T13:30:42.138579Z",
+      "visible_at_utc": "2026-10-23T13:30:42.138596Z",
+      "virtual_clock_sec": 14.0,
+      "source": "target-access",
+      "event_type": "document.access",
+      "actor_id": "eli",
+      "session_handle": "sess_concurrent_0",
+      "resource_id": "doc_ops_02",
+      "outcome": "allowed",
+      "correlation_id": "req_c3527b48691a4094b597",
+      "learner_visible": true,
+      "target_audit_id": "audit_932225c1fd994f47b807",
+      "network": {
+        "src_ip": "192.0.2.22",
+        "user_agent": "Northstar-employee-browser/1",
+        "http_method": "GET",
+        "path": "/documents/doc_ops_02",
+        "status_code": 200,
+        "latency_ms": 1
+      },
+      "decision_id": null,
+      "sequence": 28
+    },
+    {
+      "event_id": "evt_4079eeb11af441ed850f",
+      "run_id": "run_3a94f08d4e4c4d31ba6c",
+      "timestamp_utc": "2026-10-23T13:30:42.141373Z",
+      "visible_at_utc": "2026-10-23T13:30:42.141393Z",
+      "virtual_clock_sec": 14.0,
+      "source": "target-access",
+      "event_type": "document.access",
+      "actor_id": "eli",
+      "session_handle": "sess_concurrent_0",
+      "resource_id": "doc_handbook_01",
+      "outcome": "denied",
+      "correlation_id": "req_a2f3c50e6aa04fe186a7",
+      "learner_visible": true,
+      "target_audit_id": "audit_34e9738570394f6cbe0f",
+      "network": {
+        "src_ip": "192.0.2.22",
+        "user_agent": "Northstar-employee-browser/1",
+        "http_method": "GET",
+        "path": "/documents/doc_handbook_01",
+        "status_code": 403,
+        "latency_ms": 1
+      },
+      "decision_id": null,
+      "sequence": 29
+    },
+    {
+      "event_id": "evt_4322e18cde924b31bfb2",
+      "run_id": "run_3a94f08d4e4c4d31ba6c",
+      "timestamp_utc": "2026-10-23T13:30:42.153012Z",
+      "visible_at_utc": "2026-10-23T13:30:42.153017Z",
+      "virtual_clock_sec": 14.0,
+      "source": "control-plane",
+      "event_type": "run.completed",
+      "actor_id": "system",
+      "session_handle": null,
+      "resource_id": null,
+      "outcome": "verified",
+      "correlation_id": "corr_5762807cd8474923950f",
+      "learner_visible": true,
+      "sequence": 30
+    }
+  ],
+  "agent_decisions": [
+    {
+      "decision_id": "decision_5bf2dd25392e481fa553",
+      "run_id": "run_3a94f08d4e4c4d31ba6c",
+      "step": 0,
+      "role": "scout",
+      "model_id": "qwen3:1.7b",
+      "prompt_hash": "12989a70be79f4e9a1eb11b51952eeeb5bba233a1cc330d4c56424d0410bd1df",
+      "observation_hash": "5bcd50863766208647a97a7a2b80fff47ccf3af5483cf7469dd788d5f38e23eb",
+      "proposed_json": {
+        "role": "scout",
+        "action": "inspect_session_status",
+        "target_id": null,
+        "session_handle": "sess_B",
+        "reason": "Check session status to determine if access is usable"
+      },
+      "raw_proposal": null,
+      "selection": null,
+      "accepted_action": "inspect_session_status",
+      "accepted": true,
+      "rejection_reason": null,
+      "latency_ms": 9585,
+      "fallback_used": false,
+      "created_at": "2026-10-23T13:30:38.282686Z"
+    },
+    {
+      "decision_id": "decision_975195e5fe014f9f9cf4",
+      "run_id": "run_3a94f08d4e4c4d31ba6c",
+      "step": 1,
+      "role": "adaptation_planner",
+      "model_id": "qwen3:1.7b",
+      "prompt_hash": "12989a70be79f4e9a1eb11b51952eeeb5bba233a1cc330d4c56424d0410bd1df",
+      "observation_hash": "d0a3a71ca35011c0a9a95be61a06b3f9358919ac49a3a120989d0fee55bafcda",
+      "proposed_json": {
+        "role": "adaptation_planner",
+        "action": "stop",
+        "target_id": null,
+        "session_handle": null,
+        "reason": "session status revoked"
+      },
+      "raw_proposal": null,
+      "selection": null,
+      "accepted_action": "stop",
+      "accepted": true,
+      "rejection_reason": null,
+      "latency_ms": 3684,
+      "fallback_used": false,
+      "created_at": "2026-10-23T13:30:42.087576Z"
+    }
+  ],
+  "defender_actions": [
+    {
+      "action_id": "act_5c8ffc7056b241368dae",
+      "run_id": "run_3a94f08d4e4c4d31ba6c",
+      "action": "revoke_session",
+      "target_handle": "sess_B",
+      "idempotency_key": "eval_browser_response",
+      "applied": true,
+      "target_audit_id": "audit_8a36b7a666ef4bd8b90c",
+      "applied_at": "2026-10-23T13:30:38.325918Z",
+      "virtual_clock_sec": 8.0,
+      "measured_result": {
+        "access_status": "revoked"
+      },
+      "result": "applied",
+      "message": "Target confirmed the access-control change.",
+      "declaration_id": "decl_4378ef28f63340858a4c",
+      "evidence_ids": [
+        "evt_39e2404e9f244463814d"
+      ]
+    }
+  ],
+  "declarations": [
+    {
+      "declaration_id": "decl_4378ef28f63340858a4c",
+      "run_id": "run_3a94f08d4e4c4d31ba6c",
+      "accepted": true,
+      "suspected_actor": "eli",
+      "suspected_session": "sess_B",
+      "rationale": "Evaluation intervention compares access and employee continuity.",
+      "event_ids": [
+        "evt_39e2404e9f244463814d"
+      ],
+      "rejected_event_ids": [],
+      "created_at": "2026-10-23T13:30:38.310562Z",
+      "virtual_clock_sec": 8.0
+    }
+  ],
+  "verification_checks": [
+    {
+      "check_id": "check_c00e42a5faee4bf9a91d",
+      "run_id": "run_3a94f08d4e4c4d31ba6c",
+      "verification": "verify_suspicious_session_denied",
+      "passed": true,
+      "measured_result": {
+        "routes": [
+          {
+            "handle": "sess_B",
+            "http_status": 401,
+            "target_audit_id": "audit_8faa4a37d83344d78894"
+          }
+        ],
+        "http_status": 403
+      },
+      "target_audit_id": "audit_8faa4a37d83344d78894",
+      "checked_at": "2026-10-23T13:30:42.103660Z"
+    },
+    {
+      "check_id": "check_061b259fb6004969932d",
+      "run_id": "run_3a94f08d4e4c4d31ba6c",
+      "verification": "verify_benign_workflow",
+      "passed": true,
+      "measured_result": {
+        "workflows": [
+          {
+            "workflow_id": "maya_daily_work",
+            "user_id": "maya",
+            "passed": true,
+            "target_audit_id": "audit_1ab5d3e3256c42038032",
+            "http_status": 200
+          },
+          {
+            "workflow_id": "eli_daily_work",
+            "user_id": "eli",
+            "passed": true,
+            "target_audit_id": "audit_fce8af635f0a489abd19",
+            "http_status": 200
+          }
+        ],
+        "http_status": 200
+      },
+      "target_audit_id": "audit_fce8af635f0a489abd19",
+      "checked_at": "2026-10-23T13:30:42.118139Z"
+    }
+  ],
+  "debrief": {
+    "run_id": "run_3a94f08d4e4c4d31ba6c",
+    "rubric_version": "1.0.0",
+    "outcome": "defended_and_recovered",
+    "score_total": 96,
+    "breakdown": [
+      {
+        "dimension": "recognition",
+        "awarded": 16,
+        "max_points": 20,
+        "rule_id": "recognition.measured",
+        "explanation": "Evidence supports 16/20 recognition points.",
+        "evidence_ids": [
+          "evt_39e2404e9f244463814d"
+        ]
+      },
+      {
+        "dimension": "containment",
+        "awarded": 25,
+        "max_points": 25,
+        "rule_id": "containment.measured",
+        "explanation": "Measured denial across all objective-capable access routes.",
+        "evidence_ids": [
+          "act_5c8ffc7056b241368dae"
+        ]
+      },
+      {
+        "dimension": "verification",
+        "awarded": 20,
+        "max_points": 20,
+        "rule_id": "verification.measured",
+        "explanation": "Fresh access and employee workflow probes.",
+        "evidence_ids": [
+          "check_c00e42a5faee4bf9a91d",
+          "check_061b259fb6004969932d"
+        ]
+      },
+      {
+        "dimension": "continuity",
+        "awarded": 15,
+        "max_points": 15,
+        "rule_id": "continuity.measured",
+        "explanation": "Employee work succeeds after the response.",
+        "evidence_ids": [
+          "check_061b259fb6004969932d"
+        ]
+      },
+      {
+        "dimension": "proportionality",
+        "awarded": 10,
+        "max_points": 10,
+        "rule_id": "proportionality.measured",
+        "explanation": "Scope and restoration are evaluated from confirmed target changes.",
+        "evidence_ids": [
+          "act_5c8ffc7056b241368dae"
+        ]
+      },
+      {
+        "dimension": "timeliness",
+        "awarded": 10,
+        "max_points": 10,
+        "rule_id": "timeliness.measured",
+        "explanation": "Scenario time from first released signal to effective containment; model latency excluded.",
+        "evidence_ids": [
+          "evt_5de704a65b93475fbce3"
+        ]
+      }
+    ],
+    "outcome_gate": "defended_and_recovered",
+    "first_suspicious_event_id": "evt_5de704a65b93475fbce3",
+    "first_visible_at_utc": "2026-10-23T13:30:38.304124Z",
+    "effective_containment": true,
+    "benign_workflow_passed": true,
+    "fallback_used": false,
+    "evidence_event_ids": [
+      "evt_39e2404e9f244463814d"
+    ],
+    "computed_at": "2026-10-23T13:30:42.160910Z",
+    "notes": [
+      "Timeliness excludes model inference. Network addresses represent reviewed training client contexts."
+    ],
+    "model_provenance": {
+      "model_id": "qwen3:1.7b",
+      "total_decisions": 2,
+      "fallback_count": 0,
+      "median_latency_ms": 6634.5
+    },
+    "containment_time_delta_sec": 0,
+    "containment_target_sec": 30,
+    "disrupted_seconds": 0
+  },
+  "workspace": {
+    "revision": 0,
+    "note": "",
+    "hypothesis": "",
+    "hypothesis_status": "open",
+    "evidence_ids": [],
+    "timeline": [],
+    "saved_queries": [],
+    "cases": [
+      {
+        "id": "case_main",
+        "opened": false,
+        "title": "Northstar access review",
+        "owner": null,
+        "status": "open",
+        "role": "triage",
+        "notes": []
+      }
+    ],
+    "alerts": [
+      {
+        "id": "alert_54f2db42e57e451f834f",
+        "rule_id": "source_change_sess_B",
+        "title": "Session observed from a new source",
+        "severity": "medium",
+        "status": "new",
+        "created_at": "2026-10-23T13:30:38.304102Z",
+        "created_sec": 8.0,
+        "sla_sec": 180,
+        "event_ids": [
+          "evt_5de704a65b93475fbce3",
+          "evt_1785b1a6438e4ba59cb9",
+          "evt_88398501104c4f23ab47"
+        ],
+        "session_handle": "sess_B",
+        "verdict": null
+      },
+      {
+        "id": "alert_591aeb5d9cc24420a7ba",
+        "rule_id": "denials_sess_concurrent_0",
+        "title": "Repeated access denials",
+        "severity": "medium",
+        "status": "new",
+        "created_at": "2026-10-23T13:30:42.141373Z",
+        "created_sec": 14.0,
+        "sla_sec": 180,
+        "event_ids": [
+          "evt_4079eeb11af441ed850f"
+        ],
+        "session_handle": "sess_concurrent_0",
+        "verdict": null
+      }
+    ],
+    "hints_used": [],
+    "messages": []
+  },
+  "variant": {
+    "id": "shared-work",
+    "version": "1",
+    "label": "Variation 2",
+    "manifest_hash": "4d1fe3b1ce6dee16aee6e45968c2319619fae14522175aee3b88df57d2edb38c"
+  },
+  "seed": 20261024,
+  "objective_resource": "doc_finance_07",
+  "learning": {
+    "version": "northstar-learning-1",
+    "consequences": [
+      {
+        "action_id": "act_5c8ffc7056b241368dae",
+        "action": "revoke_session",
+        "target_handle": "sess_B",
+        "target_audit_id": "audit_8a36b7a666ef4bd8b90c",
+        "event_id": "evt_80a96b86ca6c45559fb5",
+        "available_evidence_ids": [
+          "evt_90cd81ef9358420c909c",
+          "evt_39e2404e9f244463814d",
+          "evt_295daeeb26bd46958386",
+          "evt_c166e313f66d4d49acee",
+          "evt_1eb3fbeb640c46d092f0",
+          "evt_8366931b40bd452f8f25",
+          "evt_0e98da20c4474fc9a981",
+          "evt_76750a7607064330b1d2",
+          "evt_4c4f3d95f6014ab39873",
+          "evt_66ba60c2805b4d9b9b20",
+          "evt_26b43da394024cf7838c",
+          "evt_5de704a65b93475fbce3",
+          "evt_88e7c2190b534bcb825f"
+        ],
+        "cited_evidence_ids": [
+          "evt_39e2404e9f244463814d"
+        ],
+        "measured_change": {
+          "access_status": "revoked"
+        },
+        "next_attempt_event_id": null,
+        "next_attempt_outcome": null,
+        "next_decision_id": "decision_975195e5fe014f9f9cf4",
+        "uncertainty": "No subsequent target attempt was recorded; a proposal alone is not an execution."
+      }
+    ],
+    "business": [
+      {
+        "workflow_id": "maya_daily_work",
+        "user_id": "maya",
+        "passed": true,
+        "target_audit_id": "audit_1ab5d3e3256c42038032",
+        "http_status": 200
+      },
+      {
+        "workflow_id": "eli_daily_work",
+        "user_id": "eli",
+        "passed": true,
+        "target_audit_id": "audit_fce8af635f0a489abd19",
+        "http_status": 200
+      }
+    ],
+    "business_check_id": "check_061b259fb6004969932d",
+    "recommended_exercise_id": "normal-access",
+    "recommendation_reason": "Practice corroborating observations against a normal baseline.",
+    "skill_observations": [
+      {
+        "skill": "evidence interpretation",
+        "source_ids": [
+          "evt_39e2404e9f244463814d"
+        ],
+        "observation": "Review the submitted evidence against the declaration; no prose-matching grade is inferred."
+      },
+      {
+        "skill": "containment judgment",
+        "source_ids": [
+          "act_5c8ffc7056b241368dae"
+        ],
+        "observation": "Assess control scope using actual access changes and workflow checks."
+      },
+      {
+        "skill": "recovery and handoff",
+        "source_ids": [
+          "check_c00e42a5faee4bf9a91d",
+          "check_061b259fb6004969932d"
+        ],
+        "observation": "Fresh target checks establish recovery; human rubric scores are collected separately."
+      }
+    ],
+    "notice": "Exercise results are training observations, not certification or a claim of professional readiness."
+  },
+  "assistance_history": [],
+  "checkpoints": [
+    {
+      "id": "cp_7fee9a79d3a440dea09b",
+      "label": "Company provisioned",
+      "sequence": 1
+    },
+    {
+      "id": "cp_df14c05b67af42ab9661",
+      "label": "Incident declared",
+      "sequence": 14
+    },
+    {
+      "id": "cp_12c4487bf333425ca196",
+      "label": "Response: revoke_session",
+      "sequence": 20
+    }
+  ],
+  "trace_hash": "86d12fe83b79a996517c8d88f6d46bca70974e15466d7ea8bad4c646010b6472"
+}

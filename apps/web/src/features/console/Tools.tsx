@@ -478,31 +478,7 @@ export function Intel() {
   );
 }
 
-export function Sandbox() {
-  const connected = useSoc().connected;
-  const [preparing, setPreparing] = useState<string | null>(null);
-  const cards = [
-    { id: "ws-priya", title: "Windows workstation", text: "Practice image of a user laptop. Connect, then try whoami and tasklist." },
-    { id: "mail-01", title: "Linux server", text: "Practice image of a mail host. Connect, then try hostname and ipconfig." },
-  ];
-  return (
-    <section className="soc__panel" aria-label="Sandbox">
-      <header className="soc__panel-head"><h1>Sandbox</h1></header>
-      <div className="soc__cards">
-        {cards.map((card) => (
-          <article key={card.id} className="soc__card">
-            <h2>{card.title}</h2>
-            <p>{card.text}</p>
-            <button type="button" className="btn btn--primary" disabled={preparing === card.id} onClick={() => { setPreparing(card.id); window.setTimeout(() => { soc.connect(card.id); setPreparing(null); }, 800); }}>
-              {preparing === card.id ? "Preparing…" : "Connect"}
-            </button>
-          </article>
-        ))}
-      </div>
-      {connected && <Shell hostId={connected} />}
-    </section>
-  );
-}
+export { WindowsSandbox as Sandbox } from "./WindowsSandbox";
 
 export function Learn() {
   return (

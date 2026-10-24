@@ -1,0 +1,301 @@
+{
+  "proof": "compose-isolation",
+  "started_at": "2026-10-23T19:01:22.707949Z",
+  "finished_at": "2026-10-23T19:01:38.615327Z",
+  "scope": "Unique disposable target/control project. Genuine host Ollama readiness through a bridge-bound GET /api/tags relay. Coached run remains paused; no model generations or optional tool claims.",
+  "project": "cydeline-isolation-0d814939d4",
+  "passed": true,
+  "harness_error": null,
+  "checks": [
+    {
+      "check": "target: read-only root filesystem",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "target: all capabilities dropped, none added",
+      "passed": true,
+      "detail": "['ALL']"
+    },
+    {
+      "check": "target: no-new-privileges",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "target: not privileged",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "target: runs as non-root 65532",
+      "passed": true,
+      "detail": "65532:65532"
+    },
+    {
+      "check": "target: memory limit set",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "target: CPU limit set",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "target: pid limit set",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "target: no host namespaces",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "target: Docker socket never mounted",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "target: only named volumes, no host bind mounts",
+      "passed": true,
+      "detail": "volume:/data"
+    },
+    {
+      "check": "control: read-only root filesystem",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "control: all capabilities dropped, none added",
+      "passed": true,
+      "detail": "['ALL']"
+    },
+    {
+      "check": "control: no-new-privileges",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "control: not privileged",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "control: runs as non-root 65532",
+      "passed": true,
+      "detail": "65532:65532"
+    },
+    {
+      "check": "control: memory limit set",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "control: CPU limit set",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "control: pid limit set",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "control: no host namespaces",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "control: Docker socket never mounted",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "control: only named volumes, no host bind mounts",
+      "passed": true,
+      "detail": "volume:/data"
+    },
+    {
+      "check": "range network is internal (no external routing)",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "target publishes no ports",
+      "passed": true,
+      "detail": "{}"
+    },
+    {
+      "check": "target is attached only to the internal range network",
+      "passed": true,
+      "detail": "cydeline-isolation-0d814939d4_range_internal"
+    },
+    {
+      "check": "control publishes one port, bound to loopback only",
+      "passed": true,
+      "detail": "{'8000/tcp': [{'HostIp': '127.0.0.1', 'HostPort': '36811'}]}"
+    },
+    {
+      "check": "control bridges the range and service networks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "target HTTP listener becomes ready",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "target rejects an unauthenticated peer on its own network",
+      "passed": true,
+      "detail": "401"
+    },
+    {
+      "check": "target rejects a wrong secret",
+      "passed": true,
+      "detail": "401"
+    },
+    {
+      "check": "target cannot open an outbound connection",
+      "passed": true,
+      "detail": "blocked"
+    },
+    {
+      "check": "target cannot resolve external names",
+      "passed": true,
+      "detail": "unresolved"
+    },
+    {
+      "check": "target: application tree is read-only",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "target: data volume is writable",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "target: no Docker socket inside",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "target: uid is 65532",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "control: application tree is read-only",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "control: data volume is writable",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "control: no Docker socket inside",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "control: uid is 65532",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "control answers on the published loopback port",
+      "passed": true,
+      "detail": "200"
+    },
+    {
+      "check": "control reaches the target with its secret (health probe)",
+      "passed": true,
+      "detail": "{\"control\": \"ok\", \"target\": \"ok\"}"
+    },
+    {
+      "check": "scenario catalog served",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "learner can provision a fresh target through control",
+      "passed": true,
+      "detail": "200 {'run_id': 'run_f616c5d49cab438b835e', 'scenario_id': 'stolen-session', 'scenario_version': 'v1', 'scenario': {'scenario_id': 'stolen-session', 'version': 'v1',"
+    },
+    {
+      "check": "run starts",
+      "passed": true,
+      "detail": "200"
+    },
+    {
+      "check": "GET /api/runs/{run} succeeds",
+      "passed": true,
+      "detail": "200"
+    },
+    {
+      "check": "GET /api/runs/{run}/events succeeds",
+      "passed": true,
+      "detail": "200"
+    },
+    {
+      "check": "GET /api/runs succeeds",
+      "passed": true,
+      "detail": "200"
+    },
+    {
+      "check": "GET /api/progress succeeds",
+      "passed": true,
+      "detail": "200"
+    },
+    {
+      "check": "GET /api/health succeeds",
+      "passed": true,
+      "detail": "200"
+    },
+    {
+      "check": "no range secret in any browser-visible response",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "no instructor PIN in any browser-visible response",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "no hidden scenario fields in live-run responses",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "a different learner cannot read the run",
+      "passed": true,
+      "detail": "404"
+    },
+    {
+      "check": "a different learner cannot change the run",
+      "passed": true,
+      "detail": "404"
+    },
+    {
+      "check": "a learner cannot reach instructor routes",
+      "passed": true,
+      "detail": "403"
+    },
+    {
+      "check": "cross-origin mutations are refused",
+      "passed": true,
+      "detail": "403"
+    },
+    {
+      "check": "teardown leaves no containers behind",
+      "passed": true,
+      "detail": ""
+    }
+  ]
+}

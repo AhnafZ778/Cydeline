@@ -1,0 +1,39 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "event_ids": {
+      "items": {
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+        "type": "string"
+      },
+      "maxItems": 100,
+      "minItems": 1,
+      "title": "Event Ids",
+      "type": "array"
+    },
+    "type": {
+      "enum": [
+        "IP Address",
+        "URL",
+        "Domain",
+        "Access Handle",
+        "Other"
+      ],
+      "title": "Type",
+      "type": "string"
+    },
+    "value": {
+      "maxLength": 1000,
+      "minLength": 1,
+      "title": "Value",
+      "type": "string"
+    }
+  },
+  "required": [
+    "type",
+    "value",
+    "event_ids"
+  ],
+  "title": "CaseArtifact",
+  "type": "object"
+}

@@ -1,0 +1,49 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "action_impact": {
+      "default": "",
+      "maxLength": 4000,
+      "title": "Action Impact",
+      "type": "string"
+    },
+    "contradicting_evidence": {
+      "default": "",
+      "maxLength": 4000,
+      "title": "Contradicting Evidence",
+      "type": "string"
+    },
+    "hypothesis": {
+      "default": "",
+      "maxLength": 4000,
+      "title": "Hypothesis",
+      "type": "string"
+    },
+    "observation": {
+      "default": "",
+      "maxLength": 4000,
+      "title": "Observation",
+      "type": "string"
+    },
+    "scope_uncertainty": {
+      "default": "",
+      "maxLength": 4000,
+      "title": "Scope Uncertainty",
+      "type": "string"
+    },
+    "supporting_evidence": {
+      "default": "",
+      "maxLength": 4000,
+      "title": "Supporting Evidence",
+      "type": "string"
+    },
+    "verification_handoff": {
+      "default": "",
+      "maxLength": 4000,
+      "title": "Verification Handoff",
+      "type": "string"
+    }
+  },
+  "title": "WorksheetFields",
+  "type": "object"
+}

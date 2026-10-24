@@ -5,7 +5,7 @@
 |---|---|
 | **Segment / Task ID** | `ahnaf-lead-ux` |
 | **Assigned Owner** | Ahnaf (Team Lead, Overseer & Defender Command Center UX) |
-| **Active Lifecycle Phase** | **`IMPLEMENT`** (`PLAN` → `IMPLEMENT` → `EVALUATE`) |
+| **Active Lifecycle Phase** | **`EVALUATE`** (`PLAN` → `IMPLEMENT` → `EVALUATE`) |
 | **Primary Handover Spec** | `Ahnaf.md` |
 | **Task Contract (`harness-plan`)** | `context/contracts/ahnaf-lead-ux.contract.md` |
 | **Evaluation Record (`harness-evaluate`)** | `context/evaluations/ahnaf-lead-ux.eval.md` |
@@ -35,7 +35,7 @@ harness check run /home/ahnaf-zakaria/Downloads/Cydeline
 
 - **Goal:** Oversee cross-team integration and deliver the 7-state React/TypeScript Defender Command Center (apps/web/), Playwright E2E suite (tests/e2e/), and 3-minute competition demo (docs/demo/).
 - **IMMEDIATE NEXT STEP (`next_step`):**
-  > **Wait for user approval of Log Management before touching Endpoint, Email, or Monitoring.**
+  > **Retain the verified UI and final-v8 evidence. Complete manual accessibility checks before conformance claims; follow AI-LEARN-01/02 for the next product-quality increment. Pilot sessions are user-deferred; kit ready.**
 
 ---
 
@@ -57,15 +57,30 @@ harness check run /home/ahnaf-zakaria/Downloads/Cydeline
 - [x] Pulled origin/chore/publish-workstreams (7414f37: Tanvir red-agent B1-B3 and Saad canonical contracts S1). Merged the segment index so Ahnaf stays IMPLEMENT and Tanvir/Saad keep their new phases. The live control client now translates canonical events, debriefs, replays, declarations, defender actions and verification into the workbench view models, including the attack map. Simulation mode is unchanged. Vitest 37/37, Playwright 9/9, typecheck clean.
 - [x] Added a custom SOC console with the same tool rail and alert-channel arrangement, Ember styling, and fictional Northstar data. Channel transitions covered by unit tests and exercised in the browser.
 - [x] Log Management filter row no longer stretches the page. Event lines ellipsize inside the card.
+- [x] Reviewed current repository for Ahnaf: estimated narrow MVP readiness 40-45%; confirmed missing target/control/range, live snapshot/SSE and rubric/continuity gaps. Frontend 44 tests/typecheck/build pass; AI 164 tests OK with 9 skips; contract tests blocked by missing Pydantic; browser console regression recorded. Saved full audit in evaluation ledger.
+- [x] Completed a 32-entry public-source SOC simulator and cyber-range feature comparison, customer-feedback review, AI competitor distinctions and Cydeline implementation mapping; no application changes.
+- [x] Unified live SOC console passes three actual browser journeys, including server-saved notebook refresh, real containment/recovery, debrief/export, blind assessment and responsive catalog; 44 existing frontend tests pass.
+- [x] Unified live SOC console, case workflow, actual response/verification/debrief, cohort instructor, learner login, assignments and responsive catalog implemented. E2E 3/3, Vitest 44/44, typecheck/build passed. The evidence-bound assistant endpoint is backend-only with no UI. See docs/product/HANDOFF_2026-10-22.md.
+- [x] Restored original default landing/console and pre-existing tab layouts; retained live additions; frontend build and 53 tests pass. Sandbox connected to Windows desktop API.
+- [x] Restored the accepted original landing and all pre-existing SOC tab layouts, with new live tabs retained as additions. Build, 53 frontend tests, 17 browser checks, 269 backend tests and 18 subtests pass; Harness run/evaluate pass. Windows VM/gateway infrastructure verified on a synthetic BIOS disk; actual Windows image remains required.
+- [x] Practice and live views now share TopNav/SideNav with identical icons, labels, training links and collapse state. Live status/pause/end controls moved to content toolbar; duplicate navigation CSS removed. Build and 53 unit tests pass; desktop screenshots reviewed.
+- [x] Unified original and live page navigation using shared TopNav/SideNav. Tool icons, labels, all training links, active markers, sizing and collapse remain consistent. Build, 53 unit tests, 13 browser checks and Harness run/evaluate pass; desktop/mobile layouts reviewed.
+- [x] Approved consolidation contracts recorded; unified run provider, two scenario cards, original monitoring/log/case layouts wired to live APIs. Typecheck/build and 53 frontend tests pass; backend regressions require fresh schema export and new case/AI failure tests.
+- [x] Recovered beginner UI: briefing/Begin, authored exercises, revision-checked worksheet with refresh/offline/conflict recovery, analyst-scoped drafts, case base revisions, variation/debrief and grounded-coach controls. Frontend 54 tests/build pass; responsive/browser and independent recovery checks recorded in BEGINNER_LEARNING_HANDOFF.md.
+- [x] Post-interruption reconciliation: corrected obsolete App.tsx evidence pointer to the current app/App.tsx source; frontend 54 tests/build and whitespace checks pass. Final browser rerun uses a restarted task preview and persistent /tmp log.
+- [x] Final stable frontend verification: 54 unit tests, production build and all 23 consolidated console/learning browser tests pass. Durable browser log saved in docs/demo/learning/browser-verification.txt; actual live-service integration and participant gates remain explicit.
+- [x] Genuine browser3/3 passed both terminal report/export workflows and assessment restrictions; enhanced current suite adds coach/dispute and offline recovery; frontend54tests/buildpass.
+- [x] Current V8 browser journeys passed individually across the documented interruption: Stolen Session, Reporting and assessment. Offline worksheet text, persisted dispute, recovery, submitted report, immutable terminal state and export verified. Frontend: 54 tests/build and prior 23 console/learning/navigation checks pass. Raw canonical replay artifacts and executed/writer hashes independently verified; live coach 51989ms tail retained.
 
 ### Remaining Work (`remaining`)
-- [ ] Increment A4: Add Playwright E2E test in tests/e2e/ and record 3-minute demo in docs/demo/
+- [ ] Manual zoom, reduced-motion and assistive-technology evaluation remain unverified; do not claim full accessibility or beginner usability.
 
 ### Active Blockers (`blockers`)
 - _None recorded_
 
 ### Open Uncertainties / Assumptions (`uncertainties`)
-- Awaiting Saad's live apps/control-api/ for Increment A3 live wiring (unblocked for Increments A1-A2 via static fixtures)
+- Current coached/dispute/offline browser suite is pending; full assistive-technology and participant usability remain unobserved.
+- User explicitly chose Leave the pilot kit ready on 24 October 2026; actual participant usefulness, transfer and delayed retention remain unobserved future work.
 
 
 ---
@@ -109,6 +124,7 @@ harness check run /home/ahnaf-zakaria/Downloads/Cydeline
 - Use Warm Alabaster & Ink (#FAF9F5 / #FFFFFF / #141413) 2-Pane Linear/Lichess Tactical Arena with keyboard shortcut keycaps ([E], [D], [R], [F]) instead of heavy dark-mode 3-column SIEM boxes
 - Enforce Pure White (#FFFFFF) surfaces across all panes/rows/inspectors with Deep Midnight Slate (#0B1120) and Deep Navy (#1E3A8A) text for 18:1 AAA contrast and cohesive light-theme readability
 - Approval gate for U0 mockups waived by user instruction to continue through all todos; mockups remain available for revision
+- User deferred actual participant sessions; preserve the blank pilot kit and do not fabricate study outcomes.
 
 ### Architecture Entry Points (`architecture`)
 - Ahnaf.md
@@ -117,19 +133,29 @@ harness check run /home/ahnaf-zakaria/Downloads/Cydeline
 - apps/web/
 - tests/e2e/
 - docs/demo/
+- docs/product/BEGINNER_LEARNING_PLAN.md
+- docs/product/BEGINNER_LEARNING_HANDOFF.md
 
 ### Verified Evidence Files (`evidence`)
-- Ahnaf.md
+- /home/ahnaf-zakaria/.cursor/projects/home-ahnaf-zakaria-Downloads-Cydeline/assets/sentinel-loop-cool-pop-ui.png
+- /home/ahnaf-zakaria/.cursor/projects/home-ahnaf-zakaria-Downloads-Cydeline/assets/sentinel-loop-editorial-white-ui.png
+- /home/ahnaf-zakaria/.cursor/projects/home-ahnaf-zakaria-Downloads-Cydeline/assets/sentinel-loop-linear-light-ui.png
+- /home/ahnaf-zakaria/.cursor/projects/home-ahnaf-zakaria-Downloads-Cydeline/assets/sentinel-loop-soc-ui-reference.jpg
 - 07_OWNER_D_DEFENDER_UX_QA_DEMO.md
+- Ahnaf.md
+- apps/web/src/api/liveHttpClient.ts
+- apps/web/src/api/simulationClient.ts
+- apps/web/src/app/App.tsx
+- apps/web/src/features/live/LiveSocApp.tsx
 - context/contracts/ahnaf-lead-ux.contract.md
 - context/evaluations/ahnaf-lead-ux.eval.md
-- /home/ahnaf-zakaria/.cursor/projects/home-ahnaf-zakaria-Downloads-Cydeline/assets/sentinel-loop-soc-ui-reference.jpg
-- /home/ahnaf-zakaria/.cursor/projects/home-ahnaf-zakaria-Downloads-Cydeline/assets/sentinel-loop-linear-light-ui.png
-- /home/ahnaf-zakaria/.cursor/projects/home-ahnaf-zakaria-Downloads-Cydeline/assets/sentinel-loop-editorial-white-ui.png
-- /home/ahnaf-zakaria/.cursor/projects/home-ahnaf-zakaria-Downloads-Cydeline/assets/sentinel-loop-cool-pop-ui.png
-- apps/web/src/App.tsx
-- apps/web/src/api/simulationClient.ts
-- apps/web/src/api/liveHttpClient.ts
+- docs/demo/learning/final-v8/receipt.json
+- docs/model-card/learning/COMPOSE_ISOLATION_FINAL_CURRENT.json
+- docs/model-card/learning/INDEPENDENT_REVIEW_2026-10-24.md
+- docs/product/BEGINNER_LEARNING_HANDOFF.md
+- docs/product/KNOWN_ISSUES.md
+- docs/product/SOC_SIMULATOR_FEATURE_RESEARCH.md
+- tests/e2e/live.spec.ts
 
 
 ---

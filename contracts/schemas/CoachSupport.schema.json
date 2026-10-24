@@ -1,0 +1,30 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "field": {
+      "maxLength": 80,
+      "minLength": 1,
+      "title": "Field",
+      "type": "string"
+    },
+    "quote": {
+      "maxLength": 500,
+      "minLength": 1,
+      "title": "Quote",
+      "type": "string"
+    },
+    "source_id": {
+      "maxLength": 100,
+      "minLength": 1,
+      "title": "Source Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "source_id",
+    "field",
+    "quote"
+  ],
+  "title": "CoachSupport",
+  "type": "object"
+}

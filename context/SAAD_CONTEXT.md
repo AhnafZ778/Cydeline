@@ -5,7 +5,7 @@
 |---|---|
 | **Segment / Task ID** | `saad-range-control` |
 | **Assigned Owner** | Saad (Virtual Company Cyber Range & Trusted Control Plane Owner) |
-| **Active Lifecycle Phase** | **`IMPLEMENT`** (`PLAN` → `IMPLEMENT` → `EVALUATE`) |
+| **Active Lifecycle Phase** | **`EVALUATE`** (`PLAN` → `IMPLEMENT` → `EVALUATE`) |
 | **Primary Handover Spec** | `Saad.md` |
 | **Task Contract (`harness-plan`)** | `context/contracts/saad-range-control.contract.md` |
 | **Evaluation Record (`harness-evaluate`)** | `context/evaluations/saad-range-control.eval.md` |
@@ -35,7 +35,7 @@ harness check run /home/ahnaf-zakaria/Downloads/Cydeline
 
 - **Goal:** Deliver canonical contracts (contracts/, scenarios/), the isolated Northstar Analytics target range (apps/target-api/, infra/range/), and the trusted control plane with SSE, verification, 100-pt scoring, and replay (apps/control-api/).
 - **IMMEDIATE NEXT STEP (`next_step`):**
-  > **Start Increment S2 (SL-002, SL-006): build apps/target-api/ (Northstar FastAPI + SQLite, sess_A/doc_finance_07 enforcement, defender actuation, Eli benign probe, target audit log, deterministic 10x reset) + tests/target/ and infra/range/Dockerfile.target.**
+  > **Identify a compatible operator-provided BIOS/IDE Windows image or installation medium, prepare the standalone qcow2, ensure at least6GiB available RAM, restart only the selected worker with WINDOWS_BASE_IMAGE configured, and verify a real desktop via Sandbox.**
 
 ---
 
@@ -46,17 +46,27 @@ harness check run /home/ahnaf-zakaria/Downloads/Cydeline
 - [x] Authored complete backend task contract in context/contracts/saad-range-control.contract.md
 - [x] Increment S1 (SL-001): Create contracts/ (canonical enums, schemas, mock fixtures) and scenarios/stolen-session/v1/
 - [x] S1 verified: 35 contract tests pass (python -m unittest discover -s tests/control); 25 JSON schemas + enums.json exported; scenario/rubric invariants and red-agent vocabulary parity validated.
+- [x] S2 target implemented and five actual HTTP integration tests passed, including broad-action disruption and ten disposable target cycles.
+- [x] S3/S4 trusted runtime has eight passing control integration tests; actual Qwen3 warm model proposal executed against target with matching audit; cold timeout disclosed.
+- [x] Added persisted cohort assignments, server-enforced membership and assessment conditions, registered-analyst handoff access, instructor communication, generation-scoped optional-tool cleanup, and typed target audit compatibility. Eighteen live target/control tests plus two tool protocol tests pass.
+- [x] Actual HTTP training target, WAL control plane, v1/v2 routes, two-route containment, SSE/replay/scoring, instructor authorization and assistant API implemented. 220 Python tests passed; Compose images built but not started; analyst desktop build hit UID collision (source fixed, rebuild not verified). See docs/product/HANDOFF_2026-10-22.md.
+- [x] Windows desktop profile implemented; real QEMU/KVM display and authenticated Guacamole grant, read-only mounts, private networking, immutable base and cleanup passed using a synthetic BIOS disk. Windows hypervisor Docker image built; four Windows safeguards added.
+- [x] Added authenticated alert ownership/comments and one-case-per-run idempotent revision-checked playbook APIs; model readiness and system AI failure pause/retry implemented; 30 targeted backend tests pass.
+- [x] Learning persistence, target variants and terminal/historical replay fixes verified: backend 345 tests +18 subtests pass; independent authority/race/hash/long-excerpt checks resolved. Six target configurations and 12 real-model early-containment journeys recorded; deployed isolation/live-browser/objective-read gates remain.
+- [x] DisposableDocker isolation58/58 and10actualreset endpoint test pass; genuine browser3/3 passes target-audited response/recovery/terminalexport; observed permission and403status fixes retain server authority.
+- [x] Current-source Docker target/control proof 58/58 passes with disposable teardown. Native: 359 tests plus 18 subtests pass, actual ten-reset endpoint regression passes, genuine browser/API recovery and canonical raw replays verified. Target denial remains intact in failed AI objective trials. Model-container isolation is not claimed; optional Windows remains separate.
+- [x] Read-only current Windows diagnosis: all running workers lack WINDOWS_BASE_IMAGE; no default base image or active VM containers. KVM and gateway images exist. Available memory about2.2GiB is below6GiB Windows launch gate. Synthetic gateway proof does not establish actual Windows boot; no installation or service changes performed.
 
 ### Remaining Work (`remaining`)
-- [ ] Increment S2 (SL-002, SL-006): Build apps/target-api/ and tests/target/ (including 10x clean reset test)
-- [ ] Increment S3 (SL-004, SL-008): Build apps/control-api/ (SQLite store, SSE stream, declaration, idempotent actions, dual verification) and tests/control/
-- [ ] Increment S4 (SL-010, SL-012): Implement 100-point rubric, outcome gates, read-only /replay, and tests/isolation/
+- [ ] Optional legacy Windows boot awaits an operator-provided image; outside the beginner learning delivery.
+- [ ] Model-container isolation and public-deployment verification remain separate, unperformed release gates.
 
 ### Active Blockers (`blockers`)
-- _None recorded_
+- Actual Windows OS boot requires an operator-prepared BIOS/IDE Windows qcow2 image at WINDOWS_BASE_IMAGE; none exists on this host.
 
 ### Open Uncertainties / Assumptions (`uncertainties`)
-- Confirm whether demo host uses rootless Docker compose internal network or dedicated disposable VM for infra/range/
+- Current proof covers target/control Docker isolation, not model-container isolation. Optional Windows boot still requires a prepared qcow2 image.
+- User explicitly chose Leave the pilot kit ready on 24 October 2026; actual participant usefulness, transfer and delayed retention remain unobserved future work.
 
 
 ---
@@ -93,6 +103,7 @@ harness check run /home/ahnaf-zakaria/Downloads/Cydeline
 - Consolidate Workstream A (target-api) and Workstream C (control-api + contracts) under Saad for unified FastAPI + SQLite backend execution
 - Implement TargetAdapter protocol supporting both direct in-process testing and isolated container HTTP transport
 - Use SQLite WAL mode with per-run lock serialization so containment commits before the next attacker request is dispatched (T-07)
+- User deferred actual participant sessions; preserve the blank pilot kit and do not fabricate study outcomes.
 
 ### Architecture Entry Points (`architecture`)
 - Saad.md
@@ -103,13 +114,26 @@ harness check run /home/ahnaf-zakaria/Downloads/Cydeline
 - scenarios/stolen-session/v1/
 - apps/target-api/
 - apps/control-api/
+- docs/product/BEGINNER_LEARNING_PLAN.md
+- docs/product/BEGINNER_LEARNING_HANDOFF.md
 
 ### Verified Evidence Files (`evidence`)
-- Saad.md
 - 04_OWNER_A_CYBER_RANGE.md
 - 06_OWNER_C_CONTROL_SCORING.md
+- Saad.md
 - context/contracts/saad-range-control.contract.md
 - context/evaluations/saad-range-control.eval.md
+- docs/demo/learning/final-v8/receipt.json
+- docs/model-card/LIVE_INTEGRATION.md
+- docs/model-card/learning/COMPOSE_ISOLATION_FINAL_CURRENT.json
+- docs/model-card/learning/INDEPENDENT_REVIEW_2026-10-24.md
+- docs/product/BEGINNER_LEARNING_HANDOFF.md
+- docs/product/KNOWN_ISSUES.md
+- docs/product/WINDOWS_VM.md
+- services/range_runtime/engine.py
+- services/range_runtime/target.py
+- tests/control/test_live_control.py
+- tests/target/test_live_target.py
 
 
 ---

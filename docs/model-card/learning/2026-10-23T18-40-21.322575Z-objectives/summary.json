@@ -1,0 +1,397 @@
+{
+  "started_at": "2026-10-23T18:40:21.322745Z",
+  "model": {
+    "reachable": true,
+    "base_url": "http://127.0.0.1:11434",
+    "configured_model": "qwen3:1.7b",
+    "model_present": true,
+    "models": [
+      {
+        "name": "qwen3:1.7b",
+        "digest": "8f68893c685c3ddff2aa3fffce2aa60a30bb2da65ca488b61fff134a4d1730e7",
+        "parameter_size": "2.0B",
+        "quantization_level": "Q4_K_M"
+      },
+      {
+        "name": "qwen2.5:1.5b",
+        "digest": "65ec06548149b04c096a120e4a6da9d4017ea809c91734ea5631e89f96ddc57b",
+        "parameter_size": "1.5B",
+        "quantization_level": "Q4_K_M"
+      },
+      {
+        "name": "qwen2:0.5b",
+        "digest": "6f48b936a09f7743c7dd30e72fdb14cba296bc5861902e4d0c387e8fb5050b39",
+        "parameter_size": "494.03M",
+        "quantization_level": "Q4_0"
+      },
+      {
+        "name": "mistral:latest",
+        "digest": "6577803aa9a036369e481d648a2baebb381ebc6e897f2bb9a766a2aa7bfbc1cf",
+        "parameter_size": "7.2B",
+        "quantization_level": "Q4_K_M"
+      }
+    ]
+  },
+  "config": {
+    "model": "qwen3:1.7b",
+    "base_url": "http://127.0.0.1:11434",
+    "timeout_ms": 30000,
+    "temperature": 0.7,
+    "num_predict": 130,
+    "seed": 42,
+    "think": false
+  },
+  "selector_config": {
+    "model": "qwen3:1.7b",
+    "base_url": "http://127.0.0.1:11434",
+    "timeout_ms": 30000,
+    "temperature": 0.1,
+    "num_predict": 80,
+    "seed": 42,
+    "think": false
+  },
+  "trials": [
+    {
+      "id": "stolen-session-baseline-1",
+      "passed": true,
+      "manifest_hash": "9c165fe59c8b1cd7295379504dbe3b6a10e23e2076e4f3a48802d9234329dd6d",
+      "seed": 20261023,
+      "objective_resource": "doc_finance_07",
+      "protected_reads": [
+        {
+          "event_id": "evt_400def8fb5484ac79706",
+          "decision_id": "decision_55070113bd0e4378919b",
+          "target_audit_id": "audit_4af6bbb854dc49f78e9a",
+          "session_handle": "sess_A",
+          "correlation_id": "req_ab13470ccbac4d62bad5",
+          "virtual_clock_sec": 32.0
+        }
+      ],
+      "pacing_passed": true,
+      "objective_from_accepted_model": true,
+      "target_actions_correlated": true,
+      "trace_hash": "f97f1c71dbcb92ee81dcf7b7a954cf1d139c7aece6773b9fc42d75260b85ac90",
+      "outcome": "attacker_objective_reached",
+      "decisions": 5,
+      "rejected": 0,
+      "fallback_execution": 0
+    },
+    {
+      "id": "stolen-session-baseline-2",
+      "passed": true,
+      "manifest_hash": "9c165fe59c8b1cd7295379504dbe3b6a10e23e2076e4f3a48802d9234329dd6d",
+      "seed": 20261024,
+      "objective_resource": "doc_finance_07",
+      "protected_reads": [
+        {
+          "event_id": "evt_549b512db88049e5911e",
+          "decision_id": "decision_9a61b086ff5f4192b307",
+          "target_audit_id": "audit_64450d0e3708418fa2c6",
+          "session_handle": "sess_A",
+          "correlation_id": "req_993cfddaad5e4044af9a",
+          "virtual_clock_sec": 32.0
+        }
+      ],
+      "pacing_passed": true,
+      "objective_from_accepted_model": true,
+      "target_actions_correlated": true,
+      "trace_hash": "18cf2d37959af356fa879100a8dd75a760c2de413b015c0742d8a297e04bf030",
+      "outcome": "attacker_objective_reached",
+      "decisions": 5,
+      "rejected": 0,
+      "fallback_execution": 0
+    },
+    {
+      "id": "stolen-session-shared-work-1",
+      "passed": true,
+      "manifest_hash": "4d1fe3b1ce6dee16aee6e45968c2319619fae14522175aee3b88df57d2edb38c",
+      "seed": 20261023,
+      "objective_resource": "doc_finance_07",
+      "protected_reads": [
+        {
+          "event_id": "evt_5dbc4c0667d044fdab61",
+          "decision_id": "decision_621019401c3546bfad88",
+          "target_audit_id": "audit_b7e6aad09c8e4a838f66",
+          "session_handle": "sess_B",
+          "correlation_id": "req_d7ba7f58195a40569bc5",
+          "virtual_clock_sec": 32.0
+        }
+      ],
+      "pacing_passed": true,
+      "objective_from_accepted_model": true,
+      "target_actions_correlated": true,
+      "trace_hash": "cdcf8f1af00526cc4f74dadfe7aeccea8c741009a066c4af9cf2f3650ec0686b",
+      "outcome": "attacker_objective_reached",
+      "decisions": 5,
+      "rejected": 0,
+      "fallback_execution": 0
+    },
+    {
+      "id": "stolen-session-shared-work-2",
+      "passed": true,
+      "manifest_hash": "4d1fe3b1ce6dee16aee6e45968c2319619fae14522175aee3b88df57d2edb38c",
+      "seed": 20261024,
+      "objective_resource": "doc_finance_07",
+      "protected_reads": [
+        {
+          "event_id": "evt_e6539cc89b784cf6bb7e",
+          "decision_id": "decision_e5deba74cb1542219d33",
+          "target_audit_id": "audit_c74b24f8e2bf43328da5",
+          "session_handle": "sess_B",
+          "correlation_id": "req_fc7dc2211a9144e88fad",
+          "virtual_clock_sec": 32.0
+        }
+      ],
+      "pacing_passed": true,
+      "objective_from_accepted_model": true,
+      "target_actions_correlated": true,
+      "trace_hash": "b48b0e38ce88e99d688d54a4f7fe7772a653967db00fe7674a33bdad5e4e5a8e",
+      "outcome": "attacker_objective_reached",
+      "decisions": 5,
+      "rejected": 0,
+      "fallback_execution": 0
+    },
+    {
+      "id": "stolen-session-service-dependent-1",
+      "passed": true,
+      "manifest_hash": "ed34e0e9d71924b89d3bc4a787e71d26636ea3c0418e6291806d1f6f864ba60f",
+      "seed": 20261023,
+      "objective_resource": "doc_payroll_03",
+      "protected_reads": [
+        {
+          "event_id": "evt_73dc798e707546128a89",
+          "decision_id": "decision_45defb4874ef4d6a8ac4",
+          "target_audit_id": "audit_a61b11e151ac434c9f95",
+          "session_handle": "sess_C",
+          "correlation_id": "req_7c00700985e8490d9216",
+          "virtual_clock_sec": 32.0
+        }
+      ],
+      "pacing_passed": true,
+      "objective_from_accepted_model": true,
+      "target_actions_correlated": true,
+      "trace_hash": "f5ee08246fa448aaa6a2c2f5c1c8a55ff919704fb7f385a3a12ed18bf5c8c06b",
+      "outcome": "attacker_objective_reached",
+      "decisions": 5,
+      "rejected": 0,
+      "fallback_execution": 0
+    },
+    {
+      "id": "stolen-session-service-dependent-2",
+      "passed": true,
+      "manifest_hash": "ed34e0e9d71924b89d3bc4a787e71d26636ea3c0418e6291806d1f6f864ba60f",
+      "seed": 20261024,
+      "objective_resource": "doc_payroll_03",
+      "protected_reads": [
+        {
+          "event_id": "evt_16a04d028cc0440a8b83",
+          "decision_id": "decision_b16aab3d9df843699dcc",
+          "target_audit_id": "audit_50140efc62504e2d9ee2",
+          "session_handle": "sess_C",
+          "correlation_id": "req_ba1c2aa2f19d4c71b297",
+          "virtual_clock_sec": 32.0
+        }
+      ],
+      "pacing_passed": true,
+      "objective_from_accepted_model": true,
+      "target_actions_correlated": true,
+      "trace_hash": "9a2609a9324366923056251569cf4e7aa9835921670fb7edaa75f115b5be0841",
+      "outcome": "attacker_objective_reached",
+      "decisions": 5,
+      "rejected": 0,
+      "fallback_execution": 0
+    },
+    {
+      "id": "northstar-breach-baseline-1",
+      "passed": true,
+      "manifest_hash": "8874acf8d74d8cc25eb9ad0d421f4e89d39ebd8da9cca833d5b32ef618737995",
+      "seed": 20261023,
+      "objective_resource": "doc_finance_07",
+      "protected_reads": [
+        {
+          "event_id": "evt_21b727141b9844f983da",
+          "decision_id": "decision_3a11bf5cb6a14020ae52",
+          "target_audit_id": "audit_196a84afee88483f8bfd",
+          "session_handle": "sess_A",
+          "correlation_id": "req_0f4fc352d0cf40268030",
+          "virtual_clock_sec": 208.0
+        }
+      ],
+      "pacing_passed": true,
+      "objective_from_accepted_model": true,
+      "target_actions_correlated": true,
+      "trace_hash": "551d4682e59ff9a9e0efcb26ead2011b93f971170ff8b5bc7d2a6bf2984e4ffb",
+      "outcome": "attacker_objective_reached",
+      "decisions": 9,
+      "rejected": 0,
+      "fallback_execution": 0
+    },
+    {
+      "id": "northstar-breach-baseline-2",
+      "passed": true,
+      "manifest_hash": "8874acf8d74d8cc25eb9ad0d421f4e89d39ebd8da9cca833d5b32ef618737995",
+      "seed": 20261024,
+      "objective_resource": "doc_finance_07",
+      "protected_reads": [
+        {
+          "event_id": "evt_81ea1336f2e346ccaa71",
+          "decision_id": "decision_6a0226e09d44475683a7",
+          "target_audit_id": "audit_4970c9059d3b42719c71",
+          "session_handle": "sess_A",
+          "correlation_id": "req_fb4ff8ebe44844e7af0b",
+          "virtual_clock_sec": 208.0
+        }
+      ],
+      "pacing_passed": true,
+      "objective_from_accepted_model": true,
+      "target_actions_correlated": true,
+      "trace_hash": "8e2c4ff0266c6e51c8bd1048d8b0b8fc8dfe3f5512c9e8b11cd179a11b642a15",
+      "outcome": "attacker_objective_reached",
+      "decisions": 9,
+      "rejected": 0,
+      "fallback_execution": 0
+    },
+    {
+      "id": "northstar-breach-shared-work-1",
+      "passed": true,
+      "manifest_hash": "bcf428b94f681f5996dc7375f9fb5d9a44a0ce0d6112c255faa5f45e4ae05212",
+      "seed": 20261023,
+      "objective_resource": "doc_finance_07",
+      "protected_reads": [
+        {
+          "event_id": "evt_5ad8a8b26b9342409ebe",
+          "decision_id": "decision_bd616a1444ab424887cd",
+          "target_audit_id": "audit_93b194e500d74faf91fd",
+          "session_handle": "sess_B",
+          "correlation_id": "req_04a53b144e0c4cf69500",
+          "virtual_clock_sec": 208.0
+        }
+      ],
+      "pacing_passed": true,
+      "objective_from_accepted_model": true,
+      "target_actions_correlated": true,
+      "trace_hash": "ccc707d510e533d0a16bd17865c2e57df3b20904702d68743a203977248ccb87",
+      "outcome": "attacker_objective_reached",
+      "decisions": 9,
+      "rejected": 0,
+      "fallback_execution": 0
+    },
+    {
+      "id": "northstar-breach-shared-work-2",
+      "passed": true,
+      "manifest_hash": "bcf428b94f681f5996dc7375f9fb5d9a44a0ce0d6112c255faa5f45e4ae05212",
+      "seed": 20261024,
+      "objective_resource": "doc_finance_07",
+      "protected_reads": [
+        {
+          "event_id": "evt_182ebcd15a814028b0b2",
+          "decision_id": "decision_cb1a90f8826f42768992",
+          "target_audit_id": "audit_4dc4eafdfcbd41c88930",
+          "session_handle": "sess_B",
+          "correlation_id": "req_3d05d3a146b748bca08c",
+          "virtual_clock_sec": 208.0
+        }
+      ],
+      "pacing_passed": true,
+      "objective_from_accepted_model": true,
+      "target_actions_correlated": true,
+      "trace_hash": "c36f3238a7bfd47da736234eed7224dae4643996a9aa0fbdf9e6a8c5a0b58622",
+      "outcome": "attacker_objective_reached",
+      "decisions": 9,
+      "rejected": 0,
+      "fallback_execution": 0
+    },
+    {
+      "id": "northstar-breach-service-dependent-1",
+      "passed": false,
+      "manifest_hash": "e08d4950ad4d1df544e8e739e5c59a01b09f010e13f967b91cade6c57c9d8d76",
+      "seed": 20261023,
+      "objective_resource": "doc_payroll_03",
+      "protected_reads": [],
+      "error": "No model objective read within the accepted scenario budget",
+      "pacing_passed": false,
+      "objective_from_accepted_model": false,
+      "target_actions_correlated": true,
+      "trace_hash": "d1f2a515afaf088657cbdccf8cef5249f3f4c4381786bddc59c42a8702f6a6e8",
+      "outcome": "technical_failure",
+      "decisions": 12,
+      "rejected": 0,
+      "fallback_execution": 0
+    },
+    {
+      "id": "northstar-breach-service-dependent-2",
+      "passed": false,
+      "manifest_hash": "e08d4950ad4d1df544e8e739e5c59a01b09f010e13f967b91cade6c57c9d8d76",
+      "seed": 20261024,
+      "objective_resource": "doc_payroll_03",
+      "protected_reads": [],
+      "error": "No model objective read within the accepted scenario budget",
+      "pacing_passed": false,
+      "objective_from_accepted_model": false,
+      "target_actions_correlated": true,
+      "trace_hash": "8129cb9b1ba3b1a788eb885ab1ca9295e44ebe1a3b3e1d6cbd98fca3a3754069",
+      "outcome": "technical_failure",
+      "decisions": 12,
+      "rejected": 0,
+      "fallback_execution": 0
+    }
+  ],
+  "filters": {
+    "scenario": null,
+    "variant": null
+  },
+  "source_sha256": {
+    "contracts/runtime.py": "72d69c33913dbdbad5ea1b99ee80fd79ae0f1e6292732e3a9a126da494559d00",
+    "scripts/learning_evidence.py": "f4c1140e4972bc0b9a5fbe52f04938193c85a17bcae06420bc69f757794fd821",
+    "scripts/prove_variant_objectives.py": "5f2f4fed69d4ef168d8c5c0d81d94e2fa5f99aac6b53132f9d10bec750e1b986",
+    "services/range_runtime/__init__.py": "4575eebb621c00155612d979f582eaf4e7cfef741557488b76f2ad997a3bd706",
+    "services/range_runtime/adapter.py": "7e91962acf55fc433f8284707df0a08cf75d80ef4b134475eb265982e66b862f",
+    "services/range_runtime/agent.py": "7a3eb492c4a7444985c6bb8fabc7ed73fa1e20104db91097861937e7b5e06b36",
+    "services/range_runtime/api.py": "53bcda891d30529a2a2a77c052943431e31a7f161ecb125521d87b894e33410e",
+    "services/range_runtime/assistant.py": "077d74a2db50d0f938b40505a94a6da50608dcbf2a0decb14607474e6ebd4216",
+    "services/range_runtime/casework.py": "f9bbdc1afb5afedf7b6a511e9e2b430de30bb2e27b2bfee6610ea27a9953d698",
+    "services/range_runtime/catalog.py": "c3f945dcb510cf8e85254456e339a3bea19d6e3e88fcdc70148fb1727188947b",
+    "services/range_runtime/common.py": "7c6d00c4a3d4dfee64da88988a334d9c3b49c49a6071a5efcee10104e54da5fa",
+    "services/range_runtime/db.py": "345a754afcc3766a9d3cbeaf90b061a44b15bb6ca88e05d7a9065f9918b43953",
+    "services/range_runtime/engine.py": "66217cbfc5d3c498dc584a6ba2acb41cacd2bef22dee931d143dd3ea5584d24d",
+    "services/range_runtime/learning.py": "6854226a9cc3cfc479ce2e94231e0993361b6d099665fbcc65424764422c6063",
+    "services/range_runtime/logs.py": "7486dd2a1bc2921ead72be2abb1b11e886d83c0cbd514cc320abb4a935e524a3",
+    "services/range_runtime/progress.py": "ee0e631fc9bddda2ea0ce02ae578359495400da763fec95648567426463b3d32",
+    "services/range_runtime/target.py": "a70ff59c613532d6c29b678b28c06926d18a3f85cdd1355bc3d8545f71c82a40",
+    "services/range_runtime/tool_worker.py": "2e4025f71a41602e8a8ba5fcaa5d55fd22c45efdf23f15b0c7366a583f7a0aea",
+    "services/range_runtime/variants.py": "e3851815d9507a64dd63720daec7fe6991251b728639ccfe49ceb1aa9b0b182a",
+    "services/red-agent/__init__.py": "93853a468d3fc2a46320c641a9af81d120994cc0408b676572c64ed6ab3060a1",
+    "services/red-agent/benchmark.py": "5446a65d74cc9b932d1d99da80af5feeaf3f2951a9aadf3b99e151b61c9b6f36",
+    "services/red-agent/contracts_adapter.py": "6698a4aeef80a13657de1ba6a9a137cb0d1bd61d305048a9fcf6ccc75a865235",
+    "services/red-agent/fallback.py": "d6e4fe90d7917ab17536fcb79fff1ab868c06f468a37bc6ddcbc89db6c06da4b",
+    "services/red-agent/observation.py": "fe1a3837d72b897c36c43203d0cba96d689f18de0e3f0862d26c037b517b2d13",
+    "services/red-agent/ollama_client.py": "36e28ef666dcde9a8825e862bcfe2ac2287b827d35729385dcc7094cbf9725ef",
+    "services/red-agent/prompts.py": "6c93922ef103e9ef271507c5ca4e01b4ab8cf43823a4de20e46edb2973114ac1",
+    "services/red-agent/schemas.py": "27af4fb1b280725037557a925a78c0ef93bf75109df7879efd26afcca02e747d",
+    "services/red-agent/service.py": "2dfceb8bda5fb6e583fb76c426046b1ad590fd850cdc32c419558c32c155914e",
+    "services/red-agent/validator.py": "3edd54f7238831135986142bf8766fa165830b922b317a8cb4bb4324c0d898f6"
+  },
+  "scenario_sha256": {
+    "scenarios/northstar-breach/v2/manifest.json": "ccb06bbd9d25dedb0ef893da64c3763045b5df229763c223d67fbe009f17c6c9",
+    "scenarios/northstar-breach/v2/rubric.json": "7fd687cd920229a0e35a01b66d6047c31b3e65851aebe4ec75b492f320f42f11",
+    "scenarios/northstar-breach/v2/variants/baseline.json": "200dfc855885c9d777b723017b5b087bc2c9eb793fd2d30b83e06928dbb0cf0b",
+    "scenarios/northstar-breach/v2/variants/service-dependent.json": "5174c4edcd85a376ff9aa32ce9fa5c5341ecbc82ee4735c2d8a868727e55e742",
+    "scenarios/northstar-breach/v2/variants/shared-work.json": "c66d9fa5442c3ce4689e63c72e4c1c71f01c3fd83fe90ab797ac9745f91a096c",
+    "scenarios/stolen-session/v1/manifest.json": "bb84aa606ce0da63b132fad047cff23afb983f800604a90acefed5a130633ff3",
+    "scenarios/stolen-session/v1/rubric.json": "d39d06711c21460ddfb5d1b2c9e33c0e50783830be66d1637e9f5815b8812f20",
+    "scenarios/stolen-session/v1/scenario.json": "56c35571a98517d43c6e44098796df030cf72f5032b480b73b7430d32e4596d4",
+    "scenarios/stolen-session/v1/variants/baseline.json": "b1483e53f4757ce41edd56abbee5fc8f319279ad78dc8e96db71eaa733c199a2",
+    "scenarios/stolen-session/v1/variants/service-dependent.json": "fcf6c5a6b7622ff7c430d3748ae10be3b7a31e62b05271bb70f3c4a00907f4b8",
+    "scenarios/stolen-session/v1/variants/shared-work.json": "ceaf039b991fb820c41ce23b1f9b847a1caae71ddc1a6b8203afc9de522fdd4e"
+  },
+  "hardware": {
+    "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39",
+    "cpu": "12th Gen Intel(R) Core(TM) i5-1235U",
+    "logical_cpus": 12,
+    "memory": "MemTotal:       15995468 kB"
+  },
+  "scope": "Uncontained model-selected objective reads via actual target HTTP ASGI transport. Virtual time advances to authorized turns. Container/browser proof and early-containment intervention traces are separate.",
+  "finished_at": "2026-10-23T18:46:32.987163Z",
+  "expected_trials": 12,
+  "passed": false
+}

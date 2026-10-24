@@ -1,0 +1,33 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "action": {
+      "enum": [
+        "revoke_session",
+        "require_reauthentication",
+        "temporarily_disable_account",
+        "restore_account",
+        "revoke_api_credential"
+      ],
+      "title": "Action",
+      "type": "string"
+    },
+    "idempotency_key": {
+      "pattern": "^[A-Za-z0-9_.:-]{8,128}$",
+      "title": "Idempotency Key",
+      "type": "string"
+    },
+    "target_handle": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,31}$",
+      "title": "Target Handle",
+      "type": "string"
+    }
+  },
+  "required": [
+    "action",
+    "target_handle",
+    "idempotency_key"
+  ],
+  "title": "LiveDefense",
+  "type": "object"
+}

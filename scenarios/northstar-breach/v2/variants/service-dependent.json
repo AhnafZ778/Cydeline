@@ -1,0 +1,33 @@
+{
+  "schema_version": "learning-1",
+  "id": "service-dependent",
+  "version": "1",
+  "label": "Variation 3",
+  "scenario_id": "northstar-breach",
+  "scenario_version": "v2",
+  "browser_handle": "sess_C",
+  "browser_owner": "maya",
+  "objective_resource": "doc_payroll_03",
+  "browser_objective_access": false,
+  "reporting_objective_access": true,
+  "reporting_owner": "reporting",
+  "concurrent_sessions": 3,
+  "workflows": [
+    {
+      "owner": "maya",
+      "resource": "doc_ops_02",
+      "kind": "browser_session"
+    },
+    {
+      "owner": "eli",
+      "resource": "doc_ops_02",
+      "kind": "browser_session"
+    },
+    {
+      "owner": "reporting",
+      "resource": "doc_payroll_03",
+      "kind": "api_credential"
+    }
+  ],
+  "background_denial": true
+}

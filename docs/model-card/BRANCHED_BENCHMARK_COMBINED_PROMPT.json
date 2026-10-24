@@ -1,0 +1,780 @@
+{
+  "generated_at": "2026-10-22T20:54:22.658407Z",
+  "trials": 10,
+  "adaptations": 0,
+  "required": 8,
+  "passed": false,
+  "definition": "Executed validated model-selected probe of the remaining reporting credential after actual primary revocation. Fallback and stop do not count when another route remains.",
+  "pairs": [
+    {
+      "pair": 1,
+      "pre": {
+        "decision_id": "decision_3c2e87b0a7a04b6899d3",
+        "run_id": "run_35f43187855e47c0a328",
+        "step": 0,
+        "role": "scout",
+        "model_id": "qwen3:1.7b",
+        "prompt_hash": "8b9a93ac7357b0dcb571618a90a6f01ca5dfe675727b2cf2389a9bd5f06f6bfb",
+        "observation_hash": "9ac1f208a86210261fc245bb64591acf8f64ab053aac21e8805b1b689bee3373",
+        "proposed_json": {
+          "role": "scout",
+          "action": "wait",
+          "session_handle": null,
+          "target_id": null,
+          "reason": "Model decision unavailable; bounded fallback."
+        },
+        "accepted_action": null,
+        "accepted": false,
+        "rejection_reason": "ValueError: stage2:action_not_in_permitted_actions: action 'list_accessible_documents' is not in this turn's permitted actions ['inspect_session_status', 'stop', 'test_exis",
+        "latency_ms": 6003,
+        "fallback_used": true,
+        "created_at": "2026-10-22T20:52:18.223789Z"
+      },
+      "post": {
+        "decision_id": "decision_9d42582d99024b8b9e85",
+        "run_id": "run_35f43187855e47c0a328",
+        "step": 1,
+        "role": "adaptation_planner",
+        "model_id": "qwen3:1.7b",
+        "prompt_hash": "98e02dd3b3b5eba7ff32692461c92f5d313eb433e570a5e0018a696c8543b6b0",
+        "observation_hash": "406cfdcc7802bde54743ac759fb23fba27f79ca799927cb0ff26dc246bf43d41",
+        "proposed_json": {
+          "role": "adaptation_planner",
+          "action": "inspect_session_status",
+          "target_id": null,
+          "session_handle": "sess_A",
+          "reason": "Check the status of the revoked session handle."
+        },
+        "accepted_action": "inspect_session_status",
+        "accepted": true,
+        "rejection_reason": null,
+        "latency_ms": 4752,
+        "fallback_used": false,
+        "created_at": "2026-10-22T20:52:23.026425Z"
+      },
+      "adapted": false,
+      "target_events": [
+        {
+          "event_id": "evt_2c920fefa46d404096ef",
+          "run_id": "run_35f43187855e47c0a328",
+          "timestamp_utc": "2026-10-22T20:52:23.040713Z",
+          "visible_at_utc": "2026-10-22T20:52:23.040719Z",
+          "virtual_clock_sec": 8.0,
+          "source": "target-access",
+          "event_type": "session.status",
+          "actor_id": "maya",
+          "session_handle": "sess_A",
+          "resource_id": null,
+          "outcome": "denied",
+          "correlation_id": "req_6e9421f2536d4c419d1d",
+          "learner_visible": true,
+          "target_audit_id": "audit_c012e7ab9b5b46139926",
+          "network": {
+            "src_ip": "203.0.113.57",
+            "user_agent": "Northstar-training-client/1",
+            "http_method": "GET",
+            "path": "/session/status",
+            "status_code": 401,
+            "latency_ms": 1
+          },
+          "decision_id": "decision_9d42582d99024b8b9e85",
+          "_origin": "adversary",
+          "sequence": 19
+        }
+      ]
+    },
+    {
+      "pair": 2,
+      "pre": {
+        "decision_id": "decision_2c8441663ac14f469192",
+        "run_id": "run_839e129588a44c1ca109",
+        "step": 0,
+        "role": "scout",
+        "model_id": "qwen3:1.7b",
+        "prompt_hash": "8b9a93ac7357b0dcb571618a90a6f01ca5dfe675727b2cf2389a9bd5f06f6bfb",
+        "observation_hash": "55faaa1a1ef14c2adf7789d12bd79f173b15176c83ae4ced6fb8da7413529f01",
+        "proposed_json": {
+          "role": "scout",
+          "action": "wait",
+          "session_handle": null,
+          "target_id": null,
+          "reason": "Model decision unavailable; bounded fallback."
+        },
+        "accepted_action": null,
+        "accepted": false,
+        "rejection_reason": "ValueError: stage2:action_not_in_permitted_actions: action 'list_accessible_documents' is not in this turn's permitted actions ['inspect_session_status', 'stop', 'test_exis",
+        "latency_ms": 4720,
+        "fallback_used": true,
+        "created_at": "2026-10-22T20:52:27.819990Z"
+      },
+      "post": {
+        "decision_id": "decision_bab124f5517348fd92e5",
+        "run_id": "run_839e129588a44c1ca109",
+        "step": 1,
+        "role": "adaptation_planner",
+        "model_id": "qwen3:1.7b",
+        "prompt_hash": "98e02dd3b3b5eba7ff32692461c92f5d313eb433e570a5e0018a696c8543b6b0",
+        "observation_hash": "1e426bb6d5797db590e9169fef34d0ffc8e18314b83b49cb9ca8df6843afa605",
+        "proposed_json": {
+          "role": "adaptation_planner",
+          "action": "inspect_session_status",
+          "target_id": null,
+          "session_handle": "sess_A",
+          "reason": "Check the status of the revoked session handle."
+        },
+        "accepted_action": "inspect_session_status",
+        "accepted": true,
+        "rejection_reason": null,
+        "latency_ms": 5202,
+        "fallback_used": false,
+        "created_at": "2026-10-22T20:52:33.091284Z"
+      },
+      "adapted": false,
+      "target_events": [
+        {
+          "event_id": "evt_6514126d035f4ce49547",
+          "run_id": "run_839e129588a44c1ca109",
+          "timestamp_utc": "2026-10-22T20:52:33.102643Z",
+          "visible_at_utc": "2026-10-22T20:52:33.102649Z",
+          "virtual_clock_sec": 8.0,
+          "source": "target-access",
+          "event_type": "session.status",
+          "actor_id": "maya",
+          "session_handle": "sess_A",
+          "resource_id": null,
+          "outcome": "denied",
+          "correlation_id": "req_1acdfaf9e4e3479eb43f",
+          "learner_visible": true,
+          "target_audit_id": "audit_e2930b0bcf0c440d9efa",
+          "network": {
+            "src_ip": "203.0.113.57",
+            "user_agent": "Northstar-training-client/1",
+            "http_method": "GET",
+            "path": "/session/status",
+            "status_code": 401,
+            "latency_ms": 1
+          },
+          "decision_id": "decision_bab124f5517348fd92e5",
+          "_origin": "adversary",
+          "sequence": 19
+        }
+      ]
+    },
+    {
+      "pair": 3,
+      "pre": {
+        "decision_id": "decision_fc9af33fc77048629aaa",
+        "run_id": "run_cbd2738319ba484a9460",
+        "step": 0,
+        "role": "scout",
+        "model_id": "qwen3:1.7b",
+        "prompt_hash": "8b9a93ac7357b0dcb571618a90a6f01ca5dfe675727b2cf2389a9bd5f06f6bfb",
+        "observation_hash": "6aca58fd0e4f53494870b9c3d04ef2c2e530166ac413c13f607a88d85fc67a50",
+        "proposed_json": {
+          "role": "scout",
+          "action": "wait",
+          "session_handle": null,
+          "target_id": null,
+          "reason": "Model decision unavailable; bounded fallback."
+        },
+        "accepted_action": null,
+        "accepted": false,
+        "rejection_reason": "ValueError: stage2:action_not_in_permitted_actions: action 'list_accessible_documents' is not in this turn's permitted actions ['inspect_session_status', 'stop', 'test_exis",
+        "latency_ms": 5173,
+        "fallback_used": true,
+        "created_at": "2026-10-22T20:52:38.352882Z"
+      },
+      "post": {
+        "decision_id": "decision_d4d1faea16a048e19c2f",
+        "run_id": "run_cbd2738319ba484a9460",
+        "step": 1,
+        "role": "adaptation_planner",
+        "model_id": "qwen3:1.7b",
+        "prompt_hash": "98e02dd3b3b5eba7ff32692461c92f5d313eb433e570a5e0018a696c8543b6b0",
+        "observation_hash": "286e12966f0c03d455905413fb116a30b206e77e889ca123825e4432408b5cd9",
+        "proposed_json": {
+          "role": "adaptation_planner",
+          "action": "inspect_session_status",
+          "target_id": null,
+          "session_handle": "sess_A",
+          "reason": "Check the status of the revoked session handle."
+        },
+        "accepted_action": "inspect_session_status",
+        "accepted": true,
+        "rejection_reason": null,
+        "latency_ms": 5954,
+        "fallback_used": false,
+        "created_at": "2026-10-22T20:52:44.395277Z"
+      },
+      "adapted": false,
+      "target_events": [
+        {
+          "event_id": "evt_51f7462657194e688d83",
+          "run_id": "run_cbd2738319ba484a9460",
+          "timestamp_utc": "2026-10-22T20:52:44.410471Z",
+          "visible_at_utc": "2026-10-22T20:52:44.410482Z",
+          "virtual_clock_sec": 8.0,
+          "source": "target-access",
+          "event_type": "session.status",
+          "actor_id": "maya",
+          "session_handle": "sess_A",
+          "resource_id": null,
+          "outcome": "denied",
+          "correlation_id": "req_7afeca6786394d2fa8b5",
+          "learner_visible": true,
+          "target_audit_id": "audit_5eb6c679aa7c4570b2e2",
+          "network": {
+            "src_ip": "203.0.113.57",
+            "user_agent": "Northstar-training-client/1",
+            "http_method": "GET",
+            "path": "/session/status",
+            "status_code": 401,
+            "latency_ms": 1
+          },
+          "decision_id": "decision_d4d1faea16a048e19c2f",
+          "_origin": "adversary",
+          "sequence": 19
+        }
+      ]
+    },
+    {
+      "pair": 4,
+      "pre": {
+        "decision_id": "decision_2452072df6b64f71983c",
+        "run_id": "run_a9b28f9f68bb4ed1ae07",
+        "step": 0,
+        "role": "scout",
+        "model_id": "qwen3:1.7b",
+        "prompt_hash": "8b9a93ac7357b0dcb571618a90a6f01ca5dfe675727b2cf2389a9bd5f06f6bfb",
+        "observation_hash": "28dd28972617560ffb220ab8edd7428002baed0d579a969e6f29500b52e93c6d",
+        "proposed_json": {
+          "role": "scout",
+          "action": "list_accessible_documents",
+          "target_id": null,
+          "session_handle": "sess_A",
+          "reason": "List accessible documents for the active browser session"
+        },
+        "accepted_action": "list_accessible_documents",
+        "accepted": true,
+        "rejection_reason": null,
+        "latency_ms": 6003,
+        "fallback_used": false,
+        "created_at": "2026-10-22T20:52:50.504399Z"
+      },
+      "post": {
+        "decision_id": "decision_a07ca22aa61e42408c5d",
+        "run_id": "run_a9b28f9f68bb4ed1ae07",
+        "step": 1,
+        "role": "adaptation_planner",
+        "model_id": "qwen3:1.7b",
+        "prompt_hash": "98e02dd3b3b5eba7ff32692461c92f5d313eb433e570a5e0018a696c8543b6b0",
+        "observation_hash": "db2e0772cf12b4fc837c7a1b6f5d3a379f062d3817809cc4e2ddb5c950cd1e0c",
+        "proposed_json": {
+          "role": "adaptation_planner",
+          "action": "inspect_session_status",
+          "target_id": null,
+          "session_handle": "sess_A",
+          "reason": "Check the status of the revoked session handle."
+        },
+        "accepted_action": "inspect_session_status",
+        "accepted": true,
+        "rejection_reason": null,
+        "latency_ms": 6203,
+        "fallback_used": false,
+        "created_at": "2026-10-22T20:52:56.805052Z"
+      },
+      "adapted": false,
+      "target_events": [
+        {
+          "event_id": "evt_de467f3288ff4cbaa1b2",
+          "run_id": "run_a9b28f9f68bb4ed1ae07",
+          "timestamp_utc": "2026-10-22T20:52:56.820386Z",
+          "visible_at_utc": "2026-10-22T20:52:56.820394Z",
+          "virtual_clock_sec": 8.0,
+          "source": "target-access",
+          "event_type": "session.status",
+          "actor_id": "maya",
+          "session_handle": "sess_A",
+          "resource_id": null,
+          "outcome": "denied",
+          "correlation_id": "req_82ced964842b4c4da6fa",
+          "learner_visible": true,
+          "target_audit_id": "audit_6ef4083ea0744633a7ef",
+          "network": {
+            "src_ip": "203.0.113.57",
+            "user_agent": "Northstar-training-client/1",
+            "http_method": "GET",
+            "path": "/session/status",
+            "status_code": 401,
+            "latency_ms": 1
+          },
+          "decision_id": "decision_a07ca22aa61e42408c5d",
+          "_origin": "adversary",
+          "sequence": 20
+        }
+      ]
+    },
+    {
+      "pair": 5,
+      "pre": {
+        "decision_id": "decision_218caa5967e14a06ae95",
+        "run_id": "run_1be85f6aa18f4dc796bd",
+        "step": 0,
+        "role": "scout",
+        "model_id": "qwen3:1.7b",
+        "prompt_hash": "8b9a93ac7357b0dcb571618a90a6f01ca5dfe675727b2cf2389a9bd5f06f6bfb",
+        "observation_hash": "d9fc4ba913766a75e67727fb6b678f35d4950d529a3cddaa0d4e1ae2751686d9",
+        "proposed_json": {
+          "role": "scout",
+          "action": "list_accessible_documents",
+          "target_id": null,
+          "session_handle": "sess_A",
+          "reason": "List accessible documents for the active browser session"
+        },
+        "accepted_action": "list_accessible_documents",
+        "accepted": true,
+        "rejection_reason": null,
+        "latency_ms": 6058,
+        "fallback_used": false,
+        "created_at": "2026-10-22T20:53:02.967616Z"
+      },
+      "post": {
+        "decision_id": "decision_71c0556577424fcab486",
+        "run_id": "run_1be85f6aa18f4dc796bd",
+        "step": 1,
+        "role": "adaptation_planner",
+        "model_id": "qwen3:1.7b",
+        "prompt_hash": "98e02dd3b3b5eba7ff32692461c92f5d313eb433e570a5e0018a696c8543b6b0",
+        "observation_hash": "f2b065762ee89d7eb0a605ce4db1deea16f2ed2abc0578e1c47bea39d2736b86",
+        "proposed_json": {
+          "role": "adaptation_planner",
+          "action": "inspect_session_status",
+          "target_id": null,
+          "session_handle": "sess_A",
+          "reason": "Check the status of the revoked session handle to determine if it is still valid."
+        },
+        "accepted_action": "inspect_session_status",
+        "accepted": true,
+        "rejection_reason": null,
+        "latency_ms": 7982,
+        "fallback_used": false,
+        "created_at": "2026-10-22T20:53:11.047183Z"
+      },
+      "adapted": false,
+      "target_events": [
+        {
+          "event_id": "evt_a2615c77b7c44c9db167",
+          "run_id": "run_1be85f6aa18f4dc796bd",
+          "timestamp_utc": "2026-10-22T20:53:11.066780Z",
+          "visible_at_utc": "2026-10-22T20:53:11.066797Z",
+          "virtual_clock_sec": 8.0,
+          "source": "target-access",
+          "event_type": "session.status",
+          "actor_id": "maya",
+          "session_handle": "sess_A",
+          "resource_id": null,
+          "outcome": "denied",
+          "correlation_id": "req_25144e9039c44b6091f1",
+          "learner_visible": true,
+          "target_audit_id": "audit_2dcbcf58f957486d8c16",
+          "network": {
+            "src_ip": "203.0.113.57",
+            "user_agent": "Northstar-training-client/1",
+            "http_method": "GET",
+            "path": "/session/status",
+            "status_code": 401,
+            "latency_ms": 1
+          },
+          "decision_id": "decision_71c0556577424fcab486",
+          "_origin": "adversary",
+          "sequence": 20
+        }
+      ]
+    },
+    {
+      "pair": 6,
+      "pre": {
+        "decision_id": "decision_4e0af638d4e548b7b085",
+        "run_id": "run_0f893576b73245719553",
+        "step": 0,
+        "role": "scout",
+        "model_id": "qwen3:1.7b",
+        "prompt_hash": "8b9a93ac7357b0dcb571618a90a6f01ca5dfe675727b2cf2389a9bd5f06f6bfb",
+        "observation_hash": "6569194367af40e67c3012dec52e2b84fe9e3f249e924cfdc72a99e25a4ca9fd",
+        "proposed_json": {
+          "role": "scout",
+          "action": "wait",
+          "session_handle": null,
+          "target_id": null,
+          "reason": "Model decision unavailable; bounded fallback."
+        },
+        "accepted_action": null,
+        "accepted": false,
+        "rejection_reason": "ValueError: stage2:action_not_in_permitted_actions: action 'list_accessible_documents' is not in this turn's permitted actions ['inspect_session_status', 'stop', 'test_exis",
+        "latency_ms": 8134,
+        "fallback_used": true,
+        "created_at": "2026-10-22T20:53:19.309028Z"
+      },
+      "post": {
+        "decision_id": "decision_264d51fbb8424e18b470",
+        "run_id": "run_0f893576b73245719553",
+        "step": 1,
+        "role": "adaptation_planner",
+        "model_id": "qwen3:1.7b",
+        "prompt_hash": "98e02dd3b3b5eba7ff32692461c92f5d313eb433e570a5e0018a696c8543b6b0",
+        "observation_hash": "821c9d3713b6f4da445f89a54c4383ab7a773091cc2e88883872e4d3f103890e",
+        "proposed_json": {
+          "role": "adaptation_planner",
+          "action": "inspect_session_status",
+          "target_id": null,
+          "session_handle": "sess_A",
+          "reason": "Check the status of the revoked session handle."
+        },
+        "accepted_action": "inspect_session_status",
+        "accepted": true,
+        "rejection_reason": null,
+        "latency_ms": 8147,
+        "fallback_used": false,
+        "created_at": "2026-10-22T20:53:27.607099Z"
+      },
+      "adapted": false,
+      "target_events": [
+        {
+          "event_id": "evt_64d7275841fc4034af6d",
+          "run_id": "run_0f893576b73245719553",
+          "timestamp_utc": "2026-10-22T20:53:27.628550Z",
+          "visible_at_utc": "2026-10-22T20:53:27.628569Z",
+          "virtual_clock_sec": 8.0,
+          "source": "target-access",
+          "event_type": "session.status",
+          "actor_id": "maya",
+          "session_handle": "sess_A",
+          "resource_id": null,
+          "outcome": "denied",
+          "correlation_id": "req_f99c86ed82f9420c957b",
+          "learner_visible": true,
+          "target_audit_id": "audit_d32f55ae3d8848fb8a91",
+          "network": {
+            "src_ip": "203.0.113.57",
+            "user_agent": "Northstar-training-client/1",
+            "http_method": "GET",
+            "path": "/session/status",
+            "status_code": 401,
+            "latency_ms": 1
+          },
+          "decision_id": "decision_264d51fbb8424e18b470",
+          "_origin": "adversary",
+          "sequence": 19
+        }
+      ]
+    },
+    {
+      "pair": 7,
+      "pre": {
+        "decision_id": "decision_d8b96c6a301440b19bb7",
+        "run_id": "run_2aba554a7cc34af28245",
+        "step": 0,
+        "role": "scout",
+        "model_id": "qwen3:1.7b",
+        "prompt_hash": "8b9a93ac7357b0dcb571618a90a6f01ca5dfe675727b2cf2389a9bd5f06f6bfb",
+        "observation_hash": "efbce28969eaee472dc23c1b49d72644c8647e849312d7476fec30de1abe6d0a",
+        "proposed_json": {
+          "role": "scout",
+          "action": "list_accessible_documents",
+          "target_id": null,
+          "session_handle": "sess_A",
+          "reason": "List accessible documents for the active browser session"
+        },
+        "accepted_action": "list_accessible_documents",
+        "accepted": true,
+        "rejection_reason": null,
+        "latency_ms": 7899,
+        "fallback_used": false,
+        "created_at": "2026-10-22T20:53:35.631475Z"
+      },
+      "post": {
+        "decision_id": "decision_e27681b157224da09cd9",
+        "run_id": "run_2aba554a7cc34af28245",
+        "step": 1,
+        "role": "adaptation_planner",
+        "model_id": "qwen3:1.7b",
+        "prompt_hash": "98e02dd3b3b5eba7ff32692461c92f5d313eb433e570a5e0018a696c8543b6b0",
+        "observation_hash": "5a0cc1645c58ba38a3385c81360057b7f928e6024b909852fdf9b60407a80cc5",
+        "proposed_json": {
+          "role": "adaptation_planner",
+          "action": "inspect_session_status",
+          "target_id": null,
+          "session_handle": "sess_A",
+          "reason": "Check the status of the revoked session handle."
+        },
+        "accepted_action": "inspect_session_status",
+        "accepted": true,
+        "rejection_reason": null,
+        "latency_ms": 6015,
+        "fallback_used": false,
+        "created_at": "2026-10-22T20:53:41.763507Z"
+      },
+      "adapted": false,
+      "target_events": [
+        {
+          "event_id": "evt_b95a20cec16242f0a131",
+          "run_id": "run_2aba554a7cc34af28245",
+          "timestamp_utc": "2026-10-22T20:53:41.777180Z",
+          "visible_at_utc": "2026-10-22T20:53:41.777191Z",
+          "virtual_clock_sec": 8.0,
+          "source": "target-access",
+          "event_type": "session.status",
+          "actor_id": "maya",
+          "session_handle": "sess_A",
+          "resource_id": null,
+          "outcome": "denied",
+          "correlation_id": "req_7e286d77c02e4d1d803c",
+          "learner_visible": true,
+          "target_audit_id": "audit_be8203bf458d46219b70",
+          "network": {
+            "src_ip": "203.0.113.57",
+            "user_agent": "Northstar-training-client/1",
+            "http_method": "GET",
+            "path": "/session/status",
+            "status_code": 401,
+            "latency_ms": 1
+          },
+          "decision_id": "decision_e27681b157224da09cd9",
+          "_origin": "adversary",
+          "sequence": 20
+        }
+      ]
+    },
+    {
+      "pair": 8,
+      "pre": {
+        "decision_id": "decision_76b50b1fa917484d8b19",
+        "run_id": "run_800577d71bab48cba38f",
+        "step": 0,
+        "role": "scout",
+        "model_id": "qwen3:1.7b",
+        "prompt_hash": "8b9a93ac7357b0dcb571618a90a6f01ca5dfe675727b2cf2389a9bd5f06f6bfb",
+        "observation_hash": "f0e4f0535ffaedd458c1ada9f5a70b56cdcb71b723ad09bd7a33d55fd54263c9",
+        "proposed_json": {
+          "role": "scout",
+          "action": "wait",
+          "session_handle": null,
+          "target_id": null,
+          "reason": "Model decision unavailable; bounded fallback."
+        },
+        "accepted_action": null,
+        "accepted": false,
+        "rejection_reason": "ValueError: stage2:action_not_in_permitted_actions: action 'list_accessible_documents' is not in this turn's permitted actions ['inspect_session_status', 'stop', 'test_exis",
+        "latency_ms": 6093,
+        "fallback_used": true,
+        "created_at": "2026-10-22T20:53:47.944602Z"
+      },
+      "post": {
+        "decision_id": "decision_0931d343096843899d5f",
+        "run_id": "run_800577d71bab48cba38f",
+        "step": 1,
+        "role": "adaptation_planner",
+        "model_id": "qwen3:1.7b",
+        "prompt_hash": "98e02dd3b3b5eba7ff32692461c92f5d313eb433e570a5e0018a696c8543b6b0",
+        "observation_hash": "5ffd0e9c7b8757a2968c35a09fcb7d6791dc9c4380f2034c86dfc1a33a5910d8",
+        "proposed_json": {
+          "role": "adaptation_planner",
+          "action": "inspect_session_status",
+          "target_id": null,
+          "session_handle": "sess_A",
+          "reason": "Check the status of the revoked session handle."
+        },
+        "accepted_action": "inspect_session_status",
+        "accepted": true,
+        "rejection_reason": null,
+        "latency_ms": 6233,
+        "fallback_used": false,
+        "created_at": "2026-10-22T20:53:54.245487Z"
+      },
+      "adapted": false,
+      "target_events": [
+        {
+          "event_id": "evt_d9399bda22ab4e6e819c",
+          "run_id": "run_800577d71bab48cba38f",
+          "timestamp_utc": "2026-10-22T20:53:54.258940Z",
+          "visible_at_utc": "2026-10-22T20:53:54.258950Z",
+          "virtual_clock_sec": 8.0,
+          "source": "target-access",
+          "event_type": "session.status",
+          "actor_id": "maya",
+          "session_handle": "sess_A",
+          "resource_id": null,
+          "outcome": "denied",
+          "correlation_id": "req_816ca5dcfbce4f67b7ee",
+          "learner_visible": true,
+          "target_audit_id": "audit_46f433b1a64d491b8fed",
+          "network": {
+            "src_ip": "203.0.113.57",
+            "user_agent": "Northstar-training-client/1",
+            "http_method": "GET",
+            "path": "/session/status",
+            "status_code": 401,
+            "latency_ms": 1
+          },
+          "decision_id": "decision_0931d343096843899d5f",
+          "_origin": "adversary",
+          "sequence": 19
+        }
+      ]
+    },
+    {
+      "pair": 9,
+      "pre": {
+        "decision_id": "decision_9c940a157e26462d9a40",
+        "run_id": "run_5014dca9a87e48168669",
+        "step": 0,
+        "role": "scout",
+        "model_id": "qwen3:1.7b",
+        "prompt_hash": "8b9a93ac7357b0dcb571618a90a6f01ca5dfe675727b2cf2389a9bd5f06f6bfb",
+        "observation_hash": "86bfdc9292e7ed59af96c30493af115b9381ce91503fc6fe5617b88621607898",
+        "proposed_json": {
+          "role": "scout",
+          "action": "wait",
+          "session_handle": null,
+          "target_id": null,
+          "reason": "Model decision unavailable; bounded fallback."
+        },
+        "accepted_action": null,
+        "accepted": false,
+        "rejection_reason": "ValueError: stage2:action_not_in_permitted_actions: action 'list_accessible_documents' is not in this turn's permitted actions ['inspect_session_status', 'stop', 'test_exis",
+        "latency_ms": 7988,
+        "fallback_used": true,
+        "created_at": "2026-10-22T20:54:02.329131Z"
+      },
+      "post": {
+        "decision_id": "decision_2ad5c7d5eea44a099410",
+        "run_id": "run_5014dca9a87e48168669",
+        "step": 1,
+        "role": "adaptation_planner",
+        "model_id": "qwen3:1.7b",
+        "prompt_hash": "98e02dd3b3b5eba7ff32692461c92f5d313eb433e570a5e0018a696c8543b6b0",
+        "observation_hash": "129bd6210fe80773d5badfbe21e274300f6859202c576fd87f06f5d24cda09cc",
+        "proposed_json": {
+          "role": "adaptation_planner",
+          "action": "inspect_session_status",
+          "target_id": null,
+          "session_handle": "sess_A",
+          "reason": "Check the status of the revoked session handle."
+        },
+        "accepted_action": "inspect_session_status",
+        "accepted": true,
+        "rejection_reason": null,
+        "latency_ms": 7823,
+        "fallback_used": false,
+        "created_at": "2026-10-22T20:54:10.234350Z"
+      },
+      "adapted": false,
+      "target_events": [
+        {
+          "event_id": "evt_3b5190ee16a34f368e1f",
+          "run_id": "run_5014dca9a87e48168669",
+          "timestamp_utc": "2026-10-22T20:54:10.246573Z",
+          "visible_at_utc": "2026-10-22T20:54:10.246584Z",
+          "virtual_clock_sec": 8.0,
+          "source": "target-access",
+          "event_type": "session.status",
+          "actor_id": "maya",
+          "session_handle": "sess_A",
+          "resource_id": null,
+          "outcome": "denied",
+          "correlation_id": "req_31f2746475494b61ad43",
+          "learner_visible": true,
+          "target_audit_id": "audit_803d7c8343404c84abcb",
+          "network": {
+            "src_ip": "203.0.113.57",
+            "user_agent": "Northstar-training-client/1",
+            "http_method": "GET",
+            "path": "/session/status",
+            "status_code": 401,
+            "latency_ms": 1
+          },
+          "decision_id": "decision_2ad5c7d5eea44a099410",
+          "_origin": "adversary",
+          "sequence": 19
+        }
+      ]
+    },
+    {
+      "pair": 10,
+      "pre": {
+        "decision_id": "decision_1870078ca51c48cd80de",
+        "run_id": "run_b020ca68fdcb4dd08980",
+        "step": 0,
+        "role": "scout",
+        "model_id": "qwen3:1.7b",
+        "prompt_hash": "8b9a93ac7357b0dcb571618a90a6f01ca5dfe675727b2cf2389a9bd5f06f6bfb",
+        "observation_hash": "cbbc7937e2a7c7a751a6e7e3558f79a0bbf49ee557529c83986736512045f794",
+        "proposed_json": {
+          "role": "scout",
+          "action": "wait",
+          "session_handle": null,
+          "target_id": null,
+          "reason": "Model decision unavailable; bounded fallback."
+        },
+        "accepted_action": null,
+        "accepted": false,
+        "rejection_reason": "ValueError: stage2:action_not_in_permitted_actions: action 'list_accessible_documents' is not in this turn's permitted actions ['inspect_session_status', 'stop', 'test_exis",
+        "latency_ms": 5835,
+        "fallback_used": true,
+        "created_at": "2026-10-22T20:54:16.163694Z"
+      },
+      "post": {
+        "decision_id": "decision_2e4e3f8053504933a053",
+        "run_id": "run_b020ca68fdcb4dd08980",
+        "step": 1,
+        "role": "adaptation_planner",
+        "model_id": "qwen3:1.7b",
+        "prompt_hash": "98e02dd3b3b5eba7ff32692461c92f5d313eb433e570a5e0018a696c8543b6b0",
+        "observation_hash": "e0ab82590c1905846beed2477f61a98e3688a7b2d405b60f9662d04f957b1b4e",
+        "proposed_json": {
+          "role": "adaptation_planner",
+          "action": "inspect_session_status",
+          "target_id": null,
+          "session_handle": "sess_A",
+          "reason": "Check the status of the revoked session handle."
+        },
+        "accepted_action": "inspect_session_status",
+        "accepted": true,
+        "rejection_reason": null,
+        "latency_ms": 6394,
+        "fallback_used": false,
+        "created_at": "2026-10-22T20:54:22.629132Z"
+      },
+      "adapted": false,
+      "target_events": [
+        {
+          "event_id": "evt_a76c29977a33475db7eb",
+          "run_id": "run_b020ca68fdcb4dd08980",
+          "timestamp_utc": "2026-10-22T20:54:22.644783Z",
+          "visible_at_utc": "2026-10-22T20:54:22.644795Z",
+          "virtual_clock_sec": 8.0,
+          "source": "target-access",
+          "event_type": "session.status",
+          "actor_id": "maya",
+          "session_handle": "sess_A",
+          "resource_id": null,
+          "outcome": "denied",
+          "correlation_id": "req_bd115bf7842948c7a0d9",
+          "learner_visible": true,
+          "target_audit_id": "audit_5c7390803a634435b6cd",
+          "network": {
+            "src_ip": "203.0.113.57",
+            "user_agent": "Northstar-training-client/1",
+            "http_method": "GET",
+            "path": "/session/status",
+            "status_code": 401,
+            "latency_ms": 1
+          },
+          "decision_id": "decision_2e4e3f8053504933a053",
+          "_origin": "adversary",
+          "sequence": 19
+        }
+      ]
+    }
+  ]
+}

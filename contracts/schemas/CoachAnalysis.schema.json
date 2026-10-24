@@ -1,0 +1,121 @@
+{
+  "$defs": {
+    "CoachClaim": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence_ids": {
+          "items": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+            "type": "string"
+          },
+          "maxItems": 4,
+          "title": "Evidence Ids",
+          "type": "array"
+        },
+        "kind": {
+          "enum": [
+            "fact",
+            "hypothesis"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "supports": {
+          "items": {
+            "$ref": "#/$defs/CoachSupport"
+          },
+          "maxItems": 4,
+          "minItems": 1,
+          "title": "Supports",
+          "type": "array"
+        },
+        "text": {
+          "maxLength": 3000,
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "text",
+        "evidence_ids",
+        "supports"
+      ],
+      "title": "CoachClaim",
+      "type": "object"
+    },
+    "CoachSupport": {
+      "additionalProperties": false,
+      "properties": {
+        "field": {
+          "maxLength": 80,
+          "minLength": 1,
+          "title": "Field",
+          "type": "string"
+        },
+        "quote": {
+          "maxLength": 500,
+          "minLength": 1,
+          "title": "Quote",
+          "type": "string"
+        },
+        "source_id": {
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Source Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source_id",
+        "field",
+        "quote"
+      ],
+      "title": "CoachSupport",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "claims": {
+      "items": {
+        "$ref": "#/$defs/CoachClaim"
+      },
+      "maxItems": 2,
+      "minItems": 1,
+      "title": "Claims",
+      "type": "array"
+    },
+    "next_question": {
+      "maxLength": 300,
+      "minLength": 1,
+      "title": "Next Question",
+      "type": "string"
+    },
+    "query_focus": {
+      "anyOf": [
+        {
+          "enum": [
+            "session",
+            "user",
+            "resource",
+            "outcome"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Query Focus"
+    }
+  },
+  "required": [
+    "claims",
+    "next_question"
+  ],
+  "title": "CoachAnalysis",
+  "type": "object"
+}

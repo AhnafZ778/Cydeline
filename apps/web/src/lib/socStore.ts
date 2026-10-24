@@ -79,6 +79,9 @@ function commit(next: SocState, broadcast = true) {
   if (typeof localStorage !== "undefined") {
     try {
       localStorage.setItem(KEY, JSON.stringify(next));
+      // State written by this code is already past the one-time investigation upgrade in load(). Without this flag a
+      // second tab (for example an external-site popup) would "upgrade" the first tab's active case away.
+      localStorage.setItem(RETURNED_KEY, "1");
     } catch {
       /* storage full or blocked */
     }

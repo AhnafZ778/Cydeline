@@ -1,0 +1,26 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "message": {
+      "maxLength": 2000,
+      "minLength": 1,
+      "title": "Message",
+      "type": "string"
+    },
+    "sender": {
+      "enum": [
+        "Shift lead",
+        "Operations desk",
+        "Employee support"
+      ],
+      "title": "Sender",
+      "type": "string"
+    }
+  },
+  "required": [
+    "sender",
+    "message"
+  ],
+  "title": "InjectRequest",
+  "type": "object"
+}

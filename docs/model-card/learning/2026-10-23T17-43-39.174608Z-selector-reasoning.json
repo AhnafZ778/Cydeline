@@ -1,0 +1,65 @@
+{
+  "started_at": "2026-10-23T17:43:39.174636Z",
+  "scope": "Actual selector inference diagnostic, no target action execution. Thinking text is not retained.",
+  "config": {
+    "model": "qwen3:1.7b",
+    "base_url": "http://127.0.0.1:11434",
+    "timeout_ms": 30000,
+    "temperature": 0.1,
+    "num_predict": 500,
+    "seed": 42,
+    "think": true
+  },
+  "cases": [
+    {
+      "states": [
+        "unknown",
+        "denied"
+      ],
+      "expected": "context_1",
+      "passed": true,
+      "raw": "{ \"selected_access\": \"context_1\" }",
+      "thinking_chars": 482,
+      "done_reason": "stop",
+      "latency_ms": 9872
+    },
+    {
+      "states": [
+        "denied",
+        "unknown"
+      ],
+      "expected": "context_2",
+      "passed": true,
+      "raw": "{ \"selected_access\": \"context_2\" }",
+      "thinking_chars": 1277,
+      "done_reason": "stop",
+      "latency_ms": 20892
+    },
+    {
+      "states": [
+        "active",
+        "denied"
+      ],
+      "expected": "context_1",
+      "passed": true,
+      "raw": "{ \"selected_access\": \"context_1\" }",
+      "thinking_chars": 556,
+      "done_reason": "stop",
+      "latency_ms": 6640
+    },
+    {
+      "states": [
+        "revoked",
+        "disabled"
+      ],
+      "expected": null,
+      "passed": true,
+      "raw": "{ \"selected_access\": null }",
+      "thinking_chars": 315,
+      "done_reason": "stop",
+      "latency_ms": 3739
+    }
+  ],
+  "finished_at": "2026-10-23T17:44:20.320344Z",
+  "passed": true
+}

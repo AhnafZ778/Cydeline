@@ -1,0 +1,21 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "alert_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+      "title": "Alert Id",
+      "type": "string"
+    },
+    "idempotency_key": {
+      "pattern": "^[A-Za-z0-9_.:-]{8,128}$",
+      "title": "Idempotency Key",
+      "type": "string"
+    }
+  },
+  "required": [
+    "alert_id",
+    "idempotency_key"
+  ],
+  "title": "CaseCreate",
+  "type": "object"
+}

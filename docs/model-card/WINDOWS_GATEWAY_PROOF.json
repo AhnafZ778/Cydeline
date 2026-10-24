@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-23",
+  "verdict": "passed",
+  "scope": "Synthetic BIOS disk only; Windows OS boot remains unverified",
+  "checks": [
+    "QEMU/KVM display",
+    "Guacamole HTTP",
+    "signed grant authentication",
+    "VNC connection registered",
+    "base/evidence read-only",
+    "VM internal-only",
+    "base unchanged"
+  ],
+  "cleanup": "passed",
+  "windows_os_boot": "blocked: prepared Windows base image unavailable"
+}

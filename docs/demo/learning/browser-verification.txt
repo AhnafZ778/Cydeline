@@ -1,0 +1,34 @@
+
+> sentinel-loop-e2e@0.1.0 test
+> playwright test learning.spec.ts console.spec.ts mission.spec.ts navigation.spec.ts --output=/tmp/sentinel-learning-stable-final
+
+
+Running 23 tests using 1 worker
+
+(node:440731) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 console.spec.ts:3:5 › original alert channels, ownership, incident, playbook and closure use server state (4.9s)
+  ✓   2 console.spec.ts:69:5 › New Search retains Basic/Pro, aliases, saved searches, pins and drafts through refresh (2.8s)
+  ✓   3 console.spec.ts:127:5 › system AI failure exposes retry and assessment has no manual pause (703ms)
+  ✓   4 learning.spec.ts:28:5 › worksheet saves, survives refresh and retains edits through disconnection (6.1s)
+  ✓   5 learning.spec.ts:45:5 › worksheet offers recoverable comparison after a concurrent revision (3.3s)
+  ✓   6 learning.spec.ts:55:5 › obsolete save cannot erase a newer recovery draft after navigation (3.0s)
+  ✓   7 learning.spec.ts:69:44 › learning worksheet reflows and labels controls at 320 (1.7s)
+  ✓   8 learning.spec.ts:69:44 › learning worksheet reflows and labels controls at 390 (1.7s)
+  ✓   9 learning.spec.ts:69:44 › learning worksheet reflows and labels controls at 768 (1.7s)
+  ✓  10 learning.spec.ts:69:44 › learning worksheet reflows and labels controls at 1440 (1.7s)
+  ✓  11 learning.spec.ts:75:5 › a cross-tab analyst change cannot load another analyst's local case draft (1.5s)
+  ✓  12 learning.spec.ts:90:5 › a recovered case draft cannot silently overwrite a newer server revision (2.6s)
+  ✓  13 learning.spec.ts:101:5 › coached orientation requires Begin investigation and keeps company policy readable (756ms)
+  ✓  14 learning.spec.ts:114:5 › learning exercises remain clearly separate from live evidence (1.1s)
+  ✓  15 mission.spec.ts:15:7 › consistent original layouts and accessibility at 320px (3.9s)
+  ✓  16 mission.spec.ts:15:7 › consistent original layouts and accessibility at 390px (4.0s)
+  ✓  17 mission.spec.ts:15:7 › consistent original layouts and accessibility at 768px (4.1s)
+  ✓  18 mission.spec.ts:15:7 › consistent original layouts and accessibility at 1440px (4.1s)
+  ✓  19 mission.spec.ts:42:5 › exactly two scenario cards launch correct versions into the same console with coached defaults (734ms)
+  ✓  20 mission.spec.ts:77:5 › unavailable AI disables launch and readiness can recover (680ms)
+  ✓  21 navigation.spec.ts:3:5 › one shared header, original icons and training links across all tools and global pages (1.6s)
+  ✓  22 navigation.spec.ts:51:5 › old practice and run URLs resolve to the selected exercise; no selection returns landing (869ms)
+  ✓  23 navigation.spec.ts:80:5 › one active company offers Resume and never silently creates another (709ms)
+
+  23 passed (55.0s)

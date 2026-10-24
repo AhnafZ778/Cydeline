@@ -5,6 +5,7 @@ import { LogRowView, statusClass } from "../../lib/format";
 import { Term } from "../../lib/query";
 
 export function InspectorDrawer(props: {
+  readOnly?: boolean;
   row: LogRowView;
   allRows: LogRowView[];
   pinned: boolean;
@@ -15,7 +16,21 @@ export function InspectorDrawer(props: {
 }) {
   const { row } = props;
   const [copied, setCopied] = useState(false);
-  const related = useMemo(() => props.allRows.filter((r) => r.session === row.session).slice(-8), [props.allRows, row.session]);
+  // Control and model-only events have no access handle; link them through the decision that produced them instead.
+  const decisionId = (row.event as { decision_id?: string }).decision_id;
+  const related = useMemo(
+    () =>
+      (row.session
+        ? props.allRows.filter((r) => r.session === row.session)
+        : decisionId
+          ? props.allRows.filter((r) => (r.event as { decision_id?: string }).decision_id === decisionId)
+          : []
+      ).slice(-8),
+    [props.allRows, row.session, decisionId],
+  );
+  const httpLike = row.method !== "-";
+  const heading = httpLike ? `${row.method} ${row.path}` : row.eventType.replaceAll("_", " ").replaceAll(".", " · ");
+  const decision = row.event.agent_meta;
   const json = useMemo(() => JSON.stringify(row.event, null, 2), [row.event]);
 
   const copy = async () => {
@@ -30,7 +45,7 @@ export function InspectorDrawer(props: {
 
   const fields: Array<[string, string, string?]> = [
     ["status", String(row.status ?? "-"), statusClass(row.status)],
-    ["session", row.session],
+    ["session", row.session || "-"],
     ["user", row.event.actor_id],
     ["source ip", row.ip ?? "-"],
     ["user agent", row.ua ?? "-"],
@@ -46,7 +61,7 @@ export function InspectorDrawer(props: {
       label="Event inspector"
       eyebrow="Inspector"
       titleMono
-      title={`${row.method} ${row.path}`}
+      title={heading}
       subtitle={`${row.time} UTC · ${row.rid}`}
       onClose={props.onClose}
       foot={
@@ -54,7 +69,7 @@ export function InspectorDrawer(props: {
           <span className="muted" style={{ fontSize: "var(--fs-12)" }}>
             Press <Kbd>p</Kbd> to {props.pinned ? "unpin" : "pin"}
           </span>
-          <button className={`btn ${props.pinned ? "" : "btn--primary"}`} onClick={props.onPin} aria-pressed={props.pinned}>
+          <button disabled={props.readOnly} className={`btn ${props.pinned ? "" : "btn--primary"}`} onClick={props.onPin} aria-pressed={props.pinned}>
             {props.pinned ? <PinOff className="icon" /> : <Pin className="icon" />}
             {props.pinned ? "Unpin evidence" : "Pin as evidence"}
           </button>
@@ -72,9 +87,20 @@ export function InspectorDrawer(props: {
           ))}
         </dl>
         <div style={{ display: "flex", gap: 8, marginTop: 12, flexWrap: "wrap" }}>
-          <button className="btn btn--sm" onClick={() => props.onAddTerm({ key: "session", value: row.session, negate: false })}>
-            <Filter className="icon" /> Filter to {row.session}
-          </button>
+          {row.session && (
+            <button
+              className="btn btn--sm"
+              onClick={() =>
+                props.onAddTerm({
+                  key: "session",
+                  value: row.session,
+                  negate: false,
+                })
+              }
+            >
+              <Filter className="icon" /> Filter to {row.session}
+            </button>
+          )}
           {row.ip && (
             <button className="btn btn--sm" onClick={() => props.onAddTerm({ key: "ip", value: row.ip!, negate: false })}>
               <Filter className="icon" /> Filter to {row.ip}
@@ -83,21 +109,62 @@ export function InspectorDrawer(props: {
         </div>
       </section>
 
-      <section>
-        <div className="eyebrow section-label">Same session &middot; {row.session}</div>
-        <div className="related">
-          {related.map((r) => (
-            <button key={r.id} className={r.id === row.id ? "is-current" : ""} onClick={() => props.onSelect(r.id)} aria-current={r.id === row.id}>
-              <span>{r.time.slice(0, 8)}</span>
-              <span className={`status ${statusClass(r.status)}`}>{r.status ?? "-"}</span>
-              <span style={{ overflow: "hidden", textOverflow: "ellipsis" }}>
-                {r.ip ? `${r.ip} · ` : ""}
-                {r.path}
-              </span>
-            </button>
-          ))}
-        </div>
-      </section>
+      {decision && (
+        <section>
+          <div className="eyebrow section-label">Recorded model decision</div>
+          <dl className="fields" data-testid="model-decision">
+            <div style={{ display: "contents" }}>
+              <dt>role</dt>
+              <dd>{decision.role}</dd>
+            </div>
+            <div style={{ display: "contents" }}>
+              <dt>proposed</dt>
+              <dd>
+                {decision.proposal.action}
+                {decision.proposal.session_handle ? ` on ${decision.proposal.session_handle}` : ""}
+              </dd>
+            </div>
+            <div style={{ display: "contents" }}>
+              <dt>outcome</dt>
+              <dd>
+                {decision.accepted
+                  ? "accepted and executed"
+                  : `not executed${decision.rejection_reason ? ` · ${decision.rejection_reason}` : ""}`}
+              </dd>
+            </div>
+            <div style={{ display: "contents" }}>
+              <dt>model</dt>
+              <dd>
+                {decision.model_id} · {decision.latency_ms} ms
+                {decision.fallback_used ? " · fallback" : ""}
+              </dd>
+            </div>
+          </dl>
+        </section>
+      )}
+
+      {(row.session || related.length > 0) && (
+        <section>
+          <div className="eyebrow section-label">{row.session ? <>Same session &middot; {row.session}</> : <>Linked records</>}</div>
+          <div className="related">
+            {related.map((r) => (
+              <button
+                key={r.id}
+                className={r.id === row.id ? "is-current" : ""}
+                onClick={() => props.onSelect(r.id)}
+                aria-current={r.id === row.id}
+              >
+                <span>{r.time.slice(0, 8)}</span>
+                <span className={`status ${statusClass(r.status)}`}>{r.status ?? "-"}</span>
+                <span style={{ overflow: "hidden", textOverflow: "ellipsis" }}>
+                  {r.ip ? `${r.ip} · ` : ""}
+                  {r.path}
+                </span>
+              </button>
+            ))}
+          </div>
+        </section>
+      )}
 
       <section>
         <div className="eyebrow section-label">Raw event</div>

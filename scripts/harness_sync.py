@@ -364,6 +364,21 @@ def packet_file(task: str) -> Path:
     return REPO_ROOT / "context" / "packets" / f"{task}.json"
 
 
+def normalize_evidence(evidence: list[str]) -> list[str]:
+    """Native harness evidence is file-valued; expand directories deterministically."""
+    files: set[str] = set()
+    ignored = {".git", "node_modules", "__pycache__", ".venv", "dist"}
+    for item in evidence:
+        path = REPO_ROOT / item
+        if path.is_dir():
+            for child in path.rglob("*"):
+                if child.is_file() and not any(part in ignored for part in child.parts) and child.suffix != ".pyc" and child.resolve().is_relative_to(REPO_ROOT.resolve()):
+                    files.add(str(child.relative_to(REPO_ROOT)))
+        else:
+            files.add(item)
+    return sorted(files)
+
+
 def write_task_files(task: str, packet_data: dict[str, Any]) -> dict[str, Any]:
     pfile = packet_file(task)
     pfile.parent.mkdir(parents=True, exist_ok=True)
@@ -379,7 +394,7 @@ def write_task_files(task: str, packet_data: dict[str, Any]) -> dict[str, Any]:
         "blockers": packet_data["blockers"],
         "uncertainties": packet_data["uncertainties"],
         "next_step": packet_data["next_step"],
-        "evidence": packet_data["evidence"],
+        "evidence": normalize_evidence(packet_data["evidence"]),
     }
     pfile.write_text(json.dumps(mirror, indent=2, ensure_ascii=False) + "\n")
     meta = TASKS[task]

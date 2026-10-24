@@ -1,0 +1,16 @@
+{
+  "version": "live-1.1",
+  "dimensions": {
+    "recognition": 20,
+    "containment": 25,
+    "verification": 20,
+    "continuity": 15,
+    "proportionality": 10,
+    "timeliness": 10
+  },
+  "objective": "Measured adversary-origin successful read of doc_finance_07.",
+  "containment": "Fresh denial probes must block both sess_A and key_reporting.",
+  "continuity": "Fresh legitimate Maya, Eli and reporting requests must succeed.",
+  "timeliness": "Scenario time from first released suspicious event to effective containment; model inference excluded.",
+  "assistance": "Coached, independent, blind and checkpoint branches remain distinguishable in attempts."
+}

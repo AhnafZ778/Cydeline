@@ -1,0 +1,119 @@
+{
+  "started_at": "2026-10-23T18:11:01.479010Z",
+  "scope": "Existing installed-model constrained selector comparison; no target execution.",
+  "model": {
+    "reachable": true,
+    "base_url": "http://127.0.0.1:11434",
+    "configured_model": "qwen2.5:1.5b",
+    "model_present": true,
+    "models": [
+      {
+        "name": "qwen3:1.7b",
+        "digest": "8f68893c685c3ddff2aa3fffce2aa60a30bb2da65ca488b61fff134a4d1730e7",
+        "parameter_size": "2.0B",
+        "quantization_level": "Q4_K_M"
+      },
+      {
+        "name": "qwen2.5:1.5b",
+        "digest": "65ec06548149b04c096a120e4a6da9d4017ea809c91734ea5631e89f96ddc57b",
+        "parameter_size": "1.5B",
+        "quantization_level": "Q4_K_M"
+      },
+      {
+        "name": "qwen2:0.5b",
+        "digest": "6f48b936a09f7743c7dd30e72fdb14cba296bc5861902e4d0c387e8fb5050b39",
+        "parameter_size": "494.03M",
+        "quantization_level": "Q4_0"
+      },
+      {
+        "name": "mistral:latest",
+        "digest": "6577803aa9a036369e481d648a2baebb381ebc6e897f2bb9a766a2aa7bfbc1cf",
+        "parameter_size": "7.2B",
+        "quantization_level": "Q4_K_M"
+      }
+    ]
+  },
+  "config": {
+    "model": "qwen2.5:1.5b",
+    "base_url": "http://127.0.0.1:11434",
+    "timeout_ms": 30000,
+    "temperature": 0.1,
+    "num_predict": 60,
+    "seed": 42,
+    "think": false
+  },
+  "cases": [
+    {
+      "states": [
+        "unknown",
+        "denied"
+      ],
+      "expected": "context_1",
+      "passed": false,
+      "error": "OllamaUnavailable: Ollama request failed: timed out",
+      "latency_ms": 32046
+    },
+    {
+      "states": [
+        "denied",
+        "unknown"
+      ],
+      "expected": "context_2",
+      "passed": false,
+      "error": "OllamaUnavailable: Ollama request failed: timed out",
+      "latency_ms": 32089
+    },
+    {
+      "states": [
+        "active",
+        "denied"
+      ],
+      "expected": "context_1",
+      "passed": false,
+      "error": "OllamaUnavailable: Ollama request failed: timed out",
+      "latency_ms": 32062
+    },
+    {
+      "states": [
+        "denied",
+        "active"
+      ],
+      "expected": "context_2",
+      "passed": false,
+      "error": "OllamaUnavailable: Ollama request failed: timed out",
+      "latency_ms": 32049
+    },
+    {
+      "states": [
+        "active",
+        "unknown"
+      ],
+      "expected": "context_1",
+      "passed": false,
+      "error": "OllamaUnavailable: Ollama request failed: timed out",
+      "latency_ms": 32072
+    },
+    {
+      "states": [
+        "unknown",
+        "active"
+      ],
+      "expected": "context_2",
+      "passed": false,
+      "raw": "{\"selected_access\": \"context_1\"}",
+      "latency_ms": 7444
+    },
+    {
+      "states": [
+        "revoked",
+        "disabled"
+      ],
+      "expected": null,
+      "passed": false,
+      "raw": "{\"selected_access\": \"context_1\"}",
+      "latency_ms": 1510
+    }
+  ],
+  "finished_at": "2026-10-23T18:13:51.638784Z",
+  "passed": false
+}

@@ -1,0 +1,283 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "ai_step": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Ai Step"
+    },
+    "ai_steps_remaining": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Ai Steps Remaining"
+    },
+    "ai_unavailable": {
+      "default": false,
+      "title": "Ai Unavailable",
+      "type": "boolean"
+    },
+    "applied_actions": {
+      "items": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "title": "Applied Actions",
+      "type": "array"
+    },
+    "assistance": {
+      "title": "Assistance",
+      "type": "string"
+    },
+    "awaiting_begin": {
+      "default": false,
+      "title": "Awaiting Begin",
+      "type": "boolean"
+    },
+    "branch_from": {
+      "anyOf": [
+        {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Branch From"
+    },
+    "business": {
+      "items": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "title": "Business",
+      "type": "array"
+    },
+    "created_at": {
+      "title": "Created At",
+      "type": "string"
+    },
+    "current_ai_role": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Current Ai Role"
+    },
+    "declaration": {
+      "anyOf": [
+        {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Declaration"
+    },
+    "disrupted_seconds": {
+      "title": "Disrupted Seconds",
+      "type": "number"
+    },
+    "ended_at": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Ended At"
+    },
+    "fixture_hash": {
+      "title": "Fixture Hash",
+      "type": "string"
+    },
+    "last_ai_decision": {
+      "anyOf": [
+        {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Last Ai Decision"
+    },
+    "last_sequence": {
+      "title": "Last Sequence",
+      "type": "integer"
+    },
+    "mode": {
+      "enum": [
+        "practice",
+        "assessment"
+      ],
+      "title": "Mode",
+      "type": "string"
+    },
+    "model_status": {
+      "title": "Model Status",
+      "type": "string"
+    },
+    "outcome": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Outcome"
+    },
+    "paused": {
+      "title": "Paused",
+      "type": "boolean"
+    },
+    "remaining_sec": {
+      "title": "Remaining Sec",
+      "type": "number"
+    },
+    "run_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+      "title": "Run Id",
+      "type": "string"
+    },
+    "scenario": {
+      "additionalProperties": true,
+      "title": "Scenario",
+      "type": "object"
+    },
+    "scenario_id": {
+      "title": "Scenario Id",
+      "type": "string"
+    },
+    "scenario_version": {
+      "title": "Scenario Version",
+      "type": "string"
+    },
+    "seed": {
+      "title": "Seed",
+      "type": "integer"
+    },
+    "started_at": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Started At"
+    },
+    "state": {
+      "title": "State",
+      "type": "string"
+    },
+    "state_revision": {
+      "title": "State Revision",
+      "type": "integer"
+    },
+    "terminal_reason": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Terminal Reason"
+    },
+    "variant": {
+      "anyOf": [
+        {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Variant"
+    },
+    "verification": {
+      "anyOf": [
+        {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Verification"
+    },
+    "virtual_clock_sec": {
+      "title": "Virtual Clock Sec",
+      "type": "number"
+    },
+    "workspace": {
+      "additionalProperties": true,
+      "title": "Workspace",
+      "type": "object"
+    }
+  },
+  "required": [
+    "run_id",
+    "scenario_id",
+    "scenario_version",
+    "scenario",
+    "mode",
+    "assistance",
+    "state",
+    "outcome",
+    "created_at",
+    "started_at",
+    "ended_at",
+    "virtual_clock_sec",
+    "remaining_sec",
+    "paused",
+    "state_revision",
+    "fixture_hash",
+    "seed",
+    "declaration",
+    "verification",
+    "applied_actions",
+    "business",
+    "disrupted_seconds",
+    "terminal_reason",
+    "last_sequence",
+    "workspace",
+    "model_status"
+  ],
+  "title": "LiveSnapshot",
+  "type": "object"
+}

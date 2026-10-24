@@ -1,0 +1,576 @@
+{
+  "started_at": "2026-10-23T13:26:47.842055Z",
+  "scope": "all",
+  "source_revision": "d93b6400489e2da787c8e1ea54f5881fce313285",
+  "source_state": "dirty working tree; see paired Harness receipt",
+  "hardware": {
+    "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39",
+    "cpu": "x86_64",
+    "logical_cpus": 12,
+    "memory": "MemTotal:       15995468 kB"
+  },
+  "model": {
+    "reachable": true,
+    "base_url": "http://127.0.0.1:11434",
+    "configured_model": "qwen3:1.7b",
+    "model_present": true,
+    "models": [
+      {
+        "name": "qwen3:1.7b",
+        "digest": "8f68893c685c3ddff2aa3fffce2aa60a30bb2da65ca488b61fff134a4d1730e7",
+        "parameter_size": "2.0B",
+        "quantization_level": "Q4_K_M"
+      },
+      {
+        "name": "qwen2.5:1.5b",
+        "digest": "65ec06548149b04c096a120e4a6da9d4017ea809c91734ea5631e89f96ddc57b",
+        "parameter_size": "1.5B",
+        "quantization_level": "Q4_K_M"
+      },
+      {
+        "name": "qwen2:0.5b",
+        "digest": "6f48b936a09f7743c7dd30e72fdb14cba296bc5861902e4d0c387e8fb5050b39",
+        "parameter_size": "494.03M",
+        "quantization_level": "Q4_0"
+      },
+      {
+        "name": "mistral:latest",
+        "digest": "6577803aa9a036369e481d648a2baebb381ebc6e897f2bb9a766a2aa7bfbc1cf",
+        "parameter_size": "7.2B",
+        "quantization_level": "Q4_K_M"
+      }
+    ]
+  },
+  "attacker_config": {
+    "model": "qwen3:1.7b",
+    "base_url": "http://127.0.0.1:11434",
+    "timeout_ms": 10000,
+    "temperature": 0.7,
+    "num_predict": 130,
+    "seed": 42,
+    "think": false
+  },
+  "selector_config": {
+    "model": "qwen3:1.7b",
+    "base_url": "http://127.0.0.1:11434",
+    "timeout_ms": 5000,
+    "temperature": 0.7,
+    "num_predict": 60,
+    "seed": 42,
+    "think": false
+  },
+  "transport": "Real local Ollama HTTP; actual target implementation via in-process HTTP ASGI transport. Container isolation and browser UX are separate gates.",
+  "journeys": [
+    {
+      "id": "stolen-session-baseline-1",
+      "variant": "baseline",
+      "manifest_hash": "9c165fe59c8b1cd7295379504dbe3b6a10e23e2076e4f3a48802d9234329dd6d",
+      "seed": 20261023,
+      "passed": true,
+      "intervention": {
+        "before": {
+          "decision_id": "decision_a1ff9acf207b49888613",
+          "run_id": "run_bd7da0ff831b4280a905",
+          "step": 0,
+          "role": "scout",
+          "model_id": "qwen3:1.7b",
+          "prompt_hash": "12989a70be79f4e9a1eb11b51952eeeb5bba233a1cc330d4c56424d0410bd1df",
+          "observation_hash": "a2ce45431007b8780286356ba6a395c6eeef511bb8b5db59103969d969ab2fd3",
+          "proposed_json": {
+            "role": "scout",
+            "action": "inspect_session_status",
+            "target_id": null,
+            "session_handle": "sess_A",
+            "reason": "Check session status to determine if access is usable"
+          },
+          "raw_proposal": null,
+          "selection": null,
+          "accepted_action": "inspect_session_status",
+          "accepted": true,
+          "rejection_reason": null,
+          "latency_ms": 6787,
+          "fallback_used": false,
+          "created_at": "2026-10-23T13:26:54.839371Z"
+        },
+        "after": {
+          "decision_id": "decision_fa2d551100ff4fe58a70",
+          "run_id": "run_bd7da0ff831b4280a905",
+          "step": 1,
+          "role": "adaptation_planner",
+          "model_id": "qwen3:1.7b",
+          "prompt_hash": "12989a70be79f4e9a1eb11b51952eeeb5bba233a1cc330d4c56424d0410bd1df",
+          "observation_hash": "4bd2e48930c0ffff74836467caf79e87c71f42ac67cafc01455dd90c637fd267",
+          "proposed_json": {
+            "role": "adaptation_planner",
+            "action": "stop",
+            "target_id": null,
+            "session_handle": null,
+            "reason": "session status revoked"
+          },
+          "raw_proposal": null,
+          "selection": null,
+          "accepted_action": "stop",
+          "accepted": true,
+          "rejection_reason": null,
+          "latency_ms": 2098,
+          "fallback_used": false,
+          "created_at": "2026-10-23T13:26:57.025225Z"
+        },
+        "observed_access_after": {
+          "sess_A": "revoked"
+        }
+      },
+      "trace_file": "stolen-session-baseline-1.json",
+      "trace_hash": "5ddd41a160f63b785cc107b8c2b1ac0eed3b1056b464b161d415d70f567ff44e",
+      "decisions": 2,
+      "fallback_count": 0,
+      "correlated_actions": 1
+    },
+    {
+      "id": "stolen-session-baseline-2",
+      "variant": "baseline",
+      "manifest_hash": "9c165fe59c8b1cd7295379504dbe3b6a10e23e2076e4f3a48802d9234329dd6d",
+      "seed": 20261024,
+      "passed": true,
+      "intervention": {
+        "before": {
+          "decision_id": "decision_8e423b7ab70b4b53b7b0",
+          "run_id": "run_2e8d988037d64ade9fe0",
+          "step": 0,
+          "role": "scout",
+          "model_id": "qwen3:1.7b",
+          "prompt_hash": "12989a70be79f4e9a1eb11b51952eeeb5bba233a1cc330d4c56424d0410bd1df",
+          "observation_hash": "a2ce45431007b8780286356ba6a395c6eeef511bb8b5db59103969d969ab2fd3",
+          "proposed_json": {
+            "role": "scout",
+            "action": "inspect_session_status",
+            "target_id": null,
+            "session_handle": "sess_A",
+            "reason": "Check session status to determine if access is usable"
+          },
+          "raw_proposal": null,
+          "selection": null,
+          "accepted_action": "inspect_session_status",
+          "accepted": true,
+          "rejection_reason": null,
+          "latency_ms": 2078,
+          "fallback_used": false,
+          "created_at": "2026-10-23T13:26:59.316664Z"
+        },
+        "after": {
+          "decision_id": "decision_b905e4d80dd94f7faf91",
+          "run_id": "run_2e8d988037d64ade9fe0",
+          "step": 1,
+          "role": "adaptation_planner",
+          "model_id": "qwen3:1.7b",
+          "prompt_hash": "12989a70be79f4e9a1eb11b51952eeeb5bba233a1cc330d4c56424d0410bd1df",
+          "observation_hash": "4bd2e48930c0ffff74836467caf79e87c71f42ac67cafc01455dd90c637fd267",
+          "proposed_json": {
+            "role": "adaptation_planner",
+            "action": "stop",
+            "target_id": null,
+            "session_handle": null,
+            "reason": "session status revoked"
+          },
+          "raw_proposal": null,
+          "selection": null,
+          "accepted_action": "stop",
+          "accepted": true,
+          "rejection_reason": null,
+          "latency_ms": 1594,
+          "fallback_used": false,
+          "created_at": "2026-10-23T13:27:00.977283Z"
+        },
+        "observed_access_after": {
+          "sess_A": "revoked"
+        }
+      },
+      "trace_file": "stolen-session-baseline-2.json",
+      "trace_hash": "d4fe95af1ccecbfc84c131e971e7e5e7797ad4c996d9796f895687164f1b6c44",
+      "decisions": 2,
+      "fallback_count": 0,
+      "correlated_actions": 1
+    },
+    {
+      "id": "stolen-session-shared-work-1",
+      "variant": "shared-work",
+      "manifest_hash": "4d1fe3b1ce6dee16aee6e45968c2319619fae14522175aee3b88df57d2edb38c",
+      "seed": 20261023,
+      "passed": true,
+      "intervention": {
+        "before": {
+          "decision_id": "decision_305c2edc17914caeb151",
+          "run_id": "run_1094d29b13574c5a9f45",
+          "step": 0,
+          "role": "scout",
+          "model_id": "qwen3:1.7b",
+          "prompt_hash": "12989a70be79f4e9a1eb11b51952eeeb5bba233a1cc330d4c56424d0410bd1df",
+          "observation_hash": "5bcd50863766208647a97a7a2b80fff47ccf3af5483cf7469dd788d5f38e23eb",
+          "proposed_json": {
+            "role": "scout",
+            "action": "inspect_session_status",
+            "target_id": null,
+            "session_handle": "sess_B",
+            "reason": "Check session status to determine if access is usable"
+          },
+          "raw_proposal": null,
+          "selection": null,
+          "accepted_action": "inspect_session_status",
+          "accepted": true,
+          "rejection_reason": null,
+          "latency_ms": 2120,
+          "fallback_used": false,
+          "created_at": "2026-10-23T13:27:03.235123Z"
+        },
+        "after": {
+          "decision_id": "decision_bf8331f502054ade824b",
+          "run_id": "run_1094d29b13574c5a9f45",
+          "step": 1,
+          "role": "adaptation_planner",
+          "model_id": "qwen3:1.7b",
+          "prompt_hash": "12989a70be79f4e9a1eb11b51952eeeb5bba233a1cc330d4c56424d0410bd1df",
+          "observation_hash": "d0a3a71ca35011c0a9a95be61a06b3f9358919ac49a3a120989d0fee55bafcda",
+          "proposed_json": {
+            "role": "adaptation_planner",
+            "action": "stop",
+            "target_id": null,
+            "session_handle": null,
+            "reason": "session status revoked"
+          },
+          "raw_proposal": null,
+          "selection": null,
+          "accepted_action": "stop",
+          "accepted": true,
+          "rejection_reason": null,
+          "latency_ms": 1760,
+          "fallback_used": false,
+          "created_at": "2026-10-23T13:27:05.071256Z"
+        },
+        "observed_access_after": {
+          "sess_B": "revoked"
+        }
+      },
+      "trace_file": "stolen-session-shared-work-1.json",
+      "trace_hash": "9ed97f618026f0927001642cad41851bb81a9667888843c4a435c535be16015f",
+      "decisions": 2,
+      "fallback_count": 0,
+      "correlated_actions": 1
+    },
+    {
+      "id": "stolen-session-shared-work-2",
+      "variant": "shared-work",
+      "manifest_hash": "4d1fe3b1ce6dee16aee6e45968c2319619fae14522175aee3b88df57d2edb38c",
+      "seed": 20261024,
+      "passed": true,
+      "intervention": {
+        "before": {
+          "decision_id": "decision_5727a1bc73c948628126",
+          "run_id": "run_6049685f33644c3389fc",
+          "step": 0,
+          "role": "scout",
+          "model_id": "qwen3:1.7b",
+          "prompt_hash": "12989a70be79f4e9a1eb11b51952eeeb5bba233a1cc330d4c56424d0410bd1df",
+          "observation_hash": "5bcd50863766208647a97a7a2b80fff47ccf3af5483cf7469dd788d5f38e23eb",
+          "proposed_json": {
+            "role": "scout",
+            "action": "inspect_session_status",
+            "target_id": null,
+            "session_handle": "sess_B",
+            "reason": "Check session status to determine if access is usable"
+          },
+          "raw_proposal": null,
+          "selection": null,
+          "accepted_action": "inspect_session_status",
+          "accepted": true,
+          "rejection_reason": null,
+          "latency_ms": 1725,
+          "fallback_used": false,
+          "created_at": "2026-10-23T13:27:06.940157Z"
+        },
+        "after": {
+          "decision_id": "decision_7d4ec37a5bfb4b9f8ca6",
+          "run_id": "run_6049685f33644c3389fc",
+          "step": 1,
+          "role": "adaptation_planner",
+          "model_id": "qwen3:1.7b",
+          "prompt_hash": "12989a70be79f4e9a1eb11b51952eeeb5bba233a1cc330d4c56424d0410bd1df",
+          "observation_hash": "d0a3a71ca35011c0a9a95be61a06b3f9358919ac49a3a120989d0fee55bafcda",
+          "proposed_json": {
+            "role": "adaptation_planner",
+            "action": "stop",
+            "target_id": null,
+            "session_handle": null,
+            "reason": "session status revoked"
+          },
+          "raw_proposal": null,
+          "selection": null,
+          "accepted_action": "stop",
+          "accepted": true,
+          "rejection_reason": null,
+          "latency_ms": 1486,
+          "fallback_used": false,
+          "created_at": "2026-10-23T13:27:08.505169Z"
+        },
+        "observed_access_after": {
+          "sess_B": "revoked"
+        }
+      },
+      "trace_file": "stolen-session-shared-work-2.json",
+      "trace_hash": "951af1b8200663f80cdd60079e372c52d0dfbfd2cd7151ec6b2a5fb520053041",
+      "decisions": 2,
+      "fallback_count": 0,
+      "correlated_actions": 1
+    },
+    {
+      "id": "stolen-session-service-dependent-1",
+      "variant": "service-dependent",
+      "manifest_hash": "ed34e0e9d71924b89d3bc4a787e71d26636ea3c0418e6291806d1f6f864ba60f",
+      "seed": 20261023,
+      "passed": true,
+      "intervention": {
+        "before": {
+          "decision_id": "decision_f51331c2756841599c11",
+          "run_id": "run_d456f3766f1f4a258f33",
+          "step": 0,
+          "role": "scout",
+          "model_id": "qwen3:1.7b",
+          "prompt_hash": "55e6e4db1ca6849c071dfc407540e67ccd5ff348a64dc667e4e8f82bed9943de",
+          "observation_hash": "8a8535068b18b6ceffe83740ed5908fe3336742a5e22a65281c37369aac5e558",
+          "proposed_json": {
+            "role": "scout",
+            "action": "inspect_session_status",
+            "target_id": null,
+            "session_handle": "sess_C",
+            "reason": "Check session status for usability"
+          },
+          "raw_proposal": null,
+          "selection": null,
+          "accepted_action": "inspect_session_status",
+          "accepted": true,
+          "rejection_reason": null,
+          "latency_ms": 2692,
+          "fallback_used": false,
+          "created_at": "2026-10-23T13:27:11.332363Z"
+        },
+        "after": {
+          "decision_id": "decision_f1ca53d807f44e98a360",
+          "run_id": "run_d456f3766f1f4a258f33",
+          "step": 1,
+          "role": "adaptation_planner",
+          "model_id": "qwen3:1.7b",
+          "prompt_hash": "55e6e4db1ca6849c071dfc407540e67ccd5ff348a64dc667e4e8f82bed9943de",
+          "observation_hash": "bee10f9560b0ba869ce1dbab124fcff9a3bd023fd9da308d348c7e4b7eacdfaf",
+          "proposed_json": {
+            "role": "adaptation_planner",
+            "action": "stop",
+            "target_id": null,
+            "session_handle": null,
+            "reason": "session status is revoked"
+          },
+          "raw_proposal": null,
+          "selection": null,
+          "accepted_action": "stop",
+          "accepted": true,
+          "rejection_reason": null,
+          "latency_ms": 2080,
+          "fallback_used": false,
+          "created_at": "2026-10-23T13:27:13.486473Z"
+        },
+        "observed_access_after": {
+          "sess_C": "revoked"
+        }
+      },
+      "trace_file": "stolen-session-service-dependent-1.json",
+      "trace_hash": "9caafafdf12ec725470da8587d3990ca6dafb0946e48959d53fab8d00f61c758",
+      "decisions": 2,
+      "fallback_count": 0,
+      "correlated_actions": 1
+    },
+    {
+      "id": "stolen-session-service-dependent-2",
+      "variant": "service-dependent",
+      "manifest_hash": "ed34e0e9d71924b89d3bc4a787e71d26636ea3c0418e6291806d1f6f864ba60f",
+      "seed": 20261024,
+      "passed": true,
+      "intervention": {
+        "before": {
+          "decision_id": "decision_e1605ca9409c4cdbaef3",
+          "run_id": "run_639186a205db4819bcce",
+          "step": 0,
+          "role": "scout",
+          "model_id": "qwen3:1.7b",
+          "prompt_hash": "55e6e4db1ca6849c071dfc407540e67ccd5ff348a64dc667e4e8f82bed9943de",
+          "observation_hash": "8a8535068b18b6ceffe83740ed5908fe3336742a5e22a65281c37369aac5e558",
+          "proposed_json": {
+            "role": "scout",
+            "action": "inspect_session_status",
+            "target_id": null,
+            "session_handle": "sess_C",
+            "reason": "Check session status to determine if access is usable"
+          },
+          "raw_proposal": null,
+          "selection": null,
+          "accepted_action": "inspect_session_status",
+          "accepted": true,
+          "rejection_reason": null,
+          "latency_ms": 1866,
+          "fallback_used": false,
+          "created_at": "2026-10-23T13:27:15.514216Z"
+        },
+        "after": {
+          "decision_id": "decision_af9486960009464aba9e",
+          "run_id": "run_639186a205db4819bcce",
+          "step": 1,
+          "role": "adaptation_planner",
+          "model_id": "qwen3:1.7b",
+          "prompt_hash": "55e6e4db1ca6849c071dfc407540e67ccd5ff348a64dc667e4e8f82bed9943de",
+          "observation_hash": "bee10f9560b0ba869ce1dbab124fcff9a3bd023fd9da308d348c7e4b7eacdfaf",
+          "proposed_json": {
+            "role": "adaptation_planner",
+            "action": "stop",
+            "target_id": null,
+            "session_handle": null,
+            "reason": "session status revoked"
+          },
+          "raw_proposal": null,
+          "selection": null,
+          "accepted_action": "stop",
+          "accepted": true,
+          "rejection_reason": null,
+          "latency_ms": 1556,
+          "fallback_used": false,
+          "created_at": "2026-10-23T13:27:17.144786Z"
+        },
+        "observed_access_after": {
+          "sess_C": "revoked"
+        }
+      },
+      "trace_file": "stolen-session-service-dependent-2.json",
+      "trace_hash": "acc1546916efacc74900a8a3a57f836e279214f41252f31bc378f4e5a139d583",
+      "decisions": 2,
+      "fallback_count": 0,
+      "correlated_actions": 1
+    },
+    {
+      "id": "northstar-breach-baseline-1",
+      "variant": "baseline",
+      "manifest_hash": "8874acf8d74d8cc25eb9ad0d421f4e89d39ebd8da9cca833d5b32ef618737995",
+      "seed": 20261023,
+      "passed": false,
+      "error": "RuntimeError: No post-intervention model decision",
+      "trace_file": "northstar-breach-baseline-1.json",
+      "trace_hash": "7519370a3c9c09dc439177caf292097620a95df23cb3c4f7134c40aaffbe7532",
+      "decisions": 1,
+      "fallback_count": 0,
+      "correlated_actions": 1
+    },
+    {
+      "id": "northstar-breach-baseline-2",
+      "variant": "baseline",
+      "manifest_hash": "8874acf8d74d8cc25eb9ad0d421f4e89d39ebd8da9cca833d5b32ef618737995",
+      "seed": 20261024,
+      "passed": false,
+      "error": "RuntimeError: No post-intervention model decision",
+      "trace_file": "northstar-breach-baseline-2.json",
+      "trace_hash": "350ae2f9062c45f15c6de5857568036c135a4880384b8648388459eec6bade89",
+      "decisions": 1,
+      "fallback_count": 0,
+      "correlated_actions": 1
+    },
+    {
+      "id": "northstar-breach-shared-work-1",
+      "variant": "shared-work",
+      "manifest_hash": "bcf428b94f681f5996dc7375f9fb5d9a44a0ce0d6112c255faa5f45e4ae05212",
+      "seed": 20261023,
+      "passed": false,
+      "error": "RuntimeError: No post-intervention model decision",
+      "trace_file": "northstar-breach-shared-work-1.json",
+      "trace_hash": "44ea974eecd21a7fa36bc121ab783fe10cc32467faab6ca139e87794edd82c29",
+      "decisions": 1,
+      "fallback_count": 0,
+      "correlated_actions": 1
+    },
+    {
+      "id": "northstar-breach-shared-work-2",
+      "variant": "shared-work",
+      "manifest_hash": "bcf428b94f681f5996dc7375f9fb5d9a44a0ce0d6112c255faa5f45e4ae05212",
+      "seed": 20261024,
+      "passed": false,
+      "error": "RuntimeError: No post-intervention model decision",
+      "trace_file": "northstar-breach-shared-work-2.json",
+      "trace_hash": "01ff361fc760487e046d894c1a259dc8efade5e7a53605c1b8cc61ac9a8e4aa9",
+      "decisions": 1,
+      "fallback_count": 0,
+      "correlated_actions": 1
+    },
+    {
+      "id": "northstar-breach-service-dependent-1",
+      "variant": "service-dependent",
+      "manifest_hash": "e08d4950ad4d1df544e8e739e5c59a01b09f010e13f967b91cade6c57c9d8d76",
+      "seed": 20261023,
+      "passed": false,
+      "error": "RuntimeError: No post-intervention model decision",
+      "trace_file": "northstar-breach-service-dependent-1.json",
+      "trace_hash": "2d6f797b5e6100386448047d3e40550fa2feb370a9059c478bb5d0c91a59a093",
+      "decisions": 1,
+      "fallback_count": 0,
+      "correlated_actions": 1
+    },
+    {
+      "id": "northstar-breach-service-dependent-2",
+      "variant": "service-dependent",
+      "manifest_hash": "e08d4950ad4d1df544e8e739e5c59a01b09f010e13f967b91cade6c57c9d8d76",
+      "seed": 20261024,
+      "passed": false,
+      "error": "RuntimeError: No post-intervention model decision",
+      "trace_file": "northstar-breach-service-dependent-2.json",
+      "trace_hash": "7f46f726b4f48cf8014de624ccd24fe5576d8289e251a11e9694f4c9723cce0e",
+      "decisions": 1,
+      "fallback_count": 0,
+      "correlated_actions": 1
+    }
+  ],
+  "coaching": [
+    {
+      "id": "alternative-reasoning-01",
+      "category": "alternative-reasoning",
+      "passed": false,
+      "error": "DomainError: ('The coach could not provide supported references after two attempts. Your work remains saved.', 503)",
+      "elapsed_ms": 37729
+    },
+    {
+      "id": "alternative-reasoning-02",
+      "category": "alternative-reasoning",
+      "passed": false,
+      "error": "DomainError: ('The coach could not provide supported references after two attempts. Your work remains saved.', 503)",
+      "elapsed_ms": 36662
+    },
+    {
+      "id": "alternative-reasoning-03",
+      "category": "alternative-reasoning",
+      "passed": false,
+      "error": "DomainError: ('The coach could not provide supported references after two attempts. Your work remains saved.', 503)",
+      "elapsed_ms": 22176
+    },
+    {
+      "id": "alternative-reasoning-04",
+      "category": "alternative-reasoning",
+      "passed": false,
+      "error": "DomainError: ('The coach could not provide supported references after two attempts. Your work remains saved.', 503)",
+      "elapsed_ms": 31978
+    }
+  ],
+  "limitations": [
+    "No participant or educational-efficacy evidence.",
+    "Coaching utility requires human review; finite authored scaffolds constrain interpretation."
+  ],
+  "coaching_config": {
+    "model": "qwen3:1.7b",
+    "base_url": "http://127.0.0.1:11434",
+    "timeout_ms": 60000,
+    "temperature": 0.1,
+    "num_predict": 350,
+    "seed": 42,
+    "think": false
+  }
+}

@@ -1,0 +1,54 @@
+name: cydeline
+services:
+  target:
+    build: {context: ., dockerfile: infra/range/Dockerfile.target}
+    environment:
+      RANGE_SECRET: ${RANGE_SECRET:?Configure local secrets first}
+    volumes: [target_data:/data]
+    networks: [range_internal]
+    read_only: true
+    tmpfs: [/tmp]
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    mem_limit: 384m
+    cpus: 1
+    pids_limit: 128
+  control:
+    build: {context: ., dockerfile: infra/range/Dockerfile.control}
+    environment:
+      RANGE_SECRET: ${RANGE_SECRET:?Configure local secrets first}
+      TARGET_URL: http://target:8001
+      OLLAMA_HOST: http://ollama:11434
+      RED_AGENT_TIMEOUT_MS: ${RED_AGENT_TIMEOUT_MS:-30000}
+      INSTRUCTOR_PIN: ${INSTRUCTOR_PIN:?Configure local secrets first}
+    volumes: [control_data:/data]
+    networks: [range_internal, services]
+    ports: [127.0.0.1:8080:8000]
+    depends_on: [target, ollama]
+    read_only: true
+    tmpfs: [/tmp]
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    mem_limit: 768m
+    cpus: 2
+    pids_limit: 192
+  ollama:
+    image: ollama/ollama:0.34.0
+    networks: [services]
+    volumes: [model_data:/root/.ollama]
+    mem_limit: 4g
+    cpus: 4
+  model-init:
+    image: ollama/ollama:0.34.0
+    profiles: [setup]
+    environment: {OLLAMA_HOST: 'http://ollama:11434'}
+    entrypoint: [ollama, pull, 'qwen3:1.7b']
+    networks: [services]
+    depends_on: [ollama]
+networks:
+  range_internal: {internal: true}
+  services: {}
+volumes:
+  target_data: {}
+  control_data: {}
+  model_data: {}

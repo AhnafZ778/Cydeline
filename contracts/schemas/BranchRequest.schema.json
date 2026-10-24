@@ -1,0 +1,15 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "checkpoint_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+      "title": "Checkpoint Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "checkpoint_id"
+  ],
+  "title": "BranchRequest",
+  "type": "object"
+}

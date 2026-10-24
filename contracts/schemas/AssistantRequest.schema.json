@@ -1,0 +1,48 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "event_ids": {
+      "items": {
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+        "type": "string"
+      },
+      "maxItems": 12,
+      "title": "Event Ids",
+      "type": "array"
+    },
+    "level": {
+      "default": "explain",
+      "enum": [
+        "explain",
+        "nudge",
+        "guide"
+      ],
+      "title": "Level",
+      "type": "string"
+    },
+    "question": {
+      "maxLength": 1000,
+      "minLength": 1,
+      "title": "Question",
+      "type": "string"
+    },
+    "request_id": {
+      "anyOf": [
+        {
+          "pattern": "^[A-Za-z0-9_.:-]{8,128}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Request Id"
+    }
+  },
+  "required": [
+    "question"
+  ],
+  "title": "AssistantRequest",
+  "type": "object"
+}

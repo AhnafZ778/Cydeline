@@ -44,7 +44,8 @@ Status: **PROPOSED — needs Saad sign-off before `contracts/` freeze (G0).** Ah
 **Canonical enums are unchanged** (`RunState`, `Outcome`, `Mode`, `AttackerAction`, `DefenderAction`, `Verification`).
 
 ## Next increment
-- Execute **Stage 0 & Stage 1 (`SL-001`)**: Finalize `contracts/` enums and JSON schemas, publish static mock fixtures for all 3 segments, and verify `harness check run` passes.
+- Resolve AI-LEARN-01 with the saved denied/unknown permission traces and a declared model/policy decision. Retain the failed10/12 gate and live coaching latency tail; participant sessions are explicitly deferred.
+- Current scope and evidence: `docs/product/BEGINNER_LEARNING_HANDOFF.md`; preserve prior failed gates.
 
 ## Verification commands, interaction checks and required independent review
 - `harness check run /home/ahnaf-zakaria/Downloads/Cydeline`
@@ -60,3 +61,37 @@ Status: **PROPOSED — needs Saad sign-off before `contracts/` freeze (G0).** Ah
 - `Tanvir.md`
 - `Saad.md`
 - `context/INDEX.md`
+
+
+## Authorized live product implementation amendment
+Ahnaf authorized the full phased roadmap in docs/product/IMPLEMENTATION_ROADMAP.md. This amendment supersedes conflicting earlier UI-only/P0 scope limits for the new versioned live product. Keep existing v1 fixtures and canonical enums compatible. The unified SOC console is the live shell; mission evidence/response/verification/debrief are reused inside it. The target and server own all results. Composite business verification includes Eli and a fresh legitimate Maya workflow, so disabling Maya produces real disruption and restoration never resurrects compromised access. All terminal states permit debrief. Optional network telemetry, clock and exact decision/action/audit links are accepted. Practice may expose the Adversary Lens; assessment data is redacted server-side. Build and evaluate bounded vertical increments; mark unverified external services honestly.
+
+
+## 2026-10-23: Accepted console restoration and Windows workstation
+Ahnaf explicitly restores the d93b640 original landing, mission workbench and all existing SOC practice tab formats. New live range/training/tools remain additive under explicit #/live routes; the backend and canonical enums are retained. Sandbox is the authorized replacement: genuine Windows QEMU/KVM display via Guacamole, isolated scratch overlay and released-evidence CD. Existing Linux workers must be restarted and cannot be silently presented as Windows. Windows OS boot is gated on a prepared BIOS/IDE qcow2 image, documented in docs/product/WINDOWS_VM.md.
+
+
+## Approved consolidation — 2026-10-23 (supersedes conflicting earlier fixture/workbench decisions)
+
+Implement one AI-powered SOC using the accepted original console layouts. Root has exactly The Stolen Session (stolen-session/v1) and The Reporting Blind Spot (northstar-breach/v2), compact coached-practice/assessment launch settings, and explicit resume under the one-active-company rule. Original Monitoring becomes Live Monitoring; original Logs and Cases use the same run-scoped snapshot/SSE provider. Preserve original icons, channels, tables, modals, playbook, notes, artifacts, tool arrangements, and training navigation; old run URLs remain valid, old practice links resolve into selected run or landing. No public scripted simulator, sample evidence, invented telemetry, browser grades, or answer keys.
+
+Backend adds authenticated alert ownership/closure comments, idempotent one-case-per-run creation, revision-checked case/playbook/artifact updates with released-evidence validation and old notes/handoffs retained. Declaration, defense, recovery and scoring stay authoritative. Alert closure never ends the attacker. Scenario playbooks gate completion on server records; final feedback/replay is terminal only. Windows/Elastic live in Sandbox; Windows installation and new attack families remain out of scope.
+
+Require actual model readiness on create/start. Invalid/timeout model output records a failed decision and system-pauses clock without fallback execution or step consumption. Authenticated AI retry retries the pending turn; defender-induced stale proposals are discarded without outage. Assessment disallows manual pauses, permits only system AI pauses. Preserve canonical enums, policy/schema checks, target audit correlation, response idempotency and authorization.
+
+Acceptance: both scenario workflows, real model-to-target correlated actions and containment/legitimate continuity; case retries/revisions/old data; refresh, tabs, SSE reconnect, isolation and drafts; AI launch/outage/retry/assessment; 320/390/768/1440 keyboard/accessibility; native tests/build/Harness run/evaluate and handoff.
+
+
+## Authorized beginner learning loop — 2026-10-23
+
+Implement the attached beginner SOC plan in M0–M4: harden terminal immutability, persisted report identity, response/verification/playbook invalidation and draft isolation; add public company briefings, paused coached starts, three authored micro-exercises, revision-checked autosaved six-part worksheets, evidence-grounded Explain/Nudge/Guide coaching with exact citations and disputes, three meaningful target configurations per scenario, trace-linked causal debrief/export and another-variation launch. Keep the two scenario cards, original console layouts, canonical enums, real local attacker, server scoring and assessment restrictions. No new runtime orchestration framework. Assistance never deducts practice points. Variant manifests pin configuration, seed and hashes; exact replay consumes the recorded trace. Older records load with optional fields absent.
+
+Acceptance: native tests/build/browser checks/Harness; 60 adversarial coaching cases; 12 genuine model journeys (2 scenarios × 3 variants × 2 repeats), audit correlations and paired interventions; coaching p95 ≤15s measured on declared hardware. Record failed/unavailable gates honestly. M4 prepares a counterbalanced eight-beginner/two-expert pilot and 0–2 six-skill rubric; no participant findings or educational-efficacy claims without observed sessions. Product records: docs/product/BEGINNER_LEARNING_RESEARCH.md, BEGINNER_LEARNING_PLAN.md, OPEN_SOURCE_ADOPTION.md.
+
+2026-10-23 evaluation-driven correction: the first uncontained objective matrix reached10/12objectives; both Reporting variation3runs switched too late after discovering missing document permission. Preserve those failures. Feed only actual target-returned document listings into bounded model observations; distinguish authorization403from revoked access. Filter proposed per-route actions by the existing route signal/time window before generation as well as at execution. Keep12steps, pacing, schemas, validation and no substitute attacker execution. Rerun the full12journey matrix after correction.
+
+24 October 2026 (Asia/Dhaka): the user explicitly chose **“Leave the pilot kit ready”**. This delivery completes the engineering and study-preparation work; recruitment, actual eight-beginner/two-expert observations and delayed follow-up remain future work. No learning-effectiveness, retention or certification claim is authorized by engineering checks.
+
+24 October finishing correction: the temperature-0 selector matrix completed 7/12. Four Reporting trials selected null while permissions were still unknown; preserve the failure traces. Restore the previously measured 0.1 temperature and clarify that unknown means untested permission eligible for exploration, while null is reserved for all-blocked observations. Record the exact observed objective states with the selection for audit. The model still chooses among all context aliases including null; policy, execution, pacing and budgets remain unchanged. A fresh complete matrix is required.
+
+24 October completion-setting decision: the predefined exact initial unknown-permission context comparison at `docs/model-card/learning/2026-10-23T18-38-06.701086Z-selector-completion.json` timed out with thinking enabled after 32032ms and completed correct alias JSON in 2472ms with thinking disabled. Final selector uses thinking disabled, 80 output tokens and temperature 0.1 within the unchanged 30000ms CPU budget. Incomplete final replies retain sanitized completion metadata and never dispatch an action. Private reasoning is never parsed as a choice. This diagnostic alone is not scenario acceptance; a fresh full objective/intervention run is required. The preceding clarified-thinking matrix remains explicitly interrupted after six completed trials, with its partial Reporting trace retained.

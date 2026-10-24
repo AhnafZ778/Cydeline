@@ -1,0 +1,13 @@
+
+> sentinel-loop-web@0.1.0 test
+> vitest run
+
+
+ RUN  v5.0.5 /home/ahnaf-zakaria/Downloads/Cydeline/apps/web
+
+
+ Test Files  9 passed (9)
+      Tests  54 passed (54)
+   Start at  01:01:22
+   Duration  465ms (transform 41%, import 30%, tests 20%, worker 9%)
+

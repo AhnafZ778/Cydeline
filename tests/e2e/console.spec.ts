@@ -1,94 +1,152 @@
-import { expect, test } from "@playwright/test";
-import AxeBuilder from "@axe-core/playwright";
-
-test.beforeEach(async ({ page }) => {
-  await page.addInitScript(() => {
-    localStorage.setItem("sl.tour.done", "1");
-    localStorage.removeItem("sl.soc.v1");
-  });
-});
-
-async function axe(page: import("@playwright/test").Page, label: string) {
-  const results = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"]).analyze();
-  const bad = results.violations.filter((v) => v.impact === "serious" || v.impact === "critical");
-  const summary = bad.map((v) => `${v.id} (${v.impact}): ${v.nodes.slice(0, 3).map((n) => n.target.join(" ")).join(" | ")}`).join("\n");
-  expect(bad, `${label}\n${summary}`).toEqual([]);
-}
-
-test("phishing alert follows the practice loop and syncs to a second tab", async ({ page }) => {
-  await page.goto("/#/practice/monitoring");
-  await expect(page.getByRole("heading", { name: "Monitoring", level: 1 })).toHaveCount(0);
-  await expect(page.getByTestId("alert-NS-4412")).toBeVisible();
-  await expect(page).toHaveTitle("Monitoring - Northstar Practice");
-  await axe(page, "monitoring");
-
-  await page.getByTestId("take-NS-4412").click();
-  await expect(page.getByRole("dialog", { name: "Are you sure?" })).toBeVisible();
+import { test, expect } from "@playwright/test";
+import { installSoc, RID } from "./soc-fixture";
+test("original alert channels, ownership, incident, playbook and closure use server state", async ({
+  page,
+}) => {
+  const model = await installSoc(page, true);
+  await page.goto("/#/live/" + RID + "/monitoring");
+  await expect(
+    page.getByRole("heading", { name: "Live Monitoring", exact: true }),
+  ).toBeVisible();
+  for (const name of ["Main Channel", "Investigation Channel", "Closed Alerts"])
+    await expect(page.getByRole("tab", { name, exact: true })).toBeVisible();
+  await page
+    .getByRole("button", {
+      name: "Take ownership of alert_review01",
+      exact: true,
+    })
+    .click();
   await page.getByTestId("take-confirm").click();
-  await page.getByTestId("channel-investigation").click();
-  await expect(page.getByTestId("alert-NS-4434")).toBeHidden();
-  await page.getByTestId("channel-main").click();
-  await expect(page.getByTestId("alert-NS-4434")).toBeVisible();
-  await page.getByTestId("channel-investigation").click();
-  await page.getByTestId("case-NS-4412").click();
+  await expect(
+    page.getByRole("tab", { name: "Investigation Channel", exact: true }),
+  ).toHaveAttribute("aria-selected", "true");
+  await page
+    .getByRole("button", { name: "Create case alert_review01", exact: true })
+    .click();
   await page.getByTestId("create-continue").click();
-  await expect(page.getByRole("heading", { name: "Incident details" })).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: "Incident Details", exact: true }),
+  ).toBeVisible();
+  await page
+    .getByRole("textbox", { name: "Investigation notes", exact: true })
+    .fill("Preserve this investigation draft.");
+  await page.getByRole("link", { name: "Log Management", exact: true }).click();
+  await page
+    .getByRole("link", { name: "Case Management", exact: true })
+    .click();
+  await page.getByRole("link", { name: "case_main", exact: true }).click();
+  await expect(
+    page.getByRole("textbox", { name: "Investigation notes", exact: true }),
+  ).toHaveValue("Preserve this investigation draft.");
+  await page.getByRole("button", { name: "Save notes", exact: true }).click();
+  await expect
+    .poll(() => model.snapshot.workspace.cases[0].note)
+    .toBe("Preserve this investigation draft.");
   await page.getByTestId("start-playbook").click();
-
-  await page.getByTestId("playbook-next").click();
-  await page.getByTestId("choice-Yes").click();
-  await page.getByTestId("playbook-next").click();
-  const popupPromise = page.waitForEvent("popup");
-  await page.getByRole("link", { name: "Multiscan" }).click();
-  const popup = await popupPromise;
-  await expect(popup.getByText("9/72")).toBeVisible();
-  await popup.close();
-  await page.getByTestId("choice-Malicious").click();
-  await page.getByTestId("playbook-next").click();
-  await page.getByTestId("choice-Delivered").click();
-  await page.getByTestId("playbook-next").click();
-  const mailPromise = page.waitForEvent("popup");
-  await page.getByRole("link", { name: "Email security", exact: true }).click();
-  const mail = await mailPromise;
-  await mail.getByText("Cafeteria credit", { exact: true }).click();
-  await mail.getByRole("button", { name: "Delete from mailbox" }).click();
-  await mail.close();
-  await expect(page.getByText("Recorded.")).toBeVisible();
-  await page.getByTestId("playbook-next").click();
-  const hostPromise = page.waitForEvent("popup");
-  await page.getByRole("link", { name: "Endpoint security", exact: true }).click();
-  const host = await hostPromise;
-  await host.getByRole("button", { name: "Contain", exact: true }).click();
-  await host.getByRole("button", { name: "Continue" }).click();
-  await host.close();
-  await expect(page.getByText("Recorded.")).toBeVisible();
-  await page.getByTestId("playbook-next").click();
-  await page.getByTestId("playbook-next").click();
-  await page.getByPlaceholder("Please enter comments").fill("Voucher mail was allowed through. Link and archive are malicious. Not delivered past the mailbox.");
-  await page.getByTestId("playbook-next").click();
-  await page.getByTestId("playbook-confirm").click();
-
-  await page.getByRole("link", { name: "Monitoring" }).click();
-  await page.getByTestId("channel-investigation").click();
-  await page.getByTestId("close-NS-4412").click();
-  await page.getByLabel("Note").fill("True positive. Gateway label said blocked, mailbox shows allowed.");
+  await expect(
+    page.getByRole("dialog", { name: "Collect evidence", exact: true }),
+  ).toBeVisible();
+  await page.keyboard.press("Escape");
+  await page
+    .getByRole("link", { name: "Live Monitoring", exact: true })
+    .click();
+  await page
+    .getByRole("button", { name: "Close alert alert_review01", exact: true })
+    .click();
+  await page
+    .getByLabel("Note", { exact: true })
+    .fill("Investigated the observed source change.");
   await page.getByTestId("close-submit").click();
-  await expect(page.getByTestId("streak-continue")).toBeVisible();
-  await page.screenshot({ path: "../../docs/demo/console-practice/streak-1440.png" });
-  await page.getByTestId("streak-continue").click();
-  await page.getByTestId("channel-closed").click();
-  await expect(page.getByTestId("result-NS-4412")).toHaveAttribute("aria-label", "Correct answer");
-  await page.getByRole("button", { name: "Show" }).click();
-  await expect(page.getByText("official write-up", { exact: false })).toBeVisible();
-  await expect(page.getByText("lookalike of the company cafeteria")).toBeVisible();
-  await axe(page, "closed report");
-
-  const second = await page.context().newPage();
-  await second.goto("/#/practice/monitoring");
-  await second.getByTestId("channel-closed").click();
-  await expect(second.getByTestId("result-NS-4412")).toBeVisible();
-  await second.setViewportSize({ width: 900, height: 800 });
-  await second.screenshot({ path: "../../docs/demo/console-practice/monitoring-900.png" });
-  await page.setViewportSize({ width: 1440, height: 900 });
-  await page.screenshot({ path: "../../docs/demo/console-practice/closed-1440.png" });
+  await page.getByRole("tab", { name: "Closed Alerts", exact: true }).click();
+  await expect(page.getByRole("table")).toContainText("true positive");
+  expect(model.snapshot.state).toBe("running");
+  expect(
+    model.calls.some(
+      (c) => c.path.endsWith("/alerts/alert_review01") && c.body.comment,
+    ),
+  ).toBeTruthy();
+});
+test("New Search retains Basic/Pro, aliases, saved searches, pins and drafts through refresh", async ({
+  page,
+}) => {
+  const model = await installSoc(page, true);
+  await page.goto("/#/live/" + RID + "/logs");
+  await expect(
+    page.getByRole("heading", { name: "New Search", exact: true }),
+  ).toBeVisible();
+  await page.getByRole("button", { name: "Pro", exact: true }).click();
+  await page
+    .getByLabel("Pro query", { exact: true })
+    .fill("session:sess_A ip:203.0.113.57");
+  await page.getByRole("button", { name: "Search", exact: true }).click();
+  await page.getByRole("button", { name: "Save search", exact: true }).click();
+  await expect
+    .poll(() => model.snapshot.workspace.saved_queries.length)
+    .toBe(1);
+  await page.locator(".lm__list > li > button").first().click();
+  await page
+    .getByRole("button", { name: "Pin as evidence", exact: true })
+    .click();
+  await expect.poll(() => model.snapshot.workspace.evidence_ids.length).toBe(1);
+  await page
+    .getByRole("link", { name: "Business Activity", exact: true })
+    .click();
+  await page.getByRole("link", { name: "Log Management", exact: true }).click();
+  await expect(page.getByLabel("Pro query", { exact: true })).toHaveValue(
+    "session:sess_A ip:203.0.113.57",
+  );
+  await page.reload();
+  await expect(page.getByLabel("Pro query", { exact: true })).toHaveValue(
+    "session:sess_A ip:203.0.113.57",
+  );
+  await expect(
+    page.getByRole("button", { name: "Unpin evidence", exact: true }),
+  ).toBeVisible();
+  await expect(page.locator(".lm__list")).toContainText(
+    "source_port=Unavailable",
+  );
+  await page
+    .getByRole("button", { name: "Inspect event", exact: true })
+    .click();
+  await expect(
+    page.getByRole("complementary", { name: "Event inspector" }),
+  ).toBeVisible();
+  await page.keyboard.press("Escape");
+  await page.getByRole("button", { name: "Basic", exact: true }).click();
+  await expect(
+    page.getByRole("heading", { name: "Interesting fields", exact: true }),
+  ).toBeVisible();
+  await page
+    .getByRole("button", { name: "source_address", exact: true })
+    .click();
+  await page.getByLabel("Value", { exact: true }).fill("203.0.113.57");
+  await page.getByRole("button", { name: "Search", exact: true }).click();
+  await page.reload();
+  await expect(page.locator(".lm__sentence")).toContainText("203.0.113.57");
+});
+test("system AI failure exposes retry and assessment has no manual pause", async ({
+  page,
+}) => {
+  const model = await installSoc(page, true);
+  model.snapshot.mode = "assessment";
+  model.snapshot.assistance = "blind";
+  model.snapshot.ai_unavailable = true;
+  model.snapshot.model_status = "unavailable";
+  await page.goto("/#/live/" + RID + "/monitoring");
+  await expect(
+    page.getByText("AI unavailable — Retry", { exact: true }),
+  ).toBeVisible();
+  await expect(
+    page.getByRole("button", { name: "Pause exercise", exact: true }),
+  ).toBeDisabled();
+  await expect(
+    page.getByRole("region", { name: "Adversary lens" }),
+  ).toHaveCount(0);
+  await page.getByRole("button", { name: "Retry AI", exact: true }).click();
+  await expect(
+    page.getByText("AI unavailable — Retry", { exact: true }),
+  ).toHaveCount(0);
+  expect(model.calls.filter((c) => c.path.endsWith("/ai/retry"))).toHaveLength(
+    1,
+  );
 });

@@ -1,0 +1,87 @@
+{
+  "started_at": "2026-10-23T17:24:43.679573Z",
+  "scope": "Real model proposal diagnostic with document lists obtained by direct real target HTTP discovery; not a full model objective journey.",
+  "results": [
+    {
+      "variant": "service-dependent",
+      "observed_documents": {
+        "sess_C": [
+          "doc_ops_02"
+        ]
+      },
+      "decision": {
+        "proposal": {
+          "role": "scout",
+          "action": "inspect_session_status",
+          "target_id": null,
+          "session_handle": "sess_C",
+          "reason": "Check session status to determine if access is usable"
+        },
+        "accepted": true,
+        "fallback_used": false,
+        "latency_ms": 6197,
+        "model_id": "qwen3:1.7b",
+        "prompt_hash": "7ae1aa35c91743b06a2917356a764f7662ca539e672bc5bc6c30df00b61a0b5a",
+        "observation_hash": "8213144f87e90ec8942085901b0d9999d79af34875caab83faab99636e79b522",
+        "selection": {
+          "selected_access": "sess_C"
+        }
+      }
+    },
+    {
+      "variant": "shared-work",
+      "observed_documents": {
+        "sess_B": [
+          "doc_ops_02",
+          "doc_finance_07"
+        ]
+      },
+      "decision": {
+        "proposal": {
+          "role": "scout",
+          "action": "wait",
+          "target_id": null,
+          "session_handle": null,
+          "reason": "Waiting until access is usable"
+        },
+        "accepted": true,
+        "fallback_used": false,
+        "latency_ms": 5598,
+        "model_id": "qwen3:1.7b",
+        "prompt_hash": "6365a106528034f7046eb607a519ffc6ae309e5a2031f9d1b32d27644af329e9",
+        "observation_hash": "844a1a41f59a6df1c8b2540e29262a3ea404606d420ebf7e64c410cb45e0423f",
+        "selection": {
+          "selected_access": "sess_B"
+        }
+      }
+    },
+    {
+      "variant": "baseline",
+      "observed_documents": {
+        "sess_A": [
+          "doc_ops_02",
+          "doc_finance_07"
+        ]
+      },
+      "decision": {
+        "proposal": {
+          "role": "scout",
+          "action": "wait",
+          "target_id": null,
+          "session_handle": null,
+          "reason": "Waiting to observe session status"
+        },
+        "accepted": true,
+        "fallback_used": false,
+        "latency_ms": 4415,
+        "model_id": "qwen3:1.7b",
+        "prompt_hash": "6365a106528034f7046eb607a519ffc6ae309e5a2031f9d1b32d27644af329e9",
+        "observation_hash": "48b0248fe095752129cf8a8916f1235ccfc036c1015eca52a353909af15f4213",
+        "selection": {
+          "selected_access": "sess_A"
+        }
+      }
+    }
+  ],
+  "finished_at": "2026-10-23T17:25:00.412019Z"
+}

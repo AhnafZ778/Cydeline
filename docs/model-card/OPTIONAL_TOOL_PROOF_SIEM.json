@@ -1,0 +1,60 @@
+{
+  "proof": "optional-tool-siem",
+  "started_at": "2026-10-22T22:44:52.042418Z",
+  "finished_at": "2026-10-22T22:48:19.952164Z",
+  "verdict": "failed",
+  "notes": {
+    "ready_after_sec": 206,
+    "status_trail": [
+      "preparing",
+      "failed"
+    ]
+  },
+  "checks": [
+    {
+      "check": "run produced released evidence for the tool to receive",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "launch accepted",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "siem reaches ready",
+      "passed": false,
+      "detail": "failed: ('Tool did not become ready within the launch budget', 503)"
+    },
+    {
+      "check": "the learner response carries no credentials",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "tool containers exist and are labelled to this run",
+      "passed": false,
+      "detail": "0"
+    },
+    {
+      "check": "a per-run network exists",
+      "passed": false,
+      "detail": "0"
+    },
+    {
+      "check": "ending the run removes every tool container",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "ending the run removes the tool network",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "status reports the tool as stopped",
+      "passed": true,
+      "detail": ""
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "hypothesis": {
+      "maxLength": 2000,
+      "minLength": 1,
+      "title": "Hypothesis",
+      "type": "string"
+    },
+    "next_step": {
+      "maxLength": 2000,
+      "minLength": 1,
+      "title": "Next Step",
+      "type": "string"
+    },
+    "owner": {
+      "maxLength": 80,
+      "minLength": 1,
+      "title": "Owner",
+      "type": "string"
+    },
+    "recipient_id": {
+      "anyOf": [
+        {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Recipient Id"
+    },
+    "role": {
+      "enum": [
+        "triage",
+        "response",
+        "forensics"
+      ],
+      "title": "Role",
+      "type": "string"
+    }
+  },
+  "required": [
+    "owner",
+    "role",
+    "hypothesis",
+    "next_step"
+  ],
+  "title": "HandoffRequest",
+  "type": "object"
+}

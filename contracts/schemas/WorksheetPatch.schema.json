@@ -1,0 +1,85 @@
+{
+  "$defs": {
+    "WorksheetFields": {
+      "additionalProperties": false,
+      "properties": {
+        "action_impact": {
+          "default": "",
+          "maxLength": 4000,
+          "title": "Action Impact",
+          "type": "string"
+        },
+        "contradicting_evidence": {
+          "default": "",
+          "maxLength": 4000,
+          "title": "Contradicting Evidence",
+          "type": "string"
+        },
+        "hypothesis": {
+          "default": "",
+          "maxLength": 4000,
+          "title": "Hypothesis",
+          "type": "string"
+        },
+        "observation": {
+          "default": "",
+          "maxLength": 4000,
+          "title": "Observation",
+          "type": "string"
+        },
+        "scope_uncertainty": {
+          "default": "",
+          "maxLength": 4000,
+          "title": "Scope Uncertainty",
+          "type": "string"
+        },
+        "supporting_evidence": {
+          "default": "",
+          "maxLength": 4000,
+          "title": "Supporting Evidence",
+          "type": "string"
+        },
+        "verification_handoff": {
+          "default": "",
+          "maxLength": 4000,
+          "title": "Verification Handoff",
+          "type": "string"
+        }
+      },
+      "title": "WorksheetFields",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "evidence_ids": {
+      "items": {
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,63}$",
+        "type": "string"
+      },
+      "maxItems": 100,
+      "title": "Evidence Ids",
+      "type": "array"
+    },
+    "fields": {
+      "$ref": "#/$defs/WorksheetFields"
+    },
+    "revision": {
+      "minimum": 0,
+      "title": "Revision",
+      "type": "integer"
+    },
+    "save_id": {
+      "pattern": "^[A-Za-z0-9_.:-]{8,128}$",
+      "title": "Save Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "revision",
+    "save_id",
+    "fields"
+  ],
+  "title": "WorksheetPatch",
+  "type": "object"
+}

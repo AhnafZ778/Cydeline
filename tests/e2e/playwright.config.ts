@@ -2,8 +2,9 @@ import { existsSync } from "node:fs";
 import { defineConfig } from "@playwright/test";
 
 /**
- * Keyboard-first end-to-end checks for the Defender workbench (Ahnaf's segment).
- * Runs against the in-browser Stateful AI Simulation, so no backend is needed.
+ * Browser checks for the consolidated Defender console (Ahnaf's segment).
+ * Fixture-backed suites are self-contained. live.spec.ts requires a dedicated
+ * real range, BASE_URL, RUN_LIVE=1 and its local instructor code.
  *
  *   cd tests/e2e && npm install && npm test
  *

@@ -1,0 +1,1073 @@
+{
+  "started_at": "2026-10-23T18:46:33.770754Z",
+  "scope": "attacker",
+  "source_revision": "d93b6400489e2da787c8e1ea54f5881fce313285",
+  "source_state": "dirty working tree; see paired Harness receipt",
+  "hardware": {
+    "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39",
+    "cpu": "12th Gen Intel(R) Core(TM) i5-1235U",
+    "logical_cpus": 12,
+    "memory": "MemTotal:       15995468 kB"
+  },
+  "model": {
+    "reachable": true,
+    "base_url": "http://127.0.0.1:11434",
+    "configured_model": "qwen3:1.7b",
+    "model_present": true,
+    "models": [
+      {
+        "name": "qwen3:1.7b",
+        "digest": "8f68893c685c3ddff2aa3fffce2aa60a30bb2da65ca488b61fff134a4d1730e7",
+        "parameter_size": "2.0B",
+        "quantization_level": "Q4_K_M"
+      },
+      {
+        "name": "qwen2.5:1.5b",
+        "digest": "65ec06548149b04c096a120e4a6da9d4017ea809c91734ea5631e89f96ddc57b",
+        "parameter_size": "1.5B",
+        "quantization_level": "Q4_K_M"
+      },
+      {
+        "name": "qwen2:0.5b",
+        "digest": "6f48b936a09f7743c7dd30e72fdb14cba296bc5861902e4d0c387e8fb5050b39",
+        "parameter_size": "494.03M",
+        "quantization_level": "Q4_0"
+      },
+      {
+        "name": "mistral:latest",
+        "digest": "6577803aa9a036369e481d648a2baebb381ebc6e897f2bb9a766a2aa7bfbc1cf",
+        "parameter_size": "7.2B",
+        "quantization_level": "Q4_K_M"
+      }
+    ]
+  },
+  "attacker_config": {
+    "model": "qwen3:1.7b",
+    "base_url": "http://127.0.0.1:11434",
+    "timeout_ms": 30000,
+    "temperature": 0.7,
+    "num_predict": 130,
+    "seed": 42,
+    "think": false
+  },
+  "selector_config": {
+    "model": "qwen3:1.7b",
+    "base_url": "http://127.0.0.1:11434",
+    "timeout_ms": 30000,
+    "temperature": 0.1,
+    "num_predict": 80,
+    "seed": 42,
+    "think": false
+  },
+  "transport": "Real local Ollama HTTP; actual target implementation via in-process HTTP ASGI transport. Container isolation and browser UX are separate gates.",
+  "journeys": [
+    {
+      "id": "stolen-session-baseline-1",
+      "variant": "baseline",
+      "manifest_hash": "9c165fe59c8b1cd7295379504dbe3b6a10e23e2076e4f3a48802d9234329dd6d",
+      "seed": 20261023,
+      "passed": true,
+      "intervention": {
+        "before": {
+          "decision_id": "decision_b5ee75a09a6e412d8a4b",
+          "run_id": "run_2ce8daca39e346aab385",
+          "step": 0,
+          "role": "scout",
+          "model_id": "qwen3:1.7b",
+          "prompt_hash": "18c7930094a0304982f1db4b53a4076f59357b3b64511efc8ae7af329b8f8abe",
+          "observation_hash": "1e4d487b92b6b1a9c9e2eb2028ea8525ce8e839c65772b4cb3f76ea652698952",
+          "proposed_json": {
+            "role": "scout",
+            "action": "list_accessible_documents",
+            "target_id": null,
+            "session_handle": "sess_A",
+            "reason": "Discovering document permissions to determine if useful observation is possible"
+          },
+          "raw_proposal": null,
+          "selection": null,
+          "accepted_action": "list_accessible_documents",
+          "accepted": true,
+          "rejection_reason": null,
+          "latency_ms": 4294,
+          "fallback_used": false,
+          "created_at": "2026-10-23T18:46:38.329484Z"
+        },
+        "after": {
+          "decision_id": "decision_aa8199cc809540a29bda",
+          "run_id": "run_2ce8daca39e346aab385",
+          "step": 1,
+          "role": "adaptation_planner",
+          "model_id": "qwen3:1.7b",
+          "prompt_hash": "a1b36e2ce651249965786b7aa7f02f21aed46aa170b63912d67cbb81f31e2de0",
+          "observation_hash": "71c4634892e0a0dea81ca0aa5eb479e49714cbfcb0a1cc58bddc23acffb3c432",
+          "proposed_json": {
+            "role": "adaptation_planner",
+            "action": "wait",
+            "target_id": null,
+            "session_handle": null,
+            "reason": "waiting for access to proceed"
+          },
+          "raw_proposal": null,
+          "selection": null,
+          "accepted_action": "wait",
+          "accepted": true,
+          "rejection_reason": null,
+          "latency_ms": 3546,
+          "fallback_used": false,
+          "created_at": "2026-10-23T18:46:42.086657Z"
+        },
+        "observed_access_after": {
+          "sess_A": "revoked"
+        }
+      },
+      "trace_file": "stolen-session-baseline-1.json",
+      "trace_hash": "5df1131421349e5114052af327cebbc2c87523201fd4ec17dd63ffbe0f894024",
+      "decisions": 2,
+      "fallback_count": 0,
+      "correlated_actions": 1
+    },
+    {
+      "id": "stolen-session-baseline-2",
+      "variant": "baseline",
+      "manifest_hash": "9c165fe59c8b1cd7295379504dbe3b6a10e23e2076e4f3a48802d9234329dd6d",
+      "seed": 20261024,
+      "passed": true,
+      "intervention": {
+        "before": {
+          "decision_id": "decision_16ad9f2042f543a8a7b4",
+          "run_id": "run_4c48510787c24ea3a213",
+          "step": 0,
+          "role": "scout",
+          "model_id": "qwen3:1.7b",
+          "prompt_hash": "18c7930094a0304982f1db4b53a4076f59357b3b64511efc8ae7af329b8f8abe",
+          "observation_hash": "1e4d487b92b6b1a9c9e2eb2028ea8525ce8e839c65772b4cb3f76ea652698952",
+          "proposed_json": {
+            "role": "scout",
+            "action": "list_accessible_documents",
+            "target_id": null,
+            "session_handle": "sess_A",
+            "reason": "Discovering available documents to assess access"
+          },
+          "raw_proposal": null,
+          "selection": null,
+          "accepted_action": "list_accessible_documents",
+          "accepted": true,
+          "rejection_reason": null,
+          "latency_ms": 4787,
+          "fallback_used": false,
+          "created_at": "2026-10-23T18:46:47.128151Z"
+        },
+        "after": {
+          "decision_id": "decision_5ad991dd46d6494db708",
+          "run_id": "run_4c48510787c24ea3a213",
+          "step": 1,
+          "role": "adaptation_planner",
+          "model_id": "qwen3:1.7b",
+          "prompt_hash": "a1b36e2ce651249965786b7aa7f02f21aed46aa170b63912d67cbb81f31e2de0",
+          "observation_hash": "71c4634892e0a0dea81ca0aa5eb479e49714cbfcb0a1cc58bddc23acffb3c432",
+          "proposed_json": {
+            "role": "adaptation_planner",
+            "action": "wait",
+            "target_id": null,
+            "session_handle": null,
+            "reason": "waiting for access to observe usable status"
+          },
+          "raw_proposal": null,
+          "selection": null,
+          "accepted_action": "wait",
+          "accepted": true,
+          "rejection_reason": null,
+          "latency_ms": 2992,
+          "fallback_used": false,
+          "created_at": "2026-10-23T18:46:50.265838Z"
+        },
+        "observed_access_after": {
+          "sess_A": "revoked"
+        }
+      },
+      "trace_file": "stolen-session-baseline-2.json",
+      "trace_hash": "1d3b33027053e929ff9f3394a0696365ac2e3e419a57c74507027bb08b537101",
+      "decisions": 2,
+      "fallback_count": 0,
+      "correlated_actions": 1
+    },
+    {
+      "id": "stolen-session-shared-work-1",
+      "variant": "shared-work",
+      "manifest_hash": "4d1fe3b1ce6dee16aee6e45968c2319619fae14522175aee3b88df57d2edb38c",
+      "seed": 20261023,
+      "passed": true,
+      "intervention": {
+        "before": {
+          "decision_id": "decision_310b1d1f81444341bd6a",
+          "run_id": "run_fcb6017c39574951a97a",
+          "step": 0,
+          "role": "scout",
+          "model_id": "qwen3:1.7b",
+          "prompt_hash": "18c7930094a0304982f1db4b53a4076f59357b3b64511efc8ae7af329b8f8abe",
+          "observation_hash": "09085cff524df82fdcb5bb0000f7d0b443851c1ca30eb7af2fa175ff6b3e853c",
+          "proposed_json": {
+            "role": "scout",
+            "action": "list_accessible_documents",
+            "target_id": null,
+            "session_handle": "sess_B",
+            "reason": "Discovering document permissions to determine usable access"
+          },
+          "raw_proposal": null,
+          "selection": null,
+          "accepted_action": "list_accessible_documents",
+          "accepted": true,
+          "rejection_reason": null,
+          "latency_ms": 5615,
+          "fallback_used": false,
+          "created_at": "2026-10-23T18:46:56.132781Z"
+        },
+        "after": {
+          "decision_id": "decision_9b8de8f2a3904199a972",
+          "run_id": "run_fcb6017c39574951a97a",
+          "step": 1,
+          "role": "adaptation_planner",
+          "model_id": "qwen3:1.7b",
+          "prompt_hash": "a1b36e2ce651249965786b7aa7f02f21aed46aa170b63912d67cbb81f31e2de0",
+          "observation_hash": "5f5c097b0aff86f4bf130398dc267953e5b94016f0d34d85dec6636a483931d7",
+          "proposed_json": {
+            "role": "adaptation_planner",
+            "action": "wait",
+            "target_id": null,
+            "session_handle": null,
+            "reason": "Waiting until access is granted"
+          },
+          "raw_proposal": null,
+          "selection": null,
+          "accepted_action": "wait",
+          "accepted": true,
+          "rejection_reason": null,
+          "latency_ms": 2811,
+          "fallback_used": false,
+          "created_at": "2026-10-23T18:46:59.080403Z"
+        },
+        "observed_access_after": {
+          "sess_B": "revoked"
+        }
+      },
+      "trace_file": "stolen-session-shared-work-1.json",
+      "trace_hash": "abeadc9edd1ed4f14bd08e430852788dc0107273505eb123b9d61e12a88799b1",
+      "decisions": 2,
+      "fallback_count": 0,
+      "correlated_actions": 1
+    },
+    {
+      "id": "stolen-session-shared-work-2",
+      "variant": "shared-work",
+      "manifest_hash": "4d1fe3b1ce6dee16aee6e45968c2319619fae14522175aee3b88df57d2edb38c",
+      "seed": 20261024,
+      "passed": true,
+      "intervention": {
+        "before": {
+          "decision_id": "decision_c240ba5936134066b1be",
+          "run_id": "run_3a8f995da7404978959c",
+          "step": 0,
+          "role": "scout",
+          "model_id": "qwen3:1.7b",
+          "prompt_hash": "18c7930094a0304982f1db4b53a4076f59357b3b64511efc8ae7af329b8f8abe",
+          "observation_hash": "09085cff524df82fdcb5bb0000f7d0b443851c1ca30eb7af2fa175ff6b3e853c",
+          "proposed_json": {
+            "role": "scout",
+            "action": "list_accessible_documents",
+            "target_id": null,
+            "session_handle": "sess_B",
+            "reason": "Discovering document permissions to determine if useful observation is possible"
+          },
+          "raw_proposal": null,
+          "selection": null,
+          "accepted_action": "list_accessible_documents",
+          "accepted": true,
+          "rejection_reason": null,
+          "latency_ms": 3492,
+          "fallback_used": false,
+          "created_at": "2026-10-23T18:47:02.822974Z"
+        },
+        "after": {
+          "decision_id": "decision_514cd18fbbf94dcd8792",
+          "run_id": "run_3a8f995da7404978959c",
+          "step": 1,
+          "role": "adaptation_planner",
+          "model_id": "qwen3:1.7b",
+          "prompt_hash": "a1b36e2ce651249965786b7aa7f02f21aed46aa170b63912d67cbb81f31e2de0",
+          "observation_hash": "5f5c097b0aff86f4bf130398dc267953e5b94016f0d34d85dec6636a483931d7",
+          "proposed_json": {
+            "role": "adaptation_planner",
+            "action": "wait",
+            "target_id": null,
+            "session_handle": null,
+            "reason": "waiting for access to observe usable status"
+          },
+          "raw_proposal": null,
+          "selection": null,
+          "accepted_action": "wait",
+          "accepted": true,
+          "rejection_reason": null,
+          "latency_ms": 2581,
+          "fallback_used": false,
+          "created_at": "2026-10-23T18:47:05.556576Z"
+        },
+        "observed_access_after": {
+          "sess_B": "revoked"
+        }
+      },
+      "trace_file": "stolen-session-shared-work-2.json",
+      "trace_hash": "ce646381999650294d28f73e3632b8edccedd20fec192031ab70b755b63256ae",
+      "decisions": 2,
+      "fallback_count": 0,
+      "correlated_actions": 1
+    },
+    {
+      "id": "stolen-session-service-dependent-1",
+      "variant": "service-dependent",
+      "manifest_hash": "ed34e0e9d71924b89d3bc4a787e71d26636ea3c0418e6291806d1f6f864ba60f",
+      "seed": 20261023,
+      "passed": true,
+      "intervention": {
+        "before": {
+          "decision_id": "decision_9279d355968a4686a712",
+          "run_id": "run_df66ded5138d46a9bb09",
+          "step": 0,
+          "role": "scout",
+          "model_id": "qwen3:1.7b",
+          "prompt_hash": "df1df260095aa5b04a73b21a7acd3e1b7f6e9e5d8ed3f9a998c17ebf6309352e",
+          "observation_hash": "3ea028f6c8612aaeb5cb730124b5608dfdd5ba0f080471b46b5ca27dfc7dccb8",
+          "proposed_json": {
+            "role": "scout",
+            "action": "list_accessible_documents",
+            "target_id": null,
+            "session_handle": "sess_C",
+            "reason": "Discover document permissions to determine if useful observation is possible"
+          },
+          "raw_proposal": null,
+          "selection": null,
+          "accepted_action": "list_accessible_documents",
+          "accepted": true,
+          "rejection_reason": null,
+          "latency_ms": 3076,
+          "fallback_used": false,
+          "created_at": "2026-10-23T18:47:08.872843Z"
+        },
+        "after": {
+          "decision_id": "decision_140fb88b6db84226834d",
+          "run_id": "run_df66ded5138d46a9bb09",
+          "step": 1,
+          "role": "adaptation_planner",
+          "model_id": "qwen3:1.7b",
+          "prompt_hash": "be7451ea563751b02521352b41b465a3a3a8ca6b8ba5d48d28a6d4fb1979ad4f",
+          "observation_hash": "be5182ba1ef0bf9d25d7cf86c2100c97806c55c3fb9ef3dcf895c6ecbc55542b",
+          "proposed_json": {
+            "role": "adaptation_planner",
+            "action": "wait",
+            "target_id": null,
+            "session_handle": null,
+            "reason": "Waiting to obtain access to the objective document"
+          },
+          "raw_proposal": null,
+          "selection": null,
+          "accepted_action": "wait",
+          "accepted": true,
+          "rejection_reason": null,
+          "latency_ms": 2399,
+          "fallback_used": false,
+          "created_at": "2026-10-23T18:47:11.426555Z"
+        },
+        "observed_access_after": {
+          "sess_C": "revoked"
+        }
+      },
+      "trace_file": "stolen-session-service-dependent-1.json",
+      "trace_hash": "7d0dd11b3d269dcf50f0f92f5df9a868fa14c4c1f69f3e9149c8c73c9be1e535",
+      "decisions": 2,
+      "fallback_count": 0,
+      "correlated_actions": 1
+    },
+    {
+      "id": "stolen-session-service-dependent-2",
+      "variant": "service-dependent",
+      "manifest_hash": "ed34e0e9d71924b89d3bc4a787e71d26636ea3c0418e6291806d1f6f864ba60f",
+      "seed": 20261024,
+      "passed": true,
+      "intervention": {
+        "before": {
+          "decision_id": "decision_0e6cdabb4a324d2eadee",
+          "run_id": "run_c82f6df02afd4c1c86dc",
+          "step": 0,
+          "role": "scout",
+          "model_id": "qwen3:1.7b",
+          "prompt_hash": "df1df260095aa5b04a73b21a7acd3e1b7f6e9e5d8ed3f9a998c17ebf6309352e",
+          "observation_hash": "3ea028f6c8612aaeb5cb730124b5608dfdd5ba0f080471b46b5ca27dfc7dccb8",
+          "proposed_json": {
+            "role": "scout",
+            "action": "list_accessible_documents",
+            "target_id": null,
+            "session_handle": "sess_C",
+            "reason": "Discover document permissions to determine if useful observation is possible"
+          },
+          "raw_proposal": null,
+          "selection": null,
+          "accepted_action": "list_accessible_documents",
+          "accepted": true,
+          "rejection_reason": null,
+          "latency_ms": 3721,
+          "fallback_used": false,
+          "created_at": "2026-10-23T18:47:15.431178Z"
+        },
+        "after": {
+          "decision_id": "decision_e12a62219e7b4aab9c83",
+          "run_id": "run_c82f6df02afd4c1c86dc",
+          "step": 1,
+          "role": "adaptation_planner",
+          "model_id": "qwen3:1.7b",
+          "prompt_hash": "be7451ea563751b02521352b41b465a3a3a8ca6b8ba5d48d28a6d4fb1979ad4f",
+          "observation_hash": "be5182ba1ef0bf9d25d7cf86c2100c97806c55c3fb9ef3dcf895c6ecbc55542b",
+          "proposed_json": {
+            "role": "adaptation_planner",
+            "action": "wait",
+            "target_id": null,
+            "session_handle": null,
+            "reason": "Waiting to obtain access to the objective document"
+          },
+          "raw_proposal": null,
+          "selection": null,
+          "accepted_action": "wait",
+          "accepted": true,
+          "rejection_reason": null,
+          "latency_ms": 2379,
+          "fallback_used": false,
+          "created_at": "2026-10-23T18:47:17.930737Z"
+        },
+        "observed_access_after": {
+          "sess_C": "revoked"
+        }
+      },
+      "trace_file": "stolen-session-service-dependent-2.json",
+      "trace_hash": "7ff411241becf5373bad11695cc9522556ea358e6526c0570dde2d9bde65ff3b",
+      "decisions": 2,
+      "fallback_count": 0,
+      "correlated_actions": 1
+    },
+    {
+      "id": "northstar-breach-baseline-1",
+      "variant": "baseline",
+      "manifest_hash": "8874acf8d74d8cc25eb9ad0d421f4e89d39ebd8da9cca833d5b32ef618737995",
+      "seed": 20261023,
+      "passed": true,
+      "intervention": {
+        "before": {
+          "decision_id": "decision_5a304231f7074cfea42b",
+          "run_id": "run_a1028696b1b34ba29677",
+          "step": 0,
+          "role": "scout",
+          "model_id": "qwen3:1.7b",
+          "prompt_hash": "18c7930094a0304982f1db4b53a4076f59357b3b64511efc8ae7af329b8f8abe",
+          "observation_hash": "ead0f07806a6a32750b9dd2f0dd04fe06a2bfcf2af0e2b3a1a69866e380ba760",
+          "proposed_json": {
+            "role": "scout",
+            "action": "list_accessible_documents",
+            "target_id": null,
+            "session_handle": "sess_A",
+            "reason": "Discovering document permissions to determine if useful observation is possible"
+          },
+          "raw_proposal": null,
+          "selection": {
+            "context_aliases": {
+              "context_1": "sess_A",
+              "context_2": "key_reporting"
+            },
+            "observed_objective_states": {
+              "context_1": "unknown",
+              "context_2": "unknown"
+            },
+            "completion": {
+              "done_reason": "stop",
+              "eval_count": 13,
+              "thinking_chars": 0,
+              "content_chars": 36,
+              "num_predict": 80
+            },
+            "selected_access": "sess_A",
+            "model_selected_context": "context_1"
+          },
+          "accepted_action": "list_accessible_documents",
+          "accepted": true,
+          "rejection_reason": null,
+          "latency_ms": 4846,
+          "fallback_used": false,
+          "created_at": "2026-10-23T18:47:23.029236Z"
+        },
+        "after": {
+          "decision_id": "decision_58cf2021ba52423d8e6b",
+          "run_id": "run_a1028696b1b34ba29677",
+          "step": 1,
+          "role": "adaptation_planner",
+          "model_id": "qwen3:1.7b",
+          "prompt_hash": "a1b36e2ce651249965786b7aa7f02f21aed46aa170b63912d67cbb81f31e2de0",
+          "observation_hash": "c0cc77960f1301a56910a06b7ef1614f7b49bd5ad1452b7deacd1c67849382c1",
+          "proposed_json": {
+            "role": "adaptation_planner",
+            "action": "wait",
+            "target_id": null,
+            "session_handle": null,
+            "reason": "waiting for access to proceed"
+          },
+          "raw_proposal": null,
+          "selection": {
+            "context_aliases": {
+              "context_1": "sess_A",
+              "context_2": "key_reporting"
+            },
+            "observed_objective_states": {
+              "context_1": "revoked",
+              "context_2": "unknown"
+            },
+            "completion": {
+              "done_reason": "stop",
+              "eval_count": 13,
+              "thinking_chars": 0,
+              "content_chars": 36,
+              "num_predict": 80
+            },
+            "selected_access": "sess_A",
+            "model_selected_context": "context_1"
+          },
+          "accepted_action": "wait",
+          "accepted": true,
+          "rejection_reason": null,
+          "latency_ms": 5152,
+          "fallback_used": false,
+          "created_at": "2026-10-23T18:47:28.340057Z"
+        },
+        "observed_access_after": {
+          "sess_A": "revoked",
+          "key_reporting": "active"
+        }
+      },
+      "trace_file": "northstar-breach-baseline-1.json",
+      "trace_hash": "32964c0ddd08d9f7ebb167c036d1ed6295db42a5a578be7dbe6866f2552765d7",
+      "decisions": 2,
+      "fallback_count": 0,
+      "correlated_actions": 1
+    },
+    {
+      "id": "northstar-breach-baseline-2",
+      "variant": "baseline",
+      "manifest_hash": "8874acf8d74d8cc25eb9ad0d421f4e89d39ebd8da9cca833d5b32ef618737995",
+      "seed": 20261024,
+      "passed": true,
+      "intervention": {
+        "before": {
+          "decision_id": "decision_c2868f5621ce46f595ac",
+          "run_id": "run_428ecafd10e74a68bd21",
+          "step": 0,
+          "role": "scout",
+          "model_id": "qwen3:1.7b",
+          "prompt_hash": "18c7930094a0304982f1db4b53a4076f59357b3b64511efc8ae7af329b8f8abe",
+          "observation_hash": "ead0f07806a6a32750b9dd2f0dd04fe06a2bfcf2af0e2b3a1a69866e380ba760",
+          "proposed_json": {
+            "role": "scout",
+            "action": "list_accessible_documents",
+            "target_id": null,
+            "session_handle": "sess_A",
+            "reason": "Discovering available documents to assess access"
+          },
+          "raw_proposal": null,
+          "selection": {
+            "context_aliases": {
+              "context_1": "sess_A",
+              "context_2": "key_reporting"
+            },
+            "observed_objective_states": {
+              "context_1": "unknown",
+              "context_2": "unknown"
+            },
+            "completion": {
+              "done_reason": "stop",
+              "eval_count": 13,
+              "thinking_chars": 0,
+              "content_chars": 36,
+              "num_predict": 80
+            },
+            "selected_access": "sess_A",
+            "model_selected_context": "context_1"
+          },
+          "accepted_action": "list_accessible_documents",
+          "accepted": true,
+          "rejection_reason": null,
+          "latency_ms": 4883,
+          "fallback_used": false,
+          "created_at": "2026-10-23T18:47:33.653482Z"
+        },
+        "after": {
+          "decision_id": "decision_44dfa860b1094bd89e1e",
+          "run_id": "run_428ecafd10e74a68bd21",
+          "step": 1,
+          "role": "adaptation_planner",
+          "model_id": "qwen3:1.7b",
+          "prompt_hash": "a1b36e2ce651249965786b7aa7f02f21aed46aa170b63912d67cbb81f31e2de0",
+          "observation_hash": "c0cc77960f1301a56910a06b7ef1614f7b49bd5ad1452b7deacd1c67849382c1",
+          "proposed_json": {
+            "role": "adaptation_planner",
+            "action": "wait",
+            "target_id": null,
+            "session_handle": null,
+            "reason": "waiting for access to observe usable status"
+          },
+          "raw_proposal": null,
+          "selection": {
+            "context_aliases": {
+              "context_1": "sess_A",
+              "context_2": "key_reporting"
+            },
+            "observed_objective_states": {
+              "context_1": "revoked",
+              "context_2": "unknown"
+            },
+            "completion": {
+              "done_reason": "stop",
+              "eval_count": 13,
+              "thinking_chars": 0,
+              "content_chars": 36,
+              "num_predict": 80
+            },
+            "selected_access": "sess_A",
+            "model_selected_context": "context_1"
+          },
+          "accepted_action": "wait",
+          "accepted": true,
+          "rejection_reason": null,
+          "latency_ms": 3647,
+          "fallback_used": false,
+          "created_at": "2026-10-23T18:47:37.450871Z"
+        },
+        "observed_access_after": {
+          "sess_A": "revoked",
+          "key_reporting": "active"
+        }
+      },
+      "trace_file": "northstar-breach-baseline-2.json",
+      "trace_hash": "c1a06fc58adf5008200740f97e4d021de1d4c66243912f1752af9be58a87caa7",
+      "decisions": 2,
+      "fallback_count": 0,
+      "correlated_actions": 1
+    },
+    {
+      "id": "northstar-breach-shared-work-1",
+      "variant": "shared-work",
+      "manifest_hash": "bcf428b94f681f5996dc7375f9fb5d9a44a0ce0d6112c255faa5f45e4ae05212",
+      "seed": 20261023,
+      "passed": true,
+      "intervention": {
+        "before": {
+          "decision_id": "decision_4fce3c5752ac48d7ab01",
+          "run_id": "run_5847ac481fe548ff98c6",
+          "step": 0,
+          "role": "scout",
+          "model_id": "qwen3:1.7b",
+          "prompt_hash": "18c7930094a0304982f1db4b53a4076f59357b3b64511efc8ae7af329b8f8abe",
+          "observation_hash": "6b6a822f8b6891ccb8e3bd668c643c0a23d9d13484f6c628e4db884713bc1daf",
+          "proposed_json": {
+            "role": "scout",
+            "action": "list_accessible_documents",
+            "target_id": null,
+            "session_handle": "sess_B",
+            "reason": "Discovering document permissions to determine usable access"
+          },
+          "raw_proposal": null,
+          "selection": {
+            "context_aliases": {
+              "context_1": "sess_B",
+              "context_2": "key_reporting"
+            },
+            "observed_objective_states": {
+              "context_1": "unknown",
+              "context_2": "unknown"
+            },
+            "completion": {
+              "done_reason": "stop",
+              "eval_count": 13,
+              "thinking_chars": 0,
+              "content_chars": 36,
+              "num_predict": 80
+            },
+            "selected_access": "sess_B",
+            "model_selected_context": "context_1"
+          },
+          "accepted_action": "list_accessible_documents",
+          "accepted": true,
+          "rejection_reason": null,
+          "latency_ms": 6735,
+          "fallback_used": false,
+          "created_at": "2026-10-23T18:47:44.571922Z"
+        },
+        "after": {
+          "decision_id": "decision_f60cc816017a4c79a551",
+          "run_id": "run_5847ac481fe548ff98c6",
+          "step": 1,
+          "role": "adaptation_planner",
+          "model_id": "qwen3:1.7b",
+          "prompt_hash": "a1b36e2ce651249965786b7aa7f02f21aed46aa170b63912d67cbb81f31e2de0",
+          "observation_hash": "e63bc80d2f6e5b6ddeafad434f7351792d05355806ae226200fff9ab043f8ba5",
+          "proposed_json": {
+            "role": "adaptation_planner",
+            "action": "wait",
+            "target_id": null,
+            "session_handle": null,
+            "reason": "Waiting until access is granted"
+          },
+          "raw_proposal": null,
+          "selection": {
+            "context_aliases": {
+              "context_1": "sess_B",
+              "context_2": "key_reporting"
+            },
+            "observed_objective_states": {
+              "context_1": "revoked",
+              "context_2": "revoked"
+            },
+            "completion": {
+              "done_reason": "stop",
+              "eval_count": 13,
+              "thinking_chars": 0,
+              "content_chars": 36,
+              "num_predict": 80
+            },
+            "selected_access": "sess_B",
+            "model_selected_context": "context_1"
+          },
+          "accepted_action": "wait",
+          "accepted": true,
+          "rejection_reason": null,
+          "latency_ms": 4977,
+          "fallback_used": false,
+          "created_at": "2026-10-23T18:47:49.722974Z"
+        },
+        "observed_access_after": {
+          "sess_B": "revoked",
+          "key_reporting": "revoked"
+        }
+      },
+      "trace_file": "northstar-breach-shared-work-1.json",
+      "trace_hash": "957345e32a20165741220c7878a3ce93d19d73161104bbcbbf93779945da568d",
+      "decisions": 2,
+      "fallback_count": 0,
+      "correlated_actions": 1
+    },
+    {
+      "id": "northstar-breach-shared-work-2",
+      "variant": "shared-work",
+      "manifest_hash": "bcf428b94f681f5996dc7375f9fb5d9a44a0ce0d6112c255faa5f45e4ae05212",
+      "seed": 20261024,
+      "passed": true,
+      "intervention": {
+        "before": {
+          "decision_id": "decision_9829b2e83fbe4859913f",
+          "run_id": "run_a1af520c5dd44fa9b984",
+          "step": 0,
+          "role": "scout",
+          "model_id": "qwen3:1.7b",
+          "prompt_hash": "18c7930094a0304982f1db4b53a4076f59357b3b64511efc8ae7af329b8f8abe",
+          "observation_hash": "6b6a822f8b6891ccb8e3bd668c643c0a23d9d13484f6c628e4db884713bc1daf",
+          "proposed_json": {
+            "role": "scout",
+            "action": "list_accessible_documents",
+            "target_id": null,
+            "session_handle": "sess_B",
+            "reason": "Discovering document permissions to determine if useful observation is possible"
+          },
+          "raw_proposal": null,
+          "selection": {
+            "context_aliases": {
+              "context_1": "sess_B",
+              "context_2": "key_reporting"
+            },
+            "observed_objective_states": {
+              "context_1": "unknown",
+              "context_2": "unknown"
+            },
+            "completion": {
+              "done_reason": "stop",
+              "eval_count": 13,
+              "thinking_chars": 0,
+              "content_chars": 36,
+              "num_predict": 80
+            },
+            "selected_access": "sess_B",
+            "model_selected_context": "context_1"
+          },
+          "accepted_action": "list_accessible_documents",
+          "accepted": true,
+          "rejection_reason": null,
+          "latency_ms": 5641,
+          "fallback_used": false,
+          "created_at": "2026-10-23T18:47:55.738115Z"
+        },
+        "after": {
+          "decision_id": "decision_f2319143c8454a0ba7a3",
+          "run_id": "run_a1af520c5dd44fa9b984",
+          "step": 1,
+          "role": "adaptation_planner",
+          "model_id": "qwen3:1.7b",
+          "prompt_hash": "a1b36e2ce651249965786b7aa7f02f21aed46aa170b63912d67cbb81f31e2de0",
+          "observation_hash": "e63bc80d2f6e5b6ddeafad434f7351792d05355806ae226200fff9ab043f8ba5",
+          "proposed_json": {
+            "role": "adaptation_planner",
+            "action": "wait",
+            "target_id": null,
+            "session_handle": null,
+            "reason": "waiting for access to observe usable status"
+          },
+          "raw_proposal": null,
+          "selection": {
+            "context_aliases": {
+              "context_1": "sess_B",
+              "context_2": "key_reporting"
+            },
+            "observed_objective_states": {
+              "context_1": "revoked",
+              "context_2": "revoked"
+            },
+            "completion": {
+              "done_reason": "stop",
+              "eval_count": 13,
+              "thinking_chars": 0,
+              "content_chars": 36,
+              "num_predict": 80
+            },
+            "selected_access": "sess_B",
+            "model_selected_context": "context_1"
+          },
+          "accepted_action": "wait",
+          "accepted": true,
+          "rejection_reason": null,
+          "latency_ms": 7998,
+          "fallback_used": false,
+          "created_at": "2026-10-23T18:48:03.905066Z"
+        },
+        "observed_access_after": {
+          "sess_B": "revoked",
+          "key_reporting": "revoked"
+        }
+      },
+      "trace_file": "northstar-breach-shared-work-2.json",
+      "trace_hash": "0129908230eaf644a8d45dd313802215a13003daf6ed1c6c345b6e43e5cf1f33",
+      "decisions": 2,
+      "fallback_count": 0,
+      "correlated_actions": 1
+    },
+    {
+      "id": "northstar-breach-service-dependent-1",
+      "variant": "service-dependent",
+      "manifest_hash": "e08d4950ad4d1df544e8e739e5c59a01b09f010e13f967b91cade6c57c9d8d76",
+      "seed": 20261023,
+      "passed": true,
+      "intervention": {
+        "before": {
+          "decision_id": "decision_9440541e2f864b7e851b",
+          "run_id": "run_2e29cd09264c4c1bb056",
+          "step": 0,
+          "role": "scout",
+          "model_id": "qwen3:1.7b",
+          "prompt_hash": "df1df260095aa5b04a73b21a7acd3e1b7f6e9e5d8ed3f9a998c17ebf6309352e",
+          "observation_hash": "94a02edbf7b30fa998e55cdadc6c5192df0f1354fd7154867656e4c70beea957",
+          "proposed_json": {
+            "role": "scout",
+            "action": "list_accessible_documents",
+            "target_id": null,
+            "session_handle": "sess_C",
+            "reason": "Discover document permissions to determine if useful observation is possible"
+          },
+          "raw_proposal": null,
+          "selection": {
+            "context_aliases": {
+              "context_1": "sess_C",
+              "context_2": "key_reporting"
+            },
+            "observed_objective_states": {
+              "context_1": "unknown",
+              "context_2": "unknown"
+            },
+            "completion": {
+              "done_reason": "stop",
+              "eval_count": 13,
+              "thinking_chars": 0,
+              "content_chars": 36,
+              "num_predict": 80
+            },
+            "selected_access": "sess_C",
+            "model_selected_context": "context_1"
+          },
+          "accepted_action": "list_accessible_documents",
+          "accepted": true,
+          "rejection_reason": null,
+          "latency_ms": 9374,
+          "fallback_used": false,
+          "created_at": "2026-10-23T18:48:13.700736Z"
+        },
+        "after": {
+          "decision_id": "decision_c24b347f27b9440caa82",
+          "run_id": "run_2e29cd09264c4c1bb056",
+          "step": 1,
+          "role": "adaptation_planner",
+          "model_id": "qwen3:1.7b",
+          "prompt_hash": "be7451ea563751b02521352b41b465a3a3a8ca6b8ba5d48d28a6d4fb1979ad4f",
+          "observation_hash": "431a6a63dab3dd1ff790291aa23d5db0c9a335598135f2ebcc1daf04e0ad5eab",
+          "proposed_json": {
+            "role": "adaptation_planner",
+            "action": "stop",
+            "target_id": null,
+            "session_handle": null,
+            "reason": "Access is usable, avoid waiting"
+          },
+          "raw_proposal": null,
+          "selection": {
+            "context_aliases": {
+              "context_1": "sess_C",
+              "context_2": "key_reporting"
+            },
+            "observed_objective_states": {
+              "context_1": "revoked",
+              "context_2": "unknown"
+            },
+            "completion": {
+              "done_reason": "stop",
+              "eval_count": 13,
+              "thinking_chars": 0,
+              "content_chars": 36,
+              "num_predict": 80
+            },
+            "selected_access": "sess_C",
+            "model_selected_context": "context_1"
+          },
+          "accepted_action": "stop",
+          "accepted": true,
+          "rejection_reason": null,
+          "latency_ms": 5412,
+          "fallback_used": false,
+          "created_at": "2026-10-23T18:48:19.273192Z"
+        },
+        "observed_access_after": {
+          "sess_C": "revoked",
+          "key_reporting": "active"
+        }
+      },
+      "trace_file": "northstar-breach-service-dependent-1.json",
+      "trace_hash": "0354afea67843f86f5820889e3903ca30182147c5f49786bcae0aa0dd3c8c064",
+      "decisions": 2,
+      "fallback_count": 0,
+      "correlated_actions": 1
+    },
+    {
+      "id": "northstar-breach-service-dependent-2",
+      "variant": "service-dependent",
+      "manifest_hash": "e08d4950ad4d1df544e8e739e5c59a01b09f010e13f967b91cade6c57c9d8d76",
+      "seed": 20261024,
+      "passed": true,
+      "intervention": {
+        "before": {
+          "decision_id": "decision_b7d785dbcc1d411e9b62",
+          "run_id": "run_4b0ed20fae1b44e3b023",
+          "step": 0,
+          "role": "scout",
+          "model_id": "qwen3:1.7b",
+          "prompt_hash": "df1df260095aa5b04a73b21a7acd3e1b7f6e9e5d8ed3f9a998c17ebf6309352e",
+          "observation_hash": "94a02edbf7b30fa998e55cdadc6c5192df0f1354fd7154867656e4c70beea957",
+          "proposed_json": {
+            "role": "scout",
+            "action": "list_accessible_documents",
+            "target_id": null,
+            "session_handle": "sess_C",
+            "reason": "Discover document permissions to determine if useful observation is possible"
+          },
+          "raw_proposal": null,
+          "selection": {
+            "context_aliases": {
+              "context_1": "sess_C",
+              "context_2": "key_reporting"
+            },
+            "observed_objective_states": {
+              "context_1": "unknown",
+              "context_2": "unknown"
+            },
+            "completion": {
+              "done_reason": "stop",
+              "eval_count": 13,
+              "thinking_chars": 0,
+              "content_chars": 36,
+              "num_predict": 80
+            },
+            "selected_access": "sess_C",
+            "model_selected_context": "context_1"
+          },
+          "accepted_action": "list_accessible_documents",
+          "accepted": true,
+          "rejection_reason": null,
+          "latency_ms": 5495,
+          "fallback_used": false,
+          "created_at": "2026-10-23T18:48:25.162009Z"
+        },
+        "after": {
+          "decision_id": "decision_b61efa83659048a5a825",
+          "run_id": "run_4b0ed20fae1b44e3b023",
+          "step": 1,
+          "role": "adaptation_planner",
+          "model_id": "qwen3:1.7b",
+          "prompt_hash": "be7451ea563751b02521352b41b465a3a3a8ca6b8ba5d48d28a6d4fb1979ad4f",
+          "observation_hash": "431a6a63dab3dd1ff790291aa23d5db0c9a335598135f2ebcc1daf04e0ad5eab",
+          "proposed_json": {
+            "role": "adaptation_planner",
+            "action": "stop",
+            "target_id": null,
+            "session_handle": null,
+            "reason": "session revoked, stop action initiated"
+          },
+          "raw_proposal": null,
+          "selection": {
+            "context_aliases": {
+              "context_1": "sess_C",
+              "context_2": "key_reporting"
+            },
+            "observed_objective_states": {
+              "context_1": "revoked",
+              "context_2": "unknown"
+            },
+            "completion": {
+              "done_reason": "stop",
+              "eval_count": 13,
+              "thinking_chars": 0,
+              "content_chars": 36,
+              "num_predict": 80
+            },
+            "selected_access": "sess_C",
+            "model_selected_context": "context_1"
+          },
+          "accepted_action": "stop",
+          "accepted": true,
+          "rejection_reason": null,
+          "latency_ms": 3361,
+          "fallback_used": false,
+          "created_at": "2026-10-23T18:48:28.696822Z"
+        },
+        "observed_access_after": {
+          "sess_C": "revoked",
+          "key_reporting": "active"
+        }
+      },
+      "trace_file": "northstar-breach-service-dependent-2.json",
+      "trace_hash": "2b7369d0c92c6677289ec883fb6844501a9c8df753a67943f6a41eb8525c7290",
+      "decisions": 2,
+      "fallback_count": 0,
+      "correlated_actions": 1
+    }
+  ],
+  "coaching": [],
+  "limitations": [
+    "No participant or educational-efficacy evidence.",
+    "Coaching utility requires human review; finite authored scaffolds constrain interpretation."
+  ],
+  "finished_at": "2026-10-23T18:48:28.989639Z"
+}

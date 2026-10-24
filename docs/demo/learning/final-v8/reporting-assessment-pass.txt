@@ -1,0 +1,13 @@
+
+> sentinel-loop-e2e@0.1.0 test
+> playwright test live.spec.ts --grep The Reporting Blind Spot|real assessment --output=/tmp/sentinel-live-v8-final-v3-results
+
+
+Running 2 tests using 1 worker
+
+(node:618434) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓  1 live.spec.ts:29:98 › The Reporting Blind Spot real model, worksheet, case response and immutable export (50.8s)
+  ✓  2 live.spec.ts:117:5 › real assessment starts immediately, stays blind and rejects manual pause/coaching (3.4s)
+
+  2 passed (55.3s)
