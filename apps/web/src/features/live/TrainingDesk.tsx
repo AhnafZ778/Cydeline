@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { api, terminal, type Snapshot, type Scenario } from "./types";
-type Profile = { id: string; name: string };
+import { openWorkspaceMode } from "./ModeSwitch";
+import { CompanyBriefing } from "./LearningViews";
+import { ConsoleModal } from "./ConsoleModal";
+type Profile = { id: string; name: string; role?: string; local_demo?: boolean };
 type Cohort = { id: string; name: string; member_ids: string[] };
 type Assignment = {
   id: string;
@@ -32,6 +35,8 @@ export function LearnerDesk() {
     [error, setError] = useState<string | null>(null),
     [assignments, setAssignments] = useState<Assignment[]>([]),
     [busy, setBusy] = useState(false);
+  const [chosen, setChosen] = useState<{assignment: Assignment; scenario: Scenario} | null>(null);
+  const [launchError, setLaunchError] = useState<string | null>(null);
   async function load() {
     const [s, a] = await Promise.all([
       api<Profile>("/session"),
@@ -58,14 +63,25 @@ export function LearnerDesk() {
   }
   async function start(id: string) {
     setBusy(true);
+    setLaunchError(null);
     try {
       const s = await api<Snapshot>("/assignments/" + id + "/start", "POST");
       window.location.hash = href(s.run_id);
     } catch (e) {
-      setError((e as Error).message);
+      setLaunchError((e as Error).message);
     } finally {
       setBusy(false);
     }
+  }
+  async function prepare(assignment: Assignment) {
+    setBusy(true); setError(null); setLaunchError(null);
+    try {
+      const catalog = await api<{scenarios: Scenario[]}>("/scenarios");
+      const scenario = catalog.scenarios.find(s => s.scenario_id === assignment.scenario_id && s.version === assignment.scenario_version);
+      if (!scenario?.briefing) throw new Error("The assigned company briefing is unavailable. Reconnect and try again before starting.");
+      setChosen({assignment, scenario});
+    } catch(e) { setError((e as Error).message); }
+    finally { setBusy(false); }
   }
   return (
     <>
@@ -73,7 +89,7 @@ export function LearnerDesk() {
       <ErrorText error={error} />
       <section className="card live-pad">
         <h2>{session?.name ?? "Learner profile"}</h2>
-        <p>
+        <details><summary>{session?.local_demo ? "Join assigned training (optional)" : "Open an assigned profile"}</summary><p>
           Use the access code supplied by your instructor to return to your
           assigned work and recorded attempts.
         </p>
@@ -109,6 +125,8 @@ export function LearnerDesk() {
             Sign out
           </button>
         </form>
+        </details>
+        {session?.local_demo && <p>Local training is ready. No access code is needed to start a mission or switch to the instructor workspace.</p>}
       </section>
       <section className="card live-pad">
         <h2>Assigned exercises</h2>
@@ -135,17 +153,25 @@ export function LearnerDesk() {
               disabled={
                 busy || (a.mode === "assessment" && !!a.attempts?.length)
               }
-              onClick={() => void start(a.id)}
+              onClick={() => void prepare(a)}
             >
               {a.attempts?.length ? "Practice again" : "Start assignment"}
             </button>
           </article>
         ))}
       </section>
+      {chosen && <ConsoleModal title={"Start " + chosen.assignment.title} briefing onClose={() => { if (!busy) setChosen(null); }} footer={<>
+        <ErrorText error={launchError} />
+        <button className="btn" disabled={busy} onClick={() => setChosen(null)}>Cancel</button><button className="btn btn--primary" disabled={busy} onClick={() => void start(chosen.assignment.id)}>{busy ? "Starting…" : "Start assigned exercise"}</button>
+      </>}>
+        <CompanyBriefing briefing={chosen.scenario.briefing} expanded />
+        <p>{chosen.scenario.title} · {chosen.assignment.mode} · {chosen.assignment.assistance}. These conditions are set by your instructor.</p>
+      </ConsoleModal>}
     </>
   );
 }
 export function InstructorDesk() {
+  const [localDemo, setLocalDemo] = useState(false);
   const [pin, setPin] = useState(""),
     [data, setData] = useState<Dashboard | null>(null),
     [error, setError] = useState<string | null>(null),
@@ -172,6 +198,7 @@ export function InstructorDesk() {
     setScenarios(s.scenarios);
   }
   useEffect(() => {
+    void api<Profile>("/session").then(s => setLocalDemo(!!s.local_demo)).catch(() => {});
     void load().catch(() => {});
   }, []);
   async function command(
@@ -198,8 +225,9 @@ export function InstructorDesk() {
   return (
     <>
       <h1>Instructor desk</h1>
+      <p>Manage training here. Open Live observation to follow the trainee and the AI side by side.</p>
       <ErrorText error={error} />
-      {!data ? (
+      {!data && localDemo ? <section className="soc__panel"><h2>Local instructor workspace</h2><p>Open management and live observation without an access code.</p><button className="btn btn--primary" disabled={busy} onClick={() => { setBusy(true); void openWorkspaceMode("instructor", true).catch(e => { setError(e.message); setBusy(false); }); }}>Enter instructor mode</button></section> : !data ? (
         <form
           className="card live-pad live-login"
           onSubmit={(e) => {
@@ -237,7 +265,7 @@ export function InstructorDesk() {
               <h2>{data.runs.length}</h2>
             </article>
           </div>
-          <div className="live-case-grid">
+          <details className="instructor-management"><summary>Learners &amp; cohorts</summary><div className="live-case-grid">
             <section className="card live-pad">
               <h2>Add a learner</h2>
               <form
@@ -323,7 +351,8 @@ export function InstructorDesk() {
               ))}
             </section>
           </div>
-          <section className="card live-pad">
+          </details>
+          <details className="instructor-management"><summary>Assignments</summary><section className="card live-pad">
             <h2>Assign an exercise</h2>
             <form
               className="live-form-row"
@@ -414,7 +443,8 @@ export function InstructorDesk() {
               </p>
             ))}
           </section>
-          <section className="card live-pad">
+          </details>
+          <details className="instructor-management"><summary>Shift communication</summary><section className="card live-pad">
             <h2>Live shift communication</h2>
             <form
               onSubmit={(e) => {
@@ -467,6 +497,7 @@ export function InstructorDesk() {
               </button>
             </form>
           </section>
+          </details>
           <section className="card live-pad">
             <h2>Exercises and after-action review</h2>
             {data.runs.map((r) => (
@@ -474,10 +505,9 @@ export function InstructorDesk() {
                 className="live-attempt"
                 key={r.run_id}
                 href={
-                  "#/live/" +
+                  (terminal(r.state) ? "#/live/" : "#/live/observer/") +
                   r.run_id +
-                  "/" +
-                  (terminal(r.state) ? "debrief" : "monitoring")
+                  (terminal(r.state) ? "/debrief" : "")
                 }
               >
                 <strong>{r.scenario.title}</strong>

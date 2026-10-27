@@ -360,7 +360,7 @@ class LiveControlTests(unittest.TestCase):
         self.assertTrue(
             any(
                 e.get("session_handle") == "key_reporting" and e.get("decision_id")
-                for e in self.e.visible(self.e.store.run(self.rid))
+                for e in self.e.visible(self.e.store.run(self.rid), complete=True)
             )
         )
         self.assertEqual(

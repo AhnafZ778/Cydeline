@@ -1,0 +1,36 @@
+{
+  "media": {
+    "source_page": "https://www.microsoft.com/en-us/evalcenter/download-windows-server-2022",
+    "download_link": "https://go.microsoft.com/fwlink/p/?LinkID=2195280&clcid=0x409&country=US&culture=en-us",
+    "bytes": 5044094976,
+    "sha256": "3e4fa6d8507b554856fc9ca6079cc402df11a8b79344871669f0251535255325",
+    "recorded_at_utc": "2026-10-25T13:41:56.311730+00:00",
+    "verification": "download completed via official Microsoft HTTPS link; hash recorded locally, not compared with a separately published vendor checksum"
+  },
+  "selected_edition": {
+    "index": "2",
+    "name": "Windows Server 2022 SERVERSTANDARD",
+    "installation_type": "Server"
+  },
+  "actual_preparation_desktop_observed": true,
+  "clean_preparation_shutdown": true,
+  "qemu_img_check": "passed",
+  "standalone_base": true,
+  "base_path": ".runtime/windows/windows.qcow2",
+  "base_directory_mode": "0700",
+  "base_file_mode": "0640; runner receives image GID only",
+  "private_credentials_path": ".runtime/windows/credentials.json",
+  "credentials_mode": "0600",
+  "network_adapter": "none",
+  "evaluation_activation_performed": false,
+  "browser_rendered_sandbox": "unverified; browser automation URL policy refused; no alternate browser route attempted",
+  "full_B_C_host_qualification": "not performed",
+  "source_hashes": {
+    "scripts/prepare_windows.py": "b209e366db838d15b273558ba14a6320973256bf38a8c9a236aa4b38af10193d",
+    "scripts/run_local.py": "a9fea5594d0f14f693beb1faa51e0cbe3e6817c7ad0cc397c8ed7945b0452408",
+    "scripts/capture_windows_vm.py": "15225f9b19b8fa4eff9cb952d0e7461a51cac5605dd1cfe825a0eb54b97f8cc6",
+    "services/range_runtime/tool_worker.py": "4d794e479b0340a6a83cd1619c4f6a452d4547611e738a5d748836558951ec18",
+    "tests/control/test_windows_preparation.py": "7252bf02e052918db1214b308af61086d06344e1b879a9c7ee7b16657d4b35fc",
+    "tests/control/test_optional_tools.py": "648fb26fe7985ea8cb3993807bac5e9de5ffc0ca2ed3252bfeca2d6e74a298e7"
+  }
+}

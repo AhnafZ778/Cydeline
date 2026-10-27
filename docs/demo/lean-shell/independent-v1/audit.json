@@ -1,0 +1,300 @@
+{
+  "schema": 1,
+  "title": "Lean shell independent UI evaluation v1",
+  "project": "/home/ahnaf-zakaria/Downloads/Cydeline",
+  "snapshot": "fe8e4dc566ef3b31b0e482c97a275e7b7d69b43eae6f74ebc11b22dd9aa96953",
+  "contract": "4a7a48a2dc16c0afaef22b6343fe1a5042dd4a127f19213df130f6b6674bb6d8",
+  "evaluator": {
+    "session_id": "lean_ui_review-independent-2026-10-25-v1",
+    "implementation_session_id": "lean-shell-2026-10-25",
+    "independent": true
+  },
+  "coverage": [
+    {
+      "route": "#/live/:run/monitoring",
+      "flow": "Primary and secondary navigation",
+      "state": "320/390/768/1440",
+      "status": "reviewed",
+      "required": true
+    },
+    {
+      "route": "#/",
+      "flow": "Launch briefing then reference",
+      "state": "new exercise and coached ready",
+      "status": "reviewed",
+      "required": true
+    },
+    {
+      "route": "#/live/instructor",
+      "flow": "Separate password-free instructor mode",
+      "state": "local fixture transition and return",
+      "status": "reviewed",
+      "required": true
+    },
+    {
+      "route": "#/live/:run/sandbox",
+      "flow": "Immersive workspace and minimize",
+      "state": "ready320/390/768/1440",
+      "status": "reviewed",
+      "required": true
+    },
+    {
+      "route": "#/live/:run/sandbox",
+      "flow": "Workspace recovery",
+      "state": "stable gateway URL reconnect",
+      "status": "reviewed",
+      "required": true
+    },
+    {
+      "route": "#/live/:run/monitoring",
+      "flow": "Keyboard and responsive operation",
+      "state": "secondary tools and retained drafts",
+      "status": "reviewed",
+      "required": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "Primary and secondary navigation",
+      "status": "pass",
+      "required": true,
+      "evidence": "Independent source and18/18 native lean-shell/navigation/learning browser tests: four primary routes, all supporting tools retained under More tools, legacy URLs and active-run resume preserved."
+    },
+    {
+      "name": "Launch briefing and reference",
+      "status": "pass",
+      "required": true,
+      "evidence": "Native browser flow rendered expanded briefing before start, no briefing panel in live Monitor, dedicated Company briefing reference accessible; coached Begin still required. Source matches server acknowledgement path."
+    },
+    {
+      "name": "Separate instructor mode",
+      "status": "pass",
+      "required": true,
+      "evidence": "Native browser local fixture changed authenticated role, rendered distinct management header/tabs with no training rail or live toolbar and no password input; Training restored selected exercise. Backend authorization independently evaluated elsewhere."
+    },
+    {
+      "name": "Immersive workspace connection and focus",
+      "status": "pass",
+      "required": true,
+      "evidence": "Native test rendered synthetic guest at exact fullviewport0,0,width,900 at1440/768/390/320; shell inert, top-right minimize reachable. Minimize/resume/Escape retain same iframe/src and one load; focus returns Resume, navigation unmount clears inert."
+    },
+    {
+      "name": "Workspace recovery",
+      "status": "fail",
+      "required": true,
+      "evidence": "Independent browser probe: gateway frame loads1 before Reconnect and1 afterward despite click. Source setConnection(data.url) leaves stable URL unchanged; no remount/reload. Evidence independent-v1/browser-observations.json and reconnect-1440.png."
+    },
+    {
+      "name": "Responsive supporting tools and keyboard",
+      "status": "pass",
+      "required": true,
+      "evidence": "Independent probe sampled all four widths: document scrollWidth equals viewport, More tools keyboard Enter opens/closes with focused2px orange outline and whole panel within viewport. Screenshots inspected; data tables use internal horizontal scroll at narrow widths."
+    },
+    {
+      "name": "Sampled accessible names and contrast",
+      "status": "pass",
+      "required": true,
+      "evidence": "Native lean-shell rule scan passed color-contrast,button-name,link-name at320. Keyboard minimize/resume/navigation and disclosure exercised. This is sampled automation, not full WCAG or assistive-technology qualification."
+    },
+    {
+      "name": "Lightweight and privacy-preserving shell",
+      "status": "pass",
+      "required": true,
+      "evidence": "Source: instructor and observer lazy imports before learner RunProvider; recorder dynamic import only after optional consent. No new UI dependency. Capture blocks private fields and excludes other desktop/crossorigin; learner AI visibility restrictions retained."
+    },
+    {
+      "name": "Reduced-motion static sample",
+      "status": "pass",
+      "required": true,
+      "evidence": "Independent reduced-motion emulation found0activeCSSanimation names in static Monitor. Does not establish replay/VM motion compliance."
+    }
+  ],
+  "screenshots": [
+    {
+      "id": "monitor-1440",
+      "path": "monitor-1440.png",
+      "sha256": "65877467a4598621b93be70c36020a57c959ee526fdb54ce5dce9f861c1ebed5",
+      "width": 1440,
+      "height": 900,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "device_scale": 1,
+      "scroll": {
+        "x": 0,
+        "y": 0
+      },
+      "kind": "full-page"
+    },
+    {
+      "id": "monitor-768",
+      "path": "monitor-768.png",
+      "sha256": "0101e320a782827aa430672361319743731df1e4d59dc805424060a49dcd9f56",
+      "width": 768,
+      "height": 900,
+      "viewport": {
+        "width": 768,
+        "height": 900
+      },
+      "device_scale": 1,
+      "scroll": {
+        "x": 0,
+        "y": 0
+      },
+      "kind": "full-page"
+    },
+    {
+      "id": "monitor-390",
+      "path": "monitor-390.png",
+      "sha256": "ada73f60a36a5dcfcd495a53a7df8284c7677554e417e6e778ef8f84fea8b6dd",
+      "width": 390,
+      "height": 900,
+      "viewport": {
+        "width": 390,
+        "height": 900
+      },
+      "device_scale": 1,
+      "scroll": {
+        "x": 0,
+        "y": 0
+      },
+      "kind": "full-page"
+    },
+    {
+      "id": "monitor-320",
+      "path": "monitor-320.png",
+      "sha256": "521d39ee24867519e19ee77d4875abe117801840edd5510a4d7b68616ddab451",
+      "width": 320,
+      "height": 900,
+      "viewport": {
+        "width": 320,
+        "height": 900
+      },
+      "device_scale": 1,
+      "scroll": {
+        "x": 0,
+        "y": 0
+      },
+      "kind": "full-page"
+    },
+    {
+      "id": "workspace-1440",
+      "path": "workspace-1440.png",
+      "sha256": "b07f99544a312acba8799b0dcc77c670d710787e740cf0f92599d42adee3820b",
+      "width": 1440,
+      "height": 900,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "device_scale": 1,
+      "scroll": {
+        "x": 0,
+        "y": 0
+      },
+      "kind": "viewport"
+    },
+    {
+      "id": "workspace-320",
+      "path": "workspace-320.png",
+      "sha256": "404ff897d8c001abd64a54197c5d04898b296108958bc855d310bf8e7faa977d",
+      "width": 320,
+      "height": 900,
+      "viewport": {
+        "width": 320,
+        "height": 900
+      },
+      "device_scale": 1,
+      "scroll": {
+        "x": 0,
+        "y": 0
+      },
+      "kind": "viewport"
+    },
+    {
+      "id": "instructor-1440",
+      "path": "instructor-1440.png",
+      "sha256": "2f63f53366787207e91c3ca8c062b1999ae2676919ef5b685b43679616892029",
+      "width": 1440,
+      "height": 900,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "device_scale": 1,
+      "scroll": {
+        "x": 0,
+        "y": 0
+      },
+      "kind": "full-page"
+    },
+    {
+      "id": "more-320",
+      "path": "independent-v1/more-320.png",
+      "sha256": "844a1eed389e2e67c8e1326d9dcc1398a35ee97791b92bc4f238fb8cacc36015",
+      "width": 320,
+      "height": 900,
+      "viewport": {
+        "width": 320,
+        "height": 900
+      },
+      "device_scale": 1,
+      "scroll": {
+        "x": 0,
+        "y": 0
+      },
+      "kind": "full-page"
+    },
+    {
+      "id": "reconnect-1440",
+      "path": "independent-v1/reconnect-1440.png",
+      "sha256": "53e7bfefbee37bfa71a6b1bd7c2928ca281687489e8de5c59625a692fa52fb73",
+      "width": 1440,
+      "height": 900,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "device_scale": 1,
+      "scroll": {
+        "x": 0,
+        "y": 0
+      },
+      "kind": "full-page"
+    }
+  ],
+  "findings": [
+    {
+      "id": "LEAN-UI-01",
+      "title": "Reconnect does not reload a stable workspace gateway",
+      "category": "functional-accessibility",
+      "severity": "major",
+      "status": "open",
+      "route": "#/live/:run/sandbox",
+      "state": "ready Windows minimized after a disconnected guest display",
+      "expected": "Reconnect reopens the current environment connection without stopping or relaunching the VM.",
+      "observed": "The control sets connection to data.url. When the gateway URL is unchanged the iframe remains the same loaded document. Independent synthetic frame count stayed1 before and after clicking Reconnect.",
+      "consequence": "A trainee with a stuck or disconnected embedded guest cannot recover via the offered recovery action.",
+      "reproduce": "Launch fixture desktop; minimize; click Reconnect while gateway returns the same URL. Observe frame navigation/load count and guest document remain unchanged.",
+      "evidence": "apps/web/src/features/live/AnalystTools.tsx Reconnect handler; independent-v1/probe.cjs and browser-observations.json reconnect.loads_before=1,loads_after=1. Native suite18/18 passes because it asserts preservation on minimize but does not exercise explicit reconnect.",
+      "remedy": "Explicitly reload or rekey the existing iframe on Reconnect while preserving its gateway URL, exercise and VM. Ordinary minimize/resume must continue preserving the frame.",
+      "retest": "Assert minimize/resume causes exactly one frame load, explicit Reconnect causes a second load at the same URL, repeated reconnect works, and no new VM launch POST occurs. Exercise error and retry states.",
+      "screenshot_id": "reconnect-1440",
+      "region": {
+        "frame": "document-css",
+        "x": 580,
+        "y": 450,
+        "width": 135,
+        "height": 47
+      }
+    }
+  ],
+  "verdict": "fail",
+  "limits": [],
+  "scope_notes": [
+    "Bounded fixture UI review only. No live user 5188 page accessed; isolated project-native Vite5175 suite and Vite5176 developer fixture. No real Windows input, VM capture, dedicated sealed host, timed adversary, model adaptation, participant usefulness or full accessibility conformance claim. Existing full model acceptance remains failed10/12 and B/C qualification incomplete.",
+    "Harness evaluate reported blocked because source snapshot changed since prior receipt; current observed code identity recorded. Implementer must refresh checks after fixes.",
+    "CSS zoom2 at320 produced scrollWidth543; this is an extreme160-CSS-pixel equivalent sample, not browser zoom evidence and not the320CSS-pixel reflow acceptance. Actual browser zoom, screen-reader and guest keyboard integration remain unverified."
+  ]
+}

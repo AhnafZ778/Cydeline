@@ -23,10 +23,10 @@ If the current owner is blocked, offline, or switching AI sessions, run these **
 python3 scripts/harness_sync.py takeover --task ahnaf-lead-ux
 
 # 2. Native harness resume for this task packet
-harness context resume /home/ahnaf-zakaria/Downloads/Cydeline --task ahnaf-lead-ux
+harness context resume . --task ahnaf-lead-ux
 
 # 3. Run project-native verification checks
-harness check run /home/ahnaf-zakaria/Downloads/Cydeline
+harness check run .
 ```
 
 ---
@@ -35,7 +35,7 @@ harness check run /home/ahnaf-zakaria/Downloads/Cydeline
 
 - **Goal:** Oversee cross-team integration and deliver the 7-state React/TypeScript Defender Command Center (apps/web/), Playwright E2E suite (tests/e2e/), and 3-minute competition demo (docs/demo/).
 - **IMMEDIATE NEXT STEP (`next_step`):**
-  > **Retain the verified UI and final-v8 evidence. Complete manual accessibility checks before conformance claims; follow AI-LEARN-01/02 for the next product-quality increment. Pilot sessions are user-deferred; kit ready.**
+  > **UI/briefingcleanupcomplete; remaining manualactualWindowsbrowserinput andaccessibility plus BVMobserver/CtimedUI tasks are consolidated in docs/product/REMAINING_WORK.md.**
 
 ---
 
@@ -71,6 +71,19 @@ harness check run /home/ahnaf-zakaria/Downloads/Cydeline
 - [x] Final stable frontend verification: 54 unit tests, production build and all 23 consolidated console/learning browser tests pass. Durable browser log saved in docs/demo/learning/browser-verification.txt; actual live-service integration and participant gates remain explicit.
 - [x] Genuine browser3/3 passed both terminal report/export workflows and assessment restrictions; enhanced current suite adds coach/dispute and offline recovery; frontend54tests/buildpass.
 - [x] Current V8 browser journeys passed individually across the documented interruption: Stolen Session, Reporting and assessment. Offline worksheet text, persisted dispute, recovery, submitted report, immutable terminal state and export verified. Frontend: 54 tests/build and prior 23 console/learning/navigation checks pass. Raw canonical replay artifacts and executed/writer hashes independently verified; live coach 51989ms tail retained.
+- [x] Approved observer-first UX handoff saved in AI_OBSERVER_RANGE_PLAN.md and independent review log; no feature implemented. User selected split view, exercise tab plus lab VM only, privileged live audience and trainee review afterward.
+- [x] Milestone A restricted observer implemented and independently evaluated: backend scopedPASS69focusedtests, UIv2 scopedPASS with all prior findings resolved; observer23/frontend54/build/browser25+2 and actual local-model wiring pass. Native full382+18subtests, typecheck/contextsync and evaluate pass at recorded A snapshot. Evidence docs/product/AI_OBSERVER_BUILD_LOG.md; no B/C, Windows desktop or model-quality acceptance implied.
+- [x] Local Windows workstation setup completed: official2022evaluationDesktopExperience actually booted via KVM and finalizedbase, then viaToolWorker; GuacAPI auth/VNC, readOnlymounts, capdropALL/noNIC, unchangedbase and ownvalidationcleanup verified. Privateimagepersisted forpreview5188; workerlaunchabletrue. Independentprep/permission/diagnosticreview25focusedtestsPASS; browserSandboxrender/inputunverified due toolURLpolicy. Aobserver scopedPASS preserved; fullB/C/modelquality gates remain.
+- [x] Reconciled current source and saved user-authorized lean-shell contract; preserving prior Windows/observer implementation and evidence.
+- [x] Built lean navigation, briefing reference, separate instructor layout, loopback demo switching and immersive Windows with preserved minimized frame. Initial production build/frontend54 and nine demo authorization checks pass; browser checks in progress.
+- [x] Lean shell browser flow and dedicated instructor layout verified at four widths; independent access review resolved session race/loading/proxy findings. Preview5188 now password-free locally; existing paused practice and ready Windows preserved. Independent UI found stable-URL reconnect, fixed; assignment briefing coverage under review.
+- [x] Closed assignment briefing bypass with exact-version prelaunch modal, cancel and recoverable failure. UI loop v1/v2 failures preserved with reconnect fixed. Observer browser2 passes after fixture restart; preview preserved existing exercise/Windows.
+- [x] All five lean recovery checks and four lean shell checks pass, including assigned coached/independent/assessment prebrief, cancel, missing briefing, retry, direct role entry/loading and Windows recovery. Production build pass; complete console browser matrix and independent UIv3 running.
+- [x] Lean shell completed and independently accepted UIv3 after retained v1/v2 failures. Four main tools, briefing before library/assigned starts, separate instructor mode, password-free local testing and immersive Windows verified. Fullfixturebrowser34+observer2,frontend54,backend400+18subtests andbuildPASS.
+- [x] Resumed current source and diagnosed screenshot overflow: fixed520px modal without max-height or scrolling. Recorded focused responsive briefing correction preserving full policy and launch authority.
+- [x] Briefing modal corrected to wide responsive two-column sections, bold/keyphrase highlights, bounded keyboard/wheel-scroll body and persistent launch/cancel footer for library and assignments. Preview5188 restarted preserving paused-before-Begin run. Build/frontend54 and affectedbrowser15 PASS at six viewport sizes; independent focused review pending.
+- [x] User screenshot correction complete: wide horizontal briefing with two-column sections, bold/keyphrase backgrounds, real scroll area and pinned launch/cancel. Build/frontend54/affectedbrowser15PASS, freshfocusedreviewPASS11browserchecks plus sixscreenshots/keyboardbottom. Preview5188 restarted with pausedpractice preserved; disposableoldtestreservations cleaned after failed broadcheck.
+- [x] Briefing final stableverification completed: native400+18subtests/typecheck/HarnessPASS at d58ca8ce; frontend54/build/affectedbrowser15 andindependentreview11PASS. UIcomplete, allsource/evidence/context preparingforGitHub publication.
 
 ### Remaining Work (`remaining`)
 - [ ] Manual zoom, reduced-motion and assistive-technology evaluation remain unverified; do not claim full accessibility or beginner usability.
@@ -125,6 +138,7 @@ harness check run /home/ahnaf-zakaria/Downloads/Cydeline
 - Enforce Pure White (#FFFFFF) surfaces across all panes/rows/inspectors with Deep Midnight Slate (#0B1120) and Deep Navy (#1E3A8A) text for 18:1 AAA contrast and cohesive light-theme readability
 - Approval gate for U0 mockups waived by user instruction to continue through all todos; mockups remain available for revision
 - User deferred actual participant sessions; preserve the blank pilot kit and do not fabricate study outcomes.
+- Current observer/range plan supersedes earlier live learner Adversary Lens exceptions; Windows is trainee workstation, not an endpoint-compromise objective.
 
 ### Architecture Entry Points (`architecture`)
 - Ahnaf.md
@@ -149,12 +163,25 @@ harness check run /home/ahnaf-zakaria/Downloads/Cydeline
 - apps/web/src/features/live/LiveSocApp.tsx
 - context/contracts/ahnaf-lead-ux.contract.md
 - context/evaluations/ahnaf-lead-ux.eval.md
+- docs/demo/briefing-layout/independent-review.md
+- docs/demo/briefing-layout/verification.json
+- docs/demo/lean-shell/access-review.md
+- docs/demo/lean-shell/independent-v3/audit.json
 - docs/demo/learning/final-v8/receipt.json
+- docs/demo/observer-a/native-receipt-a.json
+- docs/demo/windows-setup/gateway-summary.json
+- docs/demo/windows-setup/setup-summary.json
 - docs/model-card/learning/COMPOSE_ISOLATION_FINAL_CURRENT.json
 - docs/model-card/learning/INDEPENDENT_REVIEW_2026-10-24.md
+- docs/product/AI_OBSERVER_BUILD_LOG.md
+- docs/product/AI_OBSERVER_RANGE_PLAN.md
+- docs/product/AI_OBSERVER_RANGE_REVIEW.md
 - docs/product/BEGINNER_LEARNING_HANDOFF.md
 - docs/product/KNOWN_ISSUES.md
+- docs/product/LEAN_SHELL_HANDOFF.md
+- docs/product/REMAINING_WORK.md
 - docs/product/SOC_SIMULATOR_FEATURE_RESEARCH.md
+- docs/product/WINDOWS_VM.md
 - tests/e2e/live.spec.ts
 
 

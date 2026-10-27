@@ -1,0 +1,44 @@
+{
+  "recorded_at_utc": "2026-10-25T13:29:10.899572Z",
+  "purpose": "single real local model observer wiring proof",
+  "model": "qwen3:1.7b",
+  "model_digest": "8f68893c685c3ddff2aa3fffce2aa60a30bb2da65ca488b61fff134a4d1730e7",
+  "timeout_ms": 30000,
+  "source_hashes": {
+    "scripts/prove_observer.py": "46afd654638314d5cf1f25bdd31deb1d0a607b2825f1fb14a92070410fee834d",
+    "services/range_runtime/agent.py": "7bace6259521541232d6babff6dca5888d50ae9bdd59ae251e4d43ba47957b90",
+    "services/range_runtime/engine.py": "20e0500d9f39dc8ee59ff4af4f9b07c0c5ca3b6e4e7c816e25c6c323b89efec6",
+    "services/range_runtime/observer.py": "df9bdd927299ec170cb1f8e235d75eca150b48339a0cc90ec1d92a88c30c3b82",
+    "services/range_runtime/api.py": "02285a9298a7fb0df499ffd7f3a293faed79548dff7ede6636602c4ebb542b80"
+  },
+  "not_proven": [
+    "adaptive pivots",
+    "timed simulation",
+    "Windows desktop",
+    "learning effectiveness",
+    "representative latency"
+  ],
+  "model_requests": 1,
+  "final_responses": 1,
+  "accepted": 1,
+  "target_results": [
+    {
+      "http_status": 200,
+      "outcome": "listed",
+      "target_audit_id": "audit_24e9a2e4c3264cd7a828"
+    }
+  ],
+  "linked_decision_ids": [
+    "decision_1388274efa044e649d8d"
+  ],
+  "learner_strategy_absent": true,
+  "event_kinds": [
+    "decision.started",
+    "model.request",
+    "model.response",
+    "decision.validation",
+    "target.dispatched",
+    "target.confirmed"
+  ],
+  "passed": true
+}

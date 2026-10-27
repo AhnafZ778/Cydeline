@@ -64,6 +64,22 @@ class SessionRequest(StrictRequest):
     code: str = Field(min_length=1, max_length=128)
 
 
+class ObserverGrantRequest(StrictRequest):
+    name: str = Field(min_length=1, max_length=80)
+
+
+class CaptureConsent(StrictRequest):
+    accepted: bool
+    gap: bool = False
+    capture_id: str | None = Field(default=None, pattern=r"^capture_[a-zA-Z0-9_-]+$", max_length=100)
+
+
+class CaptureChunk(StrictRequest):
+    capture_id: str = Field(pattern=r"^capture_[a-zA-Z0-9_-]+$", max_length=100)
+    index: int = Field(ge=0)
+    events: list[dict] = Field(min_length=1, max_length=1000)
+
+
 class AlertRequest(StrictRequest):
     status: Literal["new", "investigating", "closed"]
     verdict: Literal["true_positive", "false_positive"] | None = None
@@ -186,6 +202,9 @@ RUNTIME_MODELS = {
         BranchRequest,
         AlertRequest,
         HandoffRequest,
+        ObserverGrantRequest,
+        CaptureConsent,
+        CaptureChunk,
     ]
 }
 

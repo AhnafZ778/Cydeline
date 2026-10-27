@@ -23,10 +23,10 @@ If the current owner is blocked, offline, or switching AI sessions, run these **
 python3 scripts/harness_sync.py takeover --task tanvir-red-agent
 
 # 2. Native harness resume for this task packet
-harness context resume /home/ahnaf-zakaria/Downloads/Cydeline --task tanvir-red-agent
+harness context resume . --task tanvir-red-agent
 
 # 3. Run project-native verification checks
-harness check run /home/ahnaf-zakaria/Downloads/Cydeline
+harness check run .
 ```
 
 ---
@@ -35,7 +35,7 @@ harness check run /home/ahnaf-zakaria/Downloads/Cydeline
 
 - **Goal:** Deliver the bounded local AI adversary service (services/red-agent/), two-stage safety validator, and empirical benchmark suite (tests/agent/, docs/model-card/).
 - **IMMEDIATE NEXT STEP (`next_step`):**
-  > **Read KNOWN_ISSUES.md and the saved denied/unknown traces. Evaluate capability under a declared model/hardware or policy decision before another full matrix; preserve all failures, budgets, validation and independent review. Do not resume blind prompt retuning.**
+  > **Retain10/12 objectiveFAIL and51989mscoach tail; qualify expandedmodel only after sealedB host available. Lean UI completion does not change model acceptance.**
 
 ---
 
@@ -55,6 +55,10 @@ harness check run /home/ahnaf-zakaria/Downloads/Cydeline
 - [x] Twelve real-model early-containment/pivot journeys recovered, 24 accepted decisions, 16 audited inspections, 8 stops, no fallback. v5 coach 59/60 supported, p95 11885ms; one unavailable 62066ms timeout retained. Prior v4 latency/relevance failures and all raw attempts preserved. Semantic utility and broader model objective reads remain unverified.
 - [x] Current discovery/alias/pacing source independently reviewed;74learning/API tests pass. Firstobjective matrix10/12and all targetedfailedtraces preserved. Neutral aliases preserve everyroutechoice, and actual target permission observations drive model context.
 - [x] V8 constrained coach 60/60, p95 2403ms and all 136 supports independently verified. Final selector uses thinking disabled, 80 tokens, temperature 0.1 within 30s; completion failures retain diagnostics and cannot invoke actions. Full objective gate FAIL: 10 passed, 2 failed; early containment 12/12 passes but post-response actions are only wait/stop. All actual model/target provenance and pacing independently verified; zero executed fallback.
+- [x] Saved independently approved observer/range design: actual sanitized model inputs/final output/declared intent and decision-job-target provenance, no private reasoning or invented adaptation. Runtime code unchanged; 1.7b failure preserved.
+- [x] Milestone A restricted observer implemented and independently evaluated: backend scopedPASS69focusedtests, UIv2 scopedPASS with all prior findings resolved; observer23/frontend54/build/browser25+2 and actual local-model wiring pass. Native full382+18subtests, typecheck/contextsync and evaluate pass at recorded A snapshot. Evidence docs/product/AI_OBSERVER_BUILD_LOG.md; no B/C, Windows desktop or model-quality acceptance implied.
+- [x] Local Windows workstation setup completed: official2022evaluationDesktopExperience actually booted via KVM and finalizedbase, then viaToolWorker; GuacAPI auth/VNC, readOnlymounts, capdropALL/noNIC, unchangedbase and ownvalidationcleanup verified. Privateimagepersisted forpreview5188; workerlaunchabletrue. Independentprep/permission/diagnosticreview25focusedtestsPASS; browserSandboxrender/inputunverified due toolURLpolicy. Aobserver scopedPASS preserved; fullB/C/modelquality gates remain.
+- [x] Lean shell/instructor UI cleanup changes no attacker policy/model capability. Live trainee strategy remains denied, observer recording optional and playback lazy-loaded; local Windows persisted across preview restart.
 
 ### Remaining Work (`remaining`)
 - [ ] Resolve AI-LEARN-01: both Reporting service-dependent repeats fail adaptation; final full objective gate is 10 passed / 2 failed.
@@ -104,6 +108,7 @@ harness check run /home/ahnaf-zakaria/Downloads/Cydeline
 - Tag any timeout or invalid-output recovery with fallback_used=true so demo provenance is 100% transparent
 - Contracts boundary is a separate adapter module: core red-agent modules stay standard-library-only so offline tests and benchmarks run without Pydantic; contracts_adapter is the single import seam for apps/control-api
 - User deferred actual participant sessions; preserve the blank pilot kit and do not fabricate study outcomes.
+- Approved engineering candidate for expanded profile is pinned local Qwen3:8b non-thinking behind full host/model gates; no automatic model/cloud fallback or scripted execution credited as AI.
 
 ### Architecture Entry Points (`architecture`)
 - Tanvir.md
@@ -124,12 +129,19 @@ harness check run /home/ahnaf-zakaria/Downloads/Cydeline
 - context/contracts/tanvir-red-agent.contract.md
 - context/evaluations/tanvir-red-agent.eval.md
 - docs/demo/learning/final-v8/receipt.json
+- docs/demo/observer-a/native-receipt-a.json
+- docs/demo/windows-setup/gateway-summary.json
+- docs/demo/windows-setup/setup-summary.json
 - docs/model-card/BENCHMARK.json
 - docs/model-card/MODEL_CARD.md
 - docs/model-card/learning/COMPOSE_ISOLATION_FINAL_CURRENT.json
 - docs/model-card/learning/INDEPENDENT_REVIEW_2026-10-24.md
+- docs/product/AI_OBSERVER_BUILD_LOG.md
+- docs/product/AI_OBSERVER_RANGE_PLAN.md
+- docs/product/AI_OBSERVER_RANGE_REVIEW.md
 - docs/product/BEGINNER_LEARNING_HANDOFF.md
 - docs/product/KNOWN_ISSUES.md
+- docs/product/WINDOWS_VM.md
 - services/red-agent/README.md
 - services/red-agent/benchmark.py
 - services/red-agent/contracts_adapter.py

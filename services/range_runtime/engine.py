@@ -5,6 +5,7 @@ import json
 import logging
 import statistics
 import threading
+from contextlib import nullcontext
 
 from .agent import LocalAgent
 from .catalog import lookup, manifest, spec
@@ -12,6 +13,7 @@ from .common import DomainError, digest, now, uid
 from .db import Store
 from .casework import Casework
 from .learning import Learning, public_briefing
+from .observer import ObserverLog
 
 LOGGER = logging.getLogger(__name__)
 TERMINAL = {"completed", "timed_out", "aborted", "technical_failure"}
@@ -20,6 +22,8 @@ TERMINAL = {"completed", "timed_out", "aborted", "technical_failure"}
 class Engine(Casework, Learning):
     def __init__(self, path, target, agent=None):
         self.store = Store(path)
+        self.observer = ObserverLog(self.store, path)
+        self.observer_failed = False
         self.target = target
         self.agent = agent or LocalAgent()
         self.lock = self.store.lock
@@ -35,6 +39,8 @@ class Engine(Casework, Learning):
         owner="local",
         variant_id=None,
     ):
+        if self.observer_failed:
+            raise DomainError("Observer audit storage failed; restart after repairing storage", 507)
         self.require_model()
         s = lookup(sid, version)
         if not s:
@@ -49,6 +55,7 @@ class Engine(Casework, Learning):
                     "One local company can run at a time. End the current shift first."
                 )
             rid = uid("run")
+            self.observer.admit()
             provision = self.target.create_fresh_target(rid, seed, s["version"], variant["id"])
             stamp = now()
             r = {
@@ -302,7 +309,7 @@ class Engine(Casework, Learning):
         decisions = {
             d["decision_id"]: d for d in self.store.rows("agent_decisions", r["run_id"])
         }
-        reveal = complete or (r["mode"] == "practice" and r["assistance"] == "coached")
+        reveal = complete
         for row in self.store.events(r["run_id"]):
             if not row.get("learner_visible", True) and not complete:
                 continue
@@ -372,7 +379,7 @@ class Engine(Casework, Learning):
                 remaining_sec=max(0, spec(r)["duration_sec"] - r["virtual_clock_sec"]),
                 branch_from=r.get("branch_from"),
             )
-            if r["mode"] == "practice" or r["state"] in TERMINAL:
+            if r["state"] in TERMINAL:
                 out.update(
                     ai_step=r["ai_step"],
                     ai_steps_remaining=max(0, r["max_steps"] - r["ai_step"]),
@@ -630,6 +637,7 @@ class Engine(Casework, Learning):
         )
         self.store.save(r)
         self.store.put("scores", r["run_id"], r["run_id"], self.score(r))
+        self.observer.release()
         if getattr(self, "on_terminal", None):
             self.on_terminal(r["run_id"])
 
@@ -915,6 +923,8 @@ class Engine(Casework, Learning):
         return actions
 
     def tick(self, rid, seconds=1):
+        if self.observer_failed:
+            return
         with self.lock:
             r = self.store.run(rid)
             if (
@@ -979,6 +989,8 @@ class Engine(Casework, Learning):
         self.store.put("workspace", r["run_id"], r["run_id"], ws)
 
     def decide(self, rid, retry=False):
+        if self.observer_failed:
+            return
         with self.lock:
             r = self.store.run(rid)
             if (
@@ -999,8 +1011,26 @@ class Engine(Casework, Learning):
             self.store.save(r)
             snapshot = copy.deepcopy(r)
             allowed = self.allowed(r)
+            decision_id = uid("decision")
+        def record(kind, payload):
+            with self.lock:
+                if self.observer_failed:
+                    raise DomainError("Observer audit failed; pending model work is fenced", 507)
+                try:
+                    self.observer.emit(snapshot, kind, payload, decision_id)
+                except Exception:
+                    self.observer_failed = True
+                    LOGGER.exception("Observer evidence write failed; dispatch is fenced")
+                    try:
+                        self.finish(self.store.run(rid), "technical_failure")
+                    except Exception:
+                        LOGGER.exception("Cannot persist audit failure; dispatch remains fenced")
+                    raise
         try:
-            trace = self.agent.decide(snapshot, world, allowed)
+            record("decision.started", {"role": snapshot["next_role"], "step": snapshot["ai_step"]})
+            recording = getattr(self.agent, "recording", None)
+            with recording(record) if recording else nullcontext():
+                trace = self.agent.decide(snapshot, world, allowed)
             if not isinstance(trace, dict) or not isinstance(
                 trace.get("proposal"), dict
             ):
@@ -1036,8 +1066,11 @@ class Engine(Casework, Learning):
         finally:
             self.model_lock.release()
         with self.lock:
+            if self.observer_failed:
+                return
             r = self.store.run(rid)
             if r["state"] in TERMINAL:
+                record("decision.stale", {"reason": "Run ended during inference; no action executed."})
                 return
             r["thinking"] = False
             proposal = trace["proposal"]
@@ -1061,7 +1094,7 @@ class Engine(Casework, Learning):
             stale = r["state_revision"] != version or r["paused"]
             accepted = trace["accepted"] and not stale
             d = {
-                "decision_id": uid("decision"),
+                "decision_id": decision_id,
                 "run_id": rid,
                 "step": r["ai_step"],
                 "role": snapshot["next_role"],
@@ -1080,6 +1113,16 @@ class Engine(Casework, Learning):
                 "fallback_used": trace["fallback_used"],
                 "created_at": now(),
             }
+            record("decision.validation", self.meta(d))
+            # Detailed model text has a seven-day encrypted home. Legacy decision
+            # metadata retains action provenance without duplicating that text.
+            d["proposed_json"] = {**proposal, "reason": "Intent withheld from legacy metadata; see restricted observer history."}
+            if not boundary.accepted:
+                d["proposed_json"] = {"role": snapshot["next_role"], "action": None, "session_handle": None, "target_id": None,
+                                      "reason": "Rejected proposal withheld; see restricted observer history."}
+            d["raw_proposal"] = None
+            if d["rejection_reason"] and not stale:
+                d["rejection_reason"] = "Model proposal unavailable or rejected; see restricted observer history."
             self.store.put("agent_decisions", d["decision_id"], rid, d)
             r["last_decision"] = d
             self.event(
@@ -1133,10 +1176,13 @@ class Engine(Casework, Learning):
                         rejection_reason="Route response window not elapsed",
                     )
                     self.store.put("agent_decisions", d["decision_id"], rid, d)
+                    record("decision.rejected", {"reason": d["rejection_reason"]})
                 else:
+                    record("target.dispatched", {"action": proposal["action"], "session_handle": handle, "target_id": proposal.get("target_id")})
                     result = self.target.request(
                         rid, proposal["action"], handle, proposal.get("target_id")
                     )
+                    record("target.confirmed", result)
                     r["last_action"] = proposal["action"]
                     r["last_result"] = result["outcome"]
                     r["last_handle"] = handle

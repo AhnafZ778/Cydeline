@@ -22,6 +22,8 @@ TABLES = (
     "scenario_drafts",
     "sessions",
     "assistant_turns",
+    "observer_grants",
+    "observer_capture",
 )
 
 

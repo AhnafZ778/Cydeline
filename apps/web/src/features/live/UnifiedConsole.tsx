@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { lazy, Suspense, useEffect, useMemo, useState } from "react";
 import {
   Activity,
   Shield,
@@ -21,9 +21,12 @@ import { ConsoleModal as Modal } from "./ConsoleModal";
 import { Assets, Business, Debrief } from "./LiveSocApp";
 import { replayRows, clock, title } from "./logic";
 import { AssistantPanel } from "./AssistantPanel";
-import { LearnerDesk, InstructorDesk } from "./TrainingDesk";
+import { LearnerDesk } from "./TrainingDesk";
 import { ProgressView } from "./ProgressView";
 import { CompanyBriefing, LearningReferences } from "./LearningViews";
+import { ExerciseCapture } from "./ExerciseCapture";
+const ObserverView = lazy(() => import("./ObserverView").then(m => ({default: m.ObserverView})));
+const InstructorShell = lazy(() => import("./InstructorShell").then(m => ({default: m.InstructorShell})));
 const SELECTED = "soc-selected-run";
 const TOOLS = [
   "monitoring",
@@ -91,6 +94,8 @@ export function UnifiedConsole({ hash }: { hash: string }) {
       ? parts[1]
       : "library";
   if (parts[0] === "practice" && rid) page = parts[1] ?? "monitoring";
+  if (parts[0] === "live" && parts[1] === "observer") return <Suspense fallback={<p role="status">Opening observation room…</p>}><ObserverView key={parts[2] ?? "list"} runId={parts[2]} /></Suspense>;
+  if (page === "instructor") return <Suspense fallback={<p role="status">Opening instructor workspace…</p>}><InstructorShell /></Suspense>;
   return (
     <RunProvider key={rid ?? "library"} rid={rid}>
       <Shell
@@ -114,6 +119,7 @@ function Shell({
     s = m.snapshot;
   const [inspect, setInspect] = useState<string | null>(null),
     [confirmEnd, setConfirmEnd] = useState(false);
+  const [immersive, setImmersive] = useState(false);
   const ended = !!s && terminal(s.state);
   const rows = useMemo(
     () => (m.replay ? replayRows(m.replay.events) : toRows(m.events)),
@@ -159,7 +165,7 @@ function Shell({
     return () => window.removeEventListener("keydown", key);
   }, [inspect, s]);
   return (
-    <div className="soc live-soc unified-soc">
+    <div inert={immersive || undefined} className={"soc live-soc unified-soc" + (immersive ? " workspace-immersive" : "")}>
       <a
         className="skip-link"
         href="#main"
@@ -177,6 +183,7 @@ function Shell({
           activeHref={page === "library" ? "#/" : "#/live/" + page}
           runId={selected}
         >
+          {s && <a href={runHref(s.run_id, "briefing")} aria-current={page === "briefing" ? "page" : undefined}><Shield className="icon" /><span>Company briefing</span></a>}
           {s &&
             (
               [
@@ -302,10 +309,10 @@ function Shell({
                 </button>
               </section>
             )}
-            {s && page !== "library" && <CompanyBriefing briefing={s.scenario.briefing} />}
+            {s && !ended && TOOLS.includes(page) && <ExerciseCapture runId={s.run_id} />}
             {s?.awaiting_begin && !ended && page !== "library" && <section className="soc__panel learning-begin" aria-label="Investigation ready">
-              <h2>Take a moment to get oriented</h2>
-              <p>The company is ready. Read the briefing, then begin when you are ready. The clock and adversary are paused.</p>
+              <h2>Ready to investigate?</h2>
+              <p>The clock and adversary are paused. <a href={runHref(s.run_id, "briefing")}>Revisit the company briefing</a> whenever you need it.</p>
               <button className="btn btn--primary" disabled={m.busy} onClick={() => void m.act("begin")}>Begin investigation</button>
             </section>}
             {page === "library" ? (
@@ -314,8 +321,6 @@ function Shell({
               <ProgressView />
             ) : page === "profile" ? (
               <LearnerDesk />
-            ) : page === "instructor" ? (
-              <InstructorDesk />
             ) : !s ? (
               <section className="soc__panel">
                 <h1>Connecting to your exercise…</h1>
@@ -329,32 +334,9 @@ function Shell({
                 {page === "monitoring" ? (
                   <>
                     <LiveMonitoring />
-                    {!ended &&
-                      s.mode === "practice" &&
-                      s.assistance === "coached" && (
-                        <section
-                          className="live-adversary"
-                          aria-label="Adversary lens"
-                        >
-                          <span className="live-badge ai">AI adversary</span>
-                          <strong>
-                            {s.model_status === "thinking"
-                              ? "Thinking…"
-                              : s.last_ai_decision
-                                ? title(s.last_ai_decision.proposal.action)
-                                : "Waiting for the first model turn"}
-                          </strong>
-                          {s.last_ai_decision && (
-                            <span>
-                              {s.last_ai_decision.model_id} ·{" "}
-                              {s.last_ai_decision.accepted
-                                ? "Validated model decision"
-                                : "No target action executed"}
-                            </span>
-                          )}
-                        </section>
-                      )}
                   </>
+                ) : page === "briefing" ? (
+                  <><h1>Company briefing</h1><CompanyBriefing briefing={s.scenario.briefing} expanded /></>
                 ) : page === "learn" ? (
                   <><h1>Learning desk</h1><LearningReferences exercises /></>
                 ) : page === "logs" ? (
@@ -403,7 +385,7 @@ function Shell({
                     <p>Final feedback is available after the exercise ends.</p>
                   )
                 ) : (
-                  <LiveTools page={page} />
+                  <LiveTools page={page} onFocusChange={setImmersive} />
                 )}
                 {s.workspace.messages.length > 0 && (
                   <details className="soc__panel">
@@ -708,8 +690,12 @@ function Landing() {
         </section>
       )}
       {chosen && (
-        <Modal title={"Start " + chosen.title} onClose={() => setChosen(null)}>
-          <CompanyBriefing briefing={chosen.briefing} />
+        <Modal title={"Start " + chosen.title} briefing onClose={() => { if (!busy) setChosen(null); }} footer={<>
+          {error && <p role="alert">{error}</p>}
+          <button className="btn" disabled={busy} onClick={() => setChosen(null)}>Cancel</button>
+          <button className="btn btn--primary" data-testid="live-start" disabled={busy || !health?.model.available} onClick={() => void launch()}>{busy ? "Preparing company…" : "Start scenario"}</button>
+        </>}>
+          <CompanyBriefing briefing={chosen.briefing} expanded />
           <div className="live-launch">
             {!!chosen.variants?.length && <><label htmlFor="launch-variant">Company variation</label>
               <select id="launch-variant" value={variant} onChange={e => setVariant(e.target.value)}>
@@ -742,15 +728,6 @@ function Landing() {
                 ? "Assessment uses blind investigation and cannot be manually paused."
                 : assist === "coached" ? "Coached practice starts paused. Read the briefing and choose Begin investigation when you are ready." : "Independent practice begins immediately. Manual pause remains available."}
             </p>
-            <button
-              className="btn btn--primary"
-              data-testid="live-start"
-              disabled={busy || !health?.model.available}
-              onClick={() => void launch()}
-            >
-              {busy ? "Preparing company…" : "Start scenario"}
-            </button>
-            {error && <p role="alert">{error}</p>}
           </div>
         </Modal>
       )}

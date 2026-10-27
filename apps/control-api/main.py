@@ -22,6 +22,7 @@ app = create_control(
     runtime / "control.sqlite3",
     HttpTargetAdapter(client),
     instructor_pin=os.environ.get("INSTRUCTOR_PIN", pinfile.read_text().strip()),
+    local_demo=os.environ.get("LOCAL_DEMO_ACCESS") == "1",
 )
 
 from fastapi.staticfiles import StaticFiles

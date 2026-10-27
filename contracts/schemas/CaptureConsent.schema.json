@@ -1,0 +1,33 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "accepted": {
+      "title": "Accepted",
+      "type": "boolean"
+    },
+    "capture_id": {
+      "anyOf": [
+        {
+          "maxLength": 100,
+          "pattern": "^capture_[a-zA-Z0-9_-]+$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Capture Id"
+    },
+    "gap": {
+      "default": false,
+      "title": "Gap",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "accepted"
+  ],
+  "title": "CaptureConsent",
+  "type": "object"
+}

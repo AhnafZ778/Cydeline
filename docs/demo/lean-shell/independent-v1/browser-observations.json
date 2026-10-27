@@ -1,0 +1,72 @@
+{
+  "fixture_only": true,
+  "base": "http://127.0.0.1:5176",
+  "reconnect": {
+    "loads_before": 1,
+    "loads_after": 1,
+    "remounted": false
+  },
+  "widths": [
+    {
+      "width": 1440,
+      "scrollWidth": 1440,
+      "more": {
+        "x": 8,
+        "y": 290,
+        "width": 163,
+        "height": 321
+      },
+      "focus": {
+        "outline": "rgb(194, 65, 12) solid 2px",
+        "focused": true
+      }
+    },
+    {
+      "width": 768,
+      "scrollWidth": 768,
+      "more": {
+        "x": 496,
+        "y": 103,
+        "width": 260,
+        "height": 314
+      },
+      "focus": {
+        "outline": "rgb(194, 65, 12) solid 2px",
+        "focused": true
+      }
+    },
+    {
+      "width": 390,
+      "scrollWidth": 390,
+      "more": {
+        "x": 118,
+        "y": 143,
+        "width": 260,
+        "height": 314
+      },
+      "focus": {
+        "outline": "rgb(194, 65, 12) solid 2px",
+        "focused": true
+      }
+    },
+    {
+      "width": 320,
+      "scrollWidth": 320,
+      "more": {
+        "x": 48,
+        "y": 143,
+        "width": 260,
+        "height": 314
+      },
+      "focus": {
+        "outline": "rgb(194, 65, 12) solid 2px",
+        "focused": true
+      }
+    }
+  ],
+  "reduced_motion": 0,
+  "css_zoom_only": {
+    "width": 320,
+    "scrollWidth": 543
+  }
+}

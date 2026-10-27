@@ -9,6 +9,8 @@ from __future__ import annotations
 import importlib
 import json
 import time
+import threading
+from contextlib import contextmanager
 from dataclasses import replace
 
 from .catalog import spec
@@ -22,6 +24,7 @@ ollama = importlib.import_module("services.red-agent.ollama_client")
 
 class LocalAgent:
     def __init__(self):
+        self._recording = threading.local()
         self.service = service.RedAgentService()
         self.selector = ollama.OllamaClient(
             replace(
@@ -44,6 +47,31 @@ class LocalAgent:
                 "configured_model": self.service.config.model,
                 "error": type(exc).__name__,
             }
+
+    @contextmanager
+    def recording(self, recorder):
+        self._recording.recorder = recorder
+        try:
+            yield
+        finally:
+            self._recording.recorder = None
+
+    def _chat(self, client, stage, messages, format_schema):
+        record = getattr(self._recording, "recorder", None)
+        config = getattr(client, "config", None)
+        if record:
+            record("model.request", {"stage": stage, "messages": messages, "schema": format_schema,
+                   "config": {k: getattr(config, k, None) for k in ("model", "temperature", "num_predict", "think", "timeout_ms", "seed", "keep_alive")}})
+        try:
+            reply = client.chat(messages, format_schema=format_schema)
+        except Exception as exc:
+            if record:
+                record("model.unavailable", {"stage": stage, "error_type": type(exc).__name__})
+            raise
+        if record:
+            record("model.response", {"stage": stage, "model": reply.model, "final_output": reply.text,
+                   "done_reason": getattr(reply, "done_reason", None)})
+        return reply
 
     def decide(self, r, world, allowed):
         started = time.monotonic()
@@ -78,7 +106,7 @@ class LocalAgent:
                         }
                     },
                 }
-                reply = self.selector.chat(
+                reply = self._chat(self.selector, "selection",
                     [
                         {"role": "system", "content": selector_prompt},
                         {
@@ -196,7 +224,7 @@ class LocalAgent:
             schema = {"oneOf": choices}
             if "request_document" in data["allowed_actions"]:
                 prompt += f" The objective is now permitted: prefer request_document for {objective} over another status check."
-            reply = self.action_client.chat(
+            reply = self._chat(self.action_client, "action",
                 [
                     {"role": "system", "content": prompt},
                     {"role": "user", "content": json.dumps(data, sort_keys=True)},

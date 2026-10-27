@@ -6,28 +6,34 @@ export function ConsoleModal({
   children,
   wide = false,
   pop = false,
+  briefing = false,
+  footer,
 }: {
   title: string;
   onClose: () => void;
   children: ReactNode;
   wide?: boolean;
   pop?: boolean;
+  briefing?: boolean;
+  footer?: ReactNode;
 }) {
   const ref = useRef<HTMLDivElement>(null);
+  const close = useRef(onClose);
+  close.current = onClose;
   useEffect(() => {
     const previous = document.activeElement as HTMLElement;
     const el = ref.current!;
     const items = () =>
       Array.from(
         el.querySelectorAll<HTMLElement>(
-          'button:not(:disabled),input:not(:disabled),select:not(:disabled),textarea:not(:disabled),a[href],[tabindex="0"]',
+          'button:not(:disabled),input:not(:disabled),select:not(:disabled),textarea:not(:disabled),a[href],summary,[tabindex="0"]',
         ),
-      );
+      ).filter(item => item.getClientRects().length > 0);
     (el.querySelector<HTMLElement>("[data-autofocus]") ?? items()[0])?.focus();
     const key = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         e.stopPropagation();
-        onClose();
+        close.current();
       }
       if (e.key === "Tab") {
         const all = items(),
@@ -49,14 +55,14 @@ export function ConsoleModal({
     };
   }, []);
   return (
-    <div className={"soc-scrim " + (pop ? "is-pop" : "")} onMouseDown={onClose}>
+    <div className={"soc-scrim " + (pop ? "is-pop " : "") + (briefing ? "is-briefing" : "")} onMouseDown={onClose}>
       <div
         ref={ref}
         role="dialog"
         aria-modal="true"
         aria-label={title}
         className={
-          "soc-modal " + (wide ? "is-wide " : "") + (pop ? "is-pop" : "")
+          "soc-modal " + (wide ? "is-wide " : "") + (pop ? "is-pop " : "") + (briefing ? "is-briefing" : "")
         }
         onMouseDown={(e) => e.stopPropagation()}
       >
@@ -67,8 +73,9 @@ export function ConsoleModal({
         >
           <X className="icon" />
         </button>
-        <h2>{title}</h2>
-        {children}
+        <h2 className={briefing ? "briefing-dialog-title" : undefined}>{title}</h2>
+        {briefing ? <div className="briefing-dialog-body" role="region" aria-label="Company briefing and launch settings" tabIndex={0}>{children}</div> : children}
+        {footer && <footer className="briefing-dialog-footer">{footer}</footer>}
       </div>
     </div>
   );

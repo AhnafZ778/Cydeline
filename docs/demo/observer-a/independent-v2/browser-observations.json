@@ -1,0 +1,324 @@
+{
+  "fixtureIdentity": "sentinel-observer-disposable",
+  "run": "run_f3bf347495a14d378246",
+  "reflow": [
+    {
+      "width": 1440,
+      "split": true
+    },
+    {
+      "width": 768,
+      "pane": "ai",
+      "visible": true,
+      "hiddenOther": true,
+      "pressed": "true",
+      "outline": "rgb(194, 65, 12) solid 2px"
+    },
+    {
+      "width": 768,
+      "pane": "trainee",
+      "visible": true,
+      "hiddenOther": true,
+      "segment": "capture_5f74ceef024945e98f44",
+      "scrollWidth": 768
+    },
+    {
+      "width": 390,
+      "pane": "ai",
+      "visible": true,
+      "hiddenOther": true,
+      "pressed": "true",
+      "outline": "rgb(194, 65, 12) solid 2px"
+    },
+    {
+      "width": 390,
+      "pane": "trainee",
+      "visible": true,
+      "hiddenOther": true,
+      "segment": "capture_5f74ceef024945e98f44",
+      "scrollWidth": 390
+    },
+    {
+      "width": 320,
+      "pane": "ai",
+      "visible": true,
+      "hiddenOther": true,
+      "pressed": "true",
+      "outline": "rgb(194, 65, 12) solid 2px"
+    },
+    {
+      "width": 320,
+      "pane": "trainee",
+      "visible": true,
+      "hiddenOther": true,
+      "segment": "capture_5f74ceef024945e98f44",
+      "scrollWidth": 320
+    }
+  ],
+  "contrast": [
+    {
+      "width": 1440,
+      "pane": "split",
+      "violations": 0,
+      "incomplete": 0
+    },
+    {
+      "width": 320,
+      "pane": "ai",
+      "violations": 1,
+      "incomplete": 1
+    },
+    {
+      "width": 320,
+      "pane": "trainee",
+      "violations": 1,
+      "incomplete": 0
+    }
+  ],
+  "keys": [
+    {
+      "tag": "A",
+      "text": "Instructor desk",
+      "outline": "rgb(194, 65, 12) solid 2px"
+    },
+    {
+      "tag": "INPUT",
+      "text": "",
+      "outline": "rgb(194, 65, 12) solid 2px"
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Sign in",
+      "outline": "rgb(194, 65, 12) solid 2px"
+    },
+    {
+      "tag": "A",
+      "text": "stolen-session \u00b7 abortedrun_fc8cf1ae1fad464aa496",
+      "outline": "rgb(194, 65, 12) solid 2px"
+    },
+    {
+      "tag": "A",
+      "text": "stolen-session \u00b7 abortedrun_f3bf347495a14d378246",
+      "outline": "rgb(194, 65, 12) solid 2px"
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Exercise tab",
+      "outline": "rgb(194, 65, 12) solid 2px"
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Confirmed actions",
+      "outline": "rgb(194, 65, 12) solid 2px"
+    },
+    {
+      "tag": "SELECT",
+      "text": "Segment 1Segment 2",
+      "outline": "rgb(194, 65, 12) solid 2px"
+    },
+    {
+      "tag": "INPUT",
+      "text": "",
+      "outline": "rgb(194, 65, 12) solid 2px"
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Show all AI activity",
+      "outline": "rgb(194, 65, 12) solid 2px"
+    },
+    {
+      "tag": "SUMMARY",
+      "text": "Actual recorded data",
+      "outline": "rgb(194, 65, 12) solid 2px"
+    },
+    {
+      "tag": "SUMMARY",
+      "text": "Actual recorded data",
+      "outline": "rgb(194, 65, 12) solid 2px"
+    },
+    {
+      "tag": "SUMMARY",
+      "text": "Actual recorded data",
+      "outline": "rgb(194, 65, 12) solid 2px"
+    },
+    {
+      "tag": "SUMMARY",
+      "text": "Actual recorded data",
+      "outline": "rgb(194, 65, 12) solid 2px"
+    },
+    {
+      "tag": "SUMMARY",
+      "text": "Actual recorded data",
+      "outline": "rgb(194, 65, 12) solid 2px"
+    },
+    {
+      "tag": "SUMMARY",
+      "text": "Actual recorded data",
+      "outline": "rgb(194, 65, 12) solid 2px"
+    },
+    {
+      "tag": "INPUT",
+      "text": "",
+      "outline": "rgb(194, 65, 12) solid 2px"
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Create invitation",
+      "outline": "rgb(194, 65, 12) solid 2px"
+    },
+    {
+      "tag": "BODY",
+      "text": "\n    Sentinel LoopAI observation roomActual model ",
+      "outline": "rgb(28, 20, 16) none 3px"
+    },
+    {
+      "tag": "A",
+      "text": "Sentinel Loop",
+      "outline": "rgb(194, 65, 12) solid 2px"
+    },
+    {
+      "tag": "A",
+      "text": "Instructor desk",
+      "outline": "rgb(194, 65, 12) solid 2px"
+    },
+    {
+      "tag": "INPUT",
+      "text": "",
+      "outline": "rgb(194, 65, 12) solid 2px"
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Sign in",
+      "outline": "rgb(194, 65, 12) solid 2px"
+    },
+    {
+      "tag": "A",
+      "text": "stolen-session \u00b7 abortedrun_fc8cf1ae1fad464aa496",
+      "outline": "rgb(194, 65, 12) solid 2px"
+    },
+    {
+      "tag": "A",
+      "text": "stolen-session \u00b7 abortedrun_f3bf347495a14d378246",
+      "outline": "rgb(194, 65, 12) solid 2px"
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Exercise tab",
+      "outline": "rgb(194, 65, 12) solid 2px"
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Confirmed actions",
+      "outline": "rgb(194, 65, 12) solid 2px"
+    },
+    {
+      "tag": "SELECT",
+      "text": "Segment 1Segment 2",
+      "outline": "rgb(194, 65, 12) solid 2px"
+    },
+    {
+      "tag": "INPUT",
+      "text": "",
+      "outline": "rgb(194, 65, 12) solid 2px"
+    },
+    {
+      "tag": "BUTTON",
+      "text": "Show all AI activity",
+      "outline": "rgb(194, 65, 12) solid 2px"
+    },
+    {
+      "tag": "SUMMARY",
+      "text": "Actual recorded data",
+      "outline": "rgb(194, 65, 12) solid 2px"
+    },
+    {
+      "tag": "SUMMARY",
+      "text": "Actual recorded data",
+      "outline": "rgb(194, 65, 12) solid 2px"
+    },
+    {
+      "tag": "SUMMARY",
+      "text": "Actual recorded data",
+      "outline": "rgb(194, 65, 12) solid 2px"
+    },
+    {
+      "tag": "SUMMARY",
+      "text": "Actual recorded data",
+      "outline": "rgb(194, 65, 12) solid 2px"
+    },
+    {
+      "tag": "SUMMARY",
+      "text": "Actual recorded data",
+      "outline": "rgb(194, 65, 12) solid 2px"
+    }
+  ],
+  "matrix": [
+    {
+      "state": "completed",
+      "paused": false,
+      "thinking": false,
+      "ai_unavailable": false,
+      "copy": "Exercise ended. This is its recorded AI activity."
+    },
+    {
+      "state": "technical_failure",
+      "paused": false,
+      "thinking": false,
+      "ai_unavailable": true,
+      "copy": "Exercise ended. This is its recorded AI activity."
+    },
+    {
+      "state": "running",
+      "paused": true,
+      "thinking": false,
+      "ai_unavailable": false,
+      "copy": "Exercise paused. New AI turns resume with the exercise."
+    },
+    {
+      "state": "running",
+      "paused": false,
+      "thinking": true,
+      "ai_unavailable": false,
+      "copy": "Model is generating its response."
+    },
+    {
+      "state": "running",
+      "paused": false,
+      "thinking": false,
+      "ai_unavailable": true,
+      "copy": "AI unavailable \u2014 no substitute action is running."
+    }
+  ],
+  "ended": true,
+  "afterSegment": {
+    "tag": "INPUT",
+    "type": "range",
+    "outerInert": true,
+    "outerTabIndex": -1,
+    "rootInert": true
+  },
+  "reverseToSegment": "SELECT",
+  "cssZoom2": {
+    "scrollWidth": 1440,
+    "width": 1440
+  },
+  "motion": 0,
+  "settledContrastRetest": [
+    {
+      "width": 320,
+      "pane": "ai",
+      "wait_ms": 350,
+      "violations": 0,
+      "incomplete": 0
+    },
+    {
+      "width": 320,
+      "pane": "trainee",
+      "wait_ms": 350,
+      "violations": 0,
+      "incomplete": 0
+    }
+  ],
+  "contrastNote": "Initial immediate scans observed the existing button background transition mid-change. Fresh settled350ms rescans showed no violations/incomplete. Both observations retained.",
+  "lifecycleMatrixNote": "completed/technical_failure/paused/thinking/unavailable use intercepted browser presentation snapshots, not actual model/target lifecycle execution. Aborted terminal run is an actual fixture record."
+}

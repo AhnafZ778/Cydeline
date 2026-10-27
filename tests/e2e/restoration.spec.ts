@@ -12,6 +12,7 @@ test("original non-identity tools show honest empty states without unrelated sam
     page.getByRole("button", { name: "Contain", exact: true }),
   ).toBeDisabled();
   await expect(page.getByText(/No endpoint inventory released/)).toBeVisible();
+  await page.getByText("More tools", {exact:true}).click();
   await page.getByRole("link", { name: "Email Security", exact: true }).click();
   await page
     .getByRole("button", { name: "Detailed search", exact: true })
@@ -29,26 +30,26 @@ test("original non-identity tools show honest empty states without unrelated sam
     /Priya|voucher.zip|DeskHelper|ledger.exe/,
   );
 });
-test("Windows and Elastic launch only in Sandbox and Windows image prerequisite stays explicit", async ({
+test("Windows and Elastic remain available in the compact workspace", async ({
   page,
 }) => {
   await installSoc(page, true);
   await page.goto("/#/live/" + RID + "/sandbox");
   await expect(
-    page.getByRole("heading", { name: "Sandbox", exact: true }),
+    page.getByRole("heading", { name: "Workspace", exact: true }),
   ).toBeVisible();
   await expect(
-    page.getByRole("button", { name: /Windows workstation Windows desktop/ }),
+    page.getByRole("button", { name: "Windows workstation", exact: true }),
   ).toBeVisible();
   await expect(
-    page.getByText(/Windows Desktop Experience base image must be prepared/),
+    page.getByText(/Configure WINDOWS_BASE_IMAGE/),
   ).toBeVisible();
   await expect(
     page.getByRole("button", { name: "Launch Windows", exact: true }),
   ).toBeEnabled();
   await page
     .getByRole("button", {
-      name: /Elastic Security Search the released events/,
+      name: "Elastic Security", exact: true,
     })
     .click();
   await expect(

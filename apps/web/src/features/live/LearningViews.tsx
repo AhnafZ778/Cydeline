@@ -1,16 +1,24 @@
 import { useEffect, useState } from "react";
 import { api, type Briefing, type Replay, type Snapshot } from "./types";
 
-export function CompanyBriefing({ briefing: b }: { briefing?: Briefing }) {
+// Highlight public authored policy text only; React keeps the text escaped.
+function BriefingText({text}: {text: string}) {
+  const terms = /(Northstar Analytics|on-duty junior analyst|released application audit records|released evidence|corroborated access anomalies|suspicious-access denial|legitimate workflows|legitimate work|not a verdict|verification again|does not stop the adversary|no score deduction|browser sessions|API credentials|reauthentication|Server score)/gi;
+  return <>{text.split(terms).map((part, i) => i % 2 ? <mark className="briefing-keyword" key={i}><strong>{part}</strong></mark> : part)}</>;
+}
+
+export function CompanyBriefing({ briefing: b, expanded = false }: { briefing?: Briefing; expanded?: boolean }) {
   if (!b) return null;
-  return <details className="soc__panel learning-briefing">
+  return <details className="soc__panel learning-briefing" open={expanded || undefined}>
     <summary>Company briefing and response policy</summary>
-    <h3>Your role</h3><p>{b.role}</p><p>{b.authority}</p>
-    <h3>Normal work</h3><ul>{b.normal_work.map(x => <li key={x}>{x}</li>)}</ul>
-    <h3>Evidence and its limits</h3><p>{b.evidence_limits}</p>
-    <h3>When to escalate</h3><p>{b.escalation_policy}</p>
-    <h3>What recovery means</h3><p>{b.recovery_policy}</p>
-    <h3>Assessment rubric</h3><p>{b.assessment}</p>
+    <div className="briefing-sections">
+      <section className="briefing-role"><h3>Your role &amp; authority</h3><p className="briefing-lead"><BriefingText text={b.role} /></p><p><BriefingText text={b.authority} /></p></section>
+      <section><h3>Normal work</h3><ul>{b.normal_work.map(x => <li key={x}><BriefingText text={x} /></li>)}</ul></section>
+      <section><h3>Evidence and its limits</h3><p><BriefingText text={b.evidence_limits} /></p></section>
+      <section><h3>When to escalate</h3><p><BriefingText text={b.escalation_policy} /></p></section>
+      <section><h3>What recovery means</h3><p><BriefingText text={b.recovery_policy} /></p></section>
+      <section className="briefing-rubric"><h3>Assessment rubric</h3><p><BriefingText text={b.assessment} /></p></section>
+    </div>
   </details>;
 }
 

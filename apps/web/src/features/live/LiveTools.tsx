@@ -3,7 +3,7 @@ import { useRun, useDraft } from "./RunContext";
 import { AnalystTools } from "./AnalystTools";
 const EMPTY =
   "This identity scenario releases access logs, not endpoint, mail, malware or threat-feed records. Investigate the selected exercise in Log Management and Assets & Access.";
-export function LiveTools({ page }: { page: string }) {
+export function LiveTools({ page, onFocusChange }: { page: string; onFocusChange?: (focused: boolean) => void }) {
   const s = useRun().snapshot!;
   const [query, setQuery] = useDraft(s.run_id, page + "-search", "");
   const [tab, setTab] = useDraft(s.run_id, "endpoint-tab", "Processes");
@@ -11,19 +11,7 @@ export function LiveTools({ page }: { page: string }) {
   if (page === "sandbox")
     return (
       <>
-        <h1>Sandbox</h1>
-        <section className="soc__panel">
-          <h2>Windows workstation &amp; Elastic Security</h2>
-          <p>
-            Investigate this exercise’s released evidence in a browser-hosted
-            environment.
-          </p>
-          <p>
-            A Windows Desktop Experience base image must be prepared and
-            configured by the range operator before Windows can launch.
-          </p>
-        </section>
-        <AnalystTools snapshot={s} />
+        <AnalystTools snapshot={s} onFocusChange={onFocusChange} notice={s.ai_unavailable ? "AI unavailable · The exercise is paused. Minimize to retry." : s.awaiting_begin ? "Exercise paused · Minimize and choose Begin investigation when ready." : s.paused ? "Exercise paused · Minimize to resume the exercise." : undefined} />
       </>
     );
   if (page === "endpoint")

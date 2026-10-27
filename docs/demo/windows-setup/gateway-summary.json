@@ -1,0 +1,25 @@
+{
+  "recorded_at_utc": "2026-10-25T14:05:39.427493+00:00",
+  "scope": "Actual finalized Windows base booted through existing ToolWorker; native VM framebuffer and authenticated Guacamole API verified. Browser-rendered Sandbox not verified because browser URL policy refused access.",
+  "run_id": "run_winsetup5204b1499b96",
+  "windows_desktop_observed": true,
+  "guacamole_http": 200,
+  "signed_grant_authentication": true,
+  "vnc_connection_registered": true,
+  "base_and_evidence_readonly": true,
+  "guest_nic": "none",
+  "vm_published_ports": false,
+  "cap_drop": [
+    "ALL"
+  ],
+  "image_group_only": [
+    "1000"
+  ],
+  "vm_memory_bytes": 5368709120,
+  "base_sha256_before": "eff1e781fafa2439e176db331143748d125b8954a07f91a3e80a046849861194",
+  "initial_permission_failure_retained": "Capability-dropped runner could not read0600host-ownedbase; fixed0640inside0700parent plusimageGIDonly.",
+  "cleanup": "passed; only own validation generation stopped",
+  "base_unchanged": true,
+  "network_cleanup": true,
+  "base_sha256_after": "eff1e781fafa2439e176db331143748d125b8954a07f91a3e80a046849861194"
+}

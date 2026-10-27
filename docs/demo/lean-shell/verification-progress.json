@@ -1,0 +1,12 @@
+{
+  "frontend_unit_tests": 54,
+  "backend_tests": 400,
+  "backend_subtests": 18,
+  "observer_fixture_browser_tests": 2,
+  "production_build": "pass",
+  "final_full_browser_matrix": "34 passed on owned persistent5177 with independent output",
+  "prior_test_infrastructure_failures": "shared trace output ENOENT and shared managed5175 teardown; rerun isolated",
+  "real_windows_browser_input": "unverified; fixture layout and connection semantics only",
+  "independent_ui": "Scoped PASS v3; bounded loop accepted version3",
+  "harness": "Final stable receipt pending after context synchronization"
+}

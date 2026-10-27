@@ -386,25 +386,6 @@ export function LiveSocApp({ hash }: { hash: string }) {
                   )}
                 </div>
               </div>
-              {!ended &&
-                s.mode === "practice" &&
-                s.assistance === "coached" &&
-                s.last_ai_decision && (
-                  <section className="live-adversary">
-                    <Badge tone="ai">Adversary lens</Badge>
-                    <strong>{title(s.last_ai_decision.proposal.action)}</strong>
-                    <span>
-                      {s.last_ai_decision.proposal.session_handle ??
-                        "No target action"}
-                    </span>
-                    <span>
-                      {s.last_ai_decision.fallback_used
-                        ? "Fallback · model unavailable"
-                        : "Live model"}{" "}
-                      · {s.last_ai_decision.model_id}
-                    </span>
-                  </section>
-                )}
               {page === "debrief" ? (
                 m.replay ? (
                   <Debrief
@@ -1485,6 +1466,7 @@ export function Debrief({
             <Download size={15} />
             Download evidence package
           </a>
+          {terminal(s.state) && <a className="btn" href={"#/live/observer/" + s.run_id}>Review recorded AI activity</a>}
         </div>
       </section>
       <MeasuredTimeline replay={r} onInspect={onInspect} />

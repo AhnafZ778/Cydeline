@@ -1,52 +1,27 @@
 import { test, expect } from "@playwright/test";
 import { installSoc, RID } from "./soc-fixture";
-test("one shared header, original icons and training links across all tools and global pages", async ({
-  page,
-}) => {
+test("lean primary navigation retains all tools and separates instructor workspace", async ({page}) => {
   await installSoc(page, true);
   await page.goto("/#/live/" + RID + "/monitoring");
-  const rail = page.getByRole("navigation", { name: "Practice tools" });
-  await expect(rail.getByRole("link", {name:"Live Monitoring",exact:true})).toBeVisible();
-  const labels = await rail.getByRole("link").allTextContents();
-  const icons = await rail
-    .locator("a svg")
-    .evaluateAll((es) => es.map((e) => e.innerHTML));
-  for (const [name, heading] of [
-    ["Log Management", "New Search"],
-    ["Case Management", "Case Management"],
-    ["Endpoint Security", "Endpoint Security"],
-    ["Email Security", "Email Security"],
-    ["Threat Intel", "Threat Intel"],
-    ["Sandbox", "Sandbox"],
-    ["Mission Library", "Choose your investigation"],
-    ["My progress", "Skills built through practice"],
-    ["My training", "Your training desk"],
-    ["Instructor", "Instructor desk"],
-  ] as const) {
-    await rail.getByRole("link", { name, exact: true }).click();
-    await expect(
-      page.getByRole("heading", { name: heading, exact: true }),
-    ).toBeVisible();
-    expect(await rail.getByRole("link").allTextContents()).toEqual(labels);
-    expect(
-      await rail
-        .locator("a svg")
-        .evaluateAll((es) => es.map((e) => e.innerHTML)),
-    ).toEqual(icons);
-    await expect(page.getByRole("banner")).toContainText("My progress");
-    await expect(
-      rail.getByRole("link", { name: "My training", exact: true }),
-    ).toBeVisible();
+  const rail = page.getByRole("navigation", {name:"Practice tools"});
+  await expect(rail.locator(":scope > a")).toHaveCount(4);
+  for (const name of ["Monitor","Logs","Cases","Workspace"]) await expect(rail.getByRole("link",{name,exact:true})).toBeVisible();
+  await expect(rail.getByRole("link",{name:"Endpoint Security",exact:true})).not.toBeVisible();
+  await rail.getByText("More tools",{exact:true}).click();
+  for (const [name,heading] of [["Endpoint Security","Endpoint Security"],["Email Security","Email Security"],["Threat Intel","Threat Intel"]]) {
+    await rail.getByRole("link",{name,exact:true}).click();
+    await expect(page.getByRole("heading",{name:heading,exact:true})).toBeVisible();
   }
-  await expect(
-    page.getByRole("link", { name: "Live evidence", exact: true }),
-  ).toHaveCount(0);
-  await expect(
-    page.getByRole("link", { name: "Live response", exact: true }),
-  ).toHaveCount(0);
-  await expect(
-    page.getByRole("link", { name: "Analyst Workstation", exact: true }),
-  ).toHaveCount(0);
+  await rail.getByRole("link",{name:"Logs",exact:true}).click();
+  await expect(page.getByRole("heading",{name:"New Search",exact:true})).toBeVisible();
+  await page.getByRole("banner").getByText("Resources",{exact:true}).click();
+  await page.getByRole("link",{name:"My progress",exact:true}).click();
+  await expect(page.getByRole("heading",{name:"Skills built through practice",exact:true})).toBeVisible();
+  await page.getByRole("button",{name:"Instructor",exact:true}).click();
+  await expect(page.getByRole("heading",{name:"Instructor desk",exact:true})).toBeVisible();
+  await expect(page.getByRole("navigation",{name:"Practice tools"})).toHaveCount(0);
+  await expect(page.getByRole("region",{name:"Live range status"})).toHaveCount(0);
+  await expect(page.getByRole("navigation",{name:"Instructor tools"})).toBeVisible();
 });
 test("old practice and run URLs resolve to the selected exercise; no selection returns landing", async ({
   page,
@@ -70,7 +45,7 @@ test("old practice and run URLs resolve to the selected exercise; no selection r
   ).toBeVisible();
   await page.goto("/#/live/" + RID + "/workstation");
   await expect(
-    page.getByRole("heading", { name: "Sandbox", exact: true }),
+    page.getByRole("heading", { name: "Workspace", exact: true }),
   ).toBeVisible();
   await page.goto("/#/live/" + RID + "/case");
   await expect(

@@ -1,0 +1,17 @@
+{
+  "base_revision": "dffe457a3dacc83d970b515b9451d02ae63a540c",
+  "snapshot": "b5d997dcfcfa179ffecbf31f51074836b481227941db03bf2d0bc7ca9e7df23b",
+  "scope": "Independent UI review bounded source manifest; dirty checkout",
+  "files": {
+    "apps/web/src/features/live/ObserverView.tsx": "fd2c9dde0ec111f24c083adad1f02a35c268f8033eef004cd9b85cb2c584e94f",
+    "apps/web/src/features/live/ExerciseCapture.tsx": "ccd43ed928604fb8c9564e91cc2cc349fc8b6d88893a61376d776cb582164461",
+    "apps/web/src/features/live/UnifiedConsole.tsx": "a103b636572d55c8b82b6160e34d9caaaf159f622f1cdd114053db393be290fb",
+    "apps/web/src/features/live/TrainingDesk.tsx": "a4a42401f4bc6942805711a441c109a122302d7f23e18ada35faad87164b6f5f",
+    "apps/web/src/styles/live.css": "81f16e2f8d0d57e9972b5a7b469422de35a6dd86448f0419c3abc8c6810a6149",
+    "services/range_runtime/api.py": "fcb568fceff6330ff4c6ab1ef7f7e6b30660bafa90e37b1cb12f4c86ba1d0646",
+    "services/range_runtime/observer.py": "df9bdd927299ec170cb1f8e235d75eca150b48339a0cc90ec1d92a88c30c3b82",
+    "tests/e2e/observer.spec.ts": "08e69cb8446afc8dc88d721e65270589521439fa59d52d27a91462906588569d",
+    "context/contracts/ahnaf-lead-ux.contract.md": "cc88c17f807fb7aa7ceedce2f27ea874171901b2adce29cd1ae56e6f6aa44a85",
+    "docs/product/AI_OBSERVER_RANGE_PLAN.md": "4166b9dbf1078ec0f692e94d9cb634f20bf210801df2744d60a42c6a52b7ca58"
+  }
+}

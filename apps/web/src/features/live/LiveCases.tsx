@@ -250,7 +250,7 @@ export function LiveCases({
           {ended ? "Recorded server case. Local drafts are separate from the submitted report." : "Drafts stay in this tab until saved."} Case revision {c.revision}.
         </p>
         {s.workspace.note && s.workspace.note !== c.note && (
-          <details>
+          <details data-private>
             <summary>Earlier investigation notebook</summary>
             <pre>{s.workspace.note}</pre>
           </details>
@@ -859,7 +859,7 @@ function Handoff({ c }: { c: IncidentCase }) {
       .catch(() => {});
   }, []);
   return (
-    <details className="soc-case-notes">
+    <details className="soc-case-notes" data-private>
       <summary>Case handoff and earlier notes ({c.notes.length})</summary>
       {c.notes.map((n, i) => (
         <p key={i}>

@@ -3,6 +3,7 @@ from __future__ import annotations
 import asyncio
 import contextlib
 import io
+import ipaddress
 import json
 import logging
 import os
@@ -16,6 +17,7 @@ import httpx
 from fastapi import FastAPI, Request, Response
 from fastapi.responses import JSONResponse, StreamingResponse
 from pydantic import BaseModel, ConfigDict, Field
+from typing import Literal
 
 from contracts.models import DeclarationRequest
 from contracts.runtime import (
@@ -36,6 +38,9 @@ from contracts.runtime import (
     SessionRequest,
     WorkspacePatch,
     WorksheetPatch,
+    ObserverGrantRequest,
+    CaptureConsent,
+    CaptureChunk,
 )
 
 from .catalog import SCENARIOS, manifest
@@ -49,7 +54,12 @@ class ProfileRequest(BaseModel):
     name: str = Field(min_length=1, max_length=80)
 
 
-def create_control(path, target, agent=None, auto=True, instructor_pin=None):
+class DemoSessionRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    role: Literal["learner", "instructor"]
+
+
+def create_control(path, target, agent=None, auto=True, instructor_pin=None, local_demo=False):
     engine = Engine(path, target, agent)
     logger = logging.getLogger(__name__)
     sessions = {}
@@ -57,13 +67,54 @@ def create_control(path, target, agent=None, auto=True, instructor_pin=None):
     throttle = LoginThrottle()
     stop = threading.Event()
 
+    def demo_allowed(request):
+        try:
+            peer = ipaddress.ip_address(request.client.host)
+            host = request.url.hostname
+            return bool(local_demo and peer.is_loopback and
+                        (host == "localhost" or ipaddress.ip_address(host).is_loopback))
+        except (ValueError, AttributeError):
+            return False
+
+    def public_session(request):
+        return {**{k: actor(request)[k] for k in ("id", "name", "role")},
+                "local_demo": demo_allowed(request)}
+
+    def maintain_observer():
+        with engine.lock:
+            try:
+                engine.observer.purge()
+                return True
+            except Exception:
+                # Fencing and target dispatch share the same authority lock.
+                engine.observer_failed = True
+                logger.exception("Observer audit maintenance failed; fencing active exercises")
+                try:
+                    for r in engine.store.runs():
+                        if r["state"] not in TERMINAL:
+                            engine.finish(r, "technical_failure")
+                except Exception:
+                    logger.exception("Cannot persist technical failure; dispatch remains fenced")
+                return False
+
     def work():
         last = time.monotonic()
+        next_purge = 0
         while not stop.wait(0.5):
             current = time.monotonic()
+            if current >= next_purge:
+                next_purge = current + 60
+                if not maintain_observer():
+                    continue
             delta = min(2, current - last)
             last = current
-            for r in engine.store.runs():
+            try:
+                runs = engine.store.runs()
+            except Exception:
+                engine.observer_failed = True
+                logger.exception("Cannot read run authority; dispatch remains fenced")
+                continue
+            for r in runs:
                 if r["state"] in TERMINAL or r["state"] == "created":
                     continue
                 try:
@@ -130,6 +181,7 @@ def create_control(path, target, agent=None, auto=True, instructor_pin=None):
 
     app = FastAPI(title="Cydeline live SOC control", version="1.1.0", lifespan=lifespan)
     app.state.engine = engine
+    app.state.observer_maintenance = maintain_observer
     worker_url = os.environ.get("RANGE_WORKER_URL")
     worker = (
         httpx.Client(
@@ -184,6 +236,13 @@ def create_control(path, target, agent=None, auto=True, instructor_pin=None):
 
     @app.middleware("http")
     async def session(request, call_next):
+        if request.method == "POST" and request.url.path.endswith("/capture"):
+            data = bytearray()
+            async for part in request.stream():
+                data.extend(part)
+                if len(data) > 512 * 1024:
+                    return JSONResponse({"message": "Capture chunk exceeds its size limit"}, 413)
+            request._body = bytes(data)
         if request.method not in {"GET", "HEAD", "OPTIONS"}:
             origin = request.headers.get("origin")
             if origin and origin.split("://", 1)[-1] != request.headers.get("host"):
@@ -193,6 +252,8 @@ def create_control(path, target, agent=None, auto=True, instructor_pin=None):
         token = request.cookies.get("cydeline_session")
         new = False
         persisted = engine.store.get("sessions", digest(token)) if token else None
+        if token in sessions and (not persisted or persisted["expires"] <= time.time()):
+            sessions.pop(token, None)
         if token not in sessions and persisted and persisted["expires"] > time.time():
             sessions[token] = persisted["actor"]
         if token not in sessions:
@@ -205,14 +266,36 @@ def create_control(path, target, agent=None, auto=True, instructor_pin=None):
             }
             new = True
             engine.store.put("profiles", profile, "global", sessions[token])
-        request.state.actor = sessions[token]
+        # Each request owns its identity snapshot. An in-flight response may not
+        # inherit a later request's elevation through a shared mutable dict.
+        request.state.actor = dict(sessions[token])
         request.state.rotate = False
+        # A persisted local-demo credential must not retain privilege elsewhere.
+        if request.state.actor.get("_demo") and not demo_allowed(request):
+            request.state.actor["role"] = "learner"
+            request.state.actor["name"] = request.state.actor.pop("_demo_name", "Local learner")
+            request.state.actor.pop("_demo", None)
+            request.state.rotate = True
+        if (engine.observer_failed and request.method not in {"GET", "HEAD", "OPTIONS"}
+            and request.url.path.startswith("/api/runs")):
+            return JSONResponse({"message": "Audit storage failed; exercise actions are fenced"}, 507)
+        if (request.state.actor.get("role") == "observer"
+            and request.url.path.startswith("/api/")
+            and not request.url.path.startswith("/api/observer/")
+            and request.url.path not in {"/api/session", "/api/session/logout"}):
+            return JSONResponse({"message": "Observer access is read-only and limited to assigned runs"}, 403)
         started = time.monotonic()
         response = await call_next(request)
+        current = engine.store.get("sessions", digest(token)) if not new else None
+        if token not in sessions or (not new and (not current or current["expires"] <= time.time())):
+            # Another request rotated this credential while this handler ran.
+            # Do not resurrect it or return a successful stale mutation result.
+            return JSONResponse({"message": "Session changed. Reconnect before continuing."}, 401)
         if request.state.rotate:
             # A privilege or identity change must never keep the pre-change credential alive (session fixation).
             previous, token = token, secrets.token_urlsafe(32)
-            sessions[token] = sessions.pop(previous)
+            sessions.pop(previous, None)
+            sessions[token] = dict(request.state.actor)
             engine.store.put(
                 "sessions",
                 digest(previous),
@@ -220,6 +303,8 @@ def create_control(path, target, agent=None, auto=True, instructor_pin=None):
                 {"actor": {}, "expires": 0},
             )
             new = True
+        else:
+            sessions[token] = dict(request.state.actor)
         route = request.scope.get("route")
         logger.info(
             "request",
@@ -259,6 +344,8 @@ def create_control(path, target, agent=None, auto=True, instructor_pin=None):
             raise DomainError("Instructor access required", 403)
 
     def own(request, rid):
+        if actor(request).get("role") == "observer":
+            raise DomainError("Observers use the read-only observer view", 403)
         r = engine.store.run(rid)
         if (
             r["owner"] != actor(request)["id"]
@@ -268,9 +355,187 @@ def create_control(path, target, agent=None, auto=True, instructor_pin=None):
             raise DomainError("Run not found", 404)
         return r
 
+    def observe(request, rid):
+        r = engine.store.run(rid)
+        a = actor(request)
+        if a["role"] == "instructor":
+            return r
+        if a["role"] == "observer":
+            grants = engine.store.rows("observer_grants", rid)
+            if any(g["profile_id"] == a["id"] and not g["revoked"] and g["expires"] > time.time() for g in grants):
+                return r
+        elif r["state"] in TERMINAL and r["owner"] == a["id"]:
+            return r
+        raise DomainError("Live AI detail is restricted to instructors and assigned observers", 403)
+
+    def observer_summary(r):
+        return {k: r[k] for k in ("run_id", "state", "outcome", "scenario_id", "scenario_version", "virtual_clock_sec", "thinking", "ai_unavailable", "paused")}
+
+    @app.get("/api/observer/runs")
+    def observer_runs(request: Request):
+        runs = []
+        for r in engine.store.runs():
+            try:
+                observe(request, r["run_id"])
+            except DomainError:
+                continue
+            runs.append(observer_summary(r))
+        return {"runs": runs}
+
+    @app.get("/api/observer/runs/{rid}")
+    def observer_snapshot(request: Request, rid: str):
+        r = observe(request, rid)
+        return {**observer_summary(r), "capture": engine.store.get("observer_capture", rid),
+                "learner_actions": engine.store.rows("defender_actions", rid),
+                "history_notice": "Only calls recorded after observer support was enabled include full transcripts."}
+
+    @app.get("/api/observer/runs/{rid}/events")
+    def observer_history(request: Request, rid: str, cursor: int = 0, limit: int = 100):
+        observe(request, rid)
+        if cursor < 0 or not 1 <= limit <= 200:
+            raise DomainError("Invalid observer cursor or page size", 422)
+        return engine.observer.page(rid, cursor, limit)
+
+    @app.get("/api/observer/runs/{rid}/capture")
+    def observer_capture_history(request: Request, rid: str, cursor: int = 0):
+        observe(request, rid)
+        if cursor < 0:
+            raise DomainError("Invalid capture cursor", 422)
+        return engine.observer.page(rid, cursor, 20, visual=True)
+
+    @app.get("/api/observer/runs/{rid}/stream")
+    async def observer_stream(request: Request, rid: str, cursor: int = 0):
+        observe(request, rid)
+        try:
+            after = int(request.headers.get("last-event-id", cursor))
+            if after < 0:
+                raise ValueError()
+        except ValueError:
+            raise DomainError("Invalid observer cursor", 422)
+
+        async def frames():
+            nonlocal after
+            while not await request.is_disconnected():
+                try:
+                    # The initial HTTP authorization is not a connection-long grant.
+                    token = request.cookies.get("cydeline_session")
+                    session_row = engine.store.get("sessions", digest(token)) if token else None
+                    if not session_row or session_row["expires"] <= time.time():
+                        raise DomainError("Session expired", 403)
+                    r = observe(request, rid)
+                except DomainError:
+                    yield 'event: revoked\ndata: {}\n\n'
+                    return
+                page = engine.observer.page(rid, after)
+                for entry in page["events"]:
+                    after = entry["sequence"]
+                    yield "id: " + str(after) + "\nevent: activity\ndata: " + json.dumps(entry) + "\n\n"
+                yield "event: status\ndata: " + json.dumps(observer_summary(r)) + "\n\n"
+                if r["state"] in TERMINAL and not page["has_more"]:
+                    return
+                if not page["has_more"]:
+                    await asyncio.sleep(1)
+        return StreamingResponse(frames(), media_type="text/event-stream", headers={"X-Accel-Buffering": "no"})
+
+    @app.get("/api/instructor/runs/{rid}/observers")
+    def observer_grants(request: Request, rid: str):
+        instructor(request)
+        engine.store.run(rid)
+        return {"grants": engine.store.rows("observer_grants", rid)}
+
+    @app.post("/api/instructor/runs/{rid}/observers")
+    def grant_observer(request: Request, rid: str, p: ObserverGrantRequest):
+        instructor(request)
+        engine.store.run(rid)
+        with engine.lock:
+            grants = engine.store.rows("observer_grants", rid)
+            if sum(not g["revoked"] and g["expires"] > time.time() for g in grants) >= 2:
+                raise DomainError("Two assigned observers are supported per run", 409)
+            code = secrets.token_urlsafe(24)
+            profile_id, grant_id = uid("observer"), uid("grant")
+            engine.store.put("profiles", profile_id, "global", {"id": profile_id, "name": p.name, "role": "observer", "code_hash": digest(code)})
+            grant = {"id": grant_id, "profile_id": profile_id, "name": p.name, "run_id": rid, "expires": time.time()+7*86400, "revoked": False}
+            engine.store.put("observer_grants", grant_id, rid, grant)
+            return {**grant, "access_code": code}
+
+    @app.delete("/api/instructor/runs/{rid}/observers/{grant_id}")
+    def revoke_observer(request: Request, rid: str, grant_id: str):
+        instructor(request)
+        with engine.lock:
+            grant = engine.store.get("observer_grants", grant_id)
+            if not grant or grant["run_id"] != rid:
+                raise DomainError("Observer grant not found", 404)
+            grant["revoked"] = True
+            engine.store.put("observer_grants", grant_id, rid, grant)
+            return grant
+
+    @app.post("/api/runs/{rid}/capture-consent")
+    def capture_consent(request: Request, rid: str, p: CaptureConsent):
+        r = own(request, rid)
+        if r["owner"] != actor(request)["id"] or r["state"] in TERMINAL:
+            raise DomainError("Only the active trainee may change recording consent", 403)
+        with engine.lock:
+            previous = engine.store.get("observer_capture", rid)
+            if not p.accepted and p.capture_id and previous and previous["capture_id"] != p.capture_id:
+                return previous  # Late cleanup from an older recording segment.
+            state = {"run_id": rid, "capture_id": uid("capture"), "accepted": p.accepted,
+                     "actor_id": actor(request)["id"], "next_index": 0, "updated_at": now(), "gap": p.gap or bool(previous and previous.get("gap"))}
+            engine.store.put("observer_capture", rid, rid, state)
+            return state
+
+    @app.post("/api/runs/{rid}/capture")
+    def capture_chunk(request: Request, rid: str, p: CaptureChunk):
+        with engine.lock:
+            r = own(request, rid)
+            state = engine.store.get("observer_capture", rid)
+            if (r["owner"] != actor(request)["id"] or r["state"] in TERMINAL
+                or not state or not state["accepted"] or state["actor_id"] != actor(request)["id"] or state["capture_id"] != p.capture_id):
+                raise DomainError("Exercise recording is not authorized", 403)
+            if p.index < state["next_index"]:
+                return {"accepted": True, "duplicate": True}
+            if p.index != state["next_index"]:
+                raise DomainError("Capture chunk is out of order; restart recording", 409)
+            try:
+                engine.observer.emit(r, "capture.chunk", p.model_dump())
+                state.update(next_index=p.index+1, updated_at=now())
+                engine.store.put("observer_capture", rid, rid, state)
+            except Exception as exc:
+                state.update(gap=True, accepted=False)
+                try:
+                    engine.store.put("observer_capture", rid, rid, state)
+                except Exception:
+                    # A visual failure alone must not stop the exercise. If the
+                    # authority cannot persist even its gap, audit is unsafe.
+                    engine.observer_failed = True
+                    logger.exception("Cannot persist recording gap; fencing dispatch")
+                    try:
+                        engine.finish(r, "technical_failure")
+                    except Exception:
+                        logger.exception("Cannot persist recording failure; dispatch remains fenced")
+                    raise DomainError("Recording authority is unavailable; exercise dispatch is fenced", 507) from exc
+                if isinstance(exc, DomainError):
+                    raise
+                raise DomainError("Exercise recording storage is unavailable; recording stopped with a gap", 507) from exc
+            return {"accepted": True}
+
     @app.get("/api/session")
     def get_session(request: Request):
-        return actor(request)
+        return public_session(request)
+
+    @app.post("/api/session/demo")
+    def demo_session(request: Request, p: DemoSessionRequest):
+        if not demo_allowed(request):
+            raise DomainError("Password-free switching is available only in the local demo", 403)
+        # Observer accounts remain read-only through the middleware fence.
+        a = actor(request)
+        request.state.rotate = True
+        if p.role == "instructor":
+            a.setdefault("_demo_name", a["name"])
+            a.update(role="instructor", name="Local instructor", _demo=True)
+        else:
+            a.update(role="learner", name=a.pop("_demo_name", "Local learner"))
+            a.pop("_demo", None)
+        return public_session(request)
 
     @app.post("/api/session")
     def login(request: Request, p: SessionRequest):
@@ -281,7 +546,9 @@ def create_control(path, target, agent=None, auto=True, instructor_pin=None):
             request.state.rotate = True
             actor(request)["role"] = "instructor"
             actor(request)["name"] = "Instructor"
-            return actor(request)
+            actor(request).pop("_demo", None)
+            actor(request).pop("_demo_name", None)
+            return public_session(request)
         profile = next(
             (
                 x
@@ -293,8 +560,9 @@ def create_control(path, target, agent=None, auto=True, instructor_pin=None):
         if profile:
             throttle.passed(caller)
             request.state.rotate = True
+            actor(request).clear()
             actor(request).update({k: profile[k] for k in ["id", "name", "role"]})
-            return actor(request)
+            return public_session(request)
         throttle.failed(caller)
         logger.warning("login rejected", extra={"client": caller})
         raise DomainError("Invalid access code", 401)

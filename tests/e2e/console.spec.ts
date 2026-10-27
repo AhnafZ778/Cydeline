@@ -30,9 +30,9 @@ test("original alert channels, ownership, incident, playbook and closure use ser
   await page
     .getByRole("textbox", { name: "Investigation notes", exact: true })
     .fill("Preserve this investigation draft.");
-  await page.getByRole("link", { name: "Log Management", exact: true }).click();
+  await page.getByRole("link", { name: "Logs", exact: true }).click();
   await page
-    .getByRole("link", { name: "Case Management", exact: true })
+    .getByRole("link", { name: "Cases", exact: true })
     .click();
   await page.getByRole("link", { name: "case_main", exact: true }).click();
   await expect(
@@ -48,7 +48,7 @@ test("original alert channels, ownership, incident, playbook and closure use ser
   ).toBeVisible();
   await page.keyboard.press("Escape");
   await page
-    .getByRole("link", { name: "Live Monitoring", exact: true })
+    .getByRole("link", { name: "Monitor", exact: true })
     .click();
   await page
     .getByRole("button", { name: "Close alert alert_review01", exact: true })
@@ -88,10 +88,11 @@ test("New Search retains Basic/Pro, aliases, saved searches, pins and drafts thr
     .getByRole("button", { name: "Pin as evidence", exact: true })
     .click();
   await expect.poll(() => model.snapshot.workspace.evidence_ids.length).toBe(1);
+  await page.getByText("More tools", {exact:true}).click();
   await page
     .getByRole("link", { name: "Business Activity", exact: true })
     .click();
-  await page.getByRole("link", { name: "Log Management", exact: true }).click();
+  await page.getByRole("link", { name: "Logs", exact: true }).click();
   await expect(page.getByLabel("Pro query", { exact: true })).toHaveValue(
     "session:sess_A ip:203.0.113.57",
   );

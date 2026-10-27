@@ -1,5 +1,9 @@
 # Task contract: Tanvir — Local AI Red-Team Engine (`tanvir-red-agent`)
 
+## Current increment: approved observer and bounded opponent design (24 October 2026)
+
+Follow `docs/product/AI_OBSERVER_RANGE_PLAN.md` and its independent decision/review log. Design arbitration APPROVED, not a model/runtime pass. Milestone A records actual sanitized model inputs/config/schema/final output, short labeled AI-stated intent and exact decision/action/audit links without private reasoning or extra narration calls. Preserve the failed 1.7b 10/12 objective gate, unproven pivots and live latency tail. In C, implement separate versioned difficulty/tool proposals, restricted script/internal mail capabilities and target-evidence-only observations behind an independent broker; never expand canonical legacy actions silently. Candidate local 8b must pass whole-host/full-round qualification; no automatic model roulette, cloud fallback or scripted execution credited as AI adaptation. 25 October status: A actual-call provenance implemented and evaluated; next owner task is declared model readiness/qualification on the future sealed B host, with the failed objective and latency evidence retained.
+
 ## Audience and outcome
 - **Audience:** Saad's `apps/control-api/` orchestrator (direct consumer), competition judges evaluating AI authenticity and safety, and any engineer/agent taking over Tanvir's segment.
 - **Outcome:** Deliver `services/red-agent/`, `tests/agent/`, and `docs/model-card/`: a bounded, state-aware local LLM decision service running one quantized model (`Qwen3-1.7B Q4` via Ollama) across three sequential logical roles (`scout`, `access_operator`, `adaptation_planner`), guarded by a strict two-stage JSON schema + policy allowlist validator, timeout/fallback tagging, and empirical benchmark suite (30-trial schema validity + 10-pair pre/post-containment adaptation).

@@ -1,5 +1,11 @@
 # Evaluation: Master Integration (`master-integration`)
 
+## 24 October 2026: AI observer / bounded timed range design
+
+**APPROVED — design only.** Sequential fresh reviewers: Skeptic `/root/range_plan_skeptic`, Constraint Guardian `/root/range_constraint_review`, User Advocate `/root/range_user_advocate_review`, then independent Integrator/Arbiter `/root/range_plan_arbiter`. All S1–S10, C1–C5 and UA1–UA3 findings were accepted and resolved in `docs/product/AI_OBSERVER_RANGE_PLAN.md`; full decision/disposition log: `docs/product/AI_OBSERVER_RANGE_REVIEW.md`. The first arbiter attempt hit a usage limit; a subsequent retry completed and explicitly approved the design. No objection remains unresolved.
+
+No implementation, actual Windows, model adaptation, capacity, security or educational-efficacy pass follows from this design verdict. Existing AI-LEARN-01/02 and deferred participant-study limitations remain. Next implementation increment is A: server-enforced observer authorization and actual model/target provenance, followed by UI/capture; independent evaluation is required before moving through B/C launch gates.
+
 - **Verdict:** `blocked` (Initial Stage 0 Plan complete; awaiting Stage 1–7 implementation snapshots for Gates `G0`–`G6`)
 - **Evaluated source identity and time:** `2026-10-22` · Branch `chore/publish-workstreams` · Baseline Planning Snapshot
 - **Accepted task contract:** `context/contracts/master-integration.contract.md`
@@ -81,3 +87,19 @@ Current early containment: 12/12, 24 accepted decisions, twelve audited initial 
 The user chose to leave the pilot kit ready. No participant sessions, delayed transfer/retention results, professional-readiness claim or complete manual accessibility evaluation exist. Optional Windows image work, public deployment, competition confirmation and a completed demo recording remain separate. Active-window occupancy is unknown.
 
 Next: resolve AI-LEARN-01 through a declared capability/policy decision and fresh independent evaluation, then repeat the full objective/intervention matrix without replacing failed records. Measure representative browser-load coaching latency before responsiveness claims. See `docs/product/BEGINNER_LEARNING_HANDOFF.md`.
+
+
+## Observer milestone A — 25 October 2026
+
+Implemented restricted observer on existing scenarios. Independent backend scoped PASS after three reproduced privacy/storage/index fixes (69 focused tests); fresh rendered UI v1 FAIL -> v2 PASS after narrow-pane, terminal-copy and keyboard-replay corrections, retaining all seven required checks/four flows. Evidence: `docs/demo/observer-a/BACKEND_REVIEW_2026-10-25.md`, `independent-v2/audit.json`, `UI_LOOP.json`, and `docs/product/AI_OBSERVER_BUILD_LOG.md`. Observer23, frontend54/build, browser25existing+2observer and real local Qwen wiring proof pass. Stable full native run:382tests+18subtests, typecheck and context sync pass with unchanged inputs; `native-receipt-a.json` records snapshot. This is A only, not B/C, Windows, full accessibility, LAN/load or educational efficacy. Preserve failed10/12modelobjective and51989mscoachingtail; participant pilot deferred. User now requests local Windows setup; official Microsoft Server2022evalISO download is in progress, private base not yet installed.
+
+
+## Authorized Windows local setup — 25 October 2026
+
+Actual official Server2022evaluation GUI installed via KVM; preparation desktop and clean shutdown observed, standalone qcow2 check passed. Configured persisted Windows image in observer-preview. Actual finalized base booted under ToolWorker; native display, GuacamoleHTTP200/signedgrant/VNCregistration, read-onlybase/evidence, no guest NIC, no VMpublishedport and capdropALL verified. Permissionfailure corrected through imageGIDonly/0640base inside0700parent. Ownvalidationcontainers/networks removed and baseSHA unchanged. Independent source review passes (25focusedtests, capture-output preservation regression). Evidence `docs/demo/windows-setup/{setup-summary.json,gateway-summary.json,REVIEW.md,desktop-worker.png}` and `docs/product/WINDOWS_VM.md`. Browser-renderedSandbox/input remains UNVERIFIED: browserURLpolicyrefused; no workaround attempted. Evaluationactivation notperformed; Microsoft180-day/10-dayrequirements retained. Full Bsealedhost/VMobserverrecording/load, Ctimedopponent and model/learning gates still pending.
+
+
+## 2026-10-25 lean-shell completion
+User-authorized redesign implemented per lean-shell-2026-10-25 contract. Independent UIv1 FAIL stableURLreconnect, v2 FAIL assignedprebrief, v3 scopedPASS after both fixes; boundedloop accepted3. Independent access review scopedPASS47 includes two concurrentcookie regressions. Productionbuild/frontend54/backend400+18subtests, fullfixturebrowser34/34 andobserver2/2 PASS. Preserved userpaused-before-Begin practice and readyWindows onpreview5188 restart; loopbackdemo flag enabled, codes retained outside demo. Evidence docs/product/LEAN_SHELL_HANDOFF.md and docs/demo/lean-shell/independent-v3/audit.json/access-review.md/local-preview-check.json.
+
+Limits: fixture-rendered Windows connection semantics only; actual liveVMbrowser input unverified after earlier URLtoolpolicy refusal. FullB/C/dedicatedhost/model10of12FAIL/coach51989ms/pilot/fullaccessibility unchanged. Historical UIv1 stale receipt identity and overwritten root320capture caveats retained; v3 frozenimages/sourcehashes support scopedpass. Initial simultaneous browser runs conflicted on sharedoutput/server; clean34suite passed onown5177isolatedoutput. Final native receipt generated after this context update.

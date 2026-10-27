@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "generation": "6747c52c6b034508bc5d22bf677b8471",
+  "snapshot": "fef72b3939270c47e3e4ffca024d7004a256cf66f17658c981f5ab5a4ab843c9",
+  "audit_sha256": "27dd42e8424b9bbdc4d247fdcc23a49b31bda7bedb68788eb60344fc28980767",
+  "verdict": "fail",
+  "limits": [],
+  "finding_ids": [
+    "LEAN-UI-01",
+    "LEAN-UI-02"
+  ],
+  "files": {
+    "audit.pdf": "34ca1c2d51240cdd7a4a1dd8ad7241fc25d8c256eaff74304bee91e17926eb16",
+    "fixes.md": "ddf1f9fc1bd6d854a0ace99c3ea5f6d4b28e14b9f74327d4f480bd706e00b7e9"
+  }
+}

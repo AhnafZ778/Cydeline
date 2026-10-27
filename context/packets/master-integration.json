@@ -23,7 +23,10 @@
     "Combine Workstream A (target-api) and Workstream C (control-api + contracts) under Saad to eliminate backend-to-backend handoff friction",
     "Maintain dual-layer context (native harness context checkpoint + git-tracked context/*.md via scripts/harness_sync.py) for zero-context-loss takeover",
     "User deferred actual participant sessions; preserve the blank pilot kit and do not fabricate study outcomes.",
-    "Publish to the existing GitHub feature branch; keep recordings excluded under the incoming repository policy and keep runtime credentials/private harness state local."
+    "Publish to the existing GitHub feature branch; keep recordings excluded under the incoming repository policy and keep runtime credentials/private harness state local.",
+    "User confirmed instructors and observers only may see live AI detail; trainees can review it after the exercise. Do not infer that a public learner toggle is authorized.",
+    "Approved design: observer-first split view; instructor/assigned observers live, trainee own review after terminal; Windows workstation only; owned offline lab, target-evidence-only AI, brokered restricted scripts/internal mail; fifteen active minutes with no breach and 171/180, <=30s, final-healthy continuity.",
+    "25October user explicitly requested local Windows/host setup; official evaluation media preparation authorized, no cloud purchase or full expanded-host readiness inferred."
   ],
   "completed": [
     "Reorganized foundation and workstream markdowns into sequential order 00 to 07",
@@ -50,11 +53,27 @@
     "V8 coaching real-model suite passes all60 predefined cases with p95 2403ms; exact limitations retained. Current native commands pass358tests plus18subtests, focused learning/evidence80pass. Independent review verified all twelve temperature0 traces (7/12 failedgate) and new prompt/observed-state audit correction. Enhanced live-suite review findings fixed and independently passed.",
     "Final current selector objective matrix10/12 FAIL with independent all-trace hash/provenance/pacing review; target boundary remains intact. Final intervention suite12/12 PASS with 24accepted decisions, zero fallback and real recovery probes; post-response model actions were waits/stops, not pivots. V8coach60/60 p952403ms independently revalidated. Current enhanced browser firstjourney passes; remainder running.",
     "Final engineering checks: 359 backend tests plus 18 subtests, 54 frontend tests/build, 23 console/learning/navigation checks, three genuine V8 workflows individually passed, Docker 58/58, canonical replay hashes verified. Coach 60/60 p95 2403ms with a separately retained 51989ms live tail. Objective gate FAIL: 10 passed, 2 failed; intervention12/12 with only waits/stops after response. Independent source/provenance evaluations and user-deferred pilot kit saved.",
-    "User authorized publishing all pending project changes to GitHub before AI-visibility brainstorming. Fetched and fast-forwarded to upstream1605262, preserved local changes, resolved schema/harness overlaps retaining upstream portability fixes and runtime schema/evidence additions. Upstream recording exclusions and private runtime exclusions preserved. Frontend54 tests/build and both schema export entry points pass; final backend/native pre-push checks follow."
+    "User authorized publishing all pending project changes to GitHub before AI-visibility brainstorming. Fetched and fast-forwarded to upstream1605262, preserved local changes, resolved schema/harness overlaps retaining upstream portability fixes and runtime schema/evidence additions. Upstream recording exclusions and private runtime exclusions preserved. Frontend54 tests/build and both schema export entry points pass; final backend/native pre-push checks follow.",
+    "Previous feature snapshot pushed to GitHub dffe457; exact remote HEAD verified and published native checks passed. New user correction: an AI observer transcript is wanted, not merely a learner status banner. Live access explicitly restricted to instructors/observers, trainee review afterward. Current decision/prompt-hash gaps and disabled thinking documented; no feature changes implemented.",
+    "Approved and saved the live AI observer and bounded timed-range design after sequential independent reviews; all 18 findings resolved. No feature implementation or runtime readiness claimed.",
+    "User explicitly authorized implementation of approved AI observer/range plan. Reconciled source and preserved all prior dirty planning/context work.",
+    "Milestone A work in progress: encrypted observer ledger, actual LocalAgent request/final-response instrumentation, validation/target links, per-run read-only invitations/revocation, trainee strategy redaction and consent/capture APIs implemented. Nine focused backend tests and frontend typecheck pass; UI and independent evaluation still in progress.",
+    "Observer implementation now includes pinned rrweb recorder/replay, split instructor view, read-only invitations, encrypted actual model trace, private-note blocking, bounded capture ingress and reserved core storage. Independent review fixes applied for intent retention, expired sessions, reconnect, segments/gaps and storage-fault fencing; browser proof still pending.",
+    "Resumed on25October, reconciled source and stopped previews. Real browser observer workflow passes after reconnect-test and responsive fixes: actual captured DOM/private-input exclusion, model/target provenance, revocation, segment review and320/390/768/1440 reflow. Latest native run passed376tests+18subtests but receipt stale due concurrent source edits; final stable run pending.",
+    "Observer preview5188 is running; actual Qwen3:1.7b wiring proof passed with recorded request/final response, validation and HTTP200 target audit correlation. Observer backend19/19, frontend54/54 and production build pass. Independent rendered evaluation is active; no overall A acceptance yet.",
+    "Milestone A independent backend scoped PASS69tests and UIv2 scopedPASS after five findings plus index-fault correction. Focusedobserver23, frontend54, build,25existingbrowser and2observerbrowser checks pass; current real-model observer proof passes. A native full receipt pending schema correction rerun. User now authorizes local Windows setup; official Microsoft eval ISO downloading to ignored .runtime/windows.",
+    "Milestone A restricted observer implemented and independently evaluated: backend scopedPASS69focusedtests, UIv2 scopedPASS with all prior findings resolved; observer23/frontend54/build/browser25+2 and actual local-model wiring pass. Native full382+18subtests, typecheck/contextsync and evaluate pass at recorded A snapshot. Evidence docs/product/AI_OBSERVER_BUILD_LOG.md; no B/C, Windows desktop or model-quality acceptance implied.",
+    "Local Windows workstation setup completed: official2022evaluationDesktopExperience actually booted via KVM and finalizedbase, then viaToolWorker; GuacAPI auth/VNC, readOnlymounts, capdropALL/noNIC, unchangedbase and ownvalidationcleanup verified. Privateimagepersisted forpreview5188; workerlaunchabletrue. Independentprep/permission/diagnosticreview25focusedtestsPASS; browserSandboxrender/inputunverified due toolURLpolicy. Aobserver scopedPASS preserved; fullB/C/modelquality gates remain.",
+    "Final milestone evidence saved: A independent backend/UI passes, terminal review link focused source review/build pass; real local Windows base/preparation+worker desktop, gatewayauth/noNIC/readOnly/baseunchanged/owncleanup verified, source review25focusedtestsPASS. All four tracked/native owner packets updated, missing-image blocker resolved; expandedB/C and model failures remain. Final stable current-snapshot native checks follow this checkpoint.",
+    "Implemented user-requested lean shell and loopback-only password-free instructor switching; full-screen/minimize Windows retains connection, source/native access review scopedPASS47. Preview5188 restarted preserving paused-before-Begin user run and ready Windows. Current bounded UIv3/34browser matrix pending; preserve prior model10/12FAIL and fullB/C limits.",
+    "Lean UI cleanup accepted scoped independentUIv3; access scopedPASS47. Cleanbrowser34+observer2/frontend54/backend400+18subtests/buildPASS. Userpausedexercise andreadyWindows preserved; preview5188passwordfree locally. PriorfullB/C/model10of12FAIL remain.",
+    "Focused briefing UX follow-up completed with independent scopedPASS; responsivewide/scroll/pinnedfooter/highlights both library/assignment. Preview5188 restarted preservingpauseduserpractice. Build/frontend54/browser15 and independent11PASS; finalnative rerun after disposableteststoragecleanup pending.",
+    "Reconciled final briefing nativeHarnessPASS at d58ca8ce; authored consolidated REMAINING_WORK.md covering model10of12FAIL/coaching51.989s, actualWindowsinput/licensing, Bhost/isolation/VMrecording/load, Ctimedtools/results/qualification, accessibility, deferredpilot, deployment anddemo. Preparing all reviewed nonignoredchanges for existingGitHubbranch; private runtime/image/video remainexcluded."
   ],
   "remaining": [
     "Resolve AI-LEARN-01: current full objective gate: 10 passed / 2 failed; both Reporting service-dependent repeats fail adaptation.",
-    "Qualify AI-LEARN-02 under representative browser load; preserve the 51989ms live coaching answer and separate isolated benchmark."
+    "Qualify AI-LEARN-02 under representative browser load; preserve the 51989ms live coaching answer and separate isolated benchmark.",
+    "Complete expanded B sealed dedicated-host provisioning, read-only VM observation/recording and full host/isolation/load gates, then versioned timed opponent C; A and local networkless Windows workstation setup are evaluated separately."
   ],
   "blockers": [
     "AI-LEARN-01: full M3 objective acceptance remains failed (10 passed, 2 failed). Engineering command checks do not override this measured model limitation."
@@ -64,7 +83,7 @@
     "Official competition challenge track ID and submission deadline format remain unconfirmed by Product Lead.",
     "User explicitly chose Leave the pilot kit ready on 24 October 2026; actual participant usefulness, transfer and delayed retention remain unobserved future work."
   ],
-  "next_step": "Verify GitHub publication on chore/publish-workstreams, then brainstorm how beginners recognize ongoing AI activity. No AI-visibility behavior changes are authorized yet; preserve assessment blindness and measured AI-LEARN-01/02 limitations.",
+  "next_step": "Publish reviewed changes and remaining-work checklist to origin/chore/publish-workstreams; confirm matching remoteHEAD/clean tree. Next productwork follows REMAINING_WORK.md with failed/unverifiedgates retained.",
   "evidence": [
     "00_READ_ME_FIRST.md",
     "01_PRODUCT_REQUIREMENTS_DOCUMENT.md",
@@ -72,7 +91,17 @@
     "Takeover.md",
     "context/contracts/master-integration.contract.md",
     "context/evaluations/master-integration.eval.md",
+    "docs/demo/briefing-layout/independent-review.md",
     "docs/demo/learning/final-v8/receipt.json",
+    "docs/demo/observer-a/BACKEND_REVIEW_2026-10-25.md",
+    "docs/demo/observer-a/UI_LOOP.json",
+    "docs/demo/observer-a/independent-v2/audit.json",
+    "docs/demo/observer-a/independent-v2/review.md",
+    "docs/demo/observer-a/native-receipt-a.json",
+    "docs/demo/observer-a/real-model-current.json",
+    "docs/demo/windows-setup/desktop-worker.png",
+    "docs/demo/windows-setup/gateway-summary.json",
+    "docs/demo/windows-setup/setup-summary.json",
     "docs/model-card/COACHING_CASES.json",
     "docs/model-card/learning/2026-10-23T17-01-43.250833Z-coach-semantic/summary.json",
     "docs/model-card/learning/2026-10-23T18-26-49.303798Z-coach-semantic/summary.json",
@@ -83,14 +112,27 @@
     "docs/model-card/learning/COMPOSE_ISOLATION_FINAL_CURRENT.json",
     "docs/model-card/learning/INDEPENDENT_REVIEW_2026-10-23.md",
     "docs/model-card/learning/INDEPENDENT_REVIEW_2026-10-24.md",
+    "docs/product/AI_OBSERVER_BUILD_LOG.md",
+    "docs/product/AI_OBSERVER_DISCUSSION.md",
+    "docs/product/AI_OBSERVER_RANGE_PLAN.md",
+    "docs/product/AI_OBSERVER_RANGE_REVIEW.md",
     "docs/product/BEGINNER_LEARNING_HANDOFF.md",
     "docs/product/BEGINNER_LEARNING_PLAN.md",
     "docs/product/BEGINNER_LEARNING_RESEARCH.md",
     "docs/product/BEGINNER_PILOT_PROTOCOL.md",
     "docs/product/IMPLEMENTATION_ROADMAP.md",
     "docs/product/KNOWN_ISSUES.md",
+    "docs/product/LEAN_SHELL_HANDOFF.md",
     "docs/product/OPEN_SOURCE_ADOPTION.md",
+    "docs/product/REMAINING_WORK.md",
+    "docs/product/WINDOWS_VM.md",
+    "scripts/capture_windows_vm.py",
+    "scripts/prove_observer.py",
     "scripts/prove_variant_objectives.py",
-    "tests/e2e/live.spec.ts"
+    "services/range_runtime/observer.py",
+    "tests/control/test_observer.py",
+    "tests/e2e/live.spec.ts",
+    "tests/e2e/observer.spec.ts",
+    "tests/e2e/observer_server.py"
   ]
 }

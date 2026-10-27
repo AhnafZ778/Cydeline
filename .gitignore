@@ -41,6 +41,8 @@ docs/demo/*.gif
 *.db
 *.db-wal
 *.db-shm
+*.observer-key
+*.observer-reserve
 .env
 .env.local
 

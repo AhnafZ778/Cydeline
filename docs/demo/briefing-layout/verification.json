@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-27",
+  "affected_browser_tests": 15,
+  "frontend_tests": 54,
+  "build": "pass including final scrollbar CSS",
+  "preview": "Restarted same runtime5188; paused-before-Begin run preserved",
+  "source_hashes": {
+    "apps/web/src/features/live/ConsoleModal.tsx": "6a1e9d811548fad408053a08b398544bd9477bbe951b8711ccd33e0579695d20",
+    "apps/web/src/features/live/LearningViews.tsx": "005edaf6173215b58427c8565f63d7fbe383fd8a842d7e5f42e04e25bc064275",
+    "apps/web/src/features/live/UnifiedConsole.tsx": "474e7cfb0b6ea60a9ac609b76e0ea098e34271aeba32ccb43250d0451a12438f",
+    "apps/web/src/features/live/TrainingDesk.tsx": "70e09b5f1695201cf88bca96aca7bb54b89264626fbb915d14b5809921b0001e",
+    "apps/web/src/styles/live.css": "70200f339aa230bfdf6fe9814dbd11a546a6cafd594aad82230508b9ea1fcd7f"
+  },
+  "screenshots": "Synthetic fixture public briefing, not live user page or Windows input",
+  "independent_review": "focused PASS;11independentbrowser checks,6screenshots,additional keyboard PageDown/end and focusloop; independent-review.md",
+  "broader_checks_first_attempt": "2 failed,6setup errors,392passed because disposable test observer reservations exhausted admission headroom; rerun pending",
+  "test_cleanup": {
+    "reservation_files": 53,
+    "allocated_bytes_released": 56909074432,
+    "scope": "only completed pytest26/27/28 *.observer-reserve; saved runtime/image and test records retained"
+  },
+  "final_native_checks": {
+    "status": "pass",
+    "backend_tests": 400,
+    "subtests": 18,
+    "harness_evaluate": "pass",
+    "snapshot": "d58ca8ce8fbc70a09917895ec91623ca9b7b2e22d5dc77629a691a178d0f90b2"
+  }
+}

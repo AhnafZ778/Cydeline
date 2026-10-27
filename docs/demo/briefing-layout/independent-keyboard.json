@@ -1,0 +1,50 @@
+[
+  {
+    "width": 1357,
+    "height": 605,
+    "pageDownScroll": 353,
+    "keyboardEnd": {
+      "top": 585,
+      "max": 585
+    },
+    "footer": {
+      "x": 138.5,
+      "y": 512,
+      "width": 1080,
+      "height": 69
+    },
+    "focusTrap": "forward and reverse passed"
+  },
+  {
+    "width": 320,
+    "height": 568,
+    "pageDownScroll": 359,
+    "keyboardEnd": {
+      "top": 1762,
+      "max": 1762
+    },
+    "footer": {
+      "x": 12,
+      "y": 495,
+      "width": 296,
+      "height": 61
+    },
+    "focusTrap": "forward and reverse passed"
+  },
+  {
+    "width": 844,
+    "height": 390,
+    "pageDownScroll": 232,
+    "keyboardEnd": {
+      "top": 842,
+      "max": 842
+    },
+    "footer": {
+      "x": 8,
+      "y": 329,
+      "width": 828,
+      "height": 53
+    },
+    "focusTrap": "forward and reverse passed"
+  }
+]

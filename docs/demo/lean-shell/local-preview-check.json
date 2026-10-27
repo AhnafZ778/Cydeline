@@ -1,0 +1,15 @@
+{
+  "local_demo": true,
+  "temporary_test_session_instructor_access": 200,
+  "returned_to_same_learner": true,
+  "learner_instructor_access": 403,
+  "preserved_existing_exercise": [
+    {
+      "state": "running",
+      "paused": true,
+      "awaiting_begin": true,
+      "windows_job_status": "ready"
+    }
+  ],
+  "browser_rendering": "fixture evidence only; no new live-page browser inspection"
+}

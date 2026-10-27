@@ -1,0 +1,94 @@
+{
+  "version": 2,
+  "created_at": 1792935334.2432287,
+  "identity": {
+    "snapshot": "3fbb5eb7718ea6ee253d38181f5897ffa839457fc157b566c05ad28371287839",
+    "revision": "dffe457a3dacc83d970b515b9451d02ae63a540c",
+    "branch": "chore/publish-workstreams",
+    "git": true
+  },
+  "inputs_unchanged": true,
+  "environment": {
+    "python": "3.12.3",
+    "platform": "Linux-7.0.0-38-generic-x86_64-with-glibc2.39",
+    "executable": "/usr/bin/python3",
+    "git": "git version 2.43.0"
+  },
+  "tools": [
+    {
+      "command": "python3",
+      "path": "/usr/bin/python3.12",
+      "sha256": "e50d468e8b0adfb05733f5b87b3cff34829c4a8c1aea50c865aa8bdfe4bb150f",
+      "file_arguments": {
+        "/home/ahnaf-zakaria/Downloads/Cydeline/scripts/harness_sync.py": "a0c02e420cbdbc4c27af420217cc831b8d21ebb1555b4271e33256de413b3dfd"
+      }
+    },
+    {
+      "command": "npm",
+      "path": "/home/ahnaf-zakaria/.nvm/versions/node/v24.12.0/lib/node_modules/npm/bin/npm-cli.js",
+      "sha256": "8e5f6f3429f8cdbe693cdc29904e9d5a7b127a494bd15c804bd54c7403bfcbe7",
+      "file_arguments": {}
+    },
+    {
+      "command": "python3",
+      "path": "/usr/bin/python3.12",
+      "sha256": "e50d468e8b0adfb05733f5b87b3cff34829c4a8c1aea50c865aa8bdfe4bb150f",
+      "file_arguments": {
+        "/home/ahnaf-zakaria/Downloads/Cydeline/scripts/check_runtime.py": "b00c469c3c170527f396ca3b3272176199e0f950c2b4e35791280ced43713127"
+      }
+    }
+  ],
+  "checks": [
+    {
+      "name": "harness-context-and-contracts-sync",
+      "argv": [
+        "python3",
+        "scripts/harness_sync.py",
+        "verify"
+      ],
+      "log_path": "/home/ahnaf-zakaria/.local/share/agent-harness/verification/812e52af7fdc58b9ef214f5c/logs/1792935300821764947-0.log",
+      "status": "passed",
+      "exit_code": 0,
+      "output_bytes": 298,
+      "output_sha256": "fd553061016f4bdba0253bdb13e958c37b16adbe98a9d3f6d84b1e1689ab31d6",
+      "truncated": false,
+      "retained_sha256": "fd553061016f4bdba0253bdb13e958c37b16adbe98a9d3f6d84b1e1689ab31d6",
+      "elapsed_seconds": 0.10837243099967964
+    },
+    {
+      "name": "ahnaf-web-typecheck",
+      "argv": [
+        "npm",
+        "--prefix",
+        "apps/web",
+        "run",
+        "typecheck"
+      ],
+      "log_path": "/home/ahnaf-zakaria/.local/share/agent-harness/verification/812e52af7fdc58b9ef214f5c/logs/1792935300821764947-1.log",
+      "status": "passed",
+      "exit_code": 0,
+      "output_bytes": 53,
+      "output_sha256": "8a007536774359452958200f94c9295b605b4f48c173c623f69f5911165000f0",
+      "truncated": false,
+      "retained_sha256": "8a007536774359452958200f94c9295b605b4f48c173c623f69f5911165000f0",
+      "elapsed_seconds": 3.694267759000013
+    },
+    {
+      "name": "live-backend-and-policy",
+      "argv": [
+        "python3",
+        "scripts/check_runtime.py"
+      ],
+      "log_path": "/home/ahnaf-zakaria/.local/share/agent-harness/verification/812e52af7fdc58b9ef214f5c/logs/1792935300821764947-2.log",
+      "status": "passed",
+      "exit_code": 0,
+      "output_bytes": 2056,
+      "output_sha256": "6afb5c8959adb99f0dc373ff937fa9a60ce6349a142531be7a688c0b58049883",
+      "truncated": false,
+      "retained_sha256": "6afb5c8959adb99f0dc373ff937fa9a60ce6349a142531be7a688c0b58049883",
+      "elapsed_seconds": 29.57544618100019
+    }
+  ],
+  "receipt_path": "/home/ahnaf-zakaria/.local/share/agent-harness/verification/812e52af7fdc58b9ef214f5c/latest.json",
+  "passed": true
+}

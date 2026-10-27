@@ -1,0 +1,33 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "capture_id": {
+      "maxLength": 100,
+      "pattern": "^capture_[a-zA-Z0-9_-]+$",
+      "title": "Capture Id",
+      "type": "string"
+    },
+    "events": {
+      "items": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "maxItems": 1000,
+      "minItems": 1,
+      "title": "Events",
+      "type": "array"
+    },
+    "index": {
+      "minimum": 0,
+      "title": "Index",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "capture_id",
+    "index",
+    "events"
+  ],
+  "title": "CaptureChunk",
+  "type": "object"
+}

@@ -23,10 +23,10 @@ If the current owner is blocked, offline, or switching AI sessions, run these **
 python3 scripts/harness_sync.py takeover --task saad-range-control
 
 # 2. Native harness resume for this task packet
-harness context resume /home/ahnaf-zakaria/Downloads/Cydeline --task saad-range-control
+harness context resume . --task saad-range-control
 
 # 3. Run project-native verification checks
-harness check run /home/ahnaf-zakaria/Downloads/Cydeline
+harness check run .
 ```
 
 ---
@@ -35,7 +35,7 @@ harness check run /home/ahnaf-zakaria/Downloads/Cydeline
 
 - **Goal:** Deliver canonical contracts (contracts/, scenarios/), the isolated Northstar Analytics target range (apps/target-api/, infra/range/), and the trusted control plane with SSE, verification, 100-pt scoring, and replay (apps/control-api/).
 - **IMMEDIATE NEXT STEP (`next_step`):**
-  > **Identify a compatible operator-provided BIOS/IDE Windows image or installation medium, prepare the standalone qcow2, ensure at least6GiB available RAM, restart only the selected worker with WINDOWS_BASE_IMAGE configured, and verify a real desktop via Sandbox.**
+  > **Local demo access complete; preserve normal accesscodes outside localrunner. ExpandedB dedicatedhost qualification andVMrecording/timedC remain next, actualliveWindowsbrowserinput manualcheckpending.**
 
 ---
 
@@ -56,13 +56,19 @@ harness check run /home/ahnaf-zakaria/Downloads/Cydeline
 - [x] DisposableDocker isolation58/58 and10actualreset endpoint test pass; genuine browser3/3 passes target-audited response/recovery/terminalexport; observed permission and403status fixes retain server authority.
 - [x] Current-source Docker target/control proof 58/58 passes with disposable teardown. Native: 359 tests plus 18 subtests pass, actual ten-reset endpoint regression passes, genuine browser/API recovery and canonical raw replays verified. Target denial remains intact in failed AI objective trials. Model-container isolation is not claimed; optional Windows remains separate.
 - [x] Read-only current Windows diagnosis: all running workers lack WINDOWS_BASE_IMAGE; no default base image or active VM containers. KVM and gateway images exist. Available memory about2.2GiB is below6GiB Windows launch gate. Synthetic gateway proof does not establish actual Windows boot; no installation or service changes performed.
+- [x] Saved independently approved observer/range architecture and review resolutions: actor-scoped read-only grants, authenticated VM proxy, target-owned transactional timing/effects, separate v2 contracts and bounded offline guests. No actual Windows or runtime proof added.
+- [x] Milestone A restricted observer implemented and independently evaluated: backend scopedPASS69focusedtests, UIv2 scopedPASS with all prior findings resolved; observer23/frontend54/build/browser25+2 and actual local-model wiring pass. Native full382+18subtests, typecheck/contextsync and evaluate pass at recorded A snapshot. Evidence docs/product/AI_OBSERVER_BUILD_LOG.md; no B/C, Windows desktop or model-quality acceptance implied.
+- [x] Official Microsoft Server2022evaluationISO downloaded (5044094976bytes SHA2563e4fa6d8507b554856fc9ca6079cc402df11a8b79344871669f0251535255325); WIMindex2GUI Server verified. Real KVM Windows desktop observed via private QMP screenshot, clean shutdown and qemu-imgcheck passed; standalone9.7GBphysicalbase finalized .runtime/windows/windows.qcow2. Previewworker restarted with persisted --windows-image. Prep6safetytests+18optionaltools and independent source review pass. Browser tool refuses local app navigation; no browser workaround attempted.
+- [x] Local Windows workstation setup completed: official2022evaluationDesktopExperience actually booted via KVM and finalizedbase, then viaToolWorker; GuacAPI auth/VNC, readOnlymounts, capdropALL/noNIC, unchangedbase and ownvalidationcleanup verified. Privateimagepersisted forpreview5188; workerlaunchabletrue. Independentprep/permission/diagnosticreview25focusedtestsPASS; browserSandboxrender/inputunverified due toolURLpolicy. Aobserver scopedPASS preserved; fullB/C/modelquality gates remain.
+- [x] Added loopback-only local-demo session role endpoint, cookie rotation with stale in-flight credential revocation, offhost/demo-disabled demotion and observer fence. Independent scoped access review47PASS; runner disables forwarded proxy trust, bypasses ambient HTTP proxy for target readiness, and preserves existing practice/Windows on restart.
+- [x] Final lean local access and launcher checks accepted: scoped independent47API, fullbackend400+18subtests, browser34+observer2 andbuildPASS; loopbackdemo preview preservedexistingrun/Windows. UIv3 accepted3.
 
 ### Remaining Work (`remaining`)
-- [ ] Optional legacy Windows boot awaits an operator-provided image; outside the beginner learning delivery.
 - [ ] Model-container isolation and public-deployment verification remain separate, unperformed release gates.
+- [ ] Expanded B dedicated-host isolation, read-only VM observation/recording and full concurrent workload qualification remain pending.
 
 ### Active Blockers (`blockers`)
-- Actual Windows OS boot requires an operator-prepared BIOS/IDE Windows qcow2 image at WINDOWS_BASE_IMAGE; none exists on this host.
+- Full expanded B sealed-host provisioning/qualification is unavailable on the present unqualified laptop; no remote dedicated host is configured.
 
 ### Open Uncertainties / Assumptions (`uncertainties`)
 - Current proof covers target/control Docker isolation, not model-container isolation. Optional Windows boot still requires a prepared qcow2 image.
@@ -104,6 +110,7 @@ harness check run /home/ahnaf-zakaria/Downloads/Cydeline
 - Implement TargetAdapter protocol supporting both direct in-process testing and isolated container HTTP transport
 - Use SQLite WAL mode with per-run lock serialization so containment commits before the next attacker request is dispatched (T-07)
 - User deferred actual participant sessions; preserve the blank pilot kit and do not fabricate study outcomes.
+- Windows is trainee workstation first release; expanded timed result is separate from frozen legacy outcomes, with committed breach precedence and no outage win.
 
 ### Architecture Entry Points (`architecture`)
 - Saad.md
@@ -123,16 +130,28 @@ harness check run /home/ahnaf-zakaria/Downloads/Cydeline
 - Saad.md
 - context/contracts/saad-range-control.contract.md
 - context/evaluations/saad-range-control.eval.md
+- docs/demo/lean-shell/access-review.md
 - docs/demo/learning/final-v8/receipt.json
+- docs/demo/observer-a/native-receipt-a.json
+- docs/demo/windows-setup/REVIEW.md
+- docs/demo/windows-setup/desktop-preparation.png
+- docs/demo/windows-setup/gateway-summary.json
+- docs/demo/windows-setup/setup-summary.json
 - docs/model-card/LIVE_INTEGRATION.md
 - docs/model-card/learning/COMPOSE_ISOLATION_FINAL_CURRENT.json
 - docs/model-card/learning/INDEPENDENT_REVIEW_2026-10-24.md
+- docs/product/AI_OBSERVER_BUILD_LOG.md
+- docs/product/AI_OBSERVER_RANGE_PLAN.md
+- docs/product/AI_OBSERVER_RANGE_REVIEW.md
 - docs/product/BEGINNER_LEARNING_HANDOFF.md
 - docs/product/KNOWN_ISSUES.md
 - docs/product/WINDOWS_VM.md
+- scripts/prepare_windows.py
+- scripts/run_local.py
 - services/range_runtime/engine.py
 - services/range_runtime/target.py
 - tests/control/test_live_control.py
+- tests/control/test_windows_preparation.py
 - tests/target/test_live_target.py
 
 

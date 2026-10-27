@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "generation": "de605414993548abb7cafdc67374d4f5",
+  "snapshot": "b5d997dcfcfa179ffecbf31f51074836b481227941db03bf2d0bc7ca9e7df23b",
+  "audit_sha256": "e533ee68fd50c6017ca80fe3040b5dacee7441e9952022cf712e565a15307463",
+  "verdict": "fail",
+  "limits": [
+    "This is independent local milestoneA UI/source review, not deployment or B/C readiness.",
+    "Fixture model output tests actual LocalAgent/control/target paths but does not establish genuine-model adaptation. Real-model-current.json is separate single-call proof and was not rerun by this evaluator.",
+    "No Windows desktop, sealed guest isolation, fifteen-minute timing, LAN/loadp95, participant usability or educational-effectiveness claim.",
+    "Full axe scan involving sandboxed replay did not complete and was stopped; targeted top-level contrast scan completed. Manual browserzoom, full screen-reader coverage and replay motion remain unverified.",
+    "Responsive screenshots use synthetic disposable fixture records; raw actual model transcripts and credentials excluded."
+  ],
+  "finding_ids": [
+    "OBS-UI-01",
+    "OBS-UI-02",
+    "OBS-UI-03"
+  ],
+  "files": {
+    "audit.pdf": "d112fa37ef13e9a5a051c21afc5f5fceae4dd5084231bcef602b414c8082f92c",
+    "fixes.md": "2e291b0c934b3d17f5dc4197d1c988f5378be476f33b034e5d4eb0ce8af79d25"
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "fixture_only": true,
+  "base": "http://127.0.0.1:5176",
+  "reconnect": {
+    "loads_before": 1,
+    "loads_after": 2,
+    "remounted": true,
+    "after_minimize_resume": 2,
+    "after_repeat_reconnect": 3,
+    "launch_posts": 1
+  },
+  "widths": [
+    {
+      "width": 1440,
+      "scrollWidth": 1440,
+      "more": {
+        "x": 8,
+        "y": 290,
+        "width": 163,
+        "height": 321
+      },
+      "focus": {
+        "outline": "rgb(194, 65, 12) solid 2px",
+        "focused": true
+      }
+    },
+    {
+      "width": 768,
+      "scrollWidth": 768,
+      "more": {
+        "x": 496,
+        "y": 103,
+        "width": 260,
+        "height": 314
+      },
+      "focus": {
+        "outline": "rgb(194, 65, 12) solid 2px",
+        "focused": true
+      }
+    },
+    {
+      "width": 390,
+      "scrollWidth": 390,
+      "more": {
+        "x": 118,
+        "y": 143,
+        "width": 260,
+        "height": 314
+      },
+      "focus": {
+        "outline": "rgb(194, 65, 12) solid 2px",
+        "focused": true
+      }
+    },
+    {
+      "width": 320,
+      "scrollWidth": 320,
+      "more": {
+        "x": 48,
+        "y": 143,
+        "width": 260,
+        "height": 314
+      },
+      "focus": {
+        "outline": "rgb(194, 65, 12) solid 2px",
+        "focused": true
+      }
+    }
+  ],
+  "reduced_motion": 0,
+  "css_zoom_only": {
+    "width": 320,
+    "scrollWidth": 543
+  },
+  "instructor": [
+    {
+      "width": 320,
+      "scrollWidth": 320,
+      "passwords": 0
+    },
+    {
+      "width": 390,
+      "scrollWidth": 390,
+      "passwords": 0
+    },
+    {
+      "width": 768,
+      "scrollWidth": 768,
+      "passwords": 0
+    },
+    {
+      "width": 1440,
+      "scrollWidth": 1440,
+      "passwords": 0
+    }
+  ],
+  "assignment": {
+    "briefing_before": 0,
+    "start_posts": 1,
+    "route_after": "http://127.0.0.1:5176/#/live/run_review01/monitoring",
+    "confirmation_dialogs": 0
+  }
+}

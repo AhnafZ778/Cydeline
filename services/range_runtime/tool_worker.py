@@ -145,6 +145,11 @@ class ToolWorker:
             raise DomainError(
                 "The Windows base image is not readable by the range worker.", 503
             )
+        # The runner drops every capability, including DAC override. Give it
+        # only the image's read group; a 0600 host-user image is unreadable there.
+        info = path.stat()
+        if info.st_uid != 0 and not info.st_mode & 0o044:
+            raise DomainError("Windows base needs group-read permission inside its private directory (0640); prepare it with scripts/prepare_windows.py.", 503)
         if not os.access("/dev/kvm", os.R_OK | os.W_OK):
             raise DomainError("Windows requires access to /dev/kvm on this host.", 503)
         return path
@@ -488,6 +493,8 @@ class ToolWorker:
             extra=(
                 "--device",
                 "/dev/kvm",
+                "--group-add",
+                str(base.stat().st_gid),
                 "--mount",
                 "type=bind,src=" + str(base) + ",dst=/image/windows.qcow2,readonly",
                 "--mount",

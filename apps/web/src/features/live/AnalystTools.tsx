@@ -1,149 +1,86 @@
-import { useEffect, useState } from "react";
-import { ExternalLink, Monitor, RotateCcw, Square } from "lucide-react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
+import { ExternalLink, Monitor, Minimize2, RotateCcw, Square } from "lucide-react";
 import { api, type Snapshot } from "./types";
-type ToolState = {
-  status: string;
-  desktop_os?: string;
-  message?: string;
-  url?: string;
-  profile?: string;
-};
-export function AnalystTools({ snapshot: s, desktopOnly = false }: { snapshot: Pick<Snapshot, "run_id" | "mode">; desktopOnly?: boolean }) {
-  const [profile, setProfile] = useState("desktop"),
-    [data, setData] = useState<ToolState | null>(null),
-    [error, setError] = useState<string | null>(null),
-    [busy, setBusy] = useState(false),
-    [connection, setConnection] = useState<string | null>(null);
-
+type ToolState = { status: string; desktop_os?: string; message?: string; url?: string; profile?: string };
+type Props = { snapshot: Pick<Snapshot, "run_id" | "mode">; desktopOnly?: boolean; onFocusChange?: (focused: boolean) => void; notice?: string };
+export function AnalystTools({ snapshot: s, desktopOnly = false, onFocusChange, notice }: Props) {
+  const [profile, setProfile] = useState("desktop"), [data, setData] = useState<ToolState | null>(null);
+  const [error, setError] = useState<string | null>(null), [busy, setBusy] = useState(false);
+  const [connection, setConnection] = useState<string | null>(null), [expanded, setExpanded] = useState(false);
+  const [frameRevision, setFrameRevision] = useState(0);
+  const autoOpened = useRef(false), pending = useRef(false), generation = useRef(0);
+  const minimize = useRef<HTMLButtonElement>(null), resume = useRef<HTMLButtonElement>(null);
   const path = "/runs/" + s.run_id + "/tools/" + profile;
+  const ready = !!connection && data?.status === "ready";
+  const focused = ready && expanded;
+  useLayoutEffect(() => {
+    onFocusChange?.(focused);
+    const frame = requestAnimationFrame(() => { if (focused) minimize.current?.focus(); else if (ready) resume.current?.focus(); });
+    return () => { cancelAnimationFrame(frame); onFocusChange?.(false); };
+  }, [focused, onFocusChange]);
   useEffect(() => {
-    setData(null);
-    setConnection(null);
-    let disposed = false;
+    if (ready && !autoOpened.current) { autoOpened.current = true; setExpanded(true); }
+  }, [ready]);
+  useEffect(() => {
+    if (!focused) return;
+    const key = (e: KeyboardEvent) => { if (e.key === "Escape") { setExpanded(false); requestAnimationFrame(() => resume.current?.focus()); } };
+    window.addEventListener("keydown", key); return () => window.removeEventListener("keydown", key);
+  }, [focused]);
+  useEffect(() => {
+    setData(null); setConnection(null); setExpanded(false); setError(null); autoOpened.current = false;
+    let disposed = false, polling = false;
+    generation.current++;
     async function refresh() {
+      if (polling || pending.current) return;
+      polling = true; const revision = generation.current;
       try {
         const result = await api<ToolState>(path);
-        if (disposed) return;
-        if (profile === "desktop" && result.desktop_os !== "Windows") {
-          setData({ status: result.status, message: "Restart the range worker to enable Windows." });
-          setConnection(null);
-          throw new Error("Restart the range worker to enable the Windows workstation.");
-        }
+        if (disposed || revision !== generation.current) return;
         setData(result);
         if (result.status !== "ready") setConnection(null);
-        else if (result.url) setConnection((old) => old ?? result.url ?? null);
+        else if (result.url) setConnection(old => old ?? result.url ?? null);
         setError(null);
-      } catch (e) {
-        if (!disposed) setError((e as Error).message);
-      }
+      } catch (e) { if (!disposed && revision === generation.current) setError((e as Error).message); }
+      finally { polling = false; }
     }
-    void refresh();
-    const timer = window.setInterval(() => void refresh(), 5000);
-    return () => {
-      disposed = true;
-      window.clearInterval(timer);
-    };
+    void refresh(); const timer = window.setInterval(() => void refresh(), 5000);
+    return () => { disposed = true; generation.current++; window.clearInterval(timer); };
   }, [path]);
   async function command(method: "POST" | "DELETE") {
-    if (method === "POST" && profile === "desktop" && data?.desktop_os !== "Windows") {
-      setError("Restart the range worker to enable the Windows workstation.");
-      return;
-    }
-    setBusy(true);
-    setError(null);
+    if (pending.current) return;
+    pending.current = true; const revision = ++generation.current;
+    setBusy(true); setError(null);
     try {
       const result = await api<ToolState>(path, method);
-      setData(result);
-      setConnection(result.url ?? null);
-    } catch (e) {
-      setError((e as Error).message);
-    } finally {
-      setBusy(false);
-    }
+      if (revision !== generation.current) return;
+      if (method === "POST") autoOpened.current = false;
+      setData(result); setConnection(result.url ?? null);
+      if (method === "DELETE") { setExpanded(false); autoOpened.current = false; }
+    } catch (e) { if (revision === generation.current) setError((e as Error).message); }
+    finally { pending.current = false; setBusy(false); }
   }
-  return (
-    <section className="card live-pad">
-      <h2>{desktopOnly ? "Windows workstation" : "Analyst tools"}</h2>
-      <p>
-        Use a Windows virtual machine or Elastic Security with this run’s released evidence. Completed shifts can be opened for forensic
-        review.
-      </p>
-      <div className="live-tool-grid">
-        {(desktopOnly ? ["desktop"] : ["desktop", "siem"]).map((tool) => (
-          <button
-            key={tool}
-            className={"live-scenario " + (profile === tool ? "selected" : "")}
-            aria-pressed={profile === tool}
-            onClick={() => setProfile(tool)}
-          >
-            <Monitor size={28} />
-            <h3>{tool === "desktop" ? "Windows workstation" : "Elastic Security"}</h3>
-            <p>
-              {tool === "desktop"
-                ? "Windows desktop with File Explorer, PowerShell, and a read-only evidence drive."
-                : "Search the released events in a disposable Elasticsearch and Kibana environment."}
-            </p>
-          </button>
-        ))}
-      </div>
+  function minimizeWorkspace() { setExpanded(false); requestAnimationFrame(() => resume.current?.focus()); }
+  return <section className="workspace-launcher">
+    <header className="workspace-heading"><div><h1>{desktopOnly ? "Windows workstation" : "Workspace"}</h1><p>Open this exercise’s evidence in your own lab environment.</p></div><Monitor size={24} /></header>
+    {!desktopOnly && <div className="workspace-profiles" role="group" aria-label="Lab environment">{["desktop", "siem"].map(tool => <button className="btn" key={tool} disabled={busy || data?.status === "preparing" || data?.status === "ready"} aria-pressed={profile === tool} onClick={() => setProfile(tool)}>{tool === "desktop" ? "Windows workstation" : "Elastic Security"}</button>)}</div>}
+    <section className="soc__panel workspace-summary">
+      <h2>{profile === "desktop" ? "Windows desktop" : "Elastic Security"}</h2>
+      <p>{profile === "desktop" ? "File Explorer, PowerShell and a read-only evidence drive." : "Search released events in Elasticsearch and Kibana."}</p>
+      <p role="status"><span className="live-badge">{data?.status ?? "Connecting"}</span> {data?.message}</p>
+      {data?.status === "preparing" && <p>Preparing can take several minutes. {s.mode === "assessment" ? "The exercise clock keeps running." : "You can pause the exercise while you wait."} Ending the shift also stops this environment.</p>}
       <div className="live-tags">
-        <button
-          className="btn btn--primary"
-          disabled={busy || !data || (profile === "desktop" && data.desktop_os !== "Windows") || data.status === "preparing" || data.status === "ready"}
-          onClick={() => void command("POST")}
-        >
-          Launch {profile === "desktop" ? "Windows" : "Elastic Security"}
-        </button>
-        <button className="btn" disabled={busy || !data || data.status === "stopped"} onClick={() => void command("DELETE")}>
-          <Square size={14} />
-          Stop environment
-        </button>
-        {data?.status === "ready" && (
-          <button
-            className="btn"
-            onClick={() => {
-              setConnection(data.url ?? null);
-            }}
-          >
-            <RotateCcw size={14} />
-            Reconnect
-          </button>
-        )}
+        {ready ? <button ref={resume} className="btn btn--primary" onClick={() => setExpanded(true)}>Resume workspace</button> : <button className="btn btn--primary" disabled={busy || !data || (profile === "desktop" && data.desktop_os !== "Windows") || data.status === "preparing"} onClick={() => void command("POST")}>Launch {profile === "desktop" ? "Windows" : "Elastic Security"}</button>}
+        {data && !["stopped", "unavailable", "unsupported"].includes(data.status) && <button className="btn" disabled={busy} onClick={() => void command("DELETE")}><Square size={14} />Stop environment</button>}
+        {ready && <button className="btn" onClick={() => { setConnection(data?.url ?? null); setFrameRevision(n => n + 1); setExpanded(true); }}><RotateCcw size={14} />Reconnect</button>}
       </div>
-      {error && (
-        <p className="live-error" role="alert">
-          {error}
-        </p>
-      )}
-      {data && (
-        <div className="live-tool-state" aria-live="polite">
-          <span className="live-badge">{data.status}</span>
-          <p>{data.message}</p>
-          {data.status === "preparing" && (
-            <p className="live-muted">
-              Preparing can take several minutes
-              {s.mode === "assessment" ? ". " : ", and the shift clock keeps running unless you pause the exercise. "}
-              Ending the shift also stops this environment.
-            </p>
-          )}
-          {connection && data.status === "ready" && (
-            <>
-              <a className="btn" href={connection} target="_blank" rel="noreferrer">
-                Open full screen <ExternalLink size={15} />
-              </a>
-              <iframe
-                title={profile === "desktop" ? "Northstar Windows workstation" : "Northstar Elastic Security"}
-                src={connection}
-                className="live-tool-frame"
-              />
-            </>
-          )}
-        </div>
-      )}
-      <p className="live-muted">
-        Optional profiles have a one-hour lease and use additional memory. Only one profile runs per shift. A failed tool launch leaves your
-        investigation saved.
-      </p>
+      {error && <p className="live-error" role="alert">{error}</p>}
+      <details className="workspace-info"><summary>About this environment</summary><p>One profile per shift, with a one-hour lease. Environments use additional memory. Stopping one leaves your investigation saved. Minimize returns to the SOC without stopping the desktop.</p></details>
     </section>
-  );
+    {ready && createPortal(<section className="workspace-display" hidden={!focused} aria-label={profile === "desktop" ? "Windows workspace" : "Elastic workspace"}>
+      <iframe key={frameRevision} title={profile === "desktop" ? "Northstar Windows workstation" : "Northstar Elastic Security"} src={connection!} className="workspace-frame" />
+      {(error || notice) && <p className="workspace-notice" role="status">{error || notice}</p>}
+      <div className="workspace-controls"><a href={connection!} target="_blank" rel="noreferrer" aria-label="Open workspace in a new tab" title="Open in a new tab"><ExternalLink size={16} /></a><button ref={minimize} onClick={minimizeWorkspace} aria-label="Minimize workspace" title="Minimize workspace"><Minimize2 size={18} /></button></div>
+    </section>, document.body)}
+  </section>;
 }

@@ -362,6 +362,8 @@ class WindowsDesktopTests(unittest.TestCase):
         self,
     ):
         with tempfile.TemporaryDirectory() as temp:
+            base = Path(temp) / "windows.qcow2"
+            base.write_bytes(b"test base")
             worker = ToolWorker(temp)
             job = {
                 "generation": "g1",
@@ -385,7 +387,7 @@ class WindowsDesktopTests(unittest.TestCase):
 
             with (
                 mock.patch.object(
-                    worker, "windows_base", return_value=Path("/prepared/windows.qcow2")
+                    worker, "windows_base", return_value=base
                 ),
                 mock.patch.object(worker, "start_container", side_effect=start),
                 mock.patch.object(worker, "docker"),
@@ -398,9 +400,11 @@ class WindowsDesktopTests(unittest.TestCase):
             self.assertFalse(settings.get("edge", False))
             self.assertIn("/dev/kvm", settings["extra"])
             self.assertIn(
-                "type=bind,src=/prepared/windows.qcow2,dst=/image/windows.qcow2,readonly",
+                "type=bind,src=" + str(base) + ",dst=/image/windows.qcow2,readonly",
                 settings["extra"],
             )
+            group_at = settings["extra"].index("--group-add")
+            self.assertEqual(settings["extra"][group_at + 1], str(base.stat().st_gid))
             self.assertFalse(
                 any(
                     x in str(settings)

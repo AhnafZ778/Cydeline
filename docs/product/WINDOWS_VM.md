@@ -1,5 +1,7 @@
 # Windows workstation in the browser
 
+**Current local status,25October2026:** Windows Server2022 Evaluation Desktop Experience is installed and configured for `observer-preview`. Actual desktop and worker/Guacamole API checks pass; the temporary validation VM was cleaned up. See **Local Windows installed** below for restart instructions and evidence. Browser-rendered Sandbox/input remains unverified after browser automation refused access. Earlier missing-image notes are historical.
+
 The original SOC practice tabs use the accepted d93b640 layout. New live missions, skills/progress, learner training, instructor tools, evidence assistant, assets/access, business activity and analyst tools remain additional views. Open Live missions from the original console; each live run retains its server-backed response and evidence workflow. The original Sandbox now opens the same Windows desktop profile as Analyst Workstation.
 
 ## Implementation and current limit
@@ -48,3 +50,41 @@ Open a live mission, then Sandbox → choose that exercise → Launch Windows. O
 The user reported no visible Windows desktop. Read-only host inspection confirmed that all four running range workers had WINDOWS_BASE_IMAGE unset, both documented default disk paths were absent, and no Docker containers were active. The Windows runner and Guacamole images are installed, and /dev/kvm exists with read/write access. Available memory was about 2.2GiB, below the unchanged 6GiB launch requirement. No compatible Windows qcow2 or Windows installation ISO was found in the checked project runtime, dedicated review runtime or Downloads paths. This is a setup blocker, not a verified Windows boot or display. Do not describe the synthetic gateway proof as an actual Windows desktop test.
 
 Next atomic setup action: identify a compatible operator-provided BIOS/IDE Windows desktop image or installation medium, prepare the standalone qcow2, free at least 6GiB available RAM, then restart the selected worker with WINDOWS_BASE_IMAGE set and verify real guest boot through Sandbox. No installation/download or app closure was performed during this audit.
+
+## Local Windows installed — 25 October 2026
+
+This update supersedes the earlier missing-image status for the **observer-preview** runtime. At the user's explicit request to set it up, official Windows Server2022 Standard Evaluation Desktop Experience was installed under KVM using BIOS/IDE and a private answer-file CD. WIM image2 was verified as `INSTALLATIONTYPE=Server`, distinct from the Core images. Actual Windows desktop boot was observed, then clean shutdown and `qemu-img check` passed.
+
+- Base: `.runtime/windows/windows.qcow2` (40GiB virtual, about9.7GB allocated at creation), standalone and mounted read-only during exercises.
+- Host directory stays0700; the finalized base is0640 and the capability-dropped runner receives only its file group. This fixes the reproduced0600read-denial without restoring capabilities or making the directory public. Setup credentials remain0600 in `.runtime/windows/credentials.json`; never commit them, the answer media, disk or recordings.
+- Runtime: `.runtime/observer-preview`, preview `http://127.0.0.1:5188/`. Its saved `windows-base-image` setting is reused on restart. `WINDOWS_BASE_IMAGE` can override saved configuration; explicit `--windows-image` takes precedence and updates it.
+- Actual finalized-base launch through ToolWorker was tested separately from installation. The captured worker display shows Windows; Guacamole HTTP, signed-grant API authentication and registered VNC connection pass. Actual container inspection confirms read-only base/evidence, no published VM port, `cap-drop ALL` and `-nic none`. Own validation cleanup/base-unchanged verification is recorded in `docs/demo/windows-setup/gateway-summary.json`.
+- The browser automation tool refused local-app navigation. No alternate browser route was used. **Rendered Sandbox interaction remains unverified**; supported worker/gateway APIs and the real VM display were verified.
+
+Restart the configured preview:
+
+```bash
+.venv/bin/python scripts/run_local.py --runtime .runtime/observer-preview --port 28000 --web-port 5188
+```
+
+For a different local runtime, explicitly configure the prepared base once:
+
+```bash
+.venv/bin/python scripts/run_local.py --runtime .runtime/my-preview --windows-image .runtime/windows/windows.qcow2
+```
+
+Start/resume an exercise, open **Sandbox**, select that exercise and launch Windows. The guest has no network adapter; it receives only its launch-time released evidence CD. This does not implement the later private company web/mail workstation topology or read-only observer VM recording. Stop the optional VM when finished to return its memory. The unchanged launch gate requires6GiB available before allocating4GiB to Windows.
+
+Preparation recovery commands (system `python3` has Pillow for screenshots; the project virtualenv does not):
+
+```bash
+python3 scripts/prepare_windows.py status
+# Before finalization only:
+python3 scripts/prepare_windows.py screenshot
+python3 scripts/prepare_windows.py powerdown
+python3 scripts/prepare_windows.py finalize --desktop-verified
+```
+
+The helper refuses initialization over an existing image, rejects symlink paths and publishable runtime destinations, and saves private setup state. `--desktop-verified` is an operator assertion following an actual visual check, never an automatic Windows-readiness certificate. A finalized base must be used through disposable worker overlays. Do not restart installation over it.
+
+Media provenance: [Microsoft's official2022evaluation download](https://www.microsoft.com/en-us/evalcenter/download-windows-server-2022), English link2195280,5,044,094,976bytes, locally recorded SHA-256 `3e4fa6d8507b554856fc9ca6079cc402df11a8b79344871669f0251535255325`. The download completed over Microsoft's HTTPS link; no separately published vendor checksum comparison is claimed. Microsoft documents180-day evaluation expiry and Internet activation within the first10days to avoid automatic shutdown. This installation stayed offline; activation was not performed, and no licensing bypass is installed. Use licensed media or perform an authorized activation/preparation step before long-term use. See the same official page for current terms. Expanded B/C isolation, host load, full timed opponent and learning/model-quality gates remain separate.

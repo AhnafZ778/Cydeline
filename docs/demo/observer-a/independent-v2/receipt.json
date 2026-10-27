@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "generation": "7b7fda35042a48b881f7a040d1e8305d",
+  "snapshot": "a78969d15c32006167305973c0c5ac50c6727c27582ffe8ed3686c0e4d08815b",
+  "audit_sha256": "ee416a07ebe48d6c049418e7a45f2a04aa6d4f2472a2d80d776daa696c09dd95",
+  "verdict": "pass",
+  "limits": [],
+  "finding_ids": [
+    "OBS-UI-01",
+    "OBS-UI-02",
+    "OBS-UI-03"
+  ],
+  "files": {
+    "audit.pdf": "d4d58ffbe40e2033f39eafd8345c922a01c4dc6ae1e87975b5e5522b32bf9a7f",
+    "fixes.md": "803c6934128d3c623fe8c2ff96f40abf6fd6d9de557960183350153a36606175"
+  }
+}

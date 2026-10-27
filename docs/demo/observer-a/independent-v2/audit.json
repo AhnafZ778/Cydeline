@@ -1,0 +1,263 @@
+{
+  "schema": 1,
+  "title": "Milestone A independent observer UI review v2",
+  "project": "/home/ahnaf-zakaria/Downloads/Cydeline",
+  "snapshot": "a78969d15c32006167305973c0c5ac50c6727c27582ffe8ed3686c0e4d08815b",
+  "contract": "cc88c17f807fb7aa7ceedce2f27ea874171901b2adce29cd1ae56e6f6aa44a85",
+  "evaluator": {
+    "session_id": "observer_ui_evaluation-independent-2026-10-25-v2",
+    "implementation_session_id": "observer-milestone-a",
+    "independent": true
+  },
+  "coverage": [
+    {
+      "route": "#/live/observer/:run",
+      "flow": "Instructor observation and reconnect",
+      "state": "live restricted observer",
+      "status": "reviewed",
+      "required": true
+    },
+    {
+      "route": "#/live/observer/:run",
+      "flow": "Terminal review and recording segments",
+      "state": "own terminal and instructor terminal",
+      "status": "reviewed",
+      "required": true
+    },
+    {
+      "route": "#/live/observer/:run",
+      "flow": "Responsive and keyboard review",
+      "state": "320/390/768/1440",
+      "status": "reviewed",
+      "required": true
+    },
+    {
+      "route": "#/live/:run/monitoring",
+      "flow": "Optional capture masking",
+      "state": "live trainee",
+      "status": "reviewed",
+      "required": true
+    }
+  ],
+  "checks": [
+    {
+      "name": "Current isolated observer suite",
+      "status": "pass",
+      "required": true,
+      "evidence": "Current isolated suite passed 2/2 in 10.5 s against verified sentinel-observer-disposable fixture. Same masking/reconnect/auth/replay tests plus pane/terminal regression assertions."
+    },
+    {
+      "name": "Live audience privacy and safe replay",
+      "status": "pass",
+      "required": true,
+      "evidence": "Current suite: input/private masking, live trainee403, observer mutation403, revocation403, own-terminal200, transient503 retained history and recovered, capture segments, replay script/form/network isolation."
+    },
+    {
+      "name": "Truthful terminal AI state",
+      "status": "pass",
+      "required": true,
+      "evidence": "OBS-UI-02 resolved; actual aborted UI and browser-only lifecycle presentation matrix recorded in browser-observations.json."
+    },
+    {
+      "name": "Narrow observer pane switching",
+      "status": "pass",
+      "required": true,
+      "evidence": "OBS-UI-01 resolved; keyboard switches both narrow panes at320/390/768 with selected state and retained segment;1440 split view retained."
+    },
+    {
+      "name": "Keyboard review navigation",
+      "status": "pass",
+      "required": true,
+      "evidence": "OBS-UI-03 resolved; Tab/Shift+Tab skips replay to current range and back to segment;35-step traversal retained focus outlines."
+    },
+    {
+      "name": "Reflow and sampled contrast",
+      "status": "pass",
+      "required": true,
+      "evidence": "No horizontal overflow at320/390/768/1440. Targeted top-level axe color-contrast:1440 and settled320both panes0violations/0incomplete. Immediate scans during color transitions reported transient mismatched colors;350ms settled rescans passed. CSSzoom2 no overflow, not browserzoom proof."
+    },
+    {
+      "name": "Sampled reduced-motion static state",
+      "status": "pass",
+      "required": true,
+      "evidence": "Reduced-motion emulation: top-level observer DOM0active CSSanimation names. This is the bounded static-state check, not replay-motion or assistive-technology qualification."
+    },
+    {
+      "name": "Scope and unqualified external gates",
+      "status": "not-applicable",
+      "required": false,
+      "evidence": "This disposition covers the seven retained milestone A UI checks and four retained required route/flows only. Full screen-reader/browserzoom/replay-motion conformance, LAN/loadp95, Windows, B/C, participant usability and educational effectiveness are outside this bounded gate; none is claimed. Fixture-model browser paths do not prove real-model adaptation. Separate real-model-current.json single-call proof was not rerun here. Full sandbox-frame axe did not complete in v1; this review uses targeted top-level contrast and explicit keyboard checks. Backend authorization/storage review remains separate."
+    }
+  ],
+  "screenshots": [
+    {
+      "id": "terminal-trainee-1440",
+      "path": "terminal-trainee-1440.png",
+      "sha256": "ed96fe52e642a86011c244aa91962cd952e8abc88eb0df0535a238e3d4908b36",
+      "width": 1440,
+      "height": 1628,
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "device_scale": 1,
+      "scroll": {
+        "x": 0,
+        "y": 0
+      },
+      "kind": "full-page"
+    },
+    {
+      "id": "terminal-trainee-768",
+      "path": "terminal-trainee-768.png",
+      "sha256": "5c634b077eb371e78e6f369657c746aa5bee6aef35936d24680d00ac0e5854e3",
+      "width": 768,
+      "height": 1175,
+      "viewport": {
+        "width": 768,
+        "height": 900
+      },
+      "device_scale": 1,
+      "scroll": {
+        "x": 0,
+        "y": 0
+      },
+      "kind": "full-page"
+    },
+    {
+      "id": "terminal-trainee-390",
+      "path": "terminal-trainee-390.png",
+      "sha256": "ffbfde6ea751f64d5cc29a020debaf37239301690ef2c2d05da98fd912f07468",
+      "width": 390,
+      "height": 1497,
+      "viewport": {
+        "width": 390,
+        "height": 900
+      },
+      "device_scale": 1,
+      "scroll": {
+        "x": 0,
+        "y": 0
+      },
+      "kind": "full-page"
+    },
+    {
+      "id": "terminal-trainee-320",
+      "path": "terminal-trainee-320.png",
+      "sha256": "788cb94dcd2212fc2e6bdafa3a2398b25167c38e6b43ff4768dbc7116e3b0067",
+      "width": 320,
+      "height": 1623,
+      "viewport": {
+        "width": 320,
+        "height": 900
+      },
+      "device_scale": 1,
+      "scroll": {
+        "x": 0,
+        "y": 0
+      },
+      "kind": "full-page"
+    },
+    {
+      "id": "terminal-ai-320",
+      "path": "terminal-ai-320.png",
+      "sha256": "58e46263fe2711f3ad12030aa2d8a73a956cac7d7334f2c3faee0f11c5141faa",
+      "width": 320,
+      "height": 2029,
+      "viewport": {
+        "width": 320,
+        "height": 900
+      },
+      "device_scale": 1,
+      "scroll": {
+        "x": 0,
+        "y": 0
+      },
+      "kind": "full-page"
+    }
+  ],
+  "findings": [
+    {
+      "id": "OBS-UI-01",
+      "title": "Narrow observer layout lacks the accepted screen/AI switch",
+      "category": "direction-mismatch",
+      "severity": "major",
+      "status": "resolved",
+      "route": "#/live/observer/:run",
+      "state": "320/390/768px live and terminal observation",
+      "expected": "The approved plan section2 requires narrow layouts to switch between trainee screen and AI activity.",
+      "observed": "The <=900px rule stacks both sections. At320px terminal review the AI activity starts at document y1483.5; the trainee screen is scaled to a296px card. The two buttons inside the first card switch tab/actions, not trainee/AI panes.",
+      "consequence": "The agreed narrow observation mode is absent; comparing screen with actual AI activity requires long page travel.",
+      "reproduce": "Open a fixture run with recorded tab and AI events; use320px width. Inspect both always-visible cards and the absence of a trainee/AI selector.",
+      "evidence": "apps/web/src/styles/live.css:859,870; apps/web/src/features/live/ObserverView.tsx:139-144. Browser measured AI top1483.5 at320px,1389.8 at390px,1049.5 at768px. Screenshot terminal-320.",
+      "remedy": "Add an accessible narrow-screen trainee/AI view selector with selected state and one pane shown, retaining desktop split view and recording segment selection.",
+      "retest": "At320/390/768 widths, use keyboard to switch trainee/AI panes; verify focus, selected state and retained segment/scrub state. Retest1440 split view.",
+      "screenshot_id": "terminal-ai-320",
+      "region": {
+        "frame": "document-css",
+        "x": 12,
+        "y": 488,
+        "width": 296,
+        "height": 165
+      },
+      "resolution_evidence": "At 320/390/768 px, Space/Enter switches accessible Trainee view/AI view buttons, aria-pressed follows selection, one pane is visible and the other display:none; segment1 remains selected after both switches. At1440 both panes visible. Current suite adds matching live-state keyboard checks."
+    },
+    {
+      "id": "OBS-UI-02",
+      "title": "Terminal review promises a next model turn",
+      "category": "functional-accessibility",
+      "severity": "minor",
+      "status": "resolved",
+      "route": "#/live/observer/:run",
+      "state": "aborted terminal run",
+      "expected": "Terminal review states that AI execution ended, preserving unavailable/stopped reasons where known.",
+      "observed": "The header says Recorded and lifecycle says aborted, while AI activity says Waiting for the next model turn.",
+      "consequence": "The review presents contradictory execution state and implies another turn will occur.",
+      "reproduce": "Open an aborted fixture run with thinking=false and ai_unavailable=false.",
+      "evidence": "apps/web/src/features/live/ObserverView.tsx:141; current API snapshot terminalaborted. Actual rendered terminal1440 screenshot.",
+      "remedy": "Derive the AI status copy from terminal lifecycle before pending/generating/idle states; keep exact lifecycle/result visible.",
+      "retest": "Open completed/aborted/technical_failure reviews and live paused/thinking/unavailable states; verify no pending next-turn claim in terminal views.",
+      "screenshot_id": "terminal-trainee-1440",
+      "region": {
+        "frame": "document-css",
+        "x": 783,
+        "y": 334,
+        "width": 600,
+        "height": 80
+      },
+      "resolution_evidence": "Actual aborted run now says Exercise ended. This is its recorded AI activity. and no next-turn promise. Browser presentation overrides, explicitly not actual engine outcomes, verified completed/technical_failure also ended, paused shows paused, generating shows generating, unavailable shows no substitute."
+    },
+    {
+      "id": "OBS-UI-03",
+      "title": "Keyboard focus enters the inert recorded screen",
+      "category": "functional-accessibility",
+      "severity": "minor",
+      "status": "resolved",
+      "route": "#/live/observer/:run",
+      "state": "keyboard traversal through recorded tab",
+      "expected": "The noninteractive replay display is skipped by keyboard; real review controls retain visible focus.",
+      "observed": "Sequential Tab enters the outer observer iframe after segment selection with no visible outline, and the next Tab reaches a recorded BUTTON inside the nested replay. pointer-events:none blocks the mouse, not this keyboard focus path.",
+      "consequence": "Keyboard users encounter an unmarked focus stop and historical controls that cannot operate the exercise, before reaching current review controls.",
+      "reproduce": "At1440px on a terminal run with a recorded screen, Tab from recording segment selector. Inspect document.activeElement and nested contentDocument.activeElement, then press Tab again.",
+      "evidence": "apps/web/src/features/live/ObserverView.tsx:77; apps/web/src/styles/live.css:864. Browser: outer IFRAME computed outline none; next Tab nested replay activeElement BUTTON.",
+      "remedy": "Remove outer/nested replay documents from sequential focus and make replay content inert; keep the labelled display available for review without fake historical interactive controls.",
+      "retest": "Tab/Shift+Tab through the entire observer page; replay DOM controls receive no focus, and slider/segment/details/invitations have visible focus.",
+      "screenshot_id": "terminal-trainee-1440",
+      "region": {
+        "frame": "document-css",
+        "x": 45,
+        "y": 975,
+        "width": 690,
+        "height": 70
+      },
+      "resolution_evidence": "Tab from recording segment SELECT reaches actual range INPUT; Shift+Tab returns to SELECT. Full35-step keyboard traversal includes slider/details/invitation controls with2px orange outlines and no IFRAME. Outer frame inert=true,tabIndex=-1; replay root inert=true."
+    }
+  ],
+  "verdict": "pass",
+  "limits": [],
+  "scope_notes": [
+    "All required checks and coverage identities preserved from v1. No unresolved finding in the reviewed UI increment.",
+    "General qualification exclusions are documented explicitly as not-applicable to this bounded gate, not removed from overall release requirements.",
+    "Synthetic fixture screenshots contain no access codes or expanded actual model transcripts."
+  ]
+}

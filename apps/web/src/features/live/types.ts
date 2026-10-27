@@ -273,7 +273,7 @@ export async function api<T>(
   if (!r.ok)
     throw Object.assign(new Error(data.message ?? data.detail?.[0]?.msg ?? "Request failed"), { status: r.status });
   if (path === "/session" && data.id && identity === identityGeneration) analystId = data.id;
-  if (method !== "GET" && (path === "/session" || path === "/session/logout")) {
+  if (method !== "GET" && (path === "/session" || path === "/session/logout" || path === "/session/demo")) {
     invalidateSession();
     localStorage.setItem("soc-identity-revision", crypto.randomUUID());
     window.dispatchEvent(new window.Event("soc-identity-changed"));

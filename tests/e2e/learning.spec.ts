@@ -105,7 +105,8 @@ test("coached orientation requires Begin investigation and keeps company policy 
   await page.route("**/api/runs/*/begin",route=>{model.snapshot.awaiting_begin=false;model.snapshot.paused=false;model.snapshot.state_revision++;return route.fulfill({json:model.snapshot});});
   await page.goto("/#/live/"+RID+"/monitoring");
   await expect(page.getByRole("button",{name:"Resume exercise",exact:true})).toBeDisabled();
-  await page.locator(".learning-briefing summary").focus();await page.keyboard.press("Enter");
+  await expect(page.locator(".learning-briefing")).toHaveCount(0);
+  await page.getByRole("link",{name:"Revisit the company briefing",exact:true}).click();
   await expect(page.getByText("Application audits only.",{exact:true})).toBeVisible();
   await page.getByRole("button",{name:"Begin investigation",exact:true}).focus();await page.keyboard.press("Enter");
   await expect(page.getByRole("button",{name:"Pause exercise",exact:true})).toBeEnabled();
