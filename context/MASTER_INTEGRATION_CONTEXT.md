@@ -35,7 +35,7 @@ harness check run .
 
 - **Goal:** Deliver the accepted beginner learning loop around the two local-AI scenarios through M0-M4, retaining authoritative evidence/scoring and honest engineering, model and participant gates.
 - **IMMEDIATE NEXT STEP (`next_step`):**
-  > **Handoffready: Tanvir startsT1 savedmodeldiagnostic andSaad startsS1/S2 actualWindowsverification/expandedhostpreflight. Coordinate directly under Tanvir.md/Saad.md; do noteditAhnaf.md; pilotdeferred.**
+  > **Continue from Tanvir T1 model diagnostic and Saad S1/S2 Windows/host prerequisites; use explicit Ahnaf carryover checklists for integration, QA/accessibility, learning review and demo/release preparation. Pilot remains deferred; do not edit Ahnaf.md.**
 
 ---
 
@@ -85,6 +85,7 @@ harness check run .
 - [x] Published all235reviewedsource/documentation/evidence/contextchanges to GitHubfeaturebranch chore/publish-workstreams at cb8e0459f3039c4f6fab3a5426b0d9aeca0cb959; remoteHEAD independentlymatched andworkingtreeclean. Prepublication400backend+18subtests/typecheck/HarnessPASS. Localcredentials/VMimage/video excluded. Consolidated REMAINING_WORK.md committed.
 - [x] Updated Tanvir.md andSaad.md with allremainingwork, currentcompletedbaseline, concreteacceptance/dependencies/source/evidence/resumeinstructions whileAhnaf unavailable. Saad assumesremainingintegration/frontend/operations; Tanvir AI/model/coaching/learningquality. Ahnaf.md verifiedunchanged; contractsandownercontext synchronized.
 - [x] FocusedreviewPASS of documentationhandoff: allremainingwork mappedT1-T7/S1-S11, completedbaseline retained, no dependencyonunavailableAhnaf, local linksresolve, Ahnaf.mdbyte-for-byte unchanged, sourcecode/enums untouched. Ready topublish ownerdocs/contracts/context.
+- [x] Focused documentation review PASS: explicitly mapped original Ahnaf unfinished duties to Tanvir/Saad owner checklists, with deliverables and existing T/S references; local links resolve, Ahnaf.md byte-for-byte unchanged, no code changes or new product acceptance claims.
 
 ### Remaining Work (`remaining`)
 - [ ] Resolve AI-LEARN-01: current full objective gate: 10 passed / 2 failed; both Reporting service-dependent repeats fail adaptation.
@@ -156,7 +157,10 @@ harness check run .
 - 00_READ_ME_FIRST.md
 - 01_PRODUCT_REQUIREMENTS_DOCUMENT.md
 - 02_MASTER_BUILD_PROMPT.md
+- 07_OWNER_D_DEFENDER_UX_QA_DEMO.md
+- Saad.md
 - Takeover.md
+- Tanvir.md
 - context/contracts/master-integration.contract.md
 - context/evaluations/master-integration.eval.md
 - docs/demo/briefing-layout/independent-review.md

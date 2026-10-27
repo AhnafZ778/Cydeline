@@ -9,10 +9,10 @@ This directory (`context/`) is synchronized with the local `harness` engine (`.h
 
 | Task ID | Segment Owner | Lifecycle Phase | Context File | Blockers | Immediate Next Step |
 |---|---|---|---|---|---|
-| `master-integration` | Ahnaf (Lead Overseer) + Tanvir + Saad | **`EVALUATE`** | `context/MASTER_INTEGRATION_CONTEXT.md` | 1 BLOCKER(S) | Handoffready: Tanvir startsT1 savedmodeldiagnostic andSaad startsS1/S2 actualWindowsverification/expandedhostpreflight. Coordinate directly under Tanvir.md/Saad.md; do noteditAhnaf.md; pilotdeferred. |
+| `master-integration` | Ahnaf (Lead Overseer) + Tanvir + Saad | **`EVALUATE`** | `context/MASTER_INTEGRATION_CONTEXT.md` | 1 BLOCKER(S) | Continue from Tanvir T1 model diagnostic and Saad S1/S2 Windows/host prerequisites; use explicit Ahnaf carryover checklists for integration, QA/accessibility, learning review and demo/release preparation. Pilot remains deferred; do not edit Ahnaf.md. |
 | `ahnaf-lead-ux` | Ahnaf (Team Lead, Overseer & Defender Command Center UX) | **`EVALUATE`** | `context/AHNAF_CONTEXT.md` | NONE | UI/briefingcleanupcomplete; remaining manualactualWindowsbrowserinput andaccessibility plus BVMobserver/CtimedUI tasks are consolidated in docs/product/REMAINING_WORK.md. |
-| `tanvir-red-agent` | Tanvir (Local AI Red-Team Engine Owner) | **`PLAN`** | `context/TANVIR_CONTEXT.md` | 1 BLOCKER(S) | Start T1: reproduce saved Reporting service-dependent denied/unknown modelchoice diagnostic; coordinate modelcapacity/preflight with Saad. Follow T1-T7 gates in Tanvir.md and preserve10of12FAIL/51989ms tail. |
-| `saad-range-control` | Saad (Virtual Company Cyber Range & Trusted Control Plane Owner) | **`PLAN`** | `context/SAAD_CONTEXT.md` | 1 BLOCKER(S) | Start S1/S2: humancheck installedWindowsbrowser and inventory/failclosed readiness for proposedexpandedhost; coordinate pinnedmodelcapacity withTanvir. Own remainingfrontend/integration withoutwaitingforAhnaf, per Saad.md. |
+| `tanvir-red-agent` | Tanvir (Local AI Red-Team Engine Owner) | **`PLAN`** | `context/TANVIR_CONTEXT.md` | 1 BLOCKER(S) | Start T1 saved Reporting denied/unknown diagnostic, coordinate capacity with Saad, and follow the explicit Ahnaf carryover checklist for later learning/demo/release evidence. |
+| `saad-range-control` | Saad (Virtual Company Cyber Range & Trusted Control Plane Owner) | **`PLAN`** | `context/SAAD_CONTEXT.md` | 1 BLOCKER(S) | Start S1/S2 actual Windows human check and expanded-host preflight; own the explicit Ahnaf carryover checklist through final QA/demo without waiting for Ahnaf. Coordinate AI/learning evidence with Tanvir. |
 
 ---
 

@@ -35,7 +35,7 @@ harness check run .
 
 - **Goal:** Deliver canonical contracts (contracts/, scenarios/), the isolated Northstar Analytics target range (apps/target-api/, infra/range/), and the trusted control plane with SSE, verification, 100-pt scoring, and replay (apps/control-api/).
 - **IMMEDIATE NEXT STEP (`next_step`):**
-  > **Start S1/S2: humancheck installedWindowsbrowser and inventory/failclosed readiness for proposedexpandedhost; coordinate pinnedmodelcapacity withTanvir. Own remainingfrontend/integration withoutwaitingforAhnaf, per Saad.md.**
+  > **Start S1/S2 actual Windows human check and expanded-host preflight; own the explicit Ahnaf carryover checklist through final QA/demo without waiting for Ahnaf. Coordinate AI/learning evidence with Tanvir.**
 
 ---
 
@@ -63,6 +63,7 @@ harness check run .
 - [x] Added loopback-only local-demo session role endpoint, cookie rotation with stale in-flight credential revocation, offhost/demo-disabled demotion and observer fence. Independent scoped access review47PASS; runner disables forwarded proxy trust, bypasses ambient HTTP proxy for target readiness, and preserves existing practice/Windows on restart.
 - [x] Final lean local access and launcher checks accepted: scoped independent47API, fullbackend400+18subtests, browser34+observer2 andbuildPASS; loopbackdemo preview preservedexistingrun/Windows. UIv3 accepted3.
 - [x] User unavailable-lead handoff: Saad.md now owns S1-S11 Windowsinput/licensing,Bhost/topology/VMobserverandfrontend,Cauthority/tools/timedUI,fullqualification,operations/accessibility/teststorage/demo coordination. CompletedAhnaf baseline retained; Tanvir ownsAI/learningquality; pilotstilldeferred andAhnaf.md protected.
+- [x] Explicitly transferred Ahnaf unfinished integration leadership, remaining frontend, final browser QA/manual accessibility, walkthrough environment, uncut demo/backup and release preparation to Saad.md; preserved completed foundations and protected Ahnaf.md.
 
 ### Remaining Work (`remaining`)
 - [ ] Model-container isolation and public-deployment verification remain separate, unperformed release gates.

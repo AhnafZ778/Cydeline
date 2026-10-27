@@ -48,7 +48,8 @@
     "Local Windows workstation setup completed: official2022evaluationDesktopExperience actually booted via KVM and finalizedbase, then viaToolWorker; GuacAPI auth/VNC, readOnlymounts, capdropALL/noNIC, unchangedbase and ownvalidationcleanup verified. Privateimagepersisted forpreview5188; workerlaunchabletrue. Independentprep/permission/diagnosticreview25focusedtestsPASS; browserSandboxrender/inputunverified due toolURLpolicy. Aobserver scopedPASS preserved; fullB/C/modelquality gates remain.",
     "Added loopback-only local-demo session role endpoint, cookie rotation with stale in-flight credential revocation, offhost/demo-disabled demotion and observer fence. Independent scoped access review47PASS; runner disables forwarded proxy trust, bypasses ambient HTTP proxy for target readiness, and preserves existing practice/Windows on restart.",
     "Final lean local access and launcher checks accepted: scoped independent47API, fullbackend400+18subtests, browser34+observer2 andbuildPASS; loopbackdemo preview preservedexistingrun/Windows. UIv3 accepted3.",
-    "User unavailable-lead handoff: Saad.md now owns S1-S11 Windowsinput/licensing,Bhost/topology/VMobserverandfrontend,Cauthority/tools/timedUI,fullqualification,operations/accessibility/teststorage/demo coordination. CompletedAhnaf baseline retained; Tanvir ownsAI/learningquality; pilotstilldeferred andAhnaf.md protected."
+    "User unavailable-lead handoff: Saad.md now owns S1-S11 Windowsinput/licensing,Bhost/topology/VMobserverandfrontend,Cauthority/tools/timedUI,fullqualification,operations/accessibility/teststorage/demo coordination. CompletedAhnaf baseline retained; Tanvir ownsAI/learningquality; pilotstilldeferred andAhnaf.md protected.",
+    "Explicitly transferred Ahnaf unfinished integration leadership, remaining frontend, final browser QA/manual accessibility, walkthrough environment, uncut demo/backup and release preparation to Saad.md; preserved completed foundations and protected Ahnaf.md."
   ],
   "remaining": [
     "Model-container isolation and public-deployment verification remain separate, unperformed release gates.",
@@ -61,7 +62,7 @@
     "Current proof covers target/control Docker isolation, not model-container isolation. Optional Windows boot still requires a prepared qcow2 image.",
     "User explicitly chose Leave the pilot kit ready on 24 October 2026; actual participant usefulness, transfer and delayed retention remain unobserved future work."
   ],
-  "next_step": "Start S1/S2: humancheck installedWindowsbrowser and inventory/failclosed readiness for proposedexpandedhost; coordinate pinnedmodelcapacity withTanvir. Own remainingfrontend/integration withoutwaitingforAhnaf, per Saad.md.",
+  "next_step": "Start S1/S2 actual Windows human check and expanded-host preflight; own the explicit Ahnaf carryover checklist through final QA/demo without waiting for Ahnaf. Coordinate AI/learning evidence with Tanvir.",
   "evidence": [
     "04_OWNER_A_CYBER_RANGE.md",
     "06_OWNER_C_CONTROL_SCORING.md",

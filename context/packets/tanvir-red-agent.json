@@ -45,7 +45,8 @@
     "Milestone A restricted observer implemented and independently evaluated: backend scopedPASS69focusedtests, UIv2 scopedPASS with all prior findings resolved; observer23/frontend54/build/browser25+2 and actual local-model wiring pass. Native full382+18subtests, typecheck/contextsync and evaluate pass at recorded A snapshot. Evidence docs/product/AI_OBSERVER_BUILD_LOG.md; no B/C, Windows desktop or model-quality acceptance implied.",
     "Local Windows workstation setup completed: official2022evaluationDesktopExperience actually booted via KVM and finalizedbase, then viaToolWorker; GuacAPI auth/VNC, readOnlymounts, capdropALL/noNIC, unchangedbase and ownvalidationcleanup verified. Privateimagepersisted forpreview5188; workerlaunchabletrue. Independentprep/permission/diagnosticreview25focusedtestsPASS; browserSandboxrender/inputunverified due toolURLpolicy. Aobserver scopedPASS preserved; fullB/C/modelquality gates remain.",
     "Lean shell/instructor UI cleanup changes no attacker policy/model capability. Live trainee strategy remains denied, observer recording optional and playback lazy-loaded; local Windows persisted across preview restart.",
-    "User unavailable-lead handoff: Tanvir.md replaced obsolete scaffolding/fallback checklist with completedbaseline and T1-T7 adaptation, coachingload, pinnedmodel/contracts, timedcapabilities, restrictedscript/mailgeneration, fullqualityevidence and deferredpilot readiness. Saad isintegrationpartner; no Ahnaf dependency or Ahnaf.md edit."
+    "User unavailable-lead handoff: Tanvir.md replaced obsolete scaffolding/fallback checklist with completedbaseline and T1-T7 adaptation, coachingload, pinnedmodel/contracts, timedcapabilities, restrictedscript/mailgeneration, fullqualityevidence and deferredpilot readiness. Saad isintegrationpartner; no Ahnaf dependency or Ahnaf.md edit.",
+    "Explicitly transferred Ahnaf unfinished AI integration sign-off, educational review, pilot/rubric readiness, demo narrative/claim accuracy and AI release evidence to Tanvir.md; protected Ahnaf.md and retained existing failures/deferred pilot."
   ],
   "remaining": [
     "Resolve AI-LEARN-01: both Reporting service-dependent repeats fail adaptation; final full objective gate is 10 passed / 2 failed.",
@@ -58,7 +59,7 @@
     "Final current-source objective matrix and v8semantic measurement are pending. Existing CPU evidence uses Qwen3:1.7b Q4_K_M on i5-1235U,12logicalCPUs,~16GBRAM; unsupported generalization remains prohibited.",
     "User explicitly chose Leave the pilot kit ready on 24 October 2026; actual participant usefulness, transfer and delayed retention remain unobserved future work."
   ],
-  "next_step": "Start T1: reproduce saved Reporting service-dependent denied/unknown modelchoice diagnostic; coordinate modelcapacity/preflight with Saad. Follow T1-T7 gates in Tanvir.md and preserve10of12FAIL/51989ms tail.",
+  "next_step": "Start T1 saved Reporting denied/unknown diagnostic, coordinate capacity with Saad, and follow the explicit Ahnaf carryover checklist for later learning/demo/release evidence.",
   "evidence": [
     ".gitignore",
     "03_LOCAL_RED_AGENT_RUNTIME_PROMPT.md",

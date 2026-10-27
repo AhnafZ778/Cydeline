@@ -35,7 +35,7 @@ harness check run .
 
 - **Goal:** Deliver the bounded local AI adversary service (services/red-agent/), two-stage safety validator, and empirical benchmark suite (tests/agent/, docs/model-card/).
 - **IMMEDIATE NEXT STEP (`next_step`):**
-  > **Start T1: reproduce saved Reporting service-dependent denied/unknown modelchoice diagnostic; coordinate modelcapacity/preflight with Saad. Follow T1-T7 gates in Tanvir.md and preserve10of12FAIL/51989ms tail.**
+  > **Start T1 saved Reporting denied/unknown diagnostic, coordinate capacity with Saad, and follow the explicit Ahnaf carryover checklist for later learning/demo/release evidence.**
 
 ---
 
@@ -60,6 +60,7 @@ harness check run .
 - [x] Local Windows workstation setup completed: official2022evaluationDesktopExperience actually booted via KVM and finalizedbase, then viaToolWorker; GuacAPI auth/VNC, readOnlymounts, capdropALL/noNIC, unchangedbase and ownvalidationcleanup verified. Privateimagepersisted forpreview5188; workerlaunchabletrue. Independentprep/permission/diagnosticreview25focusedtestsPASS; browserSandboxrender/inputunverified due toolURLpolicy. Aobserver scopedPASS preserved; fullB/C/modelquality gates remain.
 - [x] Lean shell/instructor UI cleanup changes no attacker policy/model capability. Live trainee strategy remains denied, observer recording optional and playback lazy-loaded; local Windows persisted across preview restart.
 - [x] User unavailable-lead handoff: Tanvir.md replaced obsolete scaffolding/fallback checklist with completedbaseline and T1-T7 adaptation, coachingload, pinnedmodel/contracts, timedcapabilities, restrictedscript/mailgeneration, fullqualityevidence and deferredpilot readiness. Saad isintegrationpartner; no Ahnaf dependency or Ahnaf.md edit.
+- [x] Explicitly transferred Ahnaf unfinished AI integration sign-off, educational review, pilot/rubric readiness, demo narrative/claim accuracy and AI release evidence to Tanvir.md; protected Ahnaf.md and retained existing failures/deferred pilot.
 
 ### Remaining Work (`remaining`)
 - [ ] Resolve AI-LEARN-01: both Reporting service-dependent repeats fail adaptation; final full objective gate is 10 passed / 2 failed.
