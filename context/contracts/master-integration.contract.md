@@ -114,3 +114,7 @@ User explicitly requested “set it up for me” after the host/image prerequisi
 
 ## 2026-10-25 authorized lean shell and local demo access
 The current user requests reduced navigation, immersive Windows, briefing before launch, separate instructor mode and password-free local testing. Apply `context/contracts/lean-shell-2026-10-25.contract.md`; it supersedes conflicting all-links-visible/repeated-briefing requirements. Preserve scoring, normal deployed authentication, live audience privacy and prior failed/unverified gates.
+
+
+## 2026-10-27 unavailable-lead handoff
+User states Ahnaf implemented the current baseline and will be unavailable. Current remaining-work ownership is specified in `Tanvir.md` and `Saad.md`: Tanvir leads AI/adaptation/coaching/model evidence and learning-quality readiness; Saad leads infrastructure/authority/integration and all remaining VMobserver/timedfrontend/accessibility/operations work, coordinating directly with Tanvir without an Ahnaf dependency. Do not edit `Ahnaf.md`. This documentation handoff changes neither executable permissions nor canonical schemas and preserves all failed/unverified gates, deferred pilot, and explicit purchase/deployment/contact boundaries.

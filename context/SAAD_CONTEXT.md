@@ -5,7 +5,7 @@
 |---|---|
 | **Segment / Task ID** | `saad-range-control` |
 | **Assigned Owner** | Saad (Virtual Company Cyber Range & Trusted Control Plane Owner) |
-| **Active Lifecycle Phase** | **`EVALUATE`** (`PLAN` → `IMPLEMENT` → `EVALUATE`) |
+| **Active Lifecycle Phase** | **`PLAN`** (`PLAN` → `IMPLEMENT` → `EVALUATE`) |
 | **Primary Handover Spec** | `Saad.md` |
 | **Task Contract (`harness-plan`)** | `context/contracts/saad-range-control.contract.md` |
 | **Evaluation Record (`harness-evaluate`)** | `context/evaluations/saad-range-control.eval.md` |
@@ -35,7 +35,7 @@ harness check run .
 
 - **Goal:** Deliver canonical contracts (contracts/, scenarios/), the isolated Northstar Analytics target range (apps/target-api/, infra/range/), and the trusted control plane with SSE, verification, 100-pt scoring, and replay (apps/control-api/).
 - **IMMEDIATE NEXT STEP (`next_step`):**
-  > **Local demo access complete; preserve normal accesscodes outside localrunner. ExpandedB dedicatedhost qualification andVMrecording/timedC remain next, actualliveWindowsbrowserinput manualcheckpending.**
+  > **Start S1/S2: humancheck installedWindowsbrowser and inventory/failclosed readiness for proposedexpandedhost; coordinate pinnedmodelcapacity withTanvir. Own remainingfrontend/integration withoutwaitingforAhnaf, per Saad.md.**
 
 ---
 
@@ -62,6 +62,7 @@ harness check run .
 - [x] Local Windows workstation setup completed: official2022evaluationDesktopExperience actually booted via KVM and finalizedbase, then viaToolWorker; GuacAPI auth/VNC, readOnlymounts, capdropALL/noNIC, unchangedbase and ownvalidationcleanup verified. Privateimagepersisted forpreview5188; workerlaunchabletrue. Independentprep/permission/diagnosticreview25focusedtestsPASS; browserSandboxrender/inputunverified due toolURLpolicy. Aobserver scopedPASS preserved; fullB/C/modelquality gates remain.
 - [x] Added loopback-only local-demo session role endpoint, cookie rotation with stale in-flight credential revocation, offhost/demo-disabled demotion and observer fence. Independent scoped access review47PASS; runner disables forwarded proxy trust, bypasses ambient HTTP proxy for target readiness, and preserves existing practice/Windows on restart.
 - [x] Final lean local access and launcher checks accepted: scoped independent47API, fullbackend400+18subtests, browser34+observer2 andbuildPASS; loopbackdemo preview preservedexistingrun/Windows. UIv3 accepted3.
+- [x] User unavailable-lead handoff: Saad.md now owns S1-S11 Windowsinput/licensing,Bhost/topology/VMobserverandfrontend,Cauthority/tools/timedUI,fullqualification,operations/accessibility/teststorage/demo coordination. CompletedAhnaf baseline retained; Tanvir ownsAI/learningquality; pilotstilldeferred andAhnaf.md protected.
 
 ### Remaining Work (`remaining`)
 - [ ] Model-container isolation and public-deployment verification remain separate, unperformed release gates.
@@ -128,6 +129,7 @@ harness check run .
 - 04_OWNER_A_CYBER_RANGE.md
 - 06_OWNER_C_CONTROL_SCORING.md
 - Saad.md
+- Tanvir.md
 - context/contracts/saad-range-control.contract.md
 - context/evaluations/saad-range-control.eval.md
 - docs/demo/lean-shell/access-review.md

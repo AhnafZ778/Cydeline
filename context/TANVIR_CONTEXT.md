@@ -5,7 +5,7 @@
 |---|---|
 | **Segment / Task ID** | `tanvir-red-agent` |
 | **Assigned Owner** | Tanvir (Local AI Red-Team Engine Owner) |
-| **Active Lifecycle Phase** | **`EVALUATE`** (`PLAN` → `IMPLEMENT` → `EVALUATE`) |
+| **Active Lifecycle Phase** | **`PLAN`** (`PLAN` → `IMPLEMENT` → `EVALUATE`) |
 | **Primary Handover Spec** | `Tanvir.md` |
 | **Task Contract (`harness-plan`)** | `context/contracts/tanvir-red-agent.contract.md` |
 | **Evaluation Record (`harness-evaluate`)** | `context/evaluations/tanvir-red-agent.eval.md` |
@@ -35,7 +35,7 @@ harness check run .
 
 - **Goal:** Deliver the bounded local AI adversary service (services/red-agent/), two-stage safety validator, and empirical benchmark suite (tests/agent/, docs/model-card/).
 - **IMMEDIATE NEXT STEP (`next_step`):**
-  > **Retain10/12 objectiveFAIL and51989mscoach tail; qualify expandedmodel only after sealedB host available. Lean UI completion does not change model acceptance.**
+  > **Start T1: reproduce saved Reporting service-dependent denied/unknown modelchoice diagnostic; coordinate modelcapacity/preflight with Saad. Follow T1-T7 gates in Tanvir.md and preserve10of12FAIL/51989ms tail.**
 
 ---
 
@@ -59,6 +59,7 @@ harness check run .
 - [x] Milestone A restricted observer implemented and independently evaluated: backend scopedPASS69focusedtests, UIv2 scopedPASS with all prior findings resolved; observer23/frontend54/build/browser25+2 and actual local-model wiring pass. Native full382+18subtests, typecheck/contextsync and evaluate pass at recorded A snapshot. Evidence docs/product/AI_OBSERVER_BUILD_LOG.md; no B/C, Windows desktop or model-quality acceptance implied.
 - [x] Local Windows workstation setup completed: official2022evaluationDesktopExperience actually booted via KVM and finalizedbase, then viaToolWorker; GuacAPI auth/VNC, readOnlymounts, capdropALL/noNIC, unchangedbase and ownvalidationcleanup verified. Privateimagepersisted forpreview5188; workerlaunchabletrue. Independentprep/permission/diagnosticreview25focusedtestsPASS; browserSandboxrender/inputunverified due toolURLpolicy. Aobserver scopedPASS preserved; fullB/C/modelquality gates remain.
 - [x] Lean shell/instructor UI cleanup changes no attacker policy/model capability. Live trainee strategy remains denied, observer recording optional and playback lazy-loaded; local Windows persisted across preview restart.
+- [x] User unavailable-lead handoff: Tanvir.md replaced obsolete scaffolding/fallback checklist with completedbaseline and T1-T7 adaptation, coachingload, pinnedmodel/contracts, timedcapabilities, restrictedscript/mailgeneration, fullqualityevidence and deferredpilot readiness. Saad isintegrationpartner; no Ahnaf dependency or Ahnaf.md edit.
 
 ### Remaining Work (`remaining`)
 - [ ] Resolve AI-LEARN-01: both Reporting service-dependent repeats fail adaptation; final full objective gate is 10 passed / 2 failed.
@@ -125,6 +126,7 @@ harness check run .
 - .gitignore
 - 03_LOCAL_RED_AGENT_RUNTIME_PROMPT.md
 - 05_OWNER_B_LOCAL_AI_RED_TEAM.md
+- Saad.md
 - Tanvir.md
 - context/contracts/tanvir-red-agent.contract.md
 - context/evaluations/tanvir-red-agent.eval.md

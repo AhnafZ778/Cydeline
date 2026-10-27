@@ -1,6 +1,6 @@
 {
   "task": "saad-range-control",
-  "phase": "EVALUATE",
+  "phase": "PLAN",
   "goal": "Deliver canonical contracts (contracts/, scenarios/), the isolated Northstar Analytics target range (apps/target-api/, infra/range/), and the trusted control plane with SSE, verification, 100-pt scoring, and replay (apps/control-api/).",
   "acceptance": [
     "SL-001: Canonical enums, schemas, and scenario v1 fixtures published in contracts/ and scenarios/stolen-session/v1/",
@@ -47,7 +47,8 @@
     "Official Microsoft Server2022evaluationISO downloaded (5044094976bytes SHA2563e4fa6d8507b554856fc9ca6079cc402df11a8b79344871669f0251535255325); WIMindex2GUI Server verified. Real KVM Windows desktop observed via private QMP screenshot, clean shutdown and qemu-imgcheck passed; standalone9.7GBphysicalbase finalized .runtime/windows/windows.qcow2. Previewworker restarted with persisted --windows-image. Prep6safetytests+18optionaltools and independent source review pass. Browser tool refuses local app navigation; no browser workaround attempted.",
     "Local Windows workstation setup completed: official2022evaluationDesktopExperience actually booted via KVM and finalizedbase, then viaToolWorker; GuacAPI auth/VNC, readOnlymounts, capdropALL/noNIC, unchangedbase and ownvalidationcleanup verified. Privateimagepersisted forpreview5188; workerlaunchabletrue. Independentprep/permission/diagnosticreview25focusedtestsPASS; browserSandboxrender/inputunverified due toolURLpolicy. Aobserver scopedPASS preserved; fullB/C/modelquality gates remain.",
     "Added loopback-only local-demo session role endpoint, cookie rotation with stale in-flight credential revocation, offhost/demo-disabled demotion and observer fence. Independent scoped access review47PASS; runner disables forwarded proxy trust, bypasses ambient HTTP proxy for target readiness, and preserves existing practice/Windows on restart.",
-    "Final lean local access and launcher checks accepted: scoped independent47API, fullbackend400+18subtests, browser34+observer2 andbuildPASS; loopbackdemo preview preservedexistingrun/Windows. UIv3 accepted3."
+    "Final lean local access and launcher checks accepted: scoped independent47API, fullbackend400+18subtests, browser34+observer2 andbuildPASS; loopbackdemo preview preservedexistingrun/Windows. UIv3 accepted3.",
+    "User unavailable-lead handoff: Saad.md now owns S1-S11 Windowsinput/licensing,Bhost/topology/VMobserverandfrontend,Cauthority/tools/timedUI,fullqualification,operations/accessibility/teststorage/demo coordination. CompletedAhnaf baseline retained; Tanvir ownsAI/learningquality; pilotstilldeferred andAhnaf.md protected."
   ],
   "remaining": [
     "Model-container isolation and public-deployment verification remain separate, unperformed release gates.",
@@ -60,11 +61,12 @@
     "Current proof covers target/control Docker isolation, not model-container isolation. Optional Windows boot still requires a prepared qcow2 image.",
     "User explicitly chose Leave the pilot kit ready on 24 October 2026; actual participant usefulness, transfer and delayed retention remain unobserved future work."
   ],
-  "next_step": "Local demo access complete; preserve normal accesscodes outside localrunner. ExpandedB dedicatedhost qualification andVMrecording/timedC remain next, actualliveWindowsbrowserinput manualcheckpending.",
+  "next_step": "Start S1/S2: humancheck installedWindowsbrowser and inventory/failclosed readiness for proposedexpandedhost; coordinate pinnedmodelcapacity withTanvir. Own remainingfrontend/integration withoutwaitingforAhnaf, per Saad.md.",
   "evidence": [
     "04_OWNER_A_CYBER_RANGE.md",
     "06_OWNER_C_CONTROL_SCORING.md",
     "Saad.md",
+    "Tanvir.md",
     "context/contracts/saad-range-control.contract.md",
     "context/evaluations/saad-range-control.eval.md",
     "docs/demo/lean-shell/access-review.md",

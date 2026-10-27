@@ -1,6 +1,6 @@
 {
   "task": "tanvir-red-agent",
-  "phase": "EVALUATE",
+  "phase": "PLAN",
   "goal": "Deliver the bounded local AI adversary service (services/red-agent/), two-stage safety validator, and empirical benchmark suite (tests/agent/, docs/model-card/).",
   "acceptance": [
     "FR-B01/B02: Single local quantized model (Qwen3-1.7B Q4 via Ollama) operating sequentially as scout, access_operator, and adaptation_planner",
@@ -44,7 +44,8 @@
     "Saved independently approved observer/range design: actual sanitized model inputs/final output/declared intent and decision-job-target provenance, no private reasoning or invented adaptation. Runtime code unchanged; 1.7b failure preserved.",
     "Milestone A restricted observer implemented and independently evaluated: backend scopedPASS69focusedtests, UIv2 scopedPASS with all prior findings resolved; observer23/frontend54/build/browser25+2 and actual local-model wiring pass. Native full382+18subtests, typecheck/contextsync and evaluate pass at recorded A snapshot. Evidence docs/product/AI_OBSERVER_BUILD_LOG.md; no B/C, Windows desktop or model-quality acceptance implied.",
     "Local Windows workstation setup completed: official2022evaluationDesktopExperience actually booted via KVM and finalizedbase, then viaToolWorker; GuacAPI auth/VNC, readOnlymounts, capdropALL/noNIC, unchangedbase and ownvalidationcleanup verified. Privateimagepersisted forpreview5188; workerlaunchabletrue. Independentprep/permission/diagnosticreview25focusedtestsPASS; browserSandboxrender/inputunverified due toolURLpolicy. Aobserver scopedPASS preserved; fullB/C/modelquality gates remain.",
-    "Lean shell/instructor UI cleanup changes no attacker policy/model capability. Live trainee strategy remains denied, observer recording optional and playback lazy-loaded; local Windows persisted across preview restart."
+    "Lean shell/instructor UI cleanup changes no attacker policy/model capability. Live trainee strategy remains denied, observer recording optional and playback lazy-loaded; local Windows persisted across preview restart.",
+    "User unavailable-lead handoff: Tanvir.md replaced obsolete scaffolding/fallback checklist with completedbaseline and T1-T7 adaptation, coachingload, pinnedmodel/contracts, timedcapabilities, restrictedscript/mailgeneration, fullqualityevidence and deferredpilot readiness. Saad isintegrationpartner; no Ahnaf dependency or Ahnaf.md edit."
   ],
   "remaining": [
     "Resolve AI-LEARN-01: both Reporting service-dependent repeats fail adaptation; final full objective gate is 10 passed / 2 failed.",
@@ -57,11 +58,12 @@
     "Final current-source objective matrix and v8semantic measurement are pending. Existing CPU evidence uses Qwen3:1.7b Q4_K_M on i5-1235U,12logicalCPUs,~16GBRAM; unsupported generalization remains prohibited.",
     "User explicitly chose Leave the pilot kit ready on 24 October 2026; actual participant usefulness, transfer and delayed retention remain unobserved future work."
   ],
-  "next_step": "Retain10/12 objectiveFAIL and51989mscoach tail; qualify expandedmodel only after sealedB host available. Lean UI completion does not change model acceptance.",
+  "next_step": "Start T1: reproduce saved Reporting service-dependent denied/unknown modelchoice diagnostic; coordinate modelcapacity/preflight with Saad. Follow T1-T7 gates in Tanvir.md and preserve10of12FAIL/51989ms tail.",
   "evidence": [
     ".gitignore",
     "03_LOCAL_RED_AGENT_RUNTIME_PROMPT.md",
     "05_OWNER_B_LOCAL_AI_RED_TEAM.md",
+    "Saad.md",
     "Tanvir.md",
     "context/contracts/tanvir-red-agent.contract.md",
     "context/evaluations/tanvir-red-agent.eval.md",

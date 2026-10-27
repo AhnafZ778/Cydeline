@@ -1,87 +1,129 @@
-# Saad — Virtual Company Cyber Range & Trusted Control Plane (Target, Referee & Scoring)
+# Saad — Range, integration and completion handoff
 
-**Role:** Backend Architecture, Isolated Virtual Company & Game Referee Owner  
-**Harness Task ID:** `saad-range-control`  
-**Live Harness Context File:** `context/SAAD_CONTEXT.md` | **Task Contract:** `context/contracts/saad-range-control.contract.md` | **Evaluation Ledger:** `context/evaluations/saad-range-control.eval.md`  
-**Companion Reference Docs:** `00_READ_ME_FIRST.md`, `01_PRODUCT_REQUIREMENTS_DOCUMENT.md`, `04_OWNER_A_CYBER_RANGE.md`, `06_OWNER_C_CONTROL_SCORING.md`, `Agent_Instructions/SKILL.md`  
-**Folders You Own:** `contracts/`, `scenarios/stolen-session/v1/`, `apps/target-api/`, `infra/range/`, `apps/control-api/`, `tests/target/`, `tests/control/`, `tests/isolation/`
+**Updated:** 27 October 2026 (Asia/Dhaka)
+**Primary owner:** Saad · **AI/learning-quality partner:** Tanvir
+**Task:** `saad-range-control`; also coordinate `master-integration` and delegated UI work
+[Live context](context/SAAD_CONTEXT.md) · [Contract](context/contracts/saad-range-control.contract.md) · [Evaluation ledger](context/evaluations/saad-range-control.eval.md)
 
----
+## Start here: take over integration without Ahnaf
 
-## 1. High-Level Mission (In Plain English)
+Ahnaf has carried the implementation to the current published baseline and is unavailable for the remaining work. **Saad owns completion/integration, including the remaining observer/frontend work listed below; do not leave those tasks waiting for Ahnaf.** Tanvir owns the model, adaptation, coaching and generated-artifact quality in [Tanvir.md](Tanvir.md). Leave `Ahnaf.md` unchanged, preserve its implemented UI, and coordinate through current contracts/context.
 
-You own the entire backend engine of Sentinel Loop, which has two connected halves:
+This file supersedes its original build-from-scratch checklist. It is a current handoff, not a statement that future range/timing/security gates pass. [REMAINING_WORK.md](docs/product/REMAINING_WORK.md) is the complete backlog; [AI_OBSERVER_RANGE_PLAN.md](docs/product/AI_OBSERVER_RANGE_PLAN.md) is the detailed accepted B/C specification. Do not implement a looser substitute for it.
 
-1. **The Virtual Company (`apps/target-api/` & `infra/range/` — Workstream A):**
-   You build the miniature simulated company (*Northstar Analytics*) that is being attacked and defended. It has real login sessions, real access checks, a confidential finance document (`doc_finance_07`), a compromised employee (`maya@northstar.test` using stolen session `sess_A`), and a normal employee (`eli@northstar.test`) whose daily work must stay running.
-2. **The Trusted Referee & Scoreboard (`apps/control-api/`, `contracts/`, `scenarios/` — Workstream C):**
-   You build the central game referee that coordinates every turn between **Tanvir’s AI Intruder** and **Ahnaf’s Defender Dashboard**. It records every event in an unchangeable timeline, streams live alerts to Ahnaf’s screen, checks whether the player actually stopped the attack without breaking normal business, calculates the **0–100 report card**, and powers **Instant Replay** and **1-Click Reset**.
+```bash
+python3 scripts/harness_sync.py status
+python3 scripts/harness_sync.py takeover --task saad-range-control
+harness context resume . --task saad-range-control
+git status --short
+```
 
----
+Read your live context/contract, master context/contract, Tanvir's handoff and the current evidence. Published baseline: `c478529` on `chore/publish-workstreams`; reconcile later commits before editing.
 
-## 2. What You Deliver by the End
+## What Ahnaf has already delivered — do not rebuild
 
-### Part 1: Shared Rules & Scenario Config (`contracts/`, `scenarios/stolen-session/v1/`)
-- **Canonical Contracts (`contracts/`):** The shared enums and data models (`RunState`, `Outcome`, `Mode`, `AttackerAction`, `DefenderAction`, `Verification`, Event Envelope, and AI Proposal Envelope) that you, Tanvir, and Ahnaf all import.
-- **Scenario v1 (`scenarios/stolen-session/v1/`):** The configuration for *"The Stolen Session"* and the rules for the 100-point grading rubric.
+- Two actual local-AI scenario paths, variant manifests, isolated target access controls/audits, trusted run orchestration, cases/evidence/worksheets, response/recovery/scoring, progress, coaching scaffolds and terminal replay/export.
+- Profiles/cohorts/assignments/injects and a separate instructor shell; server-enforced live AI audience separation, restricted observer grants, encrypted retained provenance and optional masked exercise-tab/cursor capture. Current observer is not a Windows screen recorder.
+- Genuine Windows Server 2022 Evaluation Desktop Experience base installed and booted via KVM/ToolWorker; gateway API/display, read-only base/evidence, no guest NIC and scratch/cleanup checks recorded. Actual embedded browser input remains unverified.
+- Lean navigation, immersive/minimizable workspace preserving the iframe, explicit reconnect, loopback-only password-free demo mode, and wide scrollable highlighted briefing dialogs for library/assigned starts. Preserve these instead of restoring the old clunky shell.
+- Recorded baseline: **400 backend tests +18 subtests,54 frontend tests,build/native Harness PASS**. Lean browser 34 + observer 2 and later briefing 15 / independent 11 have separately scoped evidence.
 
-### Part 2: The Isolated Virtual Company (`apps/target-api/`, `infra/range/`)
-- **Real Session & Document Access:**
-  - Before containment, a request using `sess_A` can inspect session status, list documents, and read `doc_finance_07`.
-  - When `revoke_session` is applied to `sess_A`, the very next request using `sess_A` is genuinely **denied** by the target server.
-  - Meanwhile, unaffected coworker `eli@northstar.test` can still access his allowed documents.
-  - If the defender uses `temporarily_disable_account` on Maya instead, Maya’s legitimate work is also disrupted until `restore_account` is called.
-- **Target Audit Logs:** Every allowed or denied action creates a real audit log entry with a `correlation_id` and `target_audit_id`.
-- **Target Adapter (7 Internal Functions):**
-  - `create_fresh_target(run_id, seed, scenario_version)`
-  - `execute_allowlisted_attacker_action(run_id, action, handles)`
-  - `apply_defender_action(run_id, action, target)`
-  - `get_target_events(run_id, cursor)`
-  - `check_suspicious_session_denied(run_id)`
-  - `check_benign_workflow(run_id)`
-  - `destroy_target(run_id)`
-- **Sandbox Safety & 1-Click Clean Reset:** The target runs in an isolated container/environment with no internet access and can be reset 10 times in a row with zero leftover sessions from old runs.
+## Your remaining work, in delivery order
 
-### Part 3: The Referee, Live Stream & 100-Point Scorer (`apps/control-api/`)
-- **Database & Event Timeline (SQLite WAL):** Stores `runs`, `events` (with monotonic `sequence` per run), `agent_decisions`, `defender_actions`, `declarations`, `evidence_links`, `health_checks`, and `scores`.
-- **Turn Orchestrator:** Takes a validated move from **Tanvir’s AI**, executes it against your **Virtual Company** via the Target Adapter, and saves the correlated audit event.
-- **Browser API & Live Stream for Ahnaf’s Dashboard:**
-  - `POST /api/runs` & `POST /api/runs/{run_id}/start` — Create and start a drill
-  - `GET /api/runs/{run_id}/events` & `GET /api/runs/{run_id}/stream` — Paginated events + live Server-Sent Events (SSE) stream
-  - `POST /api/runs/{run_id}/declare` — Validate that the clue IDs the player submitted actually exist and were visible in this run
-  - `POST /api/runs/{run_id}/defender-actions` — Execute player containment actions safely (with idempotency so double-clicks don't apply twice)
-  - `POST /api/runs/{run_id}/verify` — Run both live checks (`verify_suspicious_session_denied` + `verify_benign_workflow`)
-  - `GET /api/runs/{run_id}/debrief` — Compute and return the 100-point scorecard:
-    - Recognition & Evidence: **20 pts**
-    - Effective Containment: **25 pts**
-    - Recovery Verification: **20 pts**
-    - Business Continuity (Eli’s workflow): **15 pts**
-    - Proportionality (avoiding unnecessary shutdown): **10 pts**
-    - Response Timeliness (based on virtual scenario clock, excluding AI thinking delay): **10 pts**
-  - `GET /api/runs/{run_id}/replay` — Return the recorded match history without re-running the AI or target
-  - `POST /api/runs/{run_id}/reset` & `GET /api/health`
+### S1 — Actual Windows check and sustainable image (P0)
 
----
+- [ ] Human-check actual embedded Windows display, keyboard/mouse, reconnect, minimize/resume and stop on the real guest. Earlier tool refusal must not be bypassed through another automation route; supported worker/API/VM proof and fixture UI checks are distinct evidence.
+- [ ] Preserve `.runtime/windows/windows.qcow2`, private `.runtime/windows/credentials.json` and the configured `.runtime/observer-preview`. Do not rerun installation over the finalized image or expose its credentials/base to Git.
+- [ ] Resolve authorized activation or compatible licensed media for continued use. Current official Server2022evaluation stayed offline/unactivated; no licensing bypass and no Internet access from an exercise guest. Read [WINDOWS_VM.md](docs/product/WINDOWS_VM.md).
+- [ ] Preserve active user work. Current preview is 5188, control 28000, target 28001, worker 28002; restart the same saved runtime only after inspecting current runs. Password-free switching is loopback-only; `--require-access-codes` disables it.
 
-## 3. How You Work in Parallel (Zero Waiting on Ahnaf or Tanvir)
+### S2 — Qualified host and fail-closed provisioning (B)
 
-1. **Step 1 — Publish `contracts/` and Sample JSON First (Day 1 Priority):**
-   Create `contracts/` with the shared Pydantic/JSON schemas and give Ahnaf static JSON examples of the `/api/runs/*` responses so Ahnaf can build the UI immediately, and give Tanvir the `AttackerProposal` schema so Tanvir can build the AI immediately.
-2. **Step 2 — Build & Test the Virtual Company Standalone (`apps/target-api/`):**
-   Build the Northstar Analytics FastAPI app and write automated tests (`tests/target/`) proving that `sess_A` works before revocation, fails after revocation, and Eli's workflow keeps working.
-3. **Step 3 — Build the Control Plane Using a Mock AI First (`apps/control-api/`):**
-   Before plugging in Tanvir’s live Ollama service, test the entire Control Plane using a simple dummy function that proposes `inspect_session_status` → `list_accessible_documents` → `request_document`.
-4. **Step 4 — Plug in Tanvir’s AI & Ahnaf’s Dashboard:**
-   Connect Tanvir’s `choose_action()` function into your orchestrator loop and let Ahnaf’s frontend connect to your `/api/runs/*` endpoints.
+- [ ] Implement actual host inventory/readiness: KVM, image validity/permissions, free disk, real per-component memory/CPU allocation plus host reserve, model digest/readiness and isolation capability. Missing or unqualified prerequisites disable expanded launch with exact reasons.
+- [ ] Obtain/configure a suitable dedicated host; none is currently connected. Provisional accepted envelope is32 GiB RAM, eight logical CPUs, KVM, SSD, with actual workload headroom proven. Current laptop measurements do not qualify the complete topology. No paid/cloud purchase is automatically authorized.
+- [ ] Coordinate model allocation with Tanvir before running a larger model or claiming capacity. Preserve existing optional Windows/Elastic profiles and one-active-company behavior.
 
----
+**First atomic action:** inventory/preflight the proposed expanded host and document each missing prerequisite; independently human-check the installed local Windows browser while host provisioning is blocked.
 
-## 4. Your Step-by-Step Checklist
+### S3 — Sealed company, script, Windows and model zones (B)
 
-- [ ] **1. Freeze Shared Contracts (`SL-001`):** Create monorepo folders and write canonical enums and Pydantic models in `contracts/`. Share sample JSON payloads with Ahnaf and Tanvir.
-- [ ] **2. Build Virtual Company Target (`SL-002`, `SL-006`):** Build `apps/target-api/` with seeded users (`maya`, `eli`), session `sess_A`, protected file `doc_finance_07`, real session revocation, Eli's benign workflow probe, and target audit logs.
-- [ ] **3. Build Control Plane & SQLite Store (`SL-004`):** Build `apps/control-api/` with SQLite tables, run state machine, and the Target Adapter connecting Control API to Target API.
-- [ ] **4. Build Live Stream, Declaration & Containment Endpoints (`SL-008`):** Implement `/events`, `/stream` (SSE), `/declare`, `/defender-actions` (with idempotency), and `/verify` (running both live target probes).
-- [ ] **5. Connect Tanvir’s AI (`SL-007`):** Wire Tanvir’s `services/red-agent/` into your turn scheduler so AI moves hit the Target API and generate correlated events.
-- [ ] **6. Build 100-Point Scoring & Instant Replay (`SL-010`):** Implement the 100-point rubric, outcome gates (`defended_and_recovered`, `contained_but_disrupted`, `attacker_objective_reached`), and read-only `/replay`.
-- [ ] **7. Isolation & 10x Reset Verification (`SL-012`):** Prove `reset` works cleanly 10 times in a row (`tests/target/`) and verify container network isolation (`tests/isolation/`).
+- [ ] Provision immutable bases and disposable per-run overlays: trusted supervisor/control/model services, private company guest, no-NIC restricted-script guest/broker channel, and Windows workstation restricted to required company endpoints.
+- [ ] Deny Internet/LAN/host-management/cloud-metadata/IPv6/cross-run routes, not just outward bridge traffic. Seal the model zone too; prepare weights/packages/assets before a run. No runtime downloads/CDN/telemetry/externalSMTP/cloudfallback.
+- [ ] Keep provisioning credentials, host filesystem, Docker socket, target/scoring DB and management APIs outside model/generated-code/guest access. Registry resolves all reviewed destinations; participant/model text cannot supply arbitrary endpoints or exempt identities.
+- [ ] Bind run/actor/commandID/idempotency/epoch/jobgeneration outside model-controlled fields. Validate both schema and capability/handle policy at every leaf operation.
+
+### S4 — Read-only real VM observation and replay (B; includes frontend ownership)
+
+- [ ] Add authenticated per-run Windows screen streaming/recording to the existing instructor split view. Trainees control their own VM; instructors/assigned observers get a separately enforced **read-only** stream with no input/clipboard channel.
+- [ ] Implement grant expiry/revocation during streaming, wrong-run/media/export/SSE rejection, reconnect, segment/gap markers, storage reservation/quotas/retention and terminal playback. Keep learner live strategy denied in both practice/assessment and own-terminal review permitted.
+- [ ] Preserve optional capture consent and blocked private input/notes, no personal desktop/camera/microphone. Keep actual prompts/final outputs/proposals/rejections/dispatch/target confirmations distinct; never expose private chain-of-thought or fabricate thoughts/typing.
+- [ ] Own the necessary changes in `apps/web/` and browser tests while Ahnaf is away. Keep the accepted light operational theme, four main destinations, More tools/resources, separate instructor shell and immersive Windows behavior.
+
+### S5 — Full B acceptance before enabling expanded launch
+
+- [ ] Prove actual trainee input versus observer read-only behavior; run host/LAN/Internet/metadata/IPv6/cross-run denial, resource exhaustion and privilege-boundary tests.
+- [ ] Exercise the complete topology with actual Windows/company/script guests, model, capture, one trainee, one instructor and two observers. Targets: decision p95 ≤10 s with 30 s deadline, event delivery ≤1 s, tab/VM view p95 ≤2 s on LAN; Tanvir supplies model evidence. Measure all failures and host/source/configuration identity.
+- [ ] Perform10 clean resets with no stale overlays, handles, grants, sessions or cross-run artifacts. Existing smaller container/optional-VM proofs do not establish these new gates.
+- [ ] Obtain fresh independent evaluation and retain failed receipts. B remains disabled until its actual host/isolation/model/load gates pass.
+
+### S6 — Trusted 15 active-minute clock, command ledger and verdict (C)
+
+- [ ] Version target authority for monotonic active clock, one-second controller heartbeat, three-second lease expiry, epochs, command ledger, transactional effects/audit/health transitions and idempotent results. Refactor nested `benign()`→`request()` transaction commits before relying on atomicity.
+- [ ] Acquire the write transaction before reading deadline/epoch/world state; perform the final fresh validation at the linearization point. Keep inference/VM/network waits outside it. Every web/mail/click/defense entrypoint uses the same trusted handlers.
+- [ ] Reconcile unknown acknowledgments by commandID; fence stale/cancelled/late commands. Pause/deadline barriers are serialized with effects. Preserve a committed breach across faults; never award a win while effects are uncertain.
+- [ ] Count normal inference against the 15 minutes; enforce 30 s model deadline. Verified technical fault pauses require acknowledged target barrier, ≤60 s wall time per pause and ≤120 s cumulative; unresolved faults become technical failure. Restart/suspension/authority loss cannot reconstruct time to award a win.
+- [ ] Enforce no-breach survival plus **≥171/180**fresh business bundles at 5 s intervals,**≤30 active seconds**continuous business disruption and a healthy final 900 s bundle exactly once. Use transactional health transitions for outage duration. Missing/late probes are authority faults, not fabricated backfilled health.
+- [ ] Add versioned defended/breached/continuity_failed/aborted/technical_failure semantics while preserving canonical lifecycle compatibility. Timed verdict is separate from the100-point formative learning score; old rubric timing must not silently govern new timed survival.
+
+### S7 — Capability broker, restricted interpreter and internal mail (C)
+
+- [ ] Agree versioned tool/observation schemas with Tanvir first; update `contracts/`, schema exports and the master contract. Preserve current six-action scenario compatibility and existing authoritative validation/scoring.
+- [ ] Implement one in-flight model/job and shared token bucket capacity 1: Easy ≤1 operation/10 active seconds, Medium ≤1/5, Hard ≤1/3. All script leaf calls/mail deliveries consume the same adversary budget; only trusted server probes/defender responses are exempt. Continue permitted blocked-state observation every 15 active seconds.
+- [ ] Execute a finite Python-shaped AST, **never unrestricted Python `exec`**. Reviewed assignments/literals/collections/conditionals/comparisons and exact `lab.<tool>` calls only; reject loops/functions/classes/imports/dunders/reflection/files/OS/process/socket access.
+- [ ] Enforce16 KiB source,8 leaf tool calls/job,30 s wall time,1 CPU,256 MiB RAM,16 MiB scratch,64 KiB output/individual result and128 KiB channel message from parsing through output. Unprivileged guest, broker-held credentials, late-generation fencing and independent validation for every leaf.
+- [ ] Add plain-text internal fictional mail, approved roster/in-lab link only,≤3deliveries/round, no attachments/active HTML/outside URLs. Click grants at most one scoped synthetic session per recipient/round, honoring disabled accounts/reauthentication. Quarantine/blocked links have no effect; click alone never equals breach.
+- [ ] Provide versioned defender mail-quarantine/link-block controls, real artifacts/status/audits and truthful source labels. Tanvir supplies generation/quality; Saad owns effects, isolation and UI integration.
+
+### S8 — Timed UI, debrief and integration (Saad owns the remaining UI)
+
+- [ ] Extend the existing pre-start briefings with difficulty/capabilities, mail mechanics and exact continuity rules before Begin. Display authoritative clock, pause/fault/connection status and server-confirmed responses without covering the focused workspace.
+- [ ] Extend instructor observation with actual code/mail/job outcomes and trainee/VM activity; preserve read-only/role boundaries and the separate instructor layout.
+- [ ] Implement precise result explanations, failed continuity condition/bundle count/longest disruption/final workflow evidence, and causal read-only timed replay/export. Preserve acknowledged notes, drafts, worksheets and old scenario URLs/modes.
+- [ ] Coordinate frontend/shared-file ownership explicitly with Tanvir; do not wait for changes to `Ahnaf.md` or a response from Ahnaf. Inspect current source because old original owner docs predate this reassignment.
+
+### S9 — Security, fault and genuine timed acceptance
+
+- [ ] With Tanvir run real 15 minute scenarios across three seeds/difficulty: no-defense objective, blocked-route feasible alternative, all-blocked denial through deadline, actual Hard mail/scripts. No injected fallback attacks or model claims counted as target success.
+- [ ] Test concurrent defense/protected reads, pause/deadline acceptance races, duplicate/lost acknowledgment, cancellation/late calls, nested-budget bypass, target/control restart, host suspension, delayed probes, storage full and streaming grant revocation.
+- [ ] Test171 versus 170 bundles,exactly 30 s versus >30 s outage, disable/restore, final unhealthy workflow and no compromised-access resurrection. Replay reproduces the recorded result without model/target side effects.
+- [ ] Fresh independent evaluation must distinguish narrower existing proof from expanded release readiness. Include source/model/manifest/host identities and all failed/unavailable gates.
+
+### S10 — Operations, accessibility and test storage
+
+- [ ] Before shared deployment, qualify authenticated HTTPS/WebSocket gateway/reachable origins, standard access codes/auth, session/role/grant revocation, backup/reset/recovery, quotas/retention and deployment capacity. Never publish the password-free local demo through a shared proxy. Recheck applicable provider requirements before any hosted-model integration.
+- [ ] Complete manual browser zoom/reflow, assistive-technology/screen-reader, keyboard/touch and reduced-motion checks with preserved work and readable states. Existing sampled automation is not full WCAG or representative usability evidence.
+- [ ] Automate bounded cleanup of **disposable test** observer reservations. 53 old completed pytest reservation files consumed about 53 GiB and required manual cleanup; clean rerun passed 400 tests. Do not weaken live audit admission or delete user runtimes/images/records to make tests pass.
+- [ ] Preserve the current working local preview and deployment/startup instructions; do not commit runtime secrets, signed grants, Windows media/credentials, model weights or video recordings.
+
+### S11 — Product/demo handoff and explicit deferrals
+
+- [ ] Maintain final engineering documentation/model limits with Tanvir, prepare/rehearse an actual verified 3 minute demo and submission-ready material if still required. Official track/deadline/format are unconfirmed; obtain them from the relevant authority rather than assuming old planned dates. No submission, purchase or contacting others is authorized just by this handoff.
+- [ ] Tanvir maintains the learning-quality/pilot kit; Saad supplies reliable environments and evidence export. Actual eight-beginner/two-expert sessions, unfamiliar transfer and delayed retention remain **user-deferred**; do not invent participant outcomes or quietly assign them back to unavailable Ahnaf.
+- [ ] Additional endpoint/phishing families, scenario publication/team extensions and larger Linux VM provider remain later roadmap scope where not covered by B/C. Keep them visible in the backlog; do not describe absent evidence or broad roadmap aspirations as implemented functionality.
+
+## Source map and verification
+
+Runtime: `services/range_runtime/{api,engine,target,adapter,db,observer,tool_worker,learning}.py`; entrypoints `apps/{control-api,target-api,range-worker}/`; contracts/scenarios in their existing folders. UI: `apps/web/src/features/live/`, shared `features/console/Chrome.tsx`, `styles/live.css`. Proofs: `scripts/verify_compose_isolation.py`, `scripts/prove_windows_gateway.py`, `scripts/prove_optional_tools.py`, `scripts/capture_windows_vm.py`; inspect usage before running against a runtime. Create missing expanded isolation tests when implementing B; a legacy path mention is not an existing suite.
+
+```bash
+python3 scripts/check_runtime.py
+npm --prefix apps/web test
+npm --prefix apps/web run build
+python3 scripts/harness_sync.py update --task saad-range-control --phase IMPLEMENT \
+  --complete "Exact completed change and measured evidence" \
+  --next-step "Next atomic action or named blocker"
+harness check run .
+harness check evaluate .
+```
+
+Run affected project-native browser checks on disposable fixtures, never broad cleanup against a user's active run. Use separate fixture ports/output for concurrent verification. At integration milestones also checkpoint `master-integration`; preserve Tanvir's 10/12 objective FAIL and 51989 ms coach tail until their own measured gates pass. Record completed work, exact remaining work, blockers, source/evidence and next action at each handoff. Keep `Ahnaf.md` byte-for-byte unchanged.

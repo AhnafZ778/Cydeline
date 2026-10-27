@@ -35,7 +35,7 @@ harness check run .
 
 - **Goal:** Deliver the accepted beginner learning loop around the two local-AI scenarios through M0-M4, retaining authoritative evidence/scoring and honest engineering, model and participant gates.
 - **IMMEDIATE NEXT STEP (`next_step`):**
-  > **Continue from docs/product/REMAINING_WORK.md: qualify expandedBhost/modelcapacity, diagnose saved10of12modelFAIL, humanverify actualWindowsbrowser/licensing; VMobserver then timedC. Pilot remainsdeferred. Publication complete; preserve priorfailed/unverifiedgates.**
+  > **Handoffready: Tanvir startsT1 savedmodeldiagnostic andSaad startsS1/S2 actualWindowsverification/expandedhostpreflight. Coordinate directly under Tanvir.md/Saad.md; do noteditAhnaf.md; pilotdeferred.**
 
 ---
 
@@ -83,6 +83,8 @@ harness check run .
 - [x] Focused briefing UX follow-up completed with independent scopedPASS; responsivewide/scroll/pinnedfooter/highlights both library/assignment. Preview5188 restarted preservingpauseduserpractice. Build/frontend54/browser15 and independent11PASS; finalnative rerun after disposableteststoragecleanup pending.
 - [x] Reconciled final briefing nativeHarnessPASS at d58ca8ce; authored consolidated REMAINING_WORK.md covering model10of12FAIL/coaching51.989s, actualWindowsinput/licensing, Bhost/isolation/VMrecording/load, Ctimedtools/results/qualification, accessibility, deferredpilot, deployment anddemo. Preparing all reviewed nonignoredchanges for existingGitHubbranch; private runtime/image/video remainexcluded.
 - [x] Published all235reviewedsource/documentation/evidence/contextchanges to GitHubfeaturebranch chore/publish-workstreams at cb8e0459f3039c4f6fab3a5426b0d9aeca0cb959; remoteHEAD independentlymatched andworkingtreeclean. Prepublication400backend+18subtests/typecheck/HarnessPASS. Localcredentials/VMimage/video excluded. Consolidated REMAINING_WORK.md committed.
+- [x] Updated Tanvir.md andSaad.md with allremainingwork, currentcompletedbaseline, concreteacceptance/dependencies/source/evidence/resumeinstructions whileAhnaf unavailable. Saad assumesremainingintegration/frontend/operations; Tanvir AI/model/coaching/learningquality. Ahnaf.md verifiedunchanged; contractsandownercontext synchronized.
+- [x] FocusedreviewPASS of documentationhandoff: allremainingwork mappedT1-T7/S1-S11, completedbaseline retained, no dependencyonunavailableAhnaf, local linksresolve, Ahnaf.mdbyte-for-byte unchanged, sourcecode/enums untouched. Ready topublish ownerdocs/contracts/context.
 
 ### Remaining Work (`remaining`)
 - [ ] Resolve AI-LEARN-01: current full objective gate: 10 passed / 2 failed; both Reporting service-dependent repeats fail adaptation.
