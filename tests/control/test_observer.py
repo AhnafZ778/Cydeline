@@ -27,6 +27,7 @@ def lab(tmp_path):
     yield SimpleNamespace(app=app, e=app.state.engine, trainee=trainee, teacher=teacher, stranger=stranger, rid=rid, path=tmp_path)
     for c in (trainee, teacher, stranger, target):
         c.close()
+    app.state.engine.observer.release()
 
 
 def turn(lab):

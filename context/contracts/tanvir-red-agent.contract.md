@@ -50,6 +50,9 @@ Follow `docs/product/AI_OBSERVER_RANGE_PLAN.md` and its independent decision/rev
 - `03_LOCAL_RED_AGENT_RUNTIME_PROMPT.md`
 - `05_OWNER_B_LOCAL_AI_RED_TEAM.md`
 - `context/TANVIR_CONTEXT.md`
+- `docs/model-card/learning/DIAGNOSTIC_AI_LEARN_01.md`
+- `docs/model-card/AI_RELEASE_QUALIFICATION_SUMMARY.md`
+- `docs/demo/DEMO_SCRIPT.md`
 
 
 ## Approved consolidation — 2026-10-23 (supersedes conflicting earlier fixture/workbench decisions)

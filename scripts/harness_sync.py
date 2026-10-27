@@ -30,6 +30,9 @@ def resolve_harness_bin() -> Path:
     found = shutil.which("harness")
     if found:
         return Path(found)
+    shim = REPO_ROOT / "scripts" / "harness_cli.py"
+    if shim.exists():
+        return shim
     return Path.home() / ".local" / "bin" / "harness"
 
 

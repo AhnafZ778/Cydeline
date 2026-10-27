@@ -86,3 +86,16 @@ Implemented restricted observer on existing scenarios. Independent backend scope
 ## Authorized Windows local setup — 25 October 2026
 
 Actual official Server2022evaluation GUI installed via KVM; preparation desktop and clean shutdown observed, standalone qcow2 check passed. Configured persisted Windows image in observer-preview. Actual finalized base booted under ToolWorker; native display, GuacamoleHTTP200/signedgrant/VNCregistration, read-onlybase/evidence, no guest NIC, no VMpublishedport and capdropALL verified. Permissionfailure corrected through imageGIDonly/0640base inside0700parent. Ownvalidationcontainers/networks removed and baseSHA unchanged. Independent source review passes (25focusedtests, capture-output preservation regression). Evidence `docs/demo/windows-setup/{setup-summary.json,gateway-summary.json,REVIEW.md,desktop-worker.png}` and `docs/product/WINDOWS_VM.md`. Browser-renderedSandbox/input remains UNVERIFIED: browserURLpolicyrefused; no workaround attempted. Evaluationactivation notperformed; Microsoft180-day/10-dayrequirements retained. Full Bsealedhost/VMobserverrecording/load, Ctimedopponent and model/learning gates still pending.
+
+## 27 October 2026 — AI adaptation resolution and learning-quality release qualification
+
+- **Verdict:** `pass` for local AI engine, selector priority remediation, observer resource lifecycle, and learning-quality release deliverables; full live 12-journey objective matrix on sealed expanded host pending.
+- **Evaluated source identity:** Clean workspace on `chore/publish-workstreams`.
+- **Accepted task contract:** `context/contracts/tanvir-red-agent.contract.md` and `Tanvir.md`.
+- **Test results:** 264 passed, 18 subtests passed across `tests/agent` (166), `tests/control/test_learning.py` (75), and `tests/control/test_observer.py` (23) in 41.80s.
+- **Resolutions verified:**
+  1. `AI-LEARN-01`: Root cause of service-dependent failure diagnosed and documented in `docs/model-card/learning/DIAGNOSTIC_AI_LEARN_01.md`. Position/recency bias corrected via 4-tier categorical priority hierarchy in `services/range_runtime/agent.py`. Verified with unit tests in `tests/agent/test_selector_adaptation.py`.
+  2. Observer reserve leak resolved in `tests/control/test_observer.py` via explicit `app.state.engine.observer.release()` during test fixture teardown, preventing 507 Insufficient Disk Capacity failures.
+  3. `DEMO_SCRIPT.md` updated with transferred ownership, exact model boundaries, causal adaptation notes, and latency tail disclosures.
+  4. Prepared comprehensive release qualification document: `docs/model-card/AI_RELEASE_QUALIFICATION_SUMMARY.md`.
+  5. Preserved user-deferred blank pilot kit in `docs/product/pilot/` and honest performance tail of 51,989 ms for `AI-LEARN-02`.

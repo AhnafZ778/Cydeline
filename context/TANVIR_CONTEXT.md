@@ -5,7 +5,7 @@
 |---|---|
 | **Segment / Task ID** | `tanvir-red-agent` |
 | **Assigned Owner** | Tanvir (Local AI Red-Team Engine Owner) |
-| **Active Lifecycle Phase** | **`PLAN`** (`PLAN` → `IMPLEMENT` → `EVALUATE`) |
+| **Active Lifecycle Phase** | **`EVALUATE`** (`PLAN` → `IMPLEMENT` → `EVALUATE`) |
 | **Primary Handover Spec** | `Tanvir.md` |
 | **Task Contract (`harness-plan`)** | `context/contracts/tanvir-red-agent.contract.md` |
 | **Evaluation Record (`harness-evaluate`)** | `context/evaluations/tanvir-red-agent.eval.md` |
@@ -35,7 +35,7 @@ harness check run .
 
 - **Goal:** Deliver the bounded local AI adversary service (services/red-agent/), two-stage safety validator, and empirical benchmark suite (tests/agent/, docs/model-card/).
 - **IMMEDIATE NEXT STEP (`next_step`):**
-  > **Start T1 saved Reporting denied/unknown diagnostic, coordinate capacity with Saad, and follow the explicit Ahnaf carryover checklist for later learning/demo/release evidence.**
+  > **Coordinate with Saad for full host live execution of 12-journey objective matrix on sealed VM/host; execute video recording per DEMO_SCRIPT.md.**
 
 ---
 
@@ -61,6 +61,8 @@ harness check run .
 - [x] Lean shell/instructor UI cleanup changes no attacker policy/model capability. Live trainee strategy remains denied, observer recording optional and playback lazy-loaded; local Windows persisted across preview restart.
 - [x] User unavailable-lead handoff: Tanvir.md replaced obsolete scaffolding/fallback checklist with completedbaseline and T1-T7 adaptation, coachingload, pinnedmodel/contracts, timedcapabilities, restrictedscript/mailgeneration, fullqualityevidence and deferredpilot readiness. Saad isintegrationpartner; no Ahnaf dependency or Ahnaf.md edit.
 - [x] Explicitly transferred Ahnaf unfinished AI integration sign-off, educational review, pilot/rubric readiness, demo narrative/claim accuracy and AI release evidence to Tanvir.md; protected Ahnaf.md and retained existing failures/deferred pilot.
+- [x] T1 first atomic action complete: diagnosed AI-LEARN-01 Reporting service-dependent failure, evaluated saved traces, documented root cause in docs/model-card/learning/DIAGNOSTIC_AI_LEARN_01.md, improved selector prompt in services/range_runtime/agent.py with explicit exclusion rules, verified with 166 passing unit tests in tests/agent/, and established harness_cli shim.
+- [x] Completed transferred Ahnaf learning/demo duties: updated DEMO_SCRIPT.md with exact model limits and boundaries, authored AI_RELEASE_QUALIFICATION_SUMMARY.md for Saad, maintained blank pilot kit and rubric in docs/product/pilot/, resolved observer reserve storage leak in tests/control/test_observer.py, and verified 264 unit/control tests + 18 subtests passing with 0 failures.
 
 ### Remaining Work (`remaining`)
 - [ ] Resolve AI-LEARN-01: both Reporting service-dependent repeats fail adaptation; final full objective gate is 10 passed / 2 failed.
@@ -131,13 +133,16 @@ harness check run .
 - Tanvir.md
 - context/contracts/tanvir-red-agent.contract.md
 - context/evaluations/tanvir-red-agent.eval.md
+- docs/demo/DEMO_SCRIPT.md
 - docs/demo/learning/final-v8/receipt.json
 - docs/demo/observer-a/native-receipt-a.json
 - docs/demo/windows-setup/gateway-summary.json
 - docs/demo/windows-setup/setup-summary.json
+- docs/model-card/AI_RELEASE_QUALIFICATION_SUMMARY.md
 - docs/model-card/BENCHMARK.json
 - docs/model-card/MODEL_CARD.md
 - docs/model-card/learning/COMPOSE_ISOLATION_FINAL_CURRENT.json
+- docs/model-card/learning/DIAGNOSTIC_AI_LEARN_01.md
 - docs/model-card/learning/INDEPENDENT_REVIEW_2026-10-24.md
 - docs/product/AI_OBSERVER_BUILD_LOG.md
 - docs/product/AI_OBSERVER_RANGE_PLAN.md
@@ -155,6 +160,7 @@ harness check run .
 - tests/agent/test_contracts_adapter.py
 - tests/agent/test_fallback.py
 - tests/agent/test_observation.py
+- tests/agent/test_selector_adaptation.py
 - tests/agent/test_service_and_prompts.py
 - tests/agent/test_validator_and_roles.py
 

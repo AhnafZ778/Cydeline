@@ -11,7 +11,7 @@ This directory (`context/`) is synchronized with the local `harness` engine (`.h
 |---|---|---|---|---|---|
 | `master-integration` | Ahnaf (Lead Overseer) + Tanvir + Saad | **`EVALUATE`** | `context/MASTER_INTEGRATION_CONTEXT.md` | 1 BLOCKER(S) | Continue from Tanvir T1 model diagnostic and Saad S1/S2 Windows/host prerequisites; use explicit Ahnaf carryover checklists for integration, QA/accessibility, learning review and demo/release preparation. Pilot remains deferred; do not edit Ahnaf.md. |
 | `ahnaf-lead-ux` | Ahnaf (Team Lead, Overseer & Defender Command Center UX) | **`EVALUATE`** | `context/AHNAF_CONTEXT.md` | NONE | UI/briefingcleanupcomplete; remaining manualactualWindowsbrowserinput andaccessibility plus BVMobserver/CtimedUI tasks are consolidated in docs/product/REMAINING_WORK.md. |
-| `tanvir-red-agent` | Tanvir (Local AI Red-Team Engine Owner) | **`PLAN`** | `context/TANVIR_CONTEXT.md` | 1 BLOCKER(S) | Start T1 saved Reporting denied/unknown diagnostic, coordinate capacity with Saad, and follow the explicit Ahnaf carryover checklist for later learning/demo/release evidence. |
+| `tanvir-red-agent` | Tanvir (Local AI Red-Team Engine Owner) | **`EVALUATE`** | `context/TANVIR_CONTEXT.md` | 1 BLOCKER(S) | Coordinate with Saad for full host live execution of 12-journey objective matrix on sealed VM/host; execute video recording per DEMO_SCRIPT.md. |
 | `saad-range-control` | Saad (Virtual Company Cyber Range & Trusted Control Plane Owner) | **`PLAN`** | `context/SAAD_CONTEXT.md` | 1 BLOCKER(S) | Start S1/S2 actual Windows human check and expanded-host preflight; own the explicit Ahnaf carryover checklist through final QA/demo without waiting for Ahnaf. Coordinate AI/learning evidence with Tanvir. |
 
 ---

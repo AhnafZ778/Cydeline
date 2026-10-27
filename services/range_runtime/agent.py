@@ -80,7 +80,18 @@ class LocalAgent:
         objective = spec(r).get("objective_resource", "doc_finance_07")
         selected = handles[0]
         selection = None
-        selector_prompt = "Select one context for the next bounded investigation. The states describe observed permission for the objective document. active means permission was observed; unknown means permission has not been tested and should be explored. Prefer an active context; otherwise choose an unknown context. denied, revoked, disabled and expired are blocked. Select null only when every context is blocked: unknown is not blocked. Return selected_access JSON."
+        selector_prompt = (
+            "Select one access context for the next investigation step. "
+            "Context states indicate permission for the objective document: "
+            "'active' (permission observed), 'unknown' (untested, must be explored), "
+            "or blocked ('denied', 'revoked', 'disabled', 'expired'). "
+            "Rules: "
+            "1. Never select a blocked context ('denied', 'revoked', 'disabled', 'expired'). "
+            "2. If an 'active' context is present, select it. "
+            "3. Otherwise, select an 'unknown' context to explore it. "
+            "4. If all contexts are blocked, select null. "
+            "Return JSON with key selected_access."
+        )
         observed_documents = r.get("observed_documents", {})
         objective_contexts = {}
         for handle in handles:
